@@ -1,4 +1,6 @@
 ---
+import Head from "Head.astro";
+
 // Predefine the glob for all potential directories (e.g., `/src/pages/example/*.md`)
 const allMarkdownFiles = import.meta.glob("/src/pages/**/*.mdx", {
   eager: true,
