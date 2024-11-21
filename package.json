@@ -17,6 +17,7 @@
     "astro": "^4.16.13",
     "astro-icon": "^1.1.0",
     "daisyui": "^4.11.1",
-    "tailwindcss": "^3.4.3"
+    "tailwindcss": "^3.4.3",
+    "theme-change": "^2.5.0"
   }
 }
