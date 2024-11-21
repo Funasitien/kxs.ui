@@ -1,6 +1,7 @@
 ---
 import Head from "./Head.astro";
 import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
 
 // Predefine the glob for all potential directories (e.g., `/src/pages/example/*.md`)
 const allMarkdownFiles = import.meta.glob("/src/pages/**/*.mdx", {
@@ -30,6 +31,7 @@ const posts = Object.entries(allMarkdownFiles)
     <article class="prose lg:prose-xl mx-2 lg:mx-4">
       <slot />
     </article>
+    <Footer />
   </div>
   <div class="drawer-side">
     <label for="my-drawer-2" aria-label="close sidebar" class="drawer-overlay"
