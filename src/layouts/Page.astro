@@ -1,5 +1,6 @@
 ---
 import Head from "./Head.astro";
+import Navbar from "../components/Navbar.astro";
 
 // Predefine the glob for all potential directories (e.g., `/src/pages/example/*.md`)
 const allMarkdownFiles = import.meta.glob("/src/pages/**/*.mdx", {
@@ -25,9 +26,7 @@ const posts = Object.entries(allMarkdownFiles)
 <div class="drawer lg:drawer-open">
   <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
   <div class="drawer-content max-w-screen">
-    <label for="my-drawer-2" class="btn btn-primary drawer-button lg:hidden pb-10">
-      Test Drawer
-    </label>
+    <Navbar />
     <article class="prose lg:prose-xl mx-2 lg:mx-4">
       <slot />
     </article>
