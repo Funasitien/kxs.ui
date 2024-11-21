@@ -1,0 +1,206 @@
+---
+title: "HTML et CSS (suite)"
+layout: "../../../../layouts/Page.astro"
+---
+
+HTML et CSS (suite)
+
+Nous verrons aujourd'hui de nouveaux éléments HTML ainsi que de nouvelles propriétés CSS pour fabriquer des pages plus élaborées. Enfin, nous verrons comment créer une page web directement sur votre ordinateur.
+Listes
+
+Les listes se font grâce aux balises `<ul>` ou `<ol>`. Les éléments d’une liste sont défini par la balise `<li>`.
+
+1) Saisissez le code suivant dans Jsfiddle (vous pouvez faire un copier/coller :
+
+```html
+<ul>
+    <li>un élément</li>
+    <li>un deuxième élément</li>
+    <li>un autre élément</li>
+</ul>
+
+<ol>
+    <li>un élément</li>
+    <li>un deuxième élément</li>
+    <li>un autre élément</li>
+</ol>
+```
+
+2) Quelle est la différence entre `<ul>` et `<ol>` ?
+Images
+
+Pour ajouter une image, on utilisera la balise `<img>` sans balise fermante. Un attribut src permettra d’indiquer l’url de l’image, qu’elle soit locale ou sur internet.
+
+3) Après avoir cherché une image sur internet et copié son url, ajouter le code ci-dessous à votre page :
+
+```html
+<img src="url_de_l_image">
+```
+
+Balises neutres
+
+Il existe deux balises qui n’ont aucune signification. Cela permet d’organiser la page, de regrouper des éléments dans une même entité.
+
+La première est la balise `<div>`. Elle permet de créer un bloc qui va prendre toute la largeur de l’écran. Elle peut contenir n’importe quels éléments. Elle est très utilisée.
+
+La deuxième est la balise `<span>` qui permet de regrouper un groupe de mot ou tout élément « en ligne » comme un lien par exemple.
+
+4) Ajoutez les balises `<span>` et `</span>` autour du mot « deuxième » dans vos deux listes. Que se passe-t-il ?
+
+5) En modifiant légèrement le code HTML et en ajoutant du code CSS colorez les mots « deuxième » en rouge. Vous pouvez retourner voir le TP précédent si besoin.
+
+Appelez le professeur.
+Taille d'une image
+
+Pour choisir la taille d'une image, on peut utiliser la propriété CSS width qui permet de choisir la largeur de l'image. On peut exprimer cette largeur en pixels (ex : 200px) ou en pourcentage de la largeur de page (ex : 50%).
+
+6) Ajoutez l'attribut class="mon_image" à votre image et ajoutez le code ci-dessous dans le CSS :
+
+```css
+.mon_image {
+	width: 300px;
+}
+```
+
+7) Changer la taille en mettant différentes valeurs et en essayant des pourcentages.
+Position d'une image
+Centrer une image
+
+La solution la plus simple pour centrer une image est de la mettre dans un div avec la propriété CSS text-align: center;.
+
+8) Testez les codes HTML et CSS suivants :
+
+```html
+<div class="centrer">
+	<img src="https://kxs.fr/cours/python-snt/img/Python-logo-notext.svg">
+</div>
+```
+
+```css
+.centrer {
+	text-align: center;
+}
+```
+
+Habiller un texte autour d'une image
+
+Il est possible de faire glisser un texte autour d'une image avec la propriété CSS float: left;.
+
+9) Testez les codes HTML et CSS suivants pour voir ce qu'il se passe :
+
+```html
+<img class="mon_image" src="https://kxs.fr/cours/python-snt/img/Python-logo-notext.svg"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+```
+
+```css
+.mon_image {
+  width : 50px;
+  float: left;
+}
+```
+
+Donner des marges à une image
+
+La propriété CSS pour les marges est margin.
+
+10) Testez les codes HTML et CSS suivants pour voir ce qu'il se passe :
+
+```html
+<img class="mon_image" src="https://kxs.fr/cours/python-snt/img/Python-logo-notext.svg"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+```
+
+```css
+.mon_image {
+  width : 50px;
+  float: left;
+  margin: 10px;
+}
+
+.centrer {
+	text-align: center;
+}
+```
+
+Appelez le professeur.
+Créer une page web sur son ordinateur
+
+Il est assez simple de créer une page web sur son ordinateur. Il suffit de deux fichiers : par exemple un fichier index.html et un fichier style.css.
+Le fichier HTML
+
+Voici un fichier index.html de base pour commencer une page web :
+
+```html
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Le titre de votre page</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        Ici votre code HTML !
+    </body>
+</html>
+```
+
+Il faut ensuite changer le titre, mettre du code HTML et ouvrir le fichier avec un navigateur.
+
+11) En utilisant Geany (un éditeur de texte), créez un fichier index.html avec le code ci-dessus et ouvrez-le avec Brave.
+Le fichier CSS
+
+Le ficher CSS est lié au ficher HTML grâce à la ligne suivante :
+
+```html
+<link rel="stylesheet" href="style.css">
+```
+
+Elle est déjà dans le fichier HTML, pas besoin de la rajouter.
+
+12) En utilisant Geany (un éditeur de texte), créez un fichier style.css et ajoutez le code CSS ci-dessous pour vérifier que votre page web change en conséquence :
+
+```css
+body {
+	color: red;
+}
+```
+
+Travail final
+
+13) Pour terminer la séquence sur le HTML et CSS, vous allez devoir créer une page web présentant la vie d'une personne en relation avec l'informatique. Voici ci-dessous une liste parmi laquelle vous pouvez choisir votre sujet. Vous pouvez choisir une personne qui n'est pas dans cette liste en accord avec le professeur.
+
+    - Steve Jobs (Fondateur d'Apple)
+    - Bill Gates (fondateur de Microsoft)
+    - Edward Snowden (Lanceur d'alerte)
+    - Aaron Swartz (Creative commons, Reddit
+    - Richard Stallman (fondateur de la free software fondation)
+    - Alexandra Elbakyan (Créatrice de SciHub)
+    - Ada Lovelace (Premier algorithme)
+    - Margaret Hamilton (NASA)
+    - Grace Hopper (language COBOL)
+    - Linus Torvald (Créateur de Linux)
+    - Sue Gardner (fondation Wikimédia)
+    - Jimmy Wales (fondateur de Wikipedia)
+    - Markus Persson (Créateur de Minecraft)
+    - Alan Turing (inventeur de l'informatique)
+    - Steve Wozniak (cofondateur d'Apple)
+    - Mark Zuckerberg (fondateur de Facebook)
+    - Larry Page (créateur de Google)
+    - Jawed Karim (créateur de Youtube)
+    - Katherine Johnson (ingénieure spatiale et informaticienne)
+    - Jason Citron (fondateur de Discord)
+    - Kevin Systrom (créateur d'Instagram)
+
+Votre page devra utiliser les éléments suivants :
+
+    - titres de différents niveaux
+    - paragraphes
+    - images correctement dimensionnées et positionnées (au moins 2)
+    - liste
+    - de la couleur
+    - liens (au moins 2)
+    - toute autre propriété CSS découverte sur internet…

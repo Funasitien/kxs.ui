@@ -1,0 +1,88 @@
+---
+title: "HTML et CSS"
+layout: "../../../../layouts/Page.astro"
+---
+
+## HTML
+
+Le HTML (HyperText Langage Markup) est un langage de description qui permet de construire une page web.
+
+1) Allez sur la page d’accueil de Wikipedia et faites ctrl + u pour voir le code source de la page : c’est du HTML.
+
+Nous allons construire des pages simples pour comprendre le HTML. Pour cela, nous utiliserons le site Jsfiddle.
+### Bases
+
+2) Saisissez ou copiez le code suivant dans la fenêtre HTML puis appuyez sur run pour voir le résultat :
+
+```html
+<h1>Mon titre</h1>
+
+<p>
+    Ceci est un paragraphe. Et un élément <strong>important</strong>.
+</p>
+```
+
+Vous venez de créer une page web ! Essayons de voir comment cela fonctionne :
+
+- `<h1>`, `<p>` et `<strong>` sont des balises ouvrantes et `</h1>`, `</p>` et `</strong>` sont des balises fermantes. Ce qu’il y a entre une balise ouvrante et une balise fermante est son contenu.
+- la balise `<h1>` est le titre le plus important. Il existe des balises `<h1>` jusqu’à `<h6>` pour les titres moins importants.
+- la balise `<p>` représente un paragraphe.
+- la balise `<strong>` sert à mettre en valeur un texte important. 
+
+3) Reprenez la page précédente et ajoutez deux titres `<h2>` ainsi qu’un paragraphe.
+
+Appelez le professeur.
+
+### Liens
+
+Pour faire un lien hypertexte il faut utiliser la balise `<a>`. Son contenu est le texte cliquable et on lui ajoute un attribut href pour indiquer la cible du lien.
+
+4) Ajoutez le lien suivant à votre page :
+
+```html
+<a href="https://www.google.fr">Lien vers Google</a>
+```
+
+Pour l’ouvrir dans un nouvel onglet, cliquez dessus avec la molette.
+
+5) Transformez le lien précédent pour qu’il pointe vers Bing (le moteur de recherche de Microsoft).
+
+Appelez le professeur.
+
+## CSS
+
+Le CSS (Cascading Style Sheet) permet d’apporter un peu de style à une page HTML. C’est à dire changer la mise en page ou les couleurs par exemple.
+Bases
+
+Pour appliquer un style à un élément il faut écrire des instructions dans la fenêtre CSS à droite.
+
+6) Ajoutez le code suivant dans la fenêtre CSS et décrire ce qu’il se passe :
+
+```css
+h1 {
+    text-align: center;
+    color: red;
+}
+
+strong {
+    background-color: green;
+}
+```
+
+## Classes
+
+Il est aussi possible de cibler un élément HTML en CSS en lui ajoutant un attribut class.
+
+7) Remplacez une balise `<p>` par `<p class="toto">` dans votre page puis ajoutez le code suivant dans la fenêtre CSS :
+
+```css
+.toto {
+    color: yellow;
+}
+```
+
+Seul le paragraphe toto devient jaune.
+
+8) Pour terminer créez une page web qui décrit vos trois sites web préférés. Elle doit avoir : un titre, des sous-titres, des liens vers les sites, des paragraphes et des couleurs différentes pour chaque paragraphe.
+
+Appelez le professeur. 
