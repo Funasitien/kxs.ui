@@ -1,0 +1,117 @@
+---
+title: "Projet : dé aléatoire"
+layout: "../../../layouts/Page.astro"
+---
+
+### Filtres photo
+
+### Prérequis
+- structures de contrôle ;
+- fonctions ;
+- boucles ;
+- modules ;
+- tableaux.
+
+### Introduction
+
+Dans ce projet, vous aller devoir créer des filtres pour des images comme les filtres Instagram.
+
+Nous utiliserons la bibliothèque Python PIL (Python Image Library) aussi appelée Pillow :
+
+```py
+from PIL import Image
+```
+
+Cette bibliothèque permet d’accéder simplement aux pixels d’une image.
+
+### Couleurs d’une image
+Une image se décompose en une multitude de points appelés pixels.
+
+# MISSING IMAGE
+
+Chaque pixel possède sa propre couleur. Cette couleur résulte de la combinaison des trois couleurs primaires : rouge, vert et bleu (Red, Green et Blue : RGB). Ces niveaux peuvent en général prendre toutes les valeurs entre 0 et 255. On représente ainsi la couleur d’un pixel par trois nombres correspondant aux niveaux de rouge, vert et bleu. Par exemple pour un pixel vert on aura (0, 255, 0). Vous pouvez aller sur ce site pour voir le code RGB de toutes les couleurs affichables sur un écran : https://htmlcolorcodes.com/fr/.
+
+### Pillow
+La documentation de Pillow est disponible à l’adresse suivante : https://pillow.readthedocs.io/en/stable/reference/Image.html
+
+Pour vous faciliter la prise en main de cette bibliothèque, voici les commandes les plus utiles :
+
+| Commande | Description |
+| :-: | :-: |
+| image = Image.open("photo.jpg") | Ouvre le fichier "photo.jpg" et le stocke en tant qu’objet dans la variable image. |
+| image = Image.new("RGB", (larg, haut)) | Crée une nouvelle image de largeur larg et de hauteur haut et la stocke en tant qu’objet dans la variable image. |
+| image.copy() | Retourne une copie de l’image. Utile avant de transformer une image. |
+| image.save("photo2.jpg") | Sauvegarde l’objet image dans le fichier "photo2.jpg". |
+| image.show() | Affiche l’image dans une fenêtre. |
+| image.width | Retourne la largeur de l’image en pixels. |
+| image.height | Retourne la hauteur de l’image en pixels. |
+| image.getpixel((x, y)) | Retourne la couleur du pixel (x, y) de image. |
+| image.putpixel((x, y),(r, g, b)) | Modifie la couleur du pixel (x, y) de image en (r, g, b). |
+
+### Projet
+Vous allez devoir créer différents filtres ainsi qu’une interface en ligne de commande. On utilisera dans un premier temps le fichier [maison.jpg](maison.jpg) à télécharger.
+
+#### 1 - Premier filtre : rouge
+1) Créez un premier filtre qui ne garde que la composante rouge d’une image. C’est à dire qu’il faut pour chaque pixel mettre le vert et le bleu à zéro et ne pas toucher à la composante rouge. Ce filtre se présentera sous la forme d’une fonction prenant un objet Image en paramètre et retournant un nouvel objet image.
+
+#### 2 - Filtres
+Créez les filtres suivants :
+
+2) Un filtre vert et un filtre bleu basés sur le même principe que le filtre rouge ;
+
+3) Un filtre gris qui transforme une image couleur en nuance de gris. Pour cela, chaque composante d’un pixel prend la moyenne des trois composantes.
+
+4) Un filtre noiretblanc qui après le filtre gris met les composantes à 0 si leur valeur est inférieure à 128 et à 255 si leur valeur est supérieure ou égale à 128.
+
+5) Un filtre miroir qui retourne l’image comme si on la voyait dans un miroir.
+
+#### 3 - Interface
+6) Créez une interface simple en ligne de commande qui propose de choisir le fichier à traiter, le nom du ficher produit (pas de sauvegarde si rien n’est saisi) puis le filtre avec un numéro. L’interface devra ressembler à ce qu’il y a ci-dessous :
+
+```
+Quel fichier utiliser ("photo.jpg" par défaut) ?
+Quel nom donner au nouveau fichier (pas de sauvegarde par défaut) ? photo2.jpg
+Voici les filtres disponibles :
+1 – rouge
+2 – vert
+3 – bleu
+4 – gris
+5 – noir_et_blanc
+6 – miroir
+Quel filtre choisissez-vous ? 2
+Filtre vert appliqué
+```
+
+#### 4 - Encore des filtres
+Créez les filtres suivants :
+
+7) Un filtre pixel3 qui parcourt l’image par bloc de 3 pixels de large et remplace les couleurs des 9 pixels par une même couleur qui est la moyenne des 9 couleurs. Cela devra faire l’effet d’une image pixelisée.
+
+8) Un filtre pixel10 qui fait la même chose que le filtre pixel3 mais avec des blocs de 10 pixels de large.
+
+9) Un filtre lum qui prend en paramètre un nombre entier et qui ajoute cette valeur à toutes les couleurs de chaque pixel. (il n’y a pas besoin de faire attention aux limites 0 et 255, Pillow s’en charge automatiquement)
+
+10) Un filtre color qui prend en paramètre une des trois couleurs primaire et un nombre entier k. Il ajoute alors ce nombre à la composante correspondante de chaque pixel et retranche k/2 aux deux autres composantes.
+
+11) Un filtre color512 qui limite à 8 le nombre de valeurs pour chaque composante de façon à donner un effet « vieux jeu vidéo » à l'image. Par exemple si la composante est entre 0 et 31 alors on la remplace par 0, entre 32 et 63 on la remplace par 32… Il est possible de faire cela très simplement. Le rendu pourra être meilleur avec une autre image que vous trouverez sur internet.
+
+### Tableau du barème
+Voilà le barème complet sur 20 pour ce projet.
+
+| Tâche | Barème |
+| :-: | :-: |
+| rouge | 1 points |
+| bleu et vert | 1 points |
+| gris | 2 points |
+| noir et blanc | 2 point |
+| miroir | 1 point |
+| interface | 2 point |
+| pixel3 | 3 points |
+| pixel10 | 1 point |
+| lum | 1 points |
+| color | 1 point |
+| color512 | 1 point |
+| commentaires | 1 points |
+| code propre | 1.5 point |
+| code optimisé | 1.5 points |
+| Totals | 20 |
