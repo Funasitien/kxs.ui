@@ -3,30 +3,36 @@ title: "URL et requêtes HTTP"
 layout: "../../../../layouts/Page.astro"
 ---
 
-URL
+## URL
 URL signifie Uniform Ressource Locator. On assimile souvent URL avec adresse web alors qu’il peut exister des URL pour des ressources qui ne sont pas sur le web (FTP, mail…).
 
 Une adresse web a une URL qui commence par http:// pour HyperText Transfer Protocol. C’est la base du World Wide Web inventé par Tim Berners-Lee en 1989.
 
 Prenons pour exemple une URL pour en comprendre toutes les parties :
 
+```
 https://www.debian.org/intro/about
+```
+
 Sur l’URL ci-dessus on peut distinguer :
 
-httpsle protocole, il est avant le séparateur. Dans le cas du web il sera toujours http ou https ;
-://le séparateur ;
-www.debian.orgle nom de domaine/sous-domaine. Il se situe entre le séparateur et le premier / ;
-/intro/aboutle chemin vers la ressource.
+`https` : le protocole, il est avant le séparateur. Dans le cas du web il sera toujours http ou https ;
+`://` : le séparateur ;
+`www.debian.org` : le nom de domaine/sous-domaine. Il se situe entre le séparateur et le premier / ;
+`/intro/about` :le chemin vers la ressource.
 1) Sur l’URL ci-dessous, déterminer le protocole, le domaine/sous-domaine et le chemin vers la ressource.
 
+```
 https://www.gnu.org/philosophy/philosophy.fr.html
+```
+
 2) Donner l’URL de la page Wikipedia sur Tim Berners-Lee.
 
 Le chemin vers la ressource suit l’arborescence du serveur. / est la racine du serveur et /intro/ correspond au dossier « intro » sur le serveur.
 
 3) Donner l’URL du dossier « devel » sur le serveur www.debian.org.
 
-Modèle client / serveur
+## Modèle client / serveur
 Pour obtenir le contenu d’une URL, un navigateur (le client) envoie une requête à un serveur et il attend sa réponse. Le serveur répond en envoyant certaines informations (ce qu'on appelle les « en-têtes ») et le contenu de l’URL demandée.
 
 Pour voir les requêtes dans Firefox il faut appuyer sur Ctrl + Maj + E puis cliquer sur la première ligne de la liste qui apparaît. Il sera nécessaire de rafraîchir la page et de choisir la requête que l'on veut observer. On s'intéressera particulièrement aux entêtes (headers) des requêtes.
@@ -42,7 +48,7 @@ navigateur du client (dans le User-Agent)  ;
 système d’exploitation du client (dans le User-Agent) :
 5) Utilisez votre téléphone pour aller sur la page https://kxs.fr/outils/user-agent et notez le navigateur et le système d’exploitation de votre téléphone.
 
-HTTPS
+## HTTPS
 HTTPS est une amélioration du protocole HTTP qui permet de crypter les échanges d’informations entre le client et le serveur. C’est à dire qu’une personne qui intercepterait votre communication ne pourrait pas la comprendre. En cherchant sur internet ou avec l'aide du prof, répondre aux questions suivantes :
 
 6) Que veut dire le « s » de HTTPS ?
