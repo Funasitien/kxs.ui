@@ -6,7 +6,7 @@ import Footer from "../components/Footer.astro";
 const { frontmatter } = Astro.props;
 ---
 
-<Head title={frontmatter.title} description={frontmatter.description}>
+<Head>
   <Navbar />
   <article class="prose lg:prose-xl mx-2 lg:mx-4" style="max-width: none;">
     <slot />
