@@ -20,9 +20,9 @@ const currentDir = currentPath.replace(/\/[^/]*$/, "/"); // Get the directory pa
 const posts = Object.entries(allMarkdownFiles)
   .filter(([path]) => path.startsWith(`/src/pages${currentDir}`))
   .map(([, module]) => ({
-    title: module.frontmatter.title,
-    icon: module.frontmatter.icon,
-    url: module.url,
+    title: (module as any).frontmatter.title,
+    icon: (module as any).frontmatter.icon,
+    url: (module as any).url,
   }));
 ---
 <Head>

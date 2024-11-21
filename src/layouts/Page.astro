@@ -22,9 +22,9 @@ const currentDir = currentPath.replace(/\/[^/]*$/, "/"); // Get the directory pa
 const posts = Object.entries(allMarkdownFiles)
   .filter(([path]) => path.startsWith(`/src/pages${currentDir}`))
   .map(([, module]) => ({
-    title: module.frontmatter.title,
-    icon: module.frontmatter.icon,
-    url: module.url,
+    title: (module as any).frontmatter.title,
+    icon: (module as any).frontmatter.icon,
+    url: (module as any).url,
   }));
 ---
 
@@ -61,7 +61,9 @@ const posts = Object.entries(allMarkdownFiles)
         <li class="pt-10">
           <a href="../">Back ig</a>
         </li>
-        <li class="absolute bottom-5 pr-2" style="width: -webkit-fill-available;">
+        <li
+          class="absolute bottom-5 pr-2"
+          style="width: -webkit-fill-available;">
           <select data-choose-theme class="select select-bordered">
             <option value="light">💡 Light</option>
             <option value="dark">🌙 Dark</option>
