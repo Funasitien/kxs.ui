@@ -1,0 +1,144 @@
+---
+title: "Projets"
+layout: "../../../../layouts/Page.astro"
+---
+
+## Évaluation des projets
+
+Sauf indication spéciale, cette année, les projets seront évalués sur les critères suivants.
+
+### Réalisation du cahier des charges
+
+Pour la plupart des projets, vous disposerez d'un cahier des charges à respecter. Chaque élément du cahier des charges rapporte des points.
+
+La réalisation du cahier des charges représente la plus grande partie de la notation mais quelques points sont réservés aux bonnes pratiques de programmation rappelées ci-dessous.
+
+### Bonnes pratiques
+
+Il vous est demandé d'apporter un soin particulier à votre code en respectant les règles de bonne conduite habituelles :
+
+Un programme
+
+- doit être lisible et clair ;
+- doit être découpé en petits composants faisant peu de choses, mais les faisant bien ;
+- ne doit pas avoir du code répété ;
+- doit séparer calculs et interface homme/machine ;
+- doit être documenté ;
+- doit être testé.
+
+Voici des précisions sur certains points :
+
+### Code lisible et nommage adéquat
+
+Utiliser des sauts de lignes et des espaces pour aérer le code.
+
+Exemple à ne pas suivre :
+
+```python
+a=a*2+b-3
+if a==5: print("super")
+```
+
+On notera plutôt :
+
+```python
+a = a*2 + b - 3
+if a == 5:
+	print("super")
+```
+
+Bien nommer les fonctions et les variables, utiliser les variables habituelles (i et j dans les boucles, x et y pour des coordonnées…).
+
+Exemple à ne pas suivre :
+
+```python
+# Fonction qui trace un cercle
+def dessin() :
+```
+
+On notera plutôt :
+
+```python
+# Fonction qui trace un cercle
+def cercle() :
+```
+
+Éviter les « nombres magiques » : plutôt que d’utiliser un nombre sans explication, il faut le mettre dans une variable avec un nom explicite
+
+Exemple à ne pas suivre :
+
+```python
+for i in range(52) :
+	…
+```
+
+On écriera plutôt :
+
+```python
+nombreCartes = 52
+for i in range(nombreCartes) :
+	…
+```
+
+### « Optimisation du code »
+
+Pas de répétition inutile du code, utilisation de fonctions et de boucles quand cela est judicieux.
+
+Exemple à ne pas suivre :
+
+```python
+a = 3 * 5 + 9
+…
+b = 3 * 8 + 9
+…
+c = 3 * 2 + 9
+```
+
+On notera plutôt :
+
+```python
+def formule(x):
+	return 3*x + 9
+
+a = formule(5)
+…
+b = formule(8)
+…
+c = formule(2)
+```
+
+Faire de façon simple quand cela est possible : ne pas produire une « usine à gaz ».
+
+On évitera :
+
+```python
+def maFonction(x):
+	if x > 3:
+		return True
+	else:
+		return False
+```
+
+On préfèrera :
+
+```python
+def maFonction(x):
+	return x > 3
+```
+
+### Commentaires adéquats
+
+Le code doit être commenté pour expliquer la logique, le raisonnement. Il ne faut pas non plus trop de commentaires :
+
+Exemple de commentaire utile :
+
+```python
+# On tire au hasard la face du dé
+face = random.randrange(1,7)
+```
+
+Exemple de commentaire inutile :
+
+```python
+a = 2 # On met 2 dans a
+```
