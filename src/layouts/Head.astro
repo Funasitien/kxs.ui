@@ -8,12 +8,15 @@ const { title = "KXS", description = "kxs.fr but way better" } = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/logo.svg" />
     <link rel="sitemap" href="/sitemap-index.xml" />
+    <link href="/fixes.css" rel="stylesheet"/>
+
     <title>{title}</title>
     <meta content={title} property="og:title" />
     <meta content={description} property="og:description" />
     <meta content="https://kxs.dreamc.site" property="og:url" />
     <meta content="https://kxs.dreamc.site/logo.png" property="og:image" />
     <meta content="#43B581" data-react-helmet="true" name="theme-color" />
+
     <script is:inline>
       // ☝️ This script prevent the FART effect.
       if (localStorage.getItem("theme") === null) {
@@ -28,11 +31,13 @@ const { title = "KXS", description = "kxs.fr but way better" } = Astro.props;
       import { themeChange } from "theme-change";
       themeChange();
     </script>
-    <style is:global>
-      .prose pre {
-        background-color: var(--tw-prose-pre-bg) !important;
-      }
-    </style>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body class="min-h-screen">
     <slot />

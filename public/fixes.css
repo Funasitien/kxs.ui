@@ -1,0 +1,12 @@
+.prose pre {
+    background-color: var(--tw-prose-pre-bg) !important;
+}
+
+.jetbrains {
+  font-family: "JetBrains Mono", serif;
+  font-optical-sizing: auto;
+}
+
+.poppins {
+  font-family: "Poppins", serif;
+}
