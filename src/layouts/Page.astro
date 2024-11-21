@@ -7,7 +7,10 @@ const allMarkdownFiles = import.meta.glob("/src/pages/**/*.mdx", {
 });
 
 // Get the current page's route
-const currentPath = Astro.url.pathname;
+let currentPath = Astro.url.pathname;
+if (currentPath.endsWith('/')) {
+  currentPath = currentPath.slice(0, -1);
+}
 
 // Filter the files to only include those in the same directory
 const currentDir = currentPath.replace(/\/[^/]*$/, "/"); // Get the directory path
@@ -23,7 +26,9 @@ const posts = Object.entries(allMarkdownFiles)
   <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
   <div class="drawer-content flex flex-col items-center justify-center">
     <label for="my-drawer-2" class="btn btn-primary drawer-button lg:hidden">
-    <div><slot /></div>
+    <article class="prose lg:prose-xl">
+      <slot />
+    </article>
   </div>
   <div class="drawer-side">
     <label for="my-drawer-2" aria-label="close sidebar" class="drawer-overlay"
