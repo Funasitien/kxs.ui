@@ -1,0 +1,102 @@
+---
+import Head from "./Head.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import { Icon } from "astro-icon/components";
+
+const { frontmatter } = Astro.props;
+
+// Predefine the glob for all potential directories (e.g., `/src/pages/example/*.md`)
+const allMarkdownFiles = import.meta.glob("/src/pages/**/*.mdx", {
+  eager: true,
+});
+
+// Get the current page's route
+const currentPath = Astro.url.pathname;
+
+// Filter the files to only include those in the same directory
+const currentDir = currentPath.replace(/\/[^/]*$/, "/"); // Get the directory path
+
+const posts = Object.entries(allMarkdownFiles)
+  .filter(([path]) => path.startsWith(`/src/pages${currentDir}`))
+  .map(([, module]) => ({
+    title: module.frontmatter.title,
+    icon: module.frontmatter.icon,
+    url: module.url,
+  }));
+---
+<Head>
+<Navbar />
+<div class="drawer lg:drawer-open">
+  <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
+  <div class="drawer-content max-w-screen">
+    <h1 class="text-3xl lg:text-5xl font-bold m-2 my-4 lg:m-4 p-2 bg-primary rounded-lg flex flex-row max-w-fit text-base-100">
+      <Icon name={frontmatter.icon} class="translate-y-0.5"/>
+      <span class="ml-1">{frontmatter.title}</span>
+    </h1>
+    <article class="prose lg:prose-xl mx-2 lg:mx-4" style="max-width: none;">
+      <slot />
+    </article>
+    <Footer />
+  </div>
+  <div class="drawer-side">
+    <label for="my-drawer-2" aria-label="close sidebar" class="drawer-overlay"
+    ></label>
+    <ul class="menu bg-base-200 text-base-content min-h-full w-80 p-4">
+      {
+        posts.map((post) => (
+          <li>
+            <a href={post.url}>
+              <Icon name={post.icon} />
+              {post.title}
+            </a>
+          </li>
+        ))
+      }
+      <li>
+        <a href="../">Back ig</a>
+      </li>
+      <li>
+        <select data-choose-theme class="select select-bordered">
+          <option value="light">💡 Light</option>
+          <option value="dark">🌙 Dark</option>
+          <option value="cupcake">🧁 Cupcake</option>
+          <option value="bumblebee">🐝 Bumblebee</option>
+          <option value="emerald">💚 Emerald</option>
+          <option value="corporate">🏢 Corporate</option>
+          <option value="synthwave">🌇 Synthwave</option>
+          <option value="retro">🕹️ Retro</option>
+          <option value="cyberpunk">🤖 Cyberpunk</option>
+          <option value="valentine">❤️ Valentine</option>
+          <option value="halloween">🎃 Halloween</option>
+          <option value="garden">🌺 Garden</option>
+          <option value="forest">🌲 Forest</option>
+          <option value="aqua">💧 Aqua</option>
+          <option value="lofi">📼 Lo-Fi</option>
+          <option value="pastel">🌈 Pastel</option>
+          <option value="fantasy">✨ Fantasy</option>
+          <option value="wireframe">🔮 Wireframe</option>
+          <option value="black">⚫ Black</option>
+          <option value="luxury">🏰 Luxury</option>
+          <option value="dracula">🧛‍♂️ Dracula</option>
+          <option value="cmyk">🎨 CMYK</option>
+          <option value="autumn">🍁 Autumn</option>
+          <option value="business">💼 Business</option>
+          <option value="acid">💊 Acid</option>
+          <option value="lemonade">🍋 Lemonade</option>
+          <option value="night">🌙 Night</option>
+          <option value="coffee">☕ Coffee</option>
+          <option value="winter">❄️ Winter</option>
+          <option value="dim">🌃 Dim</option>
+          <option value="nord">🌌 Nord</option>
+          <option value="sunset">🌇 Sunset</option>
+        </select>
+      </li>
+    </ul>
+  </div>
+</div>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true });
+</script>
+</Head>

@@ -28,6 +28,11 @@ const { title = "KXS", description = "kxs.fr but way better" } = Astro.props;
       import { themeChange } from "theme-change";
       themeChange();
     </script>
+    <style is:global>
+      .prose pre {
+        background-color: var(--tw-prose-pre-bg) !important;
+      }
+    </style>
   </head>
   <body class="min-h-screen">
     <slot />
