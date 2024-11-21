@@ -1,0 +1,15 @@
+---
+import Head from "./Head.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+
+const { frontmatter } = Astro.props;
+---
+
+<Head>
+  <Navbar />
+  <article class="prose lg:prose-xl mx-2 lg:mx-4" style="max-width: none;">
+    <slot />
+  </article>
+  <Footer />
+</Head>
