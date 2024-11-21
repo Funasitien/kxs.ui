@@ -3,6 +3,7 @@ title: "Implémentation des arbres"
 icon: "mdi:language-html5"
 layout: "../../../layouts/Page.astro"
 ---
+import Mermaid from '../../../components/Mermaid.astro';
 
 Comme pour les listes, il est possible d'implémenter un arbre de plusieurs façons.
 Programmation orientée objet
@@ -19,7 +20,13 @@ class ArbreBinaire:
 
 1) Recréez l'arbre suivant en utilisant cette implémentation.
 
-IMG
+<Mermaid content="
+flowchart TB
+    A --> C
+    A --> D
+    B --> C
+    B --> D
+"/>
 
 2) Proposez et testez une méthode récursive permettant de calculer la taille de l'arbre.
 
@@ -42,12 +49,14 @@ noeud = (valeur, arbre.gauche, arbre.droit)
 
 Ainsi, pour représenter cet arbre :
 
-```mermaid
-sequenceDiagram
-    Alice->>John: Hello John, how are you?
-    John-->>Alice: Great!
-    Alice-)John: See you later!
-```
+<Mermaid content="
+flowchart TB
+    A --> C
+    A --> D
+    B --> C
+    B --> D
+"/>
+
 
 Nous utiliserons le code suivant :
 
@@ -59,7 +68,13 @@ Vous allez maintenant recréer les algorithmes précedents avec cette implément
 
 8) Recréez l'arbre suivant en utilisant cette implémentation.
 
-IMG
+<Mermaid content="
+flowchart TB
+    A --> C
+    A --> D
+    B --> C
+    B --> D
+"/>
 
 9) Proposez et testez une méthode récursive permettant de calculer la taille de l'arbre.
 
