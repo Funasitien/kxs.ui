@@ -21,7 +21,7 @@ if (currentPath.endsWith("/")) {
 const currentDir = currentPath.replace(/\/[^/]*$/, "/"); // Get the directory path
 const sidebarFilePath = `src/pages${currentDir}.sidebar`;
 const sidebarContent = fs.readFileSync(sidebarFilePath, "utf-8");
-sidebarPaths = sidebarContent
+const sidebarPaths = sidebarContent
     .split("\n")
     .map(line => line.trim())
     .filter(line => line !== "");
@@ -65,7 +65,7 @@ const posts = Object.entries(allMarkdownFiles)
       <ul
         class="menu bg-base-200 text-base-content min-h-full w-80 p-4 relative">
         {
-          sidebarContent.map((post) => (
+          sidebarPaths.map((post) => (
             <li>
               <a href={post.url}>
                 <Icon name={post.icon} /> {post.title}
