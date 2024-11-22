@@ -49,7 +49,7 @@ Pour accéder à un élément il faut « l’appeler » avec sa clé.
 
 **1)** Que renvoie l’instruction suivante ?
 ```py
-    >>> buts["Messi"]
+>>> buts["Messi"]
 ```
 
 Comme pour les tableaux on peut modifier un élément (cette fois en utilisant
@@ -72,7 +72,7 @@ tableaux. Par exemple, pour supprimer Benzema de notre dictionnaire il
 faudrait faire :
 
 ```py
-    >>> del(buts["Benzema"])
+>>> del(buts["Benzema"])
 ```
 
 ## Taille d’un dictionnaire
@@ -90,10 +90,10 @@ syntaxe que pour les tableaux avec in.
 **5)** Que renvoient les expressions suivantes ?
 
 ```py
-    >>> "Raul" in buts
+>>> "Raul" in buts
 ```
 ```py
-    >>> "Zidane" in buts
+>>> "Zidane" in buts
 ```
 
 ## Méthodes keys(), values() et items()
@@ -107,13 +107,13 @@ tableaux sont appelés des listes en Python).
 **6)** Noter le résultat des instructions suivantes :
  
 ```py
-    >>> list(buts.keys())
+>>> list(buts.keys())
 ```
 ```py
-    >>> list(buts.values())
+>>> list(buts.values())
 ```
 ```py
-    >>> list(buts.items())
+>>> list(buts.items())
 ```
 
 ## Parcours
@@ -124,12 +124,12 @@ clés ou avec les clé et les valeurs.
 **7)** Notez le résultat des instructions suivantes :
 
 ```py
-    for cle in buts:
-        print(cle, buts[cle])
+for cle in buts:
+    print(cle, buts[cle])
 ```
 ```py
-    for cle, valeur in buts.items():
-        print(cle, valeur)
+for cle, valeur in buts.items():
+    print(cle, valeur)
 ```
 
 On préférera la deuxième qui est plus rapide.
