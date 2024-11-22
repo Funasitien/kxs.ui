@@ -4,32 +4,6 @@ icon: "mdi:paper-remove"
 layout: "@root/layouts/Page.astro"
 ---
 
-  * [cours](https://kxs.fr/cours/)
-  * [sujets](https://kxs.fr/sujets/)
-  * [fiches](https://kxs.fr/fiches/)
-
-[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
-le lycée et la prépa](https://kxs.fr/cours/)
-
-## C
-
-  * [Matériel](.)
-  * [Hello world!](hello-world)
-  * [Printf](printf)
-  * [Nombres](nombres)
-  * [Structures de contrôle](structures-de-controle)
-  * [Fonctions](fonctions)
-  * [Commentaires](commentaires)
-  * [Portée des variables](portee-variables)
-  * [Pointeurs](pointeurs)
-  * [Tableaux](tableaux)
-  * [Bibliothèque stdbool](stdbool)
-  * [Projet puissance 4](projet-p4)
-  * [Chaînes de caractères](chaines-de-caracteres)
-  * [Structures](structures)
-  * [Exercices](exercices)
-  * [Headers](headers)
-
 # Chaînes de caractères
 
 ## `char`
@@ -38,10 +12,10 @@ Nous avons déjà vu le type `char` comme un type numérique stocké sur 1 octet
 Or `char` signifie « character » qui veut dire « caractère » car un `char` est
 généralement utilisé pour stocker un caractère :
 
-    
-    
+```c
     char c = 'A';
     printf("%c\n", c);
+```
 
 Un caractère s'écrit toujours entre guillemets simples. La correspondance
 entre les caractères et les nombres se fait avec la tablea ASCII dont nous
@@ -86,11 +60,11 @@ Table ASCII Dec | Hex | Bin | Caractère | Dec | Hex | Bin | Caract | Dec | Hex 
 34| 22| 100010| " | 77| 4D| 1001101| M | 120| 78| 1111000| x  
 35| 23| 100011| # | 78| 4E| 1001110| N | 121| 79| 1111001| y  
 36| 24| 100100| $ | 79| 4F| 1001111| O | 122| 7A| 1111010| z  
-37| 25| 100101| % | 80| 50| 1010000| P | 123| 7B| 1111011| {  
+37| 25| 100101| % | 80| 50| 1010000| P | 123| 7B| 1111011| `{`  
 38| 26| 100110| & | 81| 51| 1010001| Q | 124| 7C| 1111100| |  
-39| 27| 100111| ' | 82| 52| 1010010| R | 125| 7D| 1111101| }  
-40| 28| 101000| ( | 83| 53| 1010011| S | 126| 7E| 1111110| ~  
-41| 29| 101001| ) | 84| 54| 1010100| T | 127| 7F| 1111111| [DEL]  
+39| 27| 100111| ' | 82| 52| 1010010| R | 125| 7D| 1111101| `}`  
+40| 28| 101000| `(` | 83| 53| 1010011| S | 126| 7E| 1111110| ~  
+41| 29| 101001| `)` | 84| 54| 1010100| T | 127| 7F| 1111111| [DEL]  
 42| 2A| 101010| * | 85| 55| 1010101| U | | | |   
   
 Seul les nombres de 0 à 127 correspondent à des caractères, les 128 autres
@@ -100,21 +74,20 @@ Il est possible d'initialiser un `char` avec un nombre ou un caractère. On
 peut également l'afficher comme un caractère avec le marqueur `%c` ou comme un
 nombre avec le marqueur `%d` :
 
-    
-    
+```c
     char c1 = 64;
     printf("%d\n", c1);
     printf("%c\n", c1);
     char c2 = '@';
     printf("%d\n", c2);
     printf("%c\n", c2);
+```
 
 **1)** Écrire un programme qui affiche la liste des codes ASCII et de leur
 caractère correspondant pour les valeurs allant de 32 à 126. La sortie du
 programme devra commencer par ces lignes :
 
-    
-    
+```c+
     32 :  
     33 : !
     34 : "
@@ -125,6 +98,7 @@ programme devra commencer par ces lignes :
     for (char i = 32; i <= 126; i++) {
     	printf("%d : %c\n", i, i);
     }
+```
 
 ## Chaîne de caratères
 
@@ -133,16 +107,16 @@ programme devra commencer par ces lignes :
 En C, une chaîne de caractères est un tableau de caractères, donc un tableau
 de `char`. On peut définir une chaîne de caractères comme un tableau :
 
-    
-    
+```c
     char chaine[] = {'H', 'e', 'l', 'l', 'o', '!'};
+```
 
 Il est néanmoins possible de définir une chaîne de caractère de manière plus
 conviviale en encadrant simplement la chaîne de guillemets doubles :
 
-    
-    
+```c
     char chaine[] = "Hello!";
+```
 
 ### Propriétés
 
@@ -157,22 +131,22 @@ caractères de la chaîne `Hello!` mais qui affiche également le suivant. On
 affichera le code ASCII de chaque caractère. (On rappelle qu'on accède aux
 éléments d'un tableau avec la notation `chaine[i]`).
 
-    
-    
+```c
     char chaine[] = "Hello!";
     for (int i=0; i<=17; i++) {
-    	printf("%c : %d\n", chaine[i], chaine[i]);
+        printf("%c : %d\n", chaine[i], chaine[i]);
     }
+```
 
 ### Affichage
 
 Il est possible d'afficher une chaîne de caractères dans un `printf` avec le
 marqueur `%s` :
 
-    
-    
+```c
     char chaine[] = "Hello!";
     printf("%s\n", chaine);
+```
 
 ### `string.h`
 
@@ -180,20 +154,20 @@ La bibliothèque `string.h` fournit un grand nombre de fonctions sur les
 chaînes de caractères. La plus utile étant la fonction `strlen` qui renvoie la
 taille d'une chaînes de caractères.
 
-    
-    
+```c
     char chaine[] = "Hello!";
     printf("%ld\n", strlen(chaine));
+```
 
 On pourra avoir besoin de la fonction `strcpy` qui permet de copier une chaîne
 dans une autre :
 
-    
-    
+```c
     char chaine[10];
     strcpy(chaine, "Hello!");
     /* 	On ne peut plus faire chaine = "Hello!"
     	car le compilateur ne le permet qu'a la déclaration */
+```
 
 La fonction `strcmp` permet de comparer deux chaînes de caractère car il n'est
 pas possible de les comparer avec `==`. Elle renvoie `0` si les chaînes sont
@@ -203,8 +177,7 @@ identiques et une valeur différente de `0` sinon.
 caractères et renvoie le nombre de caractères qu'elle contient. Il ne faut pas
 utiliser `string.h` !
 
-    
-    
+```c
     int myStrlen(char chaine[]) {
     	int i = 0;
     	while (chaine[i] != 0) {
@@ -212,12 +185,12 @@ utiliser `string.h` !
     	}
     	return i;
     }
+```
 
 **4)** Compléter le programme ci-dessous qui demande à l'utilisateur un mot de
 passe et vérifie s'il est juste :
 
-    
-    
+```c
     const char password[] = "azerty";
     
     …
@@ -242,11 +215,4 @@ passe et vérifie s'il est juste :
     } else {
     	printf("Le mot de passe est faux\n");
     }
-
-[Précédent](projet-p4)[Suivant](structures)
-
-[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
-licence [CC BY-SA 4.0
-![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
-sa/4.0/deed.fr)
-
+```

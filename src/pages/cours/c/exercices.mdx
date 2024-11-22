@@ -4,34 +4,6 @@ icon: "mdi:paper-remove"
 layout: "@root/layouts/Page.astro"
 ---
 
-  * [cours](https://kxs.fr/cours/)
-  * [sujets](https://kxs.fr/sujets/)
-  * [fiches](https://kxs.fr/fiches/)
-
-[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
-le lycée et la prépa](https://kxs.fr/cours/)
-
-## C
-
-  * [Matériel](.)
-  * [Hello world!](hello-world)
-  * [Printf](printf)
-  * [Nombres](nombres)
-  * [Structures de contrôle](structures-de-controle)
-  * [Fonctions](fonctions)
-  * [Commentaires](commentaires)
-  * [Portée des variables](portee-variables)
-  * [Pointeurs](pointeurs)
-  * [Tableaux](tableaux)
-  * [Bibliothèque stdbool](stdbool)
-  * [Projet puissance 4](projet-p4)
-  * [Chaînes de caractères](chaines-de-caracteres)
-  * [Structures](structures)
-  * [Exercices](exercices)
-  * [Headers](headers)
-
-# Exercices
-
 ## Exercice 1
 
 Définir (avec `typedef`) une structure `etudiant` définie par trois champs :
@@ -46,8 +18,7 @@ initialise ses champs, et affiche les informations de l'étudiant.
 On pourra améliorer le programme en créant une fonction qui affiche
 correctement les informations d'un étudiant.
 
-    
-    
+```c
     #include <stdio.h>
     
     typedef struct Etudiant {
@@ -65,6 +36,7 @@ correctement les informations d'un étudiant.
     	printf("Nom : %s\nPrenom : %s\nNuméro d'étudiant : %d\n", a.nom, a.prenom, a.numero_etudiant);
     	affiche_etudiant(a);
     }
+```
 
 ## Exercice 2
 
@@ -92,11 +64,3 @@ et la quantite du produit. Vérifier leur bon fonctionnement avec des exemples.
 
 Créer une fonction `void decr_quantite(produit* p)` qui diminue la quantité du
 produit de 1 et qui affiche une alerte si la quantité passe à 0.
-
-[Précédent](structures)[Suivant (page des cours)](..)
-
-[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
-licence [CC BY-SA 4.0
-![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
-sa/4.0/deed.fr)
-

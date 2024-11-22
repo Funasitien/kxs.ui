@@ -4,28 +4,6 @@ icon: "mdi:paper-remove"
 layout: "@root/layouts/Page.astro"
 ---
 
-  * [cours](https://kxs.fr/cours/)
-  * [sujets](https://kxs.fr/sujets/)
-  * [fiches](https://kxs.fr/fiches/)
-
-[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
-le lycée et la prépa](https://kxs.fr/cours/)
-
-## Bases de données
-
-  * [Introduction](.)
-  * [Prise en main](prise-en-main)
-  * [Structure](structure)
-  * [Contenu](contenu)
-  * [Clés](cles)
-  * [Jointure](jointure)
-  * [Compléments](complements)
-  * [Agrégateurs](agregateurs)
-  * [Exercices](exercices)
-  * [IMDb](imdb)
-
-# Projet 3 : contacts en mieux
-
 ## Présentation
 
 Nous allons reprendre le [projet précédent](/cours/listes/projet) et améliorer
@@ -62,8 +40,7 @@ Totals | 10
 
 Voici une liste de commandes de SQLite3 qui vous seront utiles.
 
-    
-    
+```py
     import sqlite3
     
     # Connection à la base de données
@@ -85,19 +62,12 @@ Voici une liste de commandes de SQLite3 qui vous seront utiles.
     
     # Pour appliquer les modifications (après un INSERT ou UPDATE)
     conn.commit()
+```
 
 **Attention !** il y a de légères différences entre SQLite3 et MySQL.
 Particulièrement pour les structures des tables. Voici donc une requête qui
 fonctionne pour créer une table pour les contacts :
 
-    
-    
-    CREATE TABLE IF NOT EXISTS contacts (id INTEGER PRIMARY KEY AUTOINCREMENT, nom TEXT, prenom TEXT, telephone INTEGER)
-
-[Précédent](exercices)[Suivant](imdb)
-
-[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
-licence [CC BY-SA 4.0
-![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
-sa/4.0/deed.fr)
-
+```sql
+CREATE TABLE IF NOT EXISTS contacts (id INTEGER PRIMARY KEY AUTOINCREMENT, nom TEXT, prenom TEXT, telephone INTEGER)
+```

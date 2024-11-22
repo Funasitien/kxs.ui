@@ -4,34 +4,6 @@ icon: "mdi:paper-remove"
 layout: "@root/layouts/Page.astro"
 ---
 
-  * [cours](https://kxs.fr/cours/)
-  * [sujets](https://kxs.fr/sujets/)
-  * [fiches](https://kxs.fr/fiches/)
-
-[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
-le lycée et la prépa](https://kxs.fr/cours/)
-
-## C
-
-  * [Matériel](.)
-  * [Hello world!](hello-world)
-  * [Printf](printf)
-  * [Nombres](nombres)
-  * [Structures de contrôle](structures-de-controle)
-  * [Fonctions](fonctions)
-  * [Commentaires](commentaires)
-  * [Portée des variables](portee-variables)
-  * [Pointeurs](pointeurs)
-  * [Tableaux](tableaux)
-  * [Bibliothèque stdbool](stdbool)
-  * [Projet puissance 4](projet-p4)
-  * [Chaînes de caractères](chaines-de-caracteres)
-  * [Structures](structures)
-  * [Exercices](exercices)
-  * [Headers](headers)
-
-# Tableaux
-
 Un tableau contient des valeurs stockées consécutivement en mémoire. Cette
 disposition permet un accès rapide à chaque élément (en temps constant).
 
@@ -42,8 +14,7 @@ l'information de la taille lorsqu'on déclare un tableau. Il faut aussi
 indiquer le type de valeurs stockées dans le tableau. Voici donc plusieurs
 façons de déclarer un tableau :
 
-    
-    
+```c
     int t[3]; // On indique la taille du tableau entre crochets
     t[0] = 1; // Le premier élément possède l'indice 0
     t[1] = 2;
@@ -57,13 +28,14 @@ façons de déclarer un tableau :
     
     int t[] = {1, 2, 4}; // Il n'est pas nécessaire de donner explicitement la taille
     printf("%d %d %d\n", t[0], t[1], t[2]);
+```
 
 On peut également initialiser tous les éléments du tableau a la même valeur :
 
-    
-    
+```c
     int t[3] = {0}; // On initialise le tableau avec des 0
     printf("%d %d %d\n", t[0], t[1], t[2]);
+```
 
 ## Accès aux éléments
 
@@ -75,35 +47,36 @@ provoquer d'erreur. En effet la notation `t[i]` permet simplement d'accéder
 aux adresses consécutives du tableau. Voici un exemple d'utilisation de la
 mémoire pour le tableau précedent initialisé avec des 0 :
 
+```
 mémoire 0 t[0] 0 t[1] 0 t[2] ? t[3]
+```
 
 Essayez le code suivant pour voir qu'il n'y a pas d'erreur :
 
-    
-    
+```c
     #include <stdio.h>
     
     int main() {
     	int t[3] = {0}; // On initialise le tableau avec des 0
     	printf("%d %d %d %d\n", t[0], t[1], t[2], t[3]); // On sort du tableau
     }
+```
 
 Par contre si on va trop loin on peut obtenir une erreur de segmentation :
 
-    
-    
+```c
     #include <stdio.h>
     
     int main() {
     	int t[3] = {0}; // On initialise le tableau avec des 0
     	printf("%d %d %d %d\n", t[0], t[1], t[2], t[5321654]); // On sort trop du tableau !
     }
+```
 
 **1)** Écrire un programme qui crée un tableau de 10 éléments (sans
 l'initialiser) et affiche le contenu de tous les éléments avec une boucle.
 
-    
-    
+```c
     #include <stdio.h>
     
     int main() {
@@ -124,6 +97,7 @@ l'initialiser) et affiche le contenu de tous les éléments avec une boucle.
     0
     4096
     0
+```
 
 Le contenu du tableau est aléatoire.
 
@@ -131,8 +105,7 @@ Le contenu du tableau est aléatoire.
 avec la position de chaque élément (t[0] = 0 etc.) et affiche le contenu de
 tous les éléments.
 
-    
-    
+```c
     #include <stdio.h>
     
     int main() {
@@ -146,6 +119,7 @@ tous les éléments.
     		printf("%d\n", tab[i]);
     	}
     }
+```
 
 ## Passage d'un tableau dans une fonction
 
@@ -155,8 +129,7 @@ alors l'adresse du tableau (qui est bien passée par valeur). Ce qui revient à
 passer le tableau par référence. Il est donc possible de modifier un tableau
 dans une fonction :
 
-    
-    
+```c
     #include <stdio.h>
     
     void met1(int t[]) {
@@ -172,6 +145,7 @@ dans une fonction :
     	
     	printf("%d %d %d\n", t[0], t[1], t[2]);
     }
+```
 
 La taille d'un tableau n'étant pas connue, il faut en général fournir dans un
 paramètre supplémentaire la taille du tableau à une fonction.
@@ -179,8 +153,7 @@ paramètre supplémentaire la taille du tableau à une fonction.
 **3)** Créer une fonction `void intTab(int t[], int taille, int valeur);` qui
 initialise à `valeur` toutes les valeurs du tableau `t` de taille `taille`.
 
-    
-    
+```c
     #include <stdio.h>
     
     void intTab(int t[], int taille, int valeur) {
@@ -199,6 +172,7 @@ initialise à `valeur` toutes les valeurs du tableau `t` de taille `taille`.
     	}
     	printf("\n");
     }
+```
 
 ## Allocation dynamique
 
@@ -209,20 +183,20 @@ une **allocation dynamique** de la mémoire.
 Il est possible avec certains compilateurs de faire une allocation dynamique
 avec la notation habituelle en utilisant une variable pour la taille :
 
-    
-    
+```c
     int a = 10;
     int t[a];
+```
 
 Il est déconseillé d'utiliser cette syntaxe car elle n'est pas acceptée par
 tous les compilateurs. Il faut utiliser `malloc` qui va allouer le bon nombre
 de cases mémoire et renverra alors un pointeur vers la première case du
 tableau :
 
-    
-    
+```c
     int a = 10;
     int *t = malloc(a * sizeof(int));
+```
 
 De la même façon qu'avec l'allocation statique, on peut accéder aux éléments
 du tableau avec la notation `t[i]`.
@@ -231,8 +205,7 @@ du tableau avec la notation `t[i]`.
 lui demande ses notes et les enregistre dans un tableau. Enfin le programme
 lui donne sa moyenne.
 
-    
-    
+```c
     #include <stdio.h>
     #include <stdlib.h>
     
@@ -260,15 +233,16 @@ lui donne sa moyenne.
     	}
     	printf("La moyenne est %.2f\n", (float)total / (float)nb);
     }
+```
 
 ## Tableau à deux dimensions
 
 On peut créer des tableaux à deux dimensions (même plus) avec la notation
 suivante pour un tableau de 6 lignes et 7 colonnes :
 
-    
-    
+```c
     int t[6][7];
+```
 
 On accède alors aux éléments avec la notation `t[i][j]`.
 
@@ -279,30 +253,22 @@ Pour effectuer une allocation dynamique il faut d'abord déclarer un tableau de
 pointeurs vers des entiers puis déclarer chaque élément de ce tableau comme un
 tableau d'entiers :
 
-    
-    
+```c
     int **tab = malloc(6 * sizeof(int*));
     for (int i=0; i<6; i++) {
     	tab[i] = malloc(7 * sizeof(int));
     }
+```
 
 **5)** Créer un programme qui permet de saisir une matrice d'entiers de taille
 quelconque puis de l'afficher de manière « esthétique ». On pourra supposer
 qu'elle contient seulement des chiffres dans un premier temps. On pourra par
 exemple faire un affichage comme ceci :
 
-    
-    
+```bash
     ┌       ┐
     | 1 2 3 |
     | 4 5 6 |
     | 7 8 9 |
     └       ┘
-
-[Précédent](pointeurs)[Suivant](stdbool)
-
-[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
-licence [CC BY-SA 4.0
-![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
-sa/4.0/deed.fr)
-
+```

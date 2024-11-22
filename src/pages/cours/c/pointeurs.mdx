@@ -3,35 +3,6 @@ title: "C - Pointeurs"
 icon: "mdi:paper-remove"
 layout: "@root/layouts/Page.astro"
 ---
-
-  * [cours](https://kxs.fr/cours/)
-  * [sujets](https://kxs.fr/sujets/)
-  * [fiches](https://kxs.fr/fiches/)
-
-[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
-le lycée et la prépa](https://kxs.fr/cours/)
-
-## C
-
-  * [Matériel](.)
-  * [Hello world!](hello-world)
-  * [Printf](printf)
-  * [Nombres](nombres)
-  * [Structures de contrôle](structures-de-controle)
-  * [Fonctions](fonctions)
-  * [Commentaires](commentaires)
-  * [Portée des variables](portee-variables)
-  * [Pointeurs](pointeurs)
-  * [Tableaux](tableaux)
-  * [Bibliothèque stdbool](stdbool)
-  * [Projet puissance 4](projet-p4)
-  * [Chaînes de caractères](chaines-de-caracteres)
-  * [Structures](structures)
-  * [Exercices](exercices)
-  * [Headers](headers)
-
-# Pointeurs
-
 Les pointeurs sont la propriété emblématique du C. Ils permettent de manipuler
 la mémoire. Mais attention, « un grand pouvoir implique de grandes
 responsabilités », les pointeurs rendent possible tout un nouvel éventail
@@ -45,13 +16,17 @@ pointeurs vers des entiers, des flottants…
 
 Voici un exemple de représentation d'un pointeur `p` vers un entier `17`.
 
+```c
 p 17
+```
 
 On peut également représenter le pointeur dans la mémoire de l'ordinateur. On
 a alors bien la case mémoire du pointeur `p` qui contient l'adresse de
 l'entier `17` :
 
+```c
 adresses mémoire 0x7f40 0x7fa1 17 0x7f40 p
+```
 
 ## Déréférence
 
@@ -64,15 +39,15 @@ pointeur vers `int`, `*p` sera un `int`.
 Comme on vient de voir que (dans le cas d'un pointeur vers un `int`) `*p` est
 un `int`, il est possible d'écrire cette déclaration :
 
-    
-    
+```c
     int *p;
+```
 
 qui est équivalent à (car les espaces ne sont pas significatifs en C) :
 
-    
-    
+```c
     int* p;
+```
 
 On en déduit que le type « pointeur vers entier » est `int*`
 
@@ -85,10 +60,10 @@ variable. On utilise alors l'opérateur `&`. On dit qu'on obtient l'adresse de
 la variable. Ainsi si `a` est un `int` alors `&a` est un `int*` (pointeur vers
 `int`). Il est ainsi possible d'obtenir un pointeur :
 
-    
-    
+```c    
     int a;
     int *p = &a;
+```
 
 ## Malloc
 
@@ -97,9 +72,9 @@ de la bibliothèque `stdlib` qui renvoie un pointeur vers un espace mémoire
 dont on donne la taille en argument. Voici comment utiliser cette fonction
 pour obtenir un pointeur vers un entier :
 
-    
-    
+```c
     int *p = malloc(sizeof(int));
+```
 
 ## Erreur de segmentation
 
@@ -109,22 +84,21 @@ segmentation** qui arrêterait l'exécution du programme. L'erreur de
 segmentation se produit lorsqu'un programme essaie d'écrire sans autorisation
 dans une adresse mémoire.
 
-    
-    
+```c
     #include <stdio.h>
     
     int main() {
     	int *a;
     	*a = 1;
     }
+```
 
 On pourra avoir besoin de déclarer des pointeurs pour les initialiser plus
 tard. Dans ce cas, il est préférable de leur donner la valeur `NULL` pour
 signaler qu'il n'est pas initialisé. Et on testera si le pointeur vaut `NULL`
 avant de l'utiliser :
 
-    
-    
+```c
     #include <stdio.h>
     
     int main() {
@@ -133,12 +107,12 @@ avant de l'utiliser :
     		*a = 1;
     	}
     }
+```
 
 Le programme ci-dessus ne fait rien, mais il s'exécute correctement.
 Contrairement au programme ci-dessous :
 
-    
-    
+```c
     #include <stdio.h>
     
     int main() {
@@ -147,13 +121,13 @@ Contrairement au programme ci-dessous :
     		*a = 1;
     	}
     }
+```
 
 ## Exercices
 
 **1)** Écrire une fonction `void incr(int *pa)` qui incrémente un entier.
 
-    
-    
+```c
     #include <stdio.h>
     
     void incr(int* pa) {
@@ -165,12 +139,12 @@ Contrairement au programme ci-dessous :
     	incr(&a);
     	printf("%d\n", a);
     }
+```
 
 **2)** Écrire une fonction `void swap(int *pa, int *pb)` qui échange le
 contenu de deux entiers.
 
-    
-    
+```c
     #include <stdio.h>
     
     void swap(int *pa, int *pb) {
@@ -186,12 +160,12 @@ contenu de deux entiers.
     	swap(&a, &b);
     	printf("a : %d | b : %d\n", a, b);
     }
+```
 
 **3)** Écrire une fonction `void div_euclide(int a, int b, int *pq, int *pr)`
 qui écrit le quotient de `a` et `b` dans `*q` et le reste dans `*r`.
 
-    
-    
+```c
     #include <stdio.h>
     
     void div_euclide(int a, int b, int *pq, int *pr) {
@@ -206,27 +180,20 @@ qui écrit le quotient de `a` et `b` dans `*q` et le reste dans `*r`.
     	div_euclide(a, b, &q, &r);
     	printf("q : %d | r : %d\n", q, r);
     }
+```
 
 **4)** En utilisant le marqueur `%p` de `printf`, afficher l'adresse mémoire
 de trois entiers déclarés préalablement. Que remarquez-vous ?
 
-    
-    
+```c
     #include <stdio.h>
     
     int main() {
     	int a, b, c;
     	printf("%p\n%p\n%p\n", &a, &b, &c);
     }
+```
 
 On remarque que les adresses se suivent. Elles sont séparée de 4 octets, ce
 qui correspond à la taille d'un `int`. Rien ne garantit se comportement même
 s'il est très probable.
-
-[Précédent](commentaires)[Suivant](tableaux)
-
-[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
-licence [CC BY-SA 4.0
-![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
-sa/4.0/deed.fr)
-

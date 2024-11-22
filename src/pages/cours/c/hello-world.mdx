@@ -4,34 +4,6 @@ icon: "mdi:paper-remove"
 layout: "@root/layouts/Page.astro"
 ---
 
-  * [cours](https://kxs.fr/cours/)
-  * [sujets](https://kxs.fr/sujets/)
-  * [fiches](https://kxs.fr/fiches/)
-
-[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
-le lycée et la prépa](https://kxs.fr/cours/)
-
-## C
-
-  * [Matériel](.)
-  * [Hello world!](hello-world)
-  * [Printf](printf)
-  * [Nombres](nombres)
-  * [Structures de contrôle](structures-de-controle)
-  * [Fonctions](fonctions)
-  * [Commentaires](commentaires)
-  * [Portée des variables](portee-variables)
-  * [Pointeurs](pointeurs)
-  * [Tableaux](tableaux)
-  * [Bibliothèque stdbool](stdbool)
-  * [Projet puissance 4](projet-p4)
-  * [Chaînes de caractères](chaines-de-caracteres)
-  * [Structures](structures)
-  * [Exercices](exercices)
-  * [Headers](headers)
-
-# Hello world!
-
 ## Programme
 
 Depuis la publication de [The C Programming
@@ -42,13 +14,13 @@ permet de vérifier, avec un programme simple que tout fonctionne.
 
 Voici donc votre premier programme C :
 
-    
-    
+```c
     #include <stdio.h>
     
     int main() {
     	printf("Hello world!\n");
     }
+```
 
 **1)** Compiler et exécuter ce programme.
 
@@ -91,8 +63,7 @@ espaces entre les mots (int et main, par exemple) le compilateur ne tient pas
 compte de l'indentation et des espaces en C. Ainsi les deux programmes suivant
 sont parfaitement valides :
 
-    
-    
+```c
     #include <stdio.h>
     int main(){printf("Hello world!\n");}
     
@@ -105,6 +76,7 @@ sont parfaitement valides :
     			
     					"Hello world!")
     ;}
+```
 
 **2)** Compiler et exécuter les programmes ci-dessus pour vérifier qu'ils
 fonctionnent bien.
@@ -114,15 +86,13 @@ faciliter la lecture du code. Il faudra donc bien indenter son code.
 
 La commande suivante
 
-    
-    
+```bash 
     gcc fichier.c -o binaire -lm
+```
 
 permet de compiler le code ci-dessous :
 
-    
-    
-    /**/
+```c
                  k;double sin()
              ,cos();main(){float A=
            0,B=0,i,j,z[1760];char b[
@@ -144,15 +114,8 @@ permet de compiler le code ci-dessous :
            ~::==!!!**********!!!==::-
              .,~~;;;========;;;:~-.
                  ..,--------,*/
+```
 
 **3)** Essayer de compiler et d'exécuter le code ci-dessus.
 
 Il faudra éviter d'écrire ce genre de code illisible.
-
-[Précédent](.)[Suivant](printf)
-
-[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
-licence [CC BY-SA 4.0
-![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
-sa/4.0/deed.fr)
-

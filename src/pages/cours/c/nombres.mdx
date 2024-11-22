@@ -4,43 +4,15 @@ icon: "mdi:paper-remove"
 layout: "@root/layouts/Page.astro"
 ---
 
-  * [cours](https://kxs.fr/cours/)
-  * [sujets](https://kxs.fr/sujets/)
-  * [fiches](https://kxs.fr/fiches/)
-
-[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
-le lycée et la prépa](https://kxs.fr/cours/)
-
-## C
-
-  * [Matériel](.)
-  * [Hello world!](hello-world)
-  * [Printf](printf)
-  * [Nombres](nombres)
-  * [Structures de contrôle](structures-de-controle)
-  * [Fonctions](fonctions)
-  * [Commentaires](commentaires)
-  * [Portée des variables](portee-variables)
-  * [Pointeurs](pointeurs)
-  * [Tableaux](tableaux)
-  * [Bibliothèque stdbool](stdbool)
-  * [Projet puissance 4](projet-p4)
-  * [Chaînes de caractères](chaines-de-caracteres)
-  * [Structures](structures)
-  * [Exercices](exercices)
-  * [Headers](headers)
-
-# Nombres
-
 ## Variables
 
 Une variable en C est définie par un nom et un type. Elle peut alors contenir
 une valeur de ce type.
 
-    
-    
+```c
     int a;
     a = 2;
+```
 
 On a déclaré ici une variable `a` ce type int (entier) puis on lui a affecté
 la valeur `42`. En C, il faut toujours déclarer le type d'une variable avant
@@ -49,33 +21,33 @@ mémoire.
 
 On peut affecter une valeur à une variable en la déclarant :
 
-    
-    
+```c
     int a = 2;
+```
 
 Il est possible de modifier le contenu d'une variable :
 
-    
-    
+```c
     int a = 2;
     a = 3;
+```
 
 On peut empêcher la modification d'une variable en la déclarant comme
 constante :
 
-    
-    
+```c
     const int a = 2;
     a = 3;
+```
 
 **1)** compiler le programme ci-dessus pour voir l'erreur renvoyée.
 
-    
-    
+```bash
     exo.c: In function ‘main’:
     exo.c:6:11: error: assignment of read-only variable ‘a’
         6 |         a = 3;
           |           ^
+```
 
 On ne peut pas modifier la variable `a`.
 
@@ -100,8 +72,7 @@ programme optimisé. Voici une liste des différents types d'entiers :
 qu'ils occupent en mémoire. Pour cela on utilisera la fonction `sizeof()` qui
 prend en paramètre une variable et retourne sa taille en mémoire en octets.
 
-    
-    
+```c
     #include <stdio.h>
     
     int main() {
@@ -123,12 +94,12 @@ prend en paramètre une variable et retourne sa taille en mémoire en octets.
     	printf("unsigned long : %lu\n", sizeof(h));
     	return 0;
     }
+```
 
 On met `%lu` dans le printf car `sizeof()` renvoie un `unsigned long`. La
 sortie est alors :
 
-    
-    
+```c    
     char : 1
     unsigned char : 1
     short : 2
@@ -137,6 +108,7 @@ sortie est alors :
     unsigned int : 4
     long : 8
     unsigned long : 8
+```
 
 **3)** Grâce aux résultats de la question précédente, calculez la valeur
 minimale et maximale que l'on peut stocker dans chaque type d'entier.
@@ -156,8 +128,7 @@ liste des valeurs que vous devez utiliser : `CHAR_MIN`, `CHAR_MAX`,
 `UCHAR_MAX`, `SHRT_MIN`, `SHRT_MAX`, `USHRT_MAX`, `INT_MIN`, `INT_MAX`,
 `UINT_MAX`, `LONG_MIN`, `LONG_MAX`, `ULONG_MAX`,
 
-    
-    
+```c
     #include <stdio.h>
     #include <limits.h>
     
@@ -172,11 +143,11 @@ liste des valeurs que vous devez utiliser : `CHAR_MIN`, `CHAR_MAX`,
     	printf("ULONG_MAX : %lu\n", ULONG_MAX);
     	return 0;
     }
+```
 
 Attention de bien changer les marqueurs lorsqu'on arrive aux `unsigned int` !
 
-    
-    
+```c
     CHAR_MIN : -128 | CHAR_MAX : 127
     UCHAR_MAX : 255
     SHRT_MIN : -32768 | SHRT_MAX : 32767
@@ -185,6 +156,7 @@ Attention de bien changer les marqueurs lorsqu'on arrive aux `unsigned int` !
     UINT_MAX : 4294967295
     LONG_MIN : -9223372036854775808 | LONG_MAX : 9223372036854775807
     ULONG_MAX : 18446744073709551615
+```
 
 On retrouve bien les réponses de la question précédente.
 
@@ -197,8 +169,7 @@ d'entier (le chargement valait 370 millions de dollars !).
 **5)** Tester le code ci-dessous et expliquer ce qu'il se passe dans ce cas
 lorsqu'on fait un dépassement d'entier :
 
-    
-    
+```c
     #include <stdio.h>
     
     int main() {
@@ -210,9 +181,11 @@ lorsqu'on fait un dépassement d'entier :
     }
     
     
+    /* 
     valeur initiale de h : 32767
     valeur de h après incrémentation : -32768
-
+    */
+```
 32767 est la valeur maximale pour un `short`. Si on lui ajoute 1 on obtient la
 valeur minimale d'un `short` : -32768.
 
@@ -228,8 +201,7 @@ Il existe trois types de flottant :
 `sizeof()` écrire un programme qui liste la taille en mémoire des types de
 flottant.
 
-    
-    
+```c
     #include <stdio.h>
     
     int main() {
@@ -246,14 +218,14 @@ flottant.
     float : 4
     double : 8
     long double : 16
+```
 
 **7)** Attention, comme nous l'avons vu en cours, les flottant sont souvent
 des approximations car ils sont stockés en binaire dans la mémoire. Pour
 comprendre cela, éxécuter le programme suivant et expliquer ce qu'il se passe
 :
 
-    
-    
+```c
     #include <stdio.h>
     
     int main() {
@@ -262,6 +234,7 @@ comprendre cela, éxécuter le programme suivant et expliquer ce qu'il se passe
     
     
     0.20000000000000001110
+```
 
 On remarque que 0.2 est bien représenté en mémoire par une approximation.
 
@@ -279,49 +252,49 @@ exception la division :
 La fonction `pow()` de la bibliothèque `math` permet de réaliser l'opération
 puissance avec des doubles :
 
-    
-    
+```c
     #include <stdio.h>
     #include <math.h>
     
     int main() {
     	printf("%lf\n", pow(2,10));
     }
+```
 
 La fonction `sqrt()` de la bibliothèque `math` permet de calculer la racine
 carrée avec un double :
 
-    
-    
+```c
     #include <stdio.h>
     #include <math.h>
     
     int main() {
     	printf("%lf\n", sqrt(25);
     }
+```
 
 ## Conversion de type
 
 Il est assez simple de passer d'un type à un autre en C. Cela s'appelle le
 **casting** et on utilise la syntaxe `(type)` :
 
-    
-    
+```c
     int n = 4673;
     printf("%f\n", (float) n);
     
     
     float n = 4673.0;
     printf("%d\n", (int) n);
+```
 
 Attention en cas de conversion d'un type « large » vers un type « restreint ».
 Le comportement peut être innatendu. Normalement le compilateur vous avertira.
 Essayez de compiler ce code pour voir ce qu'il se passse :
 
-    
-    
+```c
     int n = 467356932244;
     printf("%hd\n", (short) n);
+```
 
 ## Opérations bit à bit
 
@@ -341,7 +314,7 @@ char) : (nous ne le faisons pas en C car la manipulation des char demande des
 connaissances un peu plus avancées)
 
     
-    
+```
     (ça n'est pas du code C)
     x = 12
     y = 21
@@ -379,6 +352,7 @@ connaissances un peu plus avancées)
     1100 = 12
     ----
     110000 = 48
+```
 
 ## `scanf`
 
@@ -394,21 +368,21 @@ utilise dans `scanf`. Nous verrons la raison de ce comportement plus tard.
 
 **9)** Tester le code ci-dessous :
 
-    
-    
+```c
     int j;
     scanf("%d", &j);
     printf("Le nombre saisi est %d\n", j);
+```
 
 Il faut saisir un nombre puis appuyer sur « entrée ».
 
 **10)** Essayez de comprendre et de faire fonctionner le code ci-dessous :
 
-    
-    
+```c
     int i, j;
     scanf("%d %d", &i, &j);
     printf("Les nombres saisis sont %d et %d\n", i, j);
+```
 
 Il faut saisir deux nombres séparés par un espace puis appuyer sur « entrée ».
 
@@ -417,8 +391,7 @@ Il faut saisir deux nombres séparés par un espace puis appuyer sur « entrée 
 **11)** Écrire un programme qui demande à l'utilisateur de saisir son `age`,
 puis affiche une phrase comme celle-ci : Bonjour, votre age est `age`.
 
-    
-    
+```c
     #include <stdio.h>
     
     int main() {
@@ -427,13 +400,13 @@ puis affiche une phrase comme celle-ci : Bonjour, votre age est `age`.
     	scanf("%d", &age);
     	printf("Votre age est %d ans.\n", age);
     }
+```
 
 **12)** Écrire un programme qui demande de saisir deux entiers et affiche le
 résultat de leur division, le quotient de leur division euclidienne et le
 reste de leur division euclidienne.
 
-    
-    
+```c
     #include <stdio.h>
     
     int main() {
@@ -444,13 +417,13 @@ reste de leur division euclidienne.
     	printf("Le quotient est %d\n", a / b );
     	printf("Le reste est %d\n", a % b );
     }
+```
 
 **13)** Écrire un programme qui demande de saisir les dimensions des deux
 cotés perpendiculaires a et b d'un triangle rectangle et donne la taille de
 l'hypoténuse.
 
-    
-    
+```c
     #include <stdio.h>
     #include <math.h>
     
@@ -460,12 +433,12 @@ l'hypoténuse.
     	scanf("%lf %lf", &a, &b);
     	printf("L'hypothénuse est %.2f\n", sqrt(pow(a, 2) + pow(b, 2)) );
     }
+```
 
 **14)** Écrire un programme qui demande de saisir les dimensions des deux
 cotés d'un rectangle et affiche son aire et son périmètre.
 
-    
-    
+```c
     #include <stdio.h>
     
     int main() {
@@ -475,13 +448,13 @@ cotés d'un rectangle et affiche son aire et son périmètre.
     	printf("L'aire est %i\n", a*b);
     	printf("Le périmètre est %i\n", 2*a + 2*b);
     }
+```
 
 **15)** Écrire un programme qui demande de saisir le rayon d'un cercle et
 affiche son aire et son périmètre. On pourra utiliser la constante `M_PI` de
 la bibliothèque `math`.
 
-    
-    
+```c
     #include <stdio.h>
     #include <math.h>
     
@@ -492,11 +465,4 @@ la bibliothèque `math`.
     	printf("L'aire est %.2f\n", M_PI*pow(r, 2));
     	printf("Le périmètre est %.2f\n", 2*M_PI*r);
     }
-
-[Précédent](printf)[Suivant](structures-de-controle)
-
-[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
-licence [CC BY-SA 4.0
-![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
-sa/4.0/deed.fr)
-
+```
