@@ -1,0 +1,249 @@
+---
+title: "Aspects impératifs en OCaml - Niveau MP2I"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## OCaml
+
+  * [Présentation](.)
+  * [Interaction et définitions](interaction-definition)
+  * [Fonctions](fonctions)
+  * [If … then … else …](if-then-else)
+  * [Fonctions récursives](fonctions-recursives)
+  * [Réels](reels)
+  * [Chaînes de caractères](string)
+  * [Execices 1](exercices-1)
+  * [Listes](listes)
+  * [Unit](unit)
+  * [Produits](produits)
+  * [Enregistrements](enregistrements)
+  * [Énumérations](enumerations)
+  * [Sommes](sommes)
+  * [Filtrage](filtrage)
+  * [Fonctions avancées](fonctions-avancees)
+  * [Aspects impértifs](aspects-imperatifs)
+
+# Aspects impératifs
+
+## Références
+
+En OCaml, même si nous n'avons pas insisté sur ce point, les variables ne sont
+pas mutables (modifiables). Nous n'avons pas vu d'opérateur permettant de
+modifier une variable !
+
+    
+    
+    # let a = 2;;
+    val a : int = 2
+    # a = 2;;
+    - : bool = true
+
+Il est bien sûr possible de redéfinir une variable mais cela ne modifie pas
+vraiment sa valeur :
+
+    
+    
+    # let a = 2;;
+    val a : int = 2
+
+Il est tout de même possible de créer des variables mutables en OCaml grâce
+aux _références_. Cela ressemble à un pointeur en C (mais avec moins de
+complications). Il faut utiliser le mot-clé `ref` :
+
+    
+    
+    # let a = ref 2;;
+    val a : int ref = {contents = 2}
+
+On a alors créé une référence (un pointeur) vers un entier. On peut le
+déréférencer (comme en C avec `*`) avec le symbole `!` :
+
+    
+    
+    # !a;;
+    - : int = 2
+
+Et pour modifier sa valeur, on utilise le symbole `:=` :
+
+    
+    
+    # a := 6;;
+    - : unit = ()
+    # !a;;
+    - : int = 6
+
+**1)** Écrire une fonction `incr` qui prend comme argument la référence d'un
+entier et incrémente cet entier.
+
+    
+    
+    # let incr a =
+    a := !a + 1;;
+    val incr : int ref -> unit = <fun>
+
+Il est possible de référencer n'importe quel type d'objet :
+
+    
+    
+    # let a = ref "abcd";;
+    val a : string ref = {contents = "abcd"}
+    # let l = ref [1;2;3];;
+    val l : int list ref = {contents = [1; 2; 3]}
+
+## Boucle `for`
+
+La syntaxe de la boucle `for` est assez intuitive. Attention à ne pas oublier
+le `do` et le `done` :
+
+    
+    
+    # for i = 1 to 9 do
+    print_int i
+    done;;
+
+On peut également utiliser une boucle `for` en faisant décroitre l'indice :
+
+    
+    
+    # for i = 9 downto 0 do
+    print_int i
+    done;;
+
+**2)** Écrire une fonction `fact` qui n'est **pas** récursive et qui calcule
+la factorielle d'un entier en utilisant une boucle `for`.
+
+    
+    
+    # let fact n =
+    let r = ref 1 in
+    for i = 1 to n do
+    r := !r * i
+    done;
+    r;;
+    val fact : int -> int ref = <fun>
+
+## Boucle `while`
+
+Voici un exemple de syntaxe pour la boucle `while` :
+
+    
+    
+    # let i = ref 0 in
+    while !i < 10 do
+    i := !i + 1;
+    print_int !i
+    done;;
+    12345678910- : unit = ()
+
+**3)** Écrire une fonction `fact` qui n'est **pas** récursive et qui calcule
+la factorielle d'un entier en utilisant une boucle `while`.
+
+    
+    
+    # let fact n =
+    let r = ref 1 and i = ref 1 in
+    while !i <= n do
+    r := !r * !i;
+    i := !i + 1
+    done;
+    r;;
+    val fact : int -> int ref = <fun>
+
+## Tableaux
+
+On peut également utiliser des tableaux en Ocaml même si ce n'est pas la
+vocation première du langage. Les tableaux sont mutables. Voici comment
+déclarer un tableau, comment accéder à un élément et comment modifier un
+élélment :
+
+    
+    
+    # let t = [|1;2;3;4|];;
+    val t : int array = [|1; 2; 3; 4|]
+    # t.(2);;
+    - : int = 3
+    # t.(2) <- 8;;
+    - : unit = ()
+    # t;;
+    - : int array = [|1; 2; 8; 4|]
+
+**4)** Écrire une fonction `add` qui n'est **pas** récursive et qui ajoute 1 à
+tous les éléments d'un tableau.
+
+    
+    
+    # let ajoute table =
+    for i=0 to (Array.length table)-1 do
+    table.(i) <- table.(i) + 1
+    done;;
+    val ajoute : int array -> unit = <fun>
+
+**5)** Écrire une fonction `cherche` qui n'est **pas** récursive et qui
+cherche un élément dans un tableau.
+
+    
+    
+    # let cherche elem table =
+    let i = ref 0
+    and trouve = ref false
+    in
+       while (not !trouve && !i < Array.length table) do
+          if elem = table.(!i) then
+             trouve := true;
+          i := !i +1
+       done;
+       if !trouve then
+          !i
+       else
+          -1
+    ;;
+    val cherche : 'a -> 'a array -> int = <fun>
+
+### Opérations sur les tableaux
+
+  * Array.length : longueur du tableau
+  * Array.exists f t : renvoie true si la fonction f appliquée à au moins un élément a renvoyé true
+  * Array.mem a t : renvoie trus si a est dans t
+  * Array.map f t : applique la fonction f à tous les éléments du tableau t et renvoie un tableau
+  * Array.fold_left f acc t : applique itérativement le fonction f à tous les éléments du tableau et à l'accumulateur
+
+## Enregistrements mutables
+
+Par défaut un enregistrement n'est pas mutable :
+
+    
+    
+    # type point = {x:float; y:float};;
+    type point = { x : float; y : float; }
+    # let a = {x=1.;y=2.};;
+    val a : point = {x = 1.; y = 2.}
+    # a.x <- 3.;;
+    Error: The record field x is not mutable
+
+Pour rendre le champ d'un enregistrement mutable, il faut le faire précéder du
+mot clé `mutable` :
+
+    
+    
+    # type point = {mutable x:float; mutable y:float};;
+    type point = { mutable x : float; mutable y : float; }
+    # let a = {x=1.;y=2.};;
+    val a : point = {x = 1.; y = 2.}
+    # a.x <- 3.;;
+    - : unit = ()
+
+[Précédent](fonctions-avancees)[Suivant (page des cours)](..)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+
