@@ -24,8 +24,8 @@ let sidebarPaths = [];
 const sidebarContent = fs.readFileSync(sidebarFilePath, "utf-8");
 sidebarPaths = sidebarContent
   .split("\n")
-  .map(line => line.trim())
-  .filter(line => line !== ""); // Clean up lines
+  .map((line) => line.trim())
+  .filter((line) => line !== ""); // Clean up lines
 
 // Generate posts from sidebar paths
 const posts = sidebarPaths
@@ -38,9 +38,9 @@ const posts = sidebarPaths
     }
 
     return {
-      title: module.frontmatter?.title || "Untitled",
-      icon: module.frontmatter?.icon || "default-icon",
-      url: module.url || "#",
+      title: (module as any).frontmatter?.title || "Untitled",
+      icon: (module as any).frontmatter?.icon || "default-icon",
+      url: (module as any).url || "#",
     };
   })
   .filter(Boolean); // Remove null entries
