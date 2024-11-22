@@ -21,8 +21,8 @@ if (currentPath.endsWith("/")) {
 const currentDir = currentPath.replace(/\/[^/]*$/, "/"); // Get the directory path
 const posts = Object.entries(allMarkdownFiles)
   .filter(([path]) => {
-    const targetDir = `/src/pages${currentDir}`;
-    return path.startsWith(targetDir) && path.slice(targetDir.length).indexOf("/") === -1;
+      const targetDir = `/src/pages${currentDir}`;
+      return path.startsWith(targetDir) && path.replace(targetDir, "").split("/").length === 1;
   })
   .map(([, module]) => ({
     title: (module as any).frontmatter.title,
