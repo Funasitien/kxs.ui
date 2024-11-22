@@ -33,8 +33,8 @@ try {
 
 // Generate posts from sidebar paths
 const posts = sidebarPaths
-  .map((filepath) => {
-    console.log(filepath);
+  .map((filePath) => {
+    console.log(filePath);
     const module = allMarkdownFiles[filePath];
 
     if (!module) {
