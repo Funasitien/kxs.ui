@@ -18,8 +18,7 @@ permet de choisir une catégorie pour un élément donné.
 Il est assez compliqué de déterminer l’espèce d’un iris lorsqu’on est face à
 un spécimen dans la nature. Nous considérerons trois espèces d’iris :
 
-![Iris Setosa](img/iris_setosa.jpg)![Iris
-Virginica](img/iris_virginica.jpg)![Iris Versicolor](img/iris_versicolor.jpg)
+![Iris Setosa](/public/iris_setosa.jpg)![Iris Virginica](/public/iris_virginica.jpg)![Iris Versicolor](/public/iris_versicolor.jpg)
 
 Elles corresponent, dans l'ordre, à iris setosa, iris virginica et iris
 versicolor.
@@ -66,7 +65,7 @@ votre répertoire, recopiez ce code et exécutez-le. Vous devriez obtenir
 quelque-chose comme ceci :
 
 ![Graphe représentant la largeur des Iris en fonction de la longueur pour
-plusieur fleurs appartenant aux trois catégories](img/plot1.png)
+plusieur fleurs appartenant aux trois catégories](/public/plot1.png)
 
 ### Classification
 
@@ -75,7 +74,7 @@ plante faisant 0,5 cm de large et 2 cm de long. Plaçons-la sur le graphe en
 rajoutant le code `plt.scatter(2.0, 0.5, color='k')` :
 
 ![Graphe représentant la largeur des Iris en fonction de la longueur avec une
-nouvelle fleur](img/plot2.png)
+nouvelle fleur](/public/plot2.png)
 
 Il est alors relativement facile de trouver l’espèce de cette plante : Setosa.
 
@@ -83,7 +82,7 @@ Il peut y avoir des cas plus difficiles : largeur du pétale = 0,75 cm ;
 longueur du pétale = 2,5 cm :
 
 ![Graphe représentant la largeur des Iris en fonction de la longueur avec
-encore une nouvelle fleur](img/plot2bis.png)
+encore une nouvelle fleur](/public/plot2bis.png)
 
 C’est ici que nous avons besoin de l’algorithme des k plus proches voisins :
 
@@ -93,7 +92,7 @@ C’est ici que nous avons besoin de l’algorithme des k plus proches voisins :
 
 Ainsi dans cet exemple, pour k = 3 :
 
-![Application de l'algorithme des trois plus proches voisisns](img/plot3.png)
+![Application de l'algorithme des trois plus proches voisisns](/public/plot3.png)
 
 Deux plus proches voisins appartienent à l’espèce « setosa » et un seul
 appartient à l’espèce « virginica ». La plante sera donc catégorisée dans
