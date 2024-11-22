@@ -11,10 +11,6 @@ const allMarkdownFiles = import.meta.glob("/src/pages/**/*.mdx", {
   eager: true,
 });
 
-console.log(allMarkdownFiles);
-
-dlkqsjfmdjsq
-
 // Get the current page's route
 let currentPath = Astro.url.pathname;
 if (currentPath.endsWith("/")) {
@@ -37,8 +33,7 @@ try {
 
 // Generate posts from sidebar paths
 const posts = sidebarPaths
-  .map((filename) => {
-    const filePath = `/src/pages${currentDir}${filename}`;
+  .map((filepath) => {
     const module = allMarkdownFiles[filePath];
 
     if (!module) {
