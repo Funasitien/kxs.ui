@@ -21,11 +21,10 @@ const sidebarFilePath = `${targetDir}/.sidebar`;
 
 // Filter the files to only include those in the same directory
 const currentDir = currentPath.replace(/\/[^/]*$/, "/"); // Get the directory path
-const posts = Object.entries(allMarkdownFiles)
-  fs.readFileSync(sidebarFilePath, 'utf-8');
-    .split('\n')
-    .filter(line => line.trim() !== "")
-    .map(([, module]) => ({
+const posts = fs.readFileSync(sidebarFilePath, 'utf-8')
+                .split('\n')
+                .filter(line => line.trim() !== "")
+                .map(([, module]) => ({
     title: (module as any).frontmatter.title,
     icon: (module as any).frontmatter.icon,
     url: (module as any).url,
