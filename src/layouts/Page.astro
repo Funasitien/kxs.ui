@@ -17,7 +17,9 @@ if (currentPath.endsWith("/")) {
   currentPath = currentPath.slice(0, -1);
 }
 
-const sidebarFilePath = `src/pages${currentPath}.sidebar`;
+// Filter the files to only include those in the same directory
+const currentDir = currentPath.replace(/\/[^/]*$/, "/"); // Get the directory path
+const sidebarFilePath = `src/pages${currentDir}.sidebar`;
 const sidebarContent = fs.readFileSync(sidebarFilePath, "utf-8");
 sidebarPaths = sidebarContent
     .split("\n")
@@ -28,9 +30,6 @@ sidebarPaths = sidebarContent
     icon: (module as any).frontmatter.icon,
     url: (module as any).url,
 }));
-
-// Filter the files to only include those in the same directory
-const currentDir = currentPath.replace(/\/[^/]*$/, "/"); // Get the directory path
 const posts = Object.entries(allMarkdownFiles)
   .filter(([path]) => {
       const targetDir = `/src/pages${currentDir}`;
