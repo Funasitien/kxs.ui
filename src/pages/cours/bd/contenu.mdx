@@ -1,0 +1,299 @@
+---
+title: "Bases de données - Contenu"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## Bases de données
+
+  * [Introduction](.)
+  * [Prise en main](prise-en-main)
+  * [Structure](structure)
+  * [Contenu](contenu)
+  * [Clés](cles)
+  * [Jointure](jointure)
+  * [Compléments](complements)
+  * [Agrégateurs](agregateurs)
+  * [Exercices](exercices)
+  * [IMDb](imdb)
+
+# Contenu d'une table
+
+Nous allons maintenant nous intéresser au contenu de la table citation. Nous
+reviendrons sur sa structure par la suite.
+
+## SELECT … FROM …
+
+Pour afficher simplement le contenu d'une table, il faut saisir la commande
+suivante :
+
+    
+    
+    SELECT * FROM citations;
+
+On obtient le résultat suivant :
+
+    
+    
+    +-------------+--------------------------------------------------------------------------------------------------+---------+
+    | id_citation | texte                                                                                            | id_film |
+    +-------------+--------------------------------------------------------------------------------------------------+---------+
+    |           1 | Vers l'infini et au-delà !                                                                       |       1 |
+    |           2 | Allez bonne nuit, et tâche de dormir sinon je vends tout tes jouets !                            |       2 |
+    |           3 | Avengers rassemblement !                                                                         |       2 |
+    |           4 | La fin fait partie du voyage.                                                                    |       2 |
+    |           5 | C'est dans ses rêves que l'homme trouve la liberté, cela fut, est, et restera la vérité.         |       3 |
+    |           6 | C'est seulement quand on a tout perdu qu'on est libre de faire tout ce qu'on veut.               |       4 |
+    |           7 | On a frôlé la vie !                                                                              |       4 |
+    |           8 | Monsieur, quand le doigt montre le ciel, l'imbécile regarde le doigt.                            |       5 |
+    |           9 | Ou tu sors ou je te sors, mais faudra prendre une décision.                                      |       6 |
+    |          10 | Ce n'est pas parce que tu as une personnalité que tu as de la personnalité.                      |       7 |
+    |          11 | C'est à une demi-heure d'ici. J'y suis dans dix minutes.                                         |       7 |
+    |          12 | Je préfère partir plutôt que d'entendre ça plutôt que d'être sourd !                             |       8 |
+    |          13 | Raté, vous nous avez raté ! Eh les romains, vous êtes des romaines !                             |       9 |
+    |          14 | À mon signal, déchaine les enfers.                                                               |      10 |
+    |          15 | Cours Forrest, cours !                                                                           |      11 |
+    +-------------+--------------------------------------------------------------------------------------------------+---------+
+    15 rows in set (0.00 sec)
+
+Le contenu d'une table est donc un tableau dont les **colonnes sont ses
+champs** et les **ligne ses enregistrements**.
+
+L'instruction `SELECT … FROM …` permet de faire une sélection sur une table.
+Il faut indiquer après le `SELECT` les champs que l'on veut afficher. On les
+sépare par des virgules. `*` signifie tous les champs de la table. On indique
+après le `FROM` la table sur laquelle on fait la sélection.
+
+**1)** Proposez et testez une requête qui permet d'afficher uniquement le
+texte des citations.
+
+**2)** Proposez et testez une requête qui permet d'afficher le champ
+`id_citation` et le texte des citations.
+
+Intéressons-nous à la table films.
+
+**3)** Donnez la structure de la table _films_.
+
+**4)** Proposez et testez une requête pour afficher le contenu complet de la
+table _films_.
+
+## SELECT … FROM … WHERE …
+
+Afficher quelques colonnes d'une table ne montre pas la puissance de SQL. Nous
+allons donc ajouter une _clause_ `WHERE`. La clause `WHERE` permet de
+**filtrer** les lignes de la table.
+
+Par exemple, pour obtenir uniquement la première citation on utilisera la
+requête :
+
+    
+    
+    SELECT * FROM citations WHERE id_citation = 1;
+
+Résultat :
+
+    
+    
+    +-------------+-------------------------------+---------+
+    | id_citation | texte                         | id_film |
+    +-------------+-------------------------------+---------+
+    |           1 | Vers l'infini et au-delà !    |       1 |
+    +-------------+-------------------------------+---------+
+    1 row in set (0.00 sec)
+
+Vous avez dû remarquer que MySQL vous donne le nombre de lignes et le temps
+mis pour effectuer la requête. Celà peut être utile lorsqu'on effectue des
+requêtes complexes sur des tables plus grandes.
+
+**5)** Proposez et testez une requête pour afficher les 5 premières lignes de
+la table _citations_.
+
+Il est possible de chercher dans un texte avec l'opérateur `LIKE`. `LIKE`
+s'utilise généralement avec le caractère joker `%` qui signifie n'importe quel
+enchainement de caractères. Voici des exemples avec leur signification :
+
+  * `texte LIKE 'toto'` : les champs texte qui sont identiques à 'toto' ;
+  * `texte LIKE '%toto'` : les champs texte qui finissent par 'toto' ;
+  * `texte LIKE 'toto%'` : les champs texte qui commencent par 'toto' ;
+  * `texte LIKE '%toto%'` : les champs texte qui contiennent 'toto' ;
+
+Par exemple, pour avoir toutes les citations finissant par un point
+d'exclamation :
+
+    
+    
+    SELECT * FROM citations WHERE texte LIKE '%!';
+
+Le résultat :
+
+    
+    
+    +-------------+--------------------------------------------------------------------------------+---------+
+    | id_citation | texte                                                                          | id_film |
+    +-------------+--------------------------------------------------------------------------------+---------+
+    |           1 | Vers l'infini et au-delà !                                                     |       1 |
+    |           2 | Allez bonne nuit, et tâche de dormir sinon je vends tout tes jouets !          |       2 |
+    |           3 | Avengers rassemblement !                                                       |       2 |
+    |           7 | On a frôlé la vie !                                                            |       4 |
+    |          12 | Je préfère partir plutôt que d'entendre ça plutôt que d'être sourd !           |       8 |
+    |          13 | Raté, vous nous avez raté ! Eh les romains, vous êtes des romaines !           |       9 |
+    |          15 | Cours Forrest, cours !                                                         |      11 |
+    +-------------+--------------------------------------------------------------------------------+---------+
+    7 rows in set (0.00 sec)
+
+**6)** Proposez et testez une requête pour afficher les lignes de la table
+_citations_ contenant « je ».
+
+Il est possible de combiner plusieurs conditions dans la clause `WHERE` avec
+les opérateurs logiques `AND` et `OR`
+
+**7)** Proposez et testez une requête pour afficher les lignes de la table
+_citations_ contenant « je » et finissant par un point d'exclamation.
+
+**8)** Proposez et testez une requête pour afficher parmi les dix premières
+lignes de la table _citations_ celles qui contiennent « est ».
+
+## UPDATE
+
+La commande `UPDATE` permet de modifier une plusieurs lignes d'une table.
+Cette commande est à manipuler avec attention car elle peut changer **toutes**
+les lignes d'une table.
+
+Voici la syntaxe générale de cette commande :
+
+    
+    
+    UPDATE table
+    SET champ1 = 'nouvelle_valeur',
+    	champ2 = 'autre_nouvelle_valeur',
+    	…
+    WHERE condition
+
+Elle se décompose comme ceci :
+
+  * `UPDATE` : désigne la table à modifier ;
+  * `SET` : donne les nouvelles valeurs aux champs à modifer ;
+  * `WHERE` : permet de sélectionner les lignes à modifier. On utilisera généralement un identifiant unique (une _clé_ on verra ça plus tard) pour éviter de faire des bêtises.
+
+Comme vous avez surement déjà remarqué, il y a une faute impardonnable dans
+une citation ! Dans la première citation, on a écrit « au-dela » au lieu de «
+au-delà ». Il faut absolument rectifier cela ! Voici donc la commande pour
+effectuer cette action :
+
+    
+    
+    UPDATE citations SET texte = "Vers l'infini et au-delà !" WHERE id_citation = 1;
+
+Nous utilisons ici la clé _id_citation_ pour identifier de manière certaine la
+ligne à modifier.
+
+**9)** Saisissez cette commande et vérifiez que cela a bien fonctionné.
+
+Vous avez peut-être remarqué que nous avons utilisé ici les doubles quotes `"`
+au lieu des simples quotes `'` pour délimiter le nouveau texte. Nous avons dû
+faire cela car le texte contient lui-même une simple quote `'`. Si on veut
+conserver les simples quotes `'` comme délimiteur, il est possible
+_d'échapper_ les simples quotes à l'intérieur du texte avec un antislash `\'`.
+La commande serait alors :
+
+    
+    
+    UPDATE citations SET texte = 'Vers l\'infini et au-delà !' WHERE id_citation = 1;
+
+**10)** Une autre erreur s'est glissée dans la citation 5. « fût » est écrit
+avec un accent alors qu'il ne devrait pas y en avoir. Proposez et testez une
+requête pour corrigez cette coquille.
+
+**11)** Proposez et testez des requêtes pour ajouter les dates manquantes dans
+la table _films_. (Vous devrez les chercher sur internet)
+
+## INSERT
+
+La commande `INSERT` permet, comme son nom l'indique, d'insérer des nouvelles
+lignes dans une table.
+
+Voici la syntaxe générale de cette commande :
+
+    
+    
+    INSERT INTO table
+    VALUES ('valeur champ 1', 'valeur champ 2', …);
+
+Elle se décompose comme ceci :
+
+  * `INSERT INTO` : désigne la table ou insérer des lignes ;
+  * `VALUES` : l'ensemble des valeurs à ajouter entre parenthèses et **respectant l'ordre des colonnes**. S'il y a plusieurs valeurs à ajouter il faut séparer les ensembles par des virgules ;
+
+Il faut obligatoirement mettre les champs text ou varchar entre guillemets
+simples, ce n'est pas nécessaire pour les champs numériques.
+
+**12)** Ajoutez votre citation de film préférée à la table _citations_ (une
+vraie citation d'un vrai film, c'est important pour la suite). Faites
+attention à bien choisir son _id_citation_ et on mettra 0 pour l'_id_film_.
+Choisissez une citation d'un film qui n'est pas déjà dans la base.
+
+Il est possible de spécifier seulement certaines colonnes lors de l'ajout d'un
+enregistrement. Cela peut être utile lorsque des valeurs par défaut sont
+définies pour certaines colonnes. On spécifie alors la liste des champs puis
+la liste des valeurs comme ci-dessous :
+
+    
+    
+    INSERT INTO table (champ1, champ2, …)
+    VALUES ('valeur champ 1', 'valeur champ 2', …);
+
+Nous n'aurons pas beaucoup à utiliser cette méthode.
+
+## DELETE
+
+La commande `DELETE` permet de supprimer des lignes dans une table. Cette
+commande est également à manipuler avec attention car elle peut supprimer
+**toutes** les lignes d'une table.
+
+Voici la syntaxe générale de cette commande :
+
+    
+    
+    DELETE FROM table
+    WHERE condition;
+
+Elle se décompose comme ceci :
+
+  * `DELETE FROM` : désigne la table ou il faut supprimer des lignes ;
+  * `WHERE` permet de sélectionner les lignes à modifier. Comme pour `UPDATE`, on utilisera généralement un identifiant unique pour éviter de faire des bêtises.
+
+Nous allons maintenant ajouter une ligne pour la supprimer ensuite :
+
+    
+    
+    INSERT INTO citations VALUES (20, 'Citation à supprimer', 20);
+
+**13)** Supprimez la ligne que nous venons d'ajouter et donnez la requête
+utilisée.
+
+Il est temps maintenant de faire le point sur la structure de notre base de
+données.
+
+## BONUS
+
+Il est possible, si cela vous amuse, de sélectionner une citation aléatoire
+avec la requête suivante :
+
+    
+    
+    SELECT * FROM citations ORDER BY RAND() LIMIT 1;
+
+[Précédent](structure)[Suivant](cles)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

@@ -1,0 +1,210 @@
+---
+title: "Bases de données - Projet IMDb"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## Projets
+
+  * [Notation](.)
+  * [Dé aléatoire](de)
+  * [Filtres photo](filtres-photo)
+  * [Puissance 4](puissance-4)
+  * [Jeu de la vie](jeu-de-la-vie)
+  * [Pandémie](pandemie)
+  * [Contacts](contacts)
+  * [Labyrinthe](labyrinthe)
+  * [Grenouille hurlante](grenouille-hurlante)
+  * [Contacts Plus](contacts-plus)
+  * [PyNFO](pynfo)
+  * [Machine de vote](machine-vote)
+  * [IMDb](imdb)
+  * [Envahisseurs](envahisseurs)
+  * [Chronos](chronos)
+  * [Icq](icq)
+  * [Tetris](tetris)
+  * [Casse briques](casse-briques)
+
+# Projet IMDb
+
+![](img/imdb.svg)
+
+## Prérequis
+
+  * structures de contrôle ;
+  * boucles ;
+  * tableaux ;
+  * fonctions ;
+  * modules ;
+  * mbases de données.
+
+## Introduction
+
+Ce projet utilise la base de données de l'[IMDb](https://imdb.com) : la plus
+grosse base de donnée mondiale sur les films, séries et animations. Il est
+possible de récupérer (légalement) un ensemble limité (mais conséquent) de
+cette base de données à cette adresse : <https://datasets.imdbws.com/>. La
+documentation est à cette adresse : <https://www.imdb.com/interfaces/>. Il est
+ensuite possible de transformer ces fichiers csv en une base de donnée MySQL.
+J'ai utilisé [ce script](https://kxs.fr/files/python/imdb_to_mysql.py) (je ne
+garantis pas son fonctionnement).
+
+## Présentation
+
+Dans ce projet, vous allez écrire un programme qui va permettre de générer un
+infographie se rapprochant de celle-ci :
+
+![](img/bb.png) Auteur : barbe99 | [source](https://i.redd.it/21grb3wipll61.png)
+
+Bien sur, il n'y aura pas l'image de la série mais vous devriez être capables
+de produire les trois tableaux de l'image. Pour cela, nous allons utiliser
+deux modules :
+
+mysql.connector
+
+    pour se connecter à la base de donnée imdb sur votre ordinateur ;  
+
+processing
+
+    pour créer l'image.  
+
+Attention, toute la difficulté est de pouvoir ensuite générer cette
+infographie pour n'importe quelle série !
+
+## mysql.connector
+
+Ce module permet de se connecter à une base de donnée mysql directement à
+partir de Python. Un utilisateur `python` avec le mot de passe `python` a été
+créer pour vous autoriser à vous connecter depuis Python. Voici un exemple de
+code qui permet de récupérer les 10 films les mieux notés :
+
+    
+    
+    import mysql.connector
+    
+    conn = mysql.connector.connect(host="localhost",user="python", password='python', database="imdb")
+    cursor = conn.cursor()
+    query = "SELECT originalTitle, startYear, numVotes FROM work_basics JOIN work_ratings USING (id_work) WHERE worktype LIKE 'movie' ORDER BY numVotes DESC LIMIT 10;"
+    cursor.execute(query)
+    lignes = cursor.fetchall()
+    for ligne in lignes:
+        print(ligne)
+    conn.close()
+
+À partir de ce code et de l'[activité corrigée sur l'IMDb](/cours/bd/imdb)
+vous devriez arriver à récupérer les données nécessaires pour créer
+l'infographie désirée.
+
+Dans un premier temps vous allez devoir récupérer les informations pour créer
+le tableau de droite. Il faut donc obtenir les notes de tous les épisodes
+d'une série et les stocker dans un tableau contenant une saison par ligne.
+Pour Breaking Bad cela devra resembler à quelque-chose comme cela :
+
+    
+    
+    tab = [[9.1,8.7,8.8,8.3,8.4,9.3,8.9],
+           [8.7,9.3,8.4,8.3,8.4,8.9,8.7,9.2,9.2,8.6,8.9,9.3,9.3],
+           [8.6,8.7,8.5,8.3,8.7,9.3,9.6,8.8,8.5,7.8,8.5,9.5,9.7],
+           [9.2,8.3,8.1,8.7,8.7,8.5,8.9,9.3,8.9,9.6,9.7,9.5,9.9],
+           [9.3,8.9,8.9,8.9,9.7,9.1,9.6,9.6,9.5,9.2,9.6,9.2,9.8,10,9.7,9.9]]
+
+## dessin.py
+
+Comme il n'existe pas de bibliothèque simple pour faire du dessin en Python,
+je vous propose d'en créer une en vous basant sur Turtle. Voici la structure
+de cette bibliothèque avec les fonctions `ligne` et `bouge` (on utilisera le
+français pour éviter les doublons avec Turtle) déjà implémentées :
+
+    
+    
+    from turtle import *
+    
+    # On cache la tortue et on la fait aller vite
+    ht()
+    speed(0)
+    
+    def bouge(x, y):
+        """
+            Permet de déplacer la tortue à un point donné
+        """
+        up()
+        goto(x,y)
+        down()
+    
+    def ligne(x1, y1, x2, y2):
+        """
+            Trace une ligne entre les deux points (x1, y1) et (x2, y2)
+        """
+        bouge(x1, y1)
+        goto(x2, y2)
+    
+    def rect(x, y, width, height):
+        """
+            Trace un rectangle de coin haut gauche (x, y),
+            de largeur width et de hauteur height.
+        """
+    
+    
+    def cercle(x, y, r):
+        """
+            Trace un cercle de centre (x, y) et de rayon r
+        """
+    
+    def ecrire(x, y, texte):
+    	"""
+    		Écrit les texte aux coordonnées x et y.
+    		(x,y) devra être le point en bas à gauche du texte.
+    	"""
+
+Il reste donc `rect`, `cercle` et `ecrire` à implémenter. Il faudra aussi
+surement rajouter si cela est nécessaire un mécanisme pour colorier
+l'intérieur des rectangles et cercles ainsi qu'un moyen de changer la couleur
+des traits et du remplissage. Toutes le améliorations nécessaires sont les
+bienvenues.
+
+## Dessin
+
+Nous allons maintenant utiliser le module que vous venez de créer pour
+représenter le tableau. Vous utiliserez donc la commande suivante au début de
+votre programme :
+
+    
+    
+    from dessin import *
+
+Vous pouvez utiliser une variation de couleurs différente si cela vous semble
+plus approprié. Vous utiliserez en entrée le tableau contenant les notes de
+chaque saison.
+
+## Améliorations
+
+Vous pouvez ensuite vous attaquer aux deux autres graphes de l'image.
+
+## Tableau du barème
+
+Voilà le barème complet sur 15 pour ce projet.
+
+Tâche | Barème  
+---|---  
+Génération du tableau des notes | 2 points  
+Création de la bibliothèque dessin.py | 3 point  
+Tableau des notes par épisode avec couleurs | 3 point  
+Histogramme des notes par saison | 2 points  
+Tableau des tops et flops | 2 point  
+Code propre | 1 points  
+Code optimisé | 1 point  
+Commentaires | 1 points  
+Totals | 15  
+  
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

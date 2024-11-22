@@ -1,0 +1,99 @@
+---
+title: "Rappel sur les tests en Python"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## POO
+
+  * [Introduction](.)
+  * [Programmation impérative](programmation-imperative)
+  * [Programmation orientée objet](programmation-orientee-objet)
+  * [Exercices sur la POO](exercices)
+  * [Notions de POO hors programme](poo-hors-programme)
+
+# Notions de POO hors programme
+
+Les notions les plus « puissantes » et donc plus complexes de la progrmmation
+orientée objet ne sont pas au programme du lycée. Cette partie va vous
+présenter deux notions de la POO pour que les plus rapides d'entre vous
+puissent appercevoir la richesse de la POO. Ne faites cette partie que si vous
+avez terminé le projet.
+
+Il y a trois notions fondamentales de la POO qui ne sont pas au programme du
+lycée :
+
+l'encapsulation
+
+    cela regroupe un ensemble de règles d'accès aux attributs d'une classe. Cette notion qui n'est pas implémentée nativement en Python permet de rendre le code plus sûr ;
+  
+l'héritage
+
+    il permet de créer une classe fille, dérivant (héritant) d'une classe mère, avec des méthodes et attribut supplémentaires;
+  
+le polymorphisme
+
+    il permet schématiquement d'avoir des méthodes avec le même nom qui font des choses différentes.
+
+Nous allons aborder très simplement l'héritage et le polymorphisme.
+
+## Création de nouveau types de personnages
+
+Nous allons créer deux types de personnages, les guerriers et les magiciens
+qui vont hériter de la classe `Personnage` et utiliser le polymorphisme pour
+adapter la méthode `affiche()`.
+
+Voici la classe magicien :
+
+    
+    
+    class Magicien(Personnage):
+        """Personnage avec des pouvoirs magiques"""
+    
+        def __init__(self, nom, force, magie):
+            Personnage.__init__(self, nom, force)
+            self.magie = magie
+    
+        def affiche(self):
+            print("nom : " + str(self.nom) + " | force : " + str(self.force) + " |
+                magie : " + str(self.magie))
+
+Cette nouvelle classe Magicien hérite de la classe Personnage car on a utilisé
+Magicien(Personnage). On dira que Magicien est une classe fille et Personnage
+une classe mère. Cela veut dire qu’elle possède les mêmes attributs et
+méthodes que la classe Personnage. On peut néanmoins lui ajouter des attributs
+comme avec l’instruction `self.magie = magie`. L’instruction
+`Personnage.__init__(self, nom, force)` permet de faire appel au constructeur
+de la classe mère Personnage (et donc d’initialiser le nom et la force ici).
+
+Nous redéfinissons la méthode affiche() pour faire apparaître la magie. C’est
+ce qu’on appelle le _polymorphisme_.
+
+**9)** Testez la classe Magicien en utilisant le code suivant :
+
+    
+    
+    p1 = Personnage("Murzol", 50)
+    p1.affiche()
+    p3 = Magicien("Gandhalf", 100, 500)
+    p3.affiche()
+    p3.combat(p1)
+
+**10)** À vous de créer une classe Guerrier héritant de Personnage. Le
+guerrier possède un attribut « clan » enplus des attributs de la classe
+Personnage.
+
+[Précédent](exercices)[Suivant (page des cours)](..)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

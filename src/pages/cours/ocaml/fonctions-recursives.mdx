@@ -1,0 +1,239 @@
+---
+title: "Fonctions récursives en OCaml - Niveau MP2I"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## OCaml
+
+  * [Présentation](.)
+  * [Interaction et définitions](interaction-definition)
+  * [Fonctions](fonctions)
+  * [If … then … else …](if-then-else)
+  * [Fonctions récursives](fonctions-recursives)
+  * [Réels](reels)
+  * [Chaînes de caractères](string)
+  * [Execices 1](exercices-1)
+  * [Listes](listes)
+  * [Unit](unit)
+  * [Produits](produits)
+  * [Enregistrements](enregistrements)
+  * [Énumérations](enumerations)
+  * [Sommes](sommes)
+  * [Filtrage](filtrage)
+  * [Fonctions avancées](fonctions-avancees)
+  * [Aspects impértifs](aspects-imperatifs)
+
+# Fonctions récursives
+
+## Définition
+
+Une fonction récursive est une fonction qui s'appelle elle-même.
+
+## Syntaxe
+
+Les fonctions récursives se déclarent avec le mot-clé `rec`
+
+## Exemple
+
+Nous allons coder la fonction factorielle à l'aide de la récursivité. Elle est
+définie par :
+
+n! = n x (n-1) x (n-2) … 3 x 2 x 1
+
+Avec cette définition, il est possible de coder la fonction factorielle avec
+une boucle, mais nous ne savons pas encore écrire une boucle avec OCaml. Il
+est alors possible de définir la fonction factorielle de manière récursive par
+`n! =` :
+
+  * `1` si `n = 0`
+  * `n x (n-1)!` sinon
+
+### Sans filtrage
+
+Nous allons maintenant tenter de définir la fonction factorielle :
+
+    
+    
+    # let fact n = if n = 1 then 1 else n * fact (n - 1);;
+    Error: Unbound value fact
+    Hint: If this is a recursive definition,
+    you should add the 'rec' keyword on line 1
+
+Nous voyons que OCaml n'accepte pas cette définition car `fact` n'était
+précédement définie. Il suggère alors d'utiliser le mot-clé `rec` pour
+signaler que la fonction `fact` est récursive et qu'il faut donc ignorer le
+fait que fact n'est pas précédement définie :
+
+    
+    
+    # let rec fact n = if n = 1 then 1 else n * fact (n - 1);;
+    val fact : int -> int = <fun>
+
+Ici la définition est acceptée et on peut tester la fonction :
+
+    
+    
+    # fact 5;;
+    - : int = 120
+
+### Filtrage
+
+OCaml propose une syntaxe simplifiée pour définir des sorties différentes en
+fonction de l'entrée d'une fonction. C'est ce qu'on appelle le _filtrage_.
+Voilà comment on l'utilise :
+
+    
+    
+    # let rec fact = function
+       | 0 -> 1
+       | n -> n * fact (n - 1);;
+    val fact : int -> int = <fun>
+
+Cela signifie que si l'argument vaut `0` il faut retourner `1` et sinon,
+nommer `n` l'argument et retourner `n * fact (n - 1)`.
+
+OCaml permet d'ignorer la valeur de l'argument avec le symbole `_`. Cela
+signifie « dans tous les autres cas ». Par exemple si on veut créer une
+fonction qui transforme un entier en booléen en renvoyant `false` seulement si
+l'netier vaut `0` :
+
+    
+    
+    # let inttobool = function
+       | 0 -> false
+       | _ -> true;;
+    val inttobool : int -> bool = <fun>
+
+## Exercices
+
+**1)** Écrire une fonction récursive `somme` donnant la somme des entiers de 1
+à n.
+
+    
+    
+    # let rec somme = function
+       | 0 -> 0
+       | n -> n + somme (n - 1);;
+    val somme : int -> int = <fun>
+
+**2)** Écrire une fonction récursive `puissance` pour calculer la puissance
+d'un nombre. On aura besoin d'utiliser une fonction à deux arguments.
+
+    
+    
+    let rec puissance x n =
+       if n = 0 then 1
+       else x * puissance x (n - 1);;
+    val puissance : int -> int -> int = <fun>
+
+**3)** Écrire une fonction récursive `fibo` pour calculer la valeur de
+l'élément n de la suite de Fibonacci. La suite de Fibonacci est définie par
+`F(n) =` :
+
+  * 0 si n = 0
+  * 1 si n = 1
+  * F(n-1) + F(n-2) sinon
+
+On pourra vérifier le bon fonctionnement en vérifiant que fibo(15) = 610.
+
+    
+    
+    # let rec fibo = function
+       | 0 -> 0
+       | 1 -> 1
+       | n -> fibo (n - 1) + fibo (n - 2);;
+    val fibo : int -> int = <fun>
+
+**4)** Nous considérons ici le quotient et le reste de la division euclidienne
+de n par d.
+
+  * **a)** Écrivez une fonction récursive `quo` donnant le quotient de la division euclidienne de n par d sachant que ce quotient est le même que celui de (n -d) par d, plus 1. Faites attention au cas de base.
+  * **b)** Écrivez une fonction récursive `reste` donnant le reste de la division euclidienne de n par d sachant que ce reste est le même que celui de (n - d) par d.
+
+    
+    
+    (* a) *)
+    # let rec quo n d =
+       if n < d then 0
+       else 1 + quo (n - d) d;;
+    val quo : int -> int -> int = <fun>
+    
+    (* b) *)
+    # let rec reste n d =
+       if n < d then n
+       else reste (n - d) d;;
+    val reste : int -> int -> int = <fun>
+
+**5)** Coder à nouveau les fonctions précédentes en C.
+
+    
+    
+    #include <stdio.h>
+    
+    int somme(int n) {
+    	if (n == 0) {
+    		return 0;
+    	} else {
+    		return n + somme(n-1);
+    	}
+    }
+    
+    int puissance(int a, int b) {
+    	if (b == 0) {
+    		return 1;
+    	} else {
+    		return a * puissance(a, b-1);
+    	}
+    }
+    
+    int fibo(int n) {
+    	if (n == 0) {
+    		return 0;
+    	} else if (n == 1){
+    		return 1;
+    	} else {
+    		return fibo(n-1) + fibo(n-2);
+    	}
+    }
+    
+    int quo(int n, int d) {
+    	if (n < d) {
+    		return 0;
+    	} else {
+    		return 1 + quo(n-d, d);
+    	}
+    }
+    
+    int reste(int n, int d) {
+    	if (n < d) {
+    		return n;
+    	} else {
+    		return reste(n-d, d);
+    	}
+    }
+    
+    int main() {
+    	
+    	printf("%d\n", somme(100));
+    	printf("%d\n", puissance(2,10));
+    	printf("%d\n", fibo(15));
+    	printf("%d\n", quo(17,6));
+    	printf("%d\n", reste(17,6));
+    	return 0;
+    }
+
+[Précédent](if-then-else)[Suivant](reels)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

@@ -1,0 +1,150 @@
+---
+title: "Correction d'un algorithme"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## Algorithmes
+
+  * [Introduction](.)
+  * [Algorithmes de tri](algorithmes-tri)
+  * [Correction d'un algorithme](correction-algorithme)
+  * [Recherche par dichotomie](recherche-dichotomique)
+  * [Algorithmes gloutons](algorithmes-gloutons)
+  * [K plus proches voisins](algorithme-k-plus-proches-voisins)
+  * [Choixpeau](choixpeau)
+
+# Recherche dichotomique
+
+## Activité
+
+**1)** En vous mettant par deux, jouez chacun deux fois à trouver un nombre
+entre 1 et 100. À chaque proposition, l’autre doit dire « plus grand » ou «
+plus petit ». Notez le nombre d’essai pour chaque partie.
+
+**2)** Quelle est selon vous la meilleure stratégie ?
+
+Il faut proposer le milieu de l'intervalle restant.
+
+Nous allons voir un algorithme de recherche dans un tableau qui est similaire
+au problème précédent. L’algorithme suivant s’utilise dans un **tableau trié**
+!
+
+## Algorithme de recherche dichotomique
+
+Voici l’algorithme :
+
+    
+    
+    VARIABLE
+    t : tableau d'entiers trié
+    mil : nombre entier
+    fin : nombre entier
+    deb : nombre entier
+    x : nombre entier // x : l'entier recherché
+    tr : booléen
+    DEBUT
+    tr ← FAUX
+    deb ← 1
+    fin ← longueur(t)
+    tant que tr == FAUX et que deb ⩽ fin :
+        mil ← partie_entière((deb+fin)/2)
+        si t[mil] == x :
+            tr = vrai
+        sinon :
+            si x > t[mil] :
+                deb ← mil+1
+            sinon :
+                fin ← mil-1
+            fin si
+        fin si
+    fin tant que
+    renvoyer la valeur de tr
+    FIN
+
+### Fonctionnement
+
+**3)** Déroulons cet algorithme sur le tableau `t = [5, 7, 12, 14, 23, 27, 35,
+40, 41, 45]` avec la recherche de `x = 35`.
+
+    
+    
+    tr = faux
+    deb = 1
+    fin = 10
+    tr == faux et deb ≤ fin : on rentre dans la boucle
+    mil = 5
+    t[5] = 23 ≠ 35 : on ne rentre pas dans le si
+    35 > t[5] : on entre dans le si
+    deb = 6
+    retour au début de la boucle
+    
+    tr = faux
+    deb = 6
+    fin = 10
+    tr == faux et deb ≤ fin : on rentre dans la boucle
+    mil = 8
+    t[8] = 40 ≠ 35 : on ne rentre pas dans le si
+    35 < t[8] : on n’entre pas dans le si
+    fin = 7
+    retour au début de la boucle
+    
+    tr = faux
+    deb = 6
+    fin = 7
+    tr == faux et deb ≤ fin : on rentre dans la boucle
+    mil = 6
+    t[6] = 27 ≠ 35 : on ne rentre pas dans le si
+    35 > t[6] : on entre dans le si
+    deb = 7
+    retour au début de la boucle
+    
+    tr = faux
+    deb = 7
+    fin = 7
+    tr == faux et deb ≤ fin : on rentre dans la boucle
+    mil = 7
+    t[7] == 35 : on rentre dans le si
+    tr = vrai
+    retour au début de la boucle
+    
+    tr == vrai : on ne rentre pas dans la boucle
+    renvoyer vrai
+
+**4)** On peut également dérouler l’algorithme de deux autres façons avec des
+schémas utilisant le tableau :
+
+**5)** Reproduire le déroulement de l’algorithme avec un schéma en prenant `t
+= [5, 7, 12, 14, 23, 27, 35, 40, 41, 45]` et `x = 9`.
+
+**6)** Reproduire le déroulement de l’algorithme avec un schéma en prenant `t
+= [5, 7, 12, 14, 23, 27, 35, 40, 41, 45]` et `x = 40`.
+
+### Complexité
+
+**7)** Déterminons la complexité de cet algorithme.
+
+### Terminaison
+
+**8)** Pour montrer que cet algorithme se termine nous allons utiliser un
+variant de boucle.
+
+**9)** Créez une fonction utilisant la recherche par dichotomie et comparez sa
+performance avec le mot clé `in`. Vous créerez un tableau trié de 10000
+éléments et calculerez le temps de recherche pour les deux méthodes sur le
+même tableau.
+
+[Précédent](correction-algorithme)[Suivant](algorithmes-gloutons)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

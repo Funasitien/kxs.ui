@@ -1,0 +1,305 @@
+---
+title: "Algorithmes de tri"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## Algorithmes
+
+  * [Introduction](.)
+  * [Algorithmes de tri](algorithmes-tri)
+  * [Correction d'un algorithme](correction-algorithme)
+  * [Recherche par dichotomie](recherche-dichotomique)
+  * [Algorithmes gloutons](algorithmes-gloutons)
+  * [K plus proches voisins](algorithme-k-plus-proches-voisins)
+  * [Choixpeau](choixpeau)
+
+# Algorithmes de tri
+
+## Introduction
+
+Les _algorithmes de tri_ sont des « classiques » des algorithmes
+informatiques. Ils sont utilisés dans de nombreux logiciel comme par exemple
+les tableurs.
+
+Il est assez rare d’implémenter soi-même un algorithme de tri car ils sont
+souvent déjà présents dans des méthodes des langages informatiques (par
+exemple sort() pour les tableaux en Python). Néanmoins ils ont un grand
+intérêt pédagogique.
+
+**1)** En utilisant 8 cartes prises au hasard d'un jeu de cartes, essayez
+d'écrire un algorithme pour remettre les cartes dans l'ordre.
+
+## Tri par insertion
+
+Voici l’algorithme de tri par insertion :
+
+    
+    
+    VARIABLE
+    t : tableau d'entiers
+    i : nombre entier
+    j : nombre entier
+    k : nombre entier
+    DEBUT
+    j←2
+    tant que j<=longueur(t):   //boucle 1
+      i←j-1
+      k←t[j]
+      tant que i>0 et que t[i]>k:   //boucle 2
+        t[i+1]←t[i]
+        i←i-1
+      fin tant que
+      t[i+1]←k
+      j←j+1
+    fin tant que
+    FIN
+
+### Fonctionnement
+
+Faisons tourner cet algorithme sur le tableau `t=[27,10,12,8,11]` :
+
+    
+    
+    j=2
+    2≤5 on rentre dans la boucle 1
+    i=1
+    k=10
+    1>0 et 27>10 on rentre dans la boucle 2
+    t[2] = 27    (t=[27,27,12,8,11])
+    i=0
+    retour au début de la boucle 2
+    
+    i=0
+    j=2
+    k=10
+    i=0 : on n’entre pas dans la boucle 2
+    t[1]=10    (t=[10,27,12,8,11])
+    j=3
+    retour au début de la boucle 1
+    
+    j=3
+    3≤5 on rentre dans la boucle 1
+    i=2
+    k=12
+    2>0 et 27>12 on rentre dans la boucle 2
+    t[3] = 27    (t=[10,27,27,8,11])
+    i=1
+    retour au début de la boucle 2
+    
+    j=3
+    i=1
+    k=12
+    1>0 mais 10<12 : on n’entre pas dans la boucle 2
+    t[2]=12    (t=[10,12,27,8,11])
+    j=4
+    retour au début de la boucle 1
+
+**2)** Complétez le déroulement de l’algorithme pour j=4.
+
+    
+    
+    j=4
+    4≤5 on rentre dans la boucle 1
+    i=3
+    k=8
+    3>0 et 27>8 on rentre dans la boucle 2
+    t[4] = 27    (t=[10,12,27,27,11])
+    i=2
+    retour au début de la boucle 2
+    
+    j=4
+    i=2
+    k=8
+    2>0 et 12>8 on rentre dans la boucle 2
+    t[3] = 12    (t=[10,12,12,27,11])
+    i=1
+    retour au début de la boucle 2
+    
+    j=4
+    i=1
+    k=8
+    1>0 et 10>8 on rentre dans la boucle 2
+    t[2] = 10    (t=[10,10,12,27,11])
+    i=0
+    retour au début de la boucle 2
+    
+    j=4
+    i=0
+    k=8
+    i=0 : on n’entre pas dans la boucle 2
+    t[1]=8    (t=[8,10,12,27,11])
+    j=5
+    retour au début de la boucle 1
+
+**3)** Résumons maintenant l’algorithme de tri par insertion avec des schémas
+:
+
+[27,10,12,8,11] [10,27,12,8,11] [10,12,27,8,11] [8,10,12,27,11]
+[8,10,11,12,27]
+
+**4)** Faire le même type de schémas avec le tableau t=[12,8,23,10,15]
+
+### Complexité
+
+**5)** Étudions la complexité de l’algorithme de tri par insertion en
+commençant par calculer le nombre d’opérations :
+
+    
+    
+    VARIABLE
+    t : tableau d'entiers
+    i : nombre entier
+    j : nombre entier
+    k : nombre entier
+    DEBUT
+    j←2
+    tant que j<=longueur(t):   // boucle 1
+      i←j-1
+      k←t[j]
+      tant que i>0 et que t[i]>k:   // boucle 2
+        t[i+1]←t[i]
+        i←i-1
+      fin tant que
+      t[i+1]←k
+      j←j+1
+    fin tant que
+    FIN
+    
+    
+    DEBUT
+    j←2												[1 fois]
+    tant que j<=longueur(t):   // boucle 1			[n fois]
+      i←j-1											[n-1 fois]
+      k←t[j]										[n-1 fois]
+      tant que i>0 et que t[i]>k:   // boucle 2		[2 fois, 3 fois… n fois]
+        t[i+1]←t[i]									[1 fois, 2 fois… n-1 fois]
+        i←i-1										[1 fois, 2 fois… n-1 fois]
+      fin tant que
+      t[i+1]←k										[n-1 fois]
+      j←j+1											[n-1 fois]
+    fin tant que
+    FIN
+
+Pour la boucle 2 il faut faire la somme des entiers de 1 à n : n*(n+1)/2 =
+n²/2 + n/2.  
+On prend cette somme 3 fois et on enlève 2n + 1 car il faut aller jusqu'à n-1
+sur les 2 lignes de l'intérieur de la boucle (et de 2 à n pour la première):
+3n²/2 - n/2 - 1  
+Tout le reste donne : 5n - 3.  
+Et donc le total : 3n²/2 + 9n/2 -4.  
+
+**6)** Quelle est alors la complexité de cet algorithme ?
+
+Nous avons donc une complexité en O(n²)
+
+## Tri par sélection
+
+Voici l’algorithme de tri par sélection :
+
+    
+    
+    VARIABLE
+    t : tableau d'entiers
+    i : nombre entier
+    min : nombre entier
+    j : nombre entier
+    DEBUT
+    i←1
+    tant que i<longueur(t):   //boucle 1
+      j←i+1
+      min←i
+      tant que j<=longueur(t):   //boucle 2
+        si t[j]<t[min]:
+          min←j
+        fin si
+        j←j+1
+      fin tant que
+      si min≠i :
+        échanger t[i] et t[min]
+      fin si
+      i←i+1
+    fin tant que
+    FIN
+
+### Fonctionnement
+
+**7)** Plutôt que de dérouler encore cet algorithme, nous allons directement
+l’expliquer avec des schémas sur le tableau `t=[12,8,23,10,15]`
+
+[12,8,23,10,15] [8,12,23,10,15] [8,10,23,12,15] [8,10,12,23,15]
+[8,10,12,15,23]
+
+**8)** Expliquer l’algorithme avec des schémas sur le tableau
+`t=[15,16,11,13,12]`
+
+### Complexité
+
+**9)** Calculons le nombre d’opérations de l’algorithme de tri par sélection :
+
+    
+    
+    VARIABLE
+    t : tableau d'entiers
+    i : nombre entier
+    min : nombre entier
+    j : nombre entier
+    DEBUT
+    i←1
+    tant que i<longueur(t):   //boucle 1
+      j←i+1
+      min←i
+      tant que j<=longueur(t):   //boucle 2
+        si t[j]<t[min]:
+          min←j
+        fin si
+        j←j+1
+      fin tant que
+      si min≠i :
+        échanger t[i] et t[min]
+      fin si
+      i←i+1
+    fin tant que
+    FIN
+    
+    
+    DEBUT
+    i←1											[1 fois]
+    tant que i<longueur(t):   //boucle 1		[n+1 fois]
+      j←i+1										[n fois]
+      min←i										[n fois]
+      tant que j<=longueur(t):   //boucle 2		[n fois, n-1 fois… 2 fois, 1 fois]
+        si t[j]<t[min]:							[n-1 fois… 2 fois, 1 fois]
+          min←j									[n-1 fois… 2 fois, 1 fois]
+        fin si
+        j←j+1									[n-1 fois… 2 fois, 1 fois]
+      fin tant que
+      si min≠i :								[n fois]
+        échanger t[i] et t[min]					[n fois]
+      fin si
+      i←i+1										[n fois]
+    fin tant que
+    FIN
+
+Pour la boucle 2 : 4*(n²/2 + n/2) - 3n = 2n² - n  
+Pour tout le reste : 6n + 2  
+Au total : 2n² + 5n + 2
+
+**10)** Donner alors la complexité de cet algorithme.
+
+Nous avons donc une complexité en O(n²)
+
+[Précédent](.)[Suivant](correction-algorithme)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

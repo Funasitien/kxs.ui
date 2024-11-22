@@ -1,0 +1,86 @@
+---
+title: "Bases de données - Structure d'une table"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## Bases de données
+
+  * [Introduction](.)
+  * [Prise en main](prise-en-main)
+  * [Structure](structure)
+  * [Contenu](contenu)
+  * [Clés](cles)
+  * [Jointure](jointure)
+  * [Compléments](complements)
+  * [Agrégateurs](agregateurs)
+  * [Exercices](exercices)
+  * [IMDb](imdb)
+
+# Structure d'une table
+
+Nous avons vu qu'une base de données contenait deux tables : _citations_ et
+_films_. Mais qu'est-ce qu'une table ? Ce n'est rien d'autre qu'un tableau
+avec des lignes et des colonnes.
+
+## Attributs / Colonnes / Champ
+
+On parle d'attribut, de colonne ou de champ. Ils corespondent aux champs à
+remplir pour les données de la table. Regardons tout de suite la _structure_
+de la table _citations_ pour voir ses attributs :
+
+    
+    
+    DESCRIBE citations;
+    
+    
+    +-------------+------+------+-----+---------+----------------+
+    | Field       | Type | Null | Key | Default | Extra          |
+    +-------------+------+------+-----+---------+----------------+
+    | id_citation | int  | NO   | PRI | NULL    | auto_increment |
+    | texte       | text | YES  |     | NULL    |                |
+    | id_film     | int  | YES  |     | NULL    |                |
+    +-------------+------+------+-----+---------+----------------+
+    3 rows in set (0.00 sec)
+
+**1)** Quels sont les attributs (Field) de la table _citations_ (il y en a
+trois) ?
+
+Comme les variables en Python, ces attributs doivent avoir un type. Le type
+d'un attribut est aussi appelé _domaine_. Nous n'utiliserons que trois types
+différents même s'il en existe beaucoup plus :
+
+int
+
+    entier ;
+  
+varchar(n)
+
+    chaîne de caractère de taille n (on peut chois ce qu'on veut pour n) ;
+  
+text
+
+    long texte.
+
+**2)** Quels sont les types des attributs de la table _citations_ ?
+
+**3)** Quels seraient les attributs et leurs domaines pour une table _eleves_
+stockant vos nom, prénom et âge ?
+
+Cette structure permet de recevoir des enregistrements, c'est ce que nous
+allons voir dans la partie suivante.
+
+[Précédent](prise-en-main)[Suivant](contenu)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

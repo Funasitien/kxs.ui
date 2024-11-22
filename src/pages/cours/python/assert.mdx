@@ -1,0 +1,135 @@
+---
+title: "Assert - Python"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## Python
+
+  * [Introduction](.)
+  * [Bases](bases)
+    * [Opérations mathématiques](operations)
+    * [Variables](variables)
+    * [Types de base](types-de-base)
+  * [Structures de contrôle](structures-de-controle)
+    * [If… else](if-else)
+    * [Interaction avec l'utilisateur](interaction)
+  * [Exercices bases et structures de contrôle](exercices-bases-structures)
+  * [Commentaires](commentaires)
+  * [Boucles](boucles)
+  * [Booléens](booleens)
+  * [Modules](modules)
+  * [Fonctions](fonctions)
+  * [Exercices boucles et fonctions](exercices-boucles-fonctions)
+  * [Tuples](tuples)
+  * [Exercices tuples](exercices-tuples)
+  * [Tableaux](tableaux)
+  * [Exercices tableaux](exercices-tableaux)
+  * [Dictionnaires](dictionnaires)
+  * [Chaînes de caractères](chaines-de-caracteres)
+  * [Docstring](docstring)
+  * [Doctest](doctest)
+  * [Assert](assert)
+
+# Assert en Python
+
+## Présentation
+
+### Descrption
+
+L'instruction `assert` permet de vérifier si une condition est remplie. Dans
+le cas ou la condition n'est pas vraie, il est possible d'afficher un message.
+Voici sa syntaxe :
+
+    
+    
+    assert condition, message
+
+### Utilisation
+
+`assert` ne doit pas être utilisé pour un fonctionnement normal de votre
+programme mais plus pour éviter des bugs de votre part. Par exemple si dans un
+de vos programmes vous avez besoin d'une fonction qui calcule le niveau de
+gris d'un pixel à partir de sa couleur RGB. Vous savez que dans une
+utilisation normale R, G et B sont entre 0 et 255. Vous allez donc mettre dans
+votre fonction les assertions suivantes :
+
+    
+    
+    assert 0 <= R <= 255, "La valeur de R n'est pas correcte"
+    assert 0 <= G <= 255, "La valeur de G n'est pas correcte"
+    assert 0 <= B <= 255, "La valeur de B n'est pas correcte"
+
+Ainsi lorsque vous utiliserez votre fonction vous saurez instantanément si
+vous lui envoyez des valeurs qui ne sont pas correctes.
+
+Il ne faut pas utiliser `assert` pour détecter des erreurs dans le
+fonctionnement normal d'un programme. Par exemple si l'utilisateur doit saisir
+un nombre positif, il ne faut pas le vérifier avec un `assert` mais plutôt
+faire un test, écrire un message et redemander la saisie du nombre. Il faut
+supposer que les `assert` sont désactivés quand le développement du programme
+est fini.
+
+`assert` peut être un moyen simple de vérifier le bon fonctionnement d'une
+fonction sans devoir utiliser des [doctests](/cours/python/doctest). Nous
+allons voir cela dans l'exercice suivant.
+
+## Exercice
+
+Vous allez créer une fonction qui donne, à partir du user-agent, le navigateur
+utilisé par un client. Le user-agent est une chaîne de caractères envoyée par
+le navigateur pour donner des informations au serveur. Par exemple voici votre
+user-agent :
+
+    
+    
+    python-requests/2.25.1
+
+Il n'est pas toujours simple de trouver le navigateur à partir du user-agent.
+Voici les règles à utiliser pour déterminer les principaux navigateurs :
+
+    
+    
+    Firefox : le user-agent contient "Firefox" mais pas "SeaMonkey"
+    Chrome : le user-agent contient "Chrome" mais ni "Chromium" ni "Edg"
+    Chromium : le user-agent contient "Chromium"
+    Safari : le user-agent contient "Safari" mais ni "Chrome" ni "Chromium" ni "Edg"
+    Edge : le user-agent contient "Edg"
+    Internet Explorer : le user-agent contient "MSIE"
+    SeaMonkey : le user-agent contient "SeaMonkey"
+
+À vous d'écrire la fonction `navigateur` à partir des règles ci-dessus. Voici
+donc le code de départ avec des assertions pour vérifier que votre code ne
+bugue pas :
+
+    
+    
+    def navigateur(ua):
+    	pass
+    
+    
+    assert navigateur("Mozilla/5.0 (Android 7.1.1; Mobile; rv:99.0) Gecko/99.0 Firefox/99.0") == "Firefox", "Défaut de détection de Firefox"
+    assert navigateur("Mozilla/5.0 (Linux; Android 12; SM-T875) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.73 Safari/537.36") == "Chrome", "Défaut de détection de Chrome"
+    assert navigateur("Mozilla/5.0 (X11; U; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/97.0.4675.48 Chrome/97.0.4675.48 Safari/537.36") == "Chromium", "Défaut de détection de Chromium"
+    assert navigateur("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Safari/605.1.15,gzip(gfe)") == "Safari", "Défaut de détection de Safari"
+    assert navigateur("Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.30 Safari/537.36 Edg/100.0.1185.12") == "Edge", "Défaut de détection de Edge"
+    assert navigateur("Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; McAfee; Zoom 3.6.0; wbx 1.0.0)") == "Internet Explorer", "Défaut de détection de Internet Explorer"
+    assert navigateur("Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101 Firefox/68.0 SeaMonkey/2.53.11") == "SeaMonkey", "Défaut de détection de SeaMonkey"
+
+Tant que toutes les assertions ne restent pas muettes, votre code n'est pas
+correct.
+
+[Précédent](doctest)[Suivant (page des cours)](..)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

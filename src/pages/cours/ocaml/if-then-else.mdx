@@ -1,0 +1,125 @@
+---
+title: "If … then … else … en OCaml - Niveau MP2I"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## OCaml
+
+  * [Présentation](.)
+  * [Interaction et définitions](interaction-definition)
+  * [Fonctions](fonctions)
+  * [If … then … else …](if-then-else)
+  * [Fonctions récursives](fonctions-recursives)
+  * [Réels](reels)
+  * [Chaînes de caractères](string)
+  * [Execices 1](exercices-1)
+  * [Listes](listes)
+  * [Unit](unit)
+  * [Produits](produits)
+  * [Enregistrements](enregistrements)
+  * [Énumérations](enumerations)
+  * [Sommes](sommes)
+  * [Filtrage](filtrage)
+  * [Fonctions avancées](fonctions-avancees)
+  * [Aspects impértifs](aspects-imperatifs)
+
+# If … then … else …
+
+## Syntaxe
+
+OCaml permet bien entendu d'utiliser la structure `if … then … else …` comme
+dans la plupart des autres langages. La seule différence est qu'on s'en
+servira uniquement avec des expressions pour le moment.
+
+Prenons l'exemple de la fonction valeur absolue :
+
+    
+    
+    # let valabs x = (if x >= 0 then x else -x);;
+    val valabs : int -> int = <fun>
+
+Que l'on peut aussi définir sans les parenthèses :
+
+    
+    
+    # let valabs x = if x >= 0 then x else -x;;
+    val valabs : int -> int = <fun>
+
+On peut alors vérifier son fonctionnement :
+
+    
+    
+    # valabs (-6);;
+    - : int = 6
+    # valabs 6;;
+    - : int = 6
+
+## Opérateurs de compariason
+
+Nous aurons besoin des opérateurs de comparaison suivants :
+
+  * `x = y` : x est égal à y
+  * `x <> y` : x est différent de y
+  * `x > y` : x est strictement supérieur à y
+  * `x < y` : x est strictement inférieur à y
+  * `x >= y` : x est supérieur ou égal à y
+  * `x <= y` : x est inférieur ou égal à y
+
+## Booléens
+
+Il existe un type booléen dans OCaml : `bool` On peut le découvrir facilement
+:
+
+    
+    
+    # 2=3;;
+    - : bool = false
+    # 4=4;;
+    - : bool = true
+
+## Opérateurs sur les booléens
+
+Il n'existe que trois opérateurs pour les booléens en Ocaml :
+
+  * `&&` : et (`and` ne fonctionne pas)
+  * `||` : ou (`or` ne fonctionne plus)
+  * `not` : non
+
+## Exercices
+
+**1)** Écrire une fonction `pairimpaire` qui renvoie le mot « pair » si le
+nombre en entrée est pair et « impaire » sinon. Les chaîne de caractères se
+notent avec des guillemets doubles « " » en OCaml.
+
+    
+    
+    # let pairimpaire n = if n mod 2 = 0 then "pair" else "impaire";;
+    val pairimpaire : int -> string = <fun>
+
+**2)** Écrire une fonction `inverse` qui renvoie le booléen `true` si elle
+reçoie `false` et `false` sinon (c'est la fonction not).
+
+    
+    
+    # let inverse b = if b then false else true;;
+    val inverse : bool -> bool = <fun>
+
+**3)** Écrire une fonction `xor` qui renvoie le ou-exclusif de ses deux
+paramètres. Le ou exclusif est vrai si seulement l'une des deux entrées est
+vraie.
+
+[Précédent](fonctions)[Suivant](fonctions-recursives)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

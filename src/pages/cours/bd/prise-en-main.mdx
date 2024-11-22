@@ -1,0 +1,253 @@
+---
+title: "Bases de données - Prise en main"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## Bases de données
+
+  * [Introduction](.)
+  * [Prise en main](prise-en-main)
+  * [Structure](structure)
+  * [Contenu](contenu)
+  * [Clés](cles)
+  * [Jointure](jointure)
+  * [Compléments](complements)
+  * [Agrégateurs](agregateurs)
+  * [Exercices](exercices)
+  * [IMDb](imdb)
+
+# Prise en main
+
+Il existe des logiciels graphiques permettant d'interagir avec une BDD
+(phpMyAdmin, DB Browser), mais dans le but d'aller à l'essentiel, nous
+utiliserons la ligne de commande pour donner des instructions à notre SGDB.
+Nous allons utiliser MySQL. Pour cela, il faut effectuer des opérations
+différentes en fonction de votre système d'exploitation.
+
+## Console MySQL
+
+Nous avons besoin de la console MySQL pour pourvoir l'utiliser. Pour la faire
+apparaitre, il faut effectuer des opérations différentes en fonction de votre
+système d'exploitation.
+
+### Linux
+
+Ouvrez un terminal et saisissez la commande :
+
+    
+    
+    mysql
+
+Cela devrait afficher quelques lignes, mais la dernière doit être :
+
+    
+    
+    mysql>
+
+C'est l'invite de commande mySQL, vous êtes prêt à travailler.
+
+### Windows
+
+Lancez Xamp Control Panel et démarrez le serveur MySQL en cliquant sur le
+bouton « Start » en face de MySQL.
+
+Lancer ensuite Windows PowerShell. Vous devez alors avoir une invite de
+commande comme ceci :
+
+    
+    
+    PS H:>
+
+Saisissez alors la commande suivante :
+
+    
+    
+    c:\xampp\mysql\bin\mysql -u root
+
+Cela devrait ouvrir une fenêtre affichant quelques lignes, mais la dernière
+doit être :
+
+    
+    
+    MariaDB [(none)]>
+
+C'est l'invite de commande mySQL, vous êtes prêt à travailler.
+
+## Premières commandes
+
+Pour vérifier que MySQL fonctionne bien, saisissez la commande ci-dessous qui
+affiche toutes les bases de données présentes :
+
+    
+    
+    SHOW databases;
+
+Les commandes MySQL finissent toujours par un **point virgule** et on met
+généralement les mots-clés en **majuscules**.
+
+La suite va encore différée en fonction de votre système d'exploitation.
+
+### Linux
+
+Vous devriez alors obtenir le résultat suivant :
+
+    
+    
+    +--------------------+
+    | Database           |
+    +--------------------+
+    | information_schema |
+    | travail            |
+    +--------------------+
+
+Ce sont les bases de données présentes sur votre ordinateur. Nous utiliserons
+la base _travail_. Pour cela, saisissez la commande suivante :
+
+    
+    
+    USE travail;
+
+Avec le résultat suivant :
+
+    
+    
+    Database changed
+
+Nous sommes maintenant dans la base _travail_ et nous allons pouvoir importer
+des tables pour éviter de devoir les construire ligne par ligne. Je vous
+propose de **télécharger** ce [fichier sql contenant des citations de
+films](/cours/bd/citations_films.sql) et nous verrons sous quelle forme les
+citations sont stockées. Enregistrez ce fichier dans votre répertoire
+personnel puis passez au dernier paragraphe.
+
+### Windows
+
+Vous devriez alors obtenir le résultat suivant :
+
+    
+    
+    +--------------------+
+    | Database           |
+    +--------------------+
+    | information_schema |
+    | mysql              |
+    | performance_schema |
+    | phpmyadmin         |
+    | test               |
+    +--------------------+
+
+Ce sont les bases de données présentes sur votre ordinateur. Nous allons créer
+une base _travail_ pour pouvoir travailler dedans. Pour cela, saisissez la
+commande suivante :
+
+    
+    
+    CREATE DATABASE travail;
+
+Pour vérifier que tout a fonctionné, entrez la commande suivante :
+
+    
+    
+    SHOW DATABASES;
+
+Vous devez alors avoir le résultat suiavant :
+
+    
+    
+    +--------------------+
+    | Database           |
+    +--------------------+
+    | information_schema |
+    | mysql              |
+    | performance_schema |
+    | phpmyadmin         |
+    | travail            |
+    +--------------------+
+
+Pour se « mettre » dans la base travail, pour l'utiliser il faut alors saisir
+la commande suivante :
+
+    
+    
+    USE travail;
+
+Avec le résultat suivant :
+
+    
+    
+    Database changed
+
+Nous sommes maintenant dans la base _travail_ et nous allons pouvoir importer
+des tables pour éviter de devoir les construire ligne par ligne. Je vous
+propose de **télécharger** ce [fichier sql contenant des citations de
+films](/cours/bd/citations_films.sql) et nous verrons sous quelle forme les
+citations sont stockées. Enregistrez ce fichier dans le répertoire de Xamp
+(C:\xamp) puis passez au paragraphe suivant.
+
+## Importation
+
+Saisissez alors la commande ci-dessous :
+
+    
+    
+    SOURCE citations_films.sql;
+
+Si tout va bien, vous devriez obtenir une réponse comme celle-ci :
+
+    
+    
+    Query OK, 0 rows affected (0.02 sec)
+    
+    Query OK, 0 rows affected (0.03 sec)
+    
+    Query OK, 15 rows affected (0.01 sec)
+    Records: 15  Duplicates: 0  Warnings: 0
+    
+    Query OK, 11 rows affected (0.00 sec)
+    Records: 11  Duplicates: 0  Warnings: 0
+
+On vérifie que les tables _citations_ et _films_ sont bien présentes :
+
+    
+    
+    SHOW tables;
+
+Si la sortie ressemble à ceci :
+
+    
+    
+    +-------------------+
+    | Tables_in_travail |
+    +-------------------+
+    | citations         |
+    | films             |
+    +-------------------+
+    2 rows in set (0.00 sec)
+
+vous êtes alors prêt à passer à la suite.
+
+À tout moment, vous pouvez resaisir la requête suivante pour tout
+réinitialiser :
+
+    
+    
+    SOURCE citations_films.sql;
+
+Un dernier point de vocabulaire : une commande envoyée à MySQL s'appelle une
+_requête_.
+
+[Précédent](.)[Suivant](structure)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

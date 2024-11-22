@@ -1,0 +1,198 @@
+---
+title: "Web : moteurs de recherche"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## Web
+
+  * [Bases de l'informatique](bases-informatique)
+  * [Url et requêtes HTTP](url-requete-http)
+  * [HTML et CSS](html-css)
+  * [HTML et CSS (suite)](html-css-suite)
+  * [Moteurs de recherche](moteurs)
+  * [Droits d'auteur](droits-auteur)
+  * [Bilan](bilan)
+
+# Moteurs de recherche
+
+Un moteur de recherche est un logiciel qui explore le web de façon à pouvoir
+proposer des résultats les plus pertinents aux requêtes des utilisateurs. On
+peut interroger un moteur de recherche directement dans la barre d’adresse du
+navigateur ou en allant sur le site du moteur ([google.fr](https://google.fr),
+[bing.com](https://bing.com)…)
+
+## Histoire
+
+**1)** À partir de la [vidéo du Dr. Nozman sur les moteurs de
+recherche](https://www.youtube.com/watch?v=0A5fQER40Wg) faites un simple
+historique des moteurs de recherche. Vous pourrez rajouter le moteur « qui ne
+vous espionne pas » et un moteur de recherche Français apparu dans les années
+2010.
+
+## Fonctionnement
+
+Nous allons voir ici le fonctionnement **très** simplifié d'un moteur de
+recherche comme Google.
+
+### Exploration et PageRank
+
+Le robot (« bot ») d’un moteur de recherche parcourt en permanence le web en
+suivant des liens hypertextes. Lors de son exploration le bot de Google
+calcule le PageRank de chaque page. C’est ce qui a permis à Google de se
+démarquer de la concurrence à la fin des années 90. Actuellement, le PageRank
+est l’un des nombreux critères qui permet de classer les résultats de
+recherche. Le PageRank représente schématiquement la probabilité qu’a un
+internaute d’arriver sur une page.
+
+Nous allons calculer une version simplifiée du PageRank sur un ensemble de 6
+pages reliées par des liens représentés par des flèches sur le graphe ci-
+dessous.
+
+![](img/graphe.png)
+
+Pour cela, nous utiliserons l’algorithme suivant :
+
+  1. Mettre un pion (gomme…) sur une page au hasard ;
+  2. Déplacer le pion sur une autre page en utilisant un lien au hasard ;
+  3. Recommencer l’étape 2 trente fois.
+
+À chaque fois que le pion va sur une page, il faut mettre un bâton dans le
+tableau ci-dessous. Pour choisir réellement au hasard, on pourra utiliser un
+[générateur de nombre aléatoire en ligne](https://www.tirokdo.com/tirage-au-
+sort/nombre-aleatoire).
+
+**2)** Compléter le tableau ci-dessous en utilisant l'algorithme précédent.
+
+Page | A | B | C | D | E | F  
+---|---|---|---|---|---|---  
+Nombre de visites |  |  |  |  |  |   
+  
+**3)** Allez alors écrire vos résultats sur le tableau de la salle, et à
+partir des résultats de tous les élèves calculer la probabilité (sous forme
+d’un pourcentage) d’arriver sur chacune des pages. Noter vos résultats dans le
+tableau ci-dessous :
+
+Page | A | B | C | D | E | F  
+---|---|---|---|---|---|---  
+Proba. de visite |  |  |  |  |  |   
+  
+**4)** Quelle est la page qui a le plus grand PageRank ? Pour quelle raison
+simple ?
+
+### Indexation
+
+Lorsque le bot arrive sur une page il l’indexe. Cela signifie qu’il dégage les
+mots les plus importants et y associe la page dans son index. Chaque page
+apparaît associée à un mot avec un coefficient représentant l’importance de ce
+mot dans la page.
+
+Pour calculer l’importance d’un mot dans une page, on peut par exemple faire
+comme suit :
+
+  * si le mot est dans le titre : 5 points
+  * si le mot est dans un paragraphe : 1 point
+
+Prenons l’exemple de cette page (justice.html) dans l'encadré sur la
+profession d’avocat :
+
+**Avocat**  
+En droit, l’avocat est un juriste dont les fonctions traditionnelles sont de
+conseiller, représenter, assister et défendre ses clients en justice en
+palaidant pour faire valoir leurs droits.
+
+« avocat » est dans le titre (5 points) et dans le paragraphe (1 point), la
+page est donc associé au mot avocat avec une importance de 6.
+
+« droit » figure deux fois dans le texte, il a donc une importance de 2.
+
+« juriste » apparaît une fois, il a donc un importance de 1.
+
+L'index ressemblera alors à ceci :
+
+… | …  
+---|---  
+avocat | (justice.html, 6)  
+… | …  
+droit | (justice.html, 2)  
+… | …  
+juriste | (justice.html, 1)  
+… | …  
+  
+Bien sûr dans la réalité tout ceci est bien plus complexe (prise en compte des
+mots dans les liens pointant vers la page, différents titres, mots en gras…).
+
+**5)** Créez ci-dessous l’index avec les mots « avocat » et « fruit » pour les
+deux pages ci-dessous :
+
+Page `avocat.html` :
+
+**Avocat**  
+L'avocat est le fruit de l'avocatier, un arbre originaire du Mexique. L'avocat
+peut être utilisé pour faire du guacamole.
+
+Page `fruit.html` :
+
+**Fruit**  
+Un fruit est un aliment végétal, à la saveur sucrée, généralement consommé
+cru.
+
+### Réponse à une requête
+
+Lorsqu’un utilisateur fait une requête, le moteur de recherche classe les
+pages par ordre de pertinence. Ce classement dépend de plusieurs centaines de
+facteurs mais pour simplifier, nous n’allons utiliser que l’importance vue
+précédemment.
+
+Imaginons que nous ayons un index comme ci-dessous pour cinq pages p1 à p5 :
+
+… | …  
+---|---  
+avocat | (p1, 20) ; (p2, 5) ; (p3, 15)  
+… | …  
+droit | (p2, 25) ; (p3, 10) ; (p4, 5)  
+… | …  
+fruit | (p1, 10) ; (p5, 20)  
+… | …  
+  
+On suppose que pour une requête de plusieurs mots, la pertinence d’une page
+est la somme des importances pour chaque mot de la requête.
+
+**6)** Calculez la pertinence des 5 pages pour la requête « avocat droit » et
+donnez ainsi l’ordre des résultats.
+
+**7)** Faites de même avec la requête « avocat fruit »
+
+## Pertinence des résultats
+
+Les moteurs combinent des centaines de facteurs pour classer les résultats
+d’une requête. Cette « combinaison » est un secret très bien gardé par les
+moteurs. C’est pour cela que les résultats diffèrent d’un moteur à l’autre.
+
+**8)** Faites une même requête (de votre choix) sur les quatre moteurs ci-
+dessous et notez les domaines des cinq premiers résultats. Quel moteur vous
+paraît le plus pertinent ?
+
+Requête :
+
+| google.fr | bing.com | qwant.fr | duckduckgo.com  
+---|---|---|---|---  
+1 |  |  |  |   
+2 |  |  |  |   
+3 |  |  |  |   
+4 |  |  |  |   
+5 |  |  |  |   
+[Précédent](html-css-suite)[Suivant](droits-auteur)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

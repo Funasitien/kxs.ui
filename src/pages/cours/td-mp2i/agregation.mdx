@@ -1,0 +1,168 @@
+---
+title: "Agrégation"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## TD MP2I
+
+  * [intro](.)
+  * [Conversions](conversions)
+  * [Unix](unix)
+  * [Arbres](arbres)
+  * [ABR](arbres-binaires-recherche)
+  * [Graphes](graphes)
+  * [Bases de données](bases-de-donnees)
+  * [Jointures](jointures)
+  * [Agrégations](agregation)
+  * [Opérateurs ensemblistes](operateurs-ensemblistes)
+  * [Exercices bases de données](exercices-db)
+
+# Agrégation
+
+Les fonctions d'agrégation permettent de faire des opérations sur les
+résultats d'une requête.
+
+## Présentation
+
+Par exemple, la fonction `COUNT` permet de compter le nombre de résultats :
+
+    
+    
+    SELECT count(*) FROM citations;
+    
+    
+    +----------+
+    | count(*) |
+    +----------+
+    |       17 |
+    +----------+
+
+On obtient alors le nombre de lignes dans la table. On peut utiliser n'importe
+quel champ comme paramètre de `COUNT`, cela ne change pas le résultat. On
+utilise en général `*` pour plus de simplicité.
+
+Il est possible de renommer n'importe quel champ avec le mot-clé `AS`. Cela
+est particulièrement utile avec les fonctions d'agrégation pour avoir des
+résultats plus lisibles :
+
+    
+    
+    SELECT count(*) AS nb_citations FROM citations;
+    
+    
+    +--------------+
+    | nb_citations |
+    +--------------+
+    |           17 |
+    +--------------+
+
+## Fonctions d'agrégation
+
+Il existe de nombreuses fonctions d'agrégation. On peut citer `MIN`, `MAX`,
+`SUM`, `AVG` et donc `COUNT`.
+
+**11)** Proposez et testez une requête qui donne la note maximale, minimale et
+moyenne de toutes les citations. On veillera à utiliser les noms de colonne
+suivants : max, min et moy.
+
+    
+    
+    SELECT MAX(note) AS max, MIN(note) AS min, AVG(note) AS moy FROM notes;
+
+## GROUP BY
+
+La clause `GROUP BY` permet d'appliquer une fonction d'agrégation à des
+regroupements de résultats plutôt qu'à l'ensemble de résultats.
+
+Par exemple pour avoir le nombre de citations par film µOn pourra faire la
+requête suivante :
+
+    
+    
+    SELECT COUNT(*) AS nb_citations, titre FROM films f JOIN citations c ON f.id_film = c.id_film GROUP BY titre;
+    
+    
+    +--------------+-------------------------------------------+
+    | nb_citations | titre                                     |
+    +--------------+-------------------------------------------+
+    |            1 | Astérix et Obélix : mission Cléopâtre     |
+    |            3 | Avengers : Endgame                        |
+    |            1 | Benjamin Button                           |
+    |            1 | Dikkenek                                  |
+    |            2 | Fight Club                                |
+    |            1 | Forrest Gump                              |
+    |            1 | Gladiator                                 |
+    |            1 | La classe américaine                      |
+    |            1 | Le cercle des poètes disparus             |
+    |            1 | Le fabuleux destin d'Amélie Poulain       |
+    |            2 | Pulp Fiction                              |
+    |            1 | Toy Story                                 |
+    +--------------+-------------------------------------------+
+
+On a ainsi compté le nombre de citations pour chaque film.
+
+**13)** Proposez et testez une requête qui donne la note moyenne pour chaque
+film. On rangera les notes par ordre décroissant. (Il faudra faire une double
+jointure)
+
+    
+    
+    SELECT AVG(note) AS moy, titre
+    FROM films f
+    JOIN citations c ON f.id_film = c.id_film
+    JOIN notes n ON c.id_citation = n.id_citation
+    GROUP BY f.id_film
+    ORDER BY moy DESC;
+
+## HAVING
+
+Il n'est pas possible d'ajouter une clause `WHERE` sur un agrégat car la
+clause `WHERE` s'applique avant l'agrégation. Par exemple, si on veut
+selectionner les films avec une note moyenne supérieure à 9 :
+
+    
+    
+    SELECT AVG(note) AS moy, titre FROM films f JOIN citations c ON f.id_film = c.id_film JOIN notes n ON c.id_citation = n.id_citation WHERE moy > 9 GROUP BY f.id_film;
+    ERROR 1054 (42S22): Unknown column 'moy' in 'where clause'
+
+Pour faire cela, on peut utiliser la clause `HAVING` après le `GROUP BY` :
+
+    
+    
+    SELECT AVG(note) AS moy, titre
+    FROM films f
+    JOIN citations c ON f.id_film = c.id_film
+    JOIN notes n ON c.id_citation = n.id_citation
+    GROUP BY f.id_film
+    HAVING moy > 9;
+    
+    
+    +----------+-------------------------------------------+
+    | moy      | titre                                     |
+    +----------+-------------------------------------------+
+    | 9.010000 | Toy Story                                 |
+    | 9.336667 | Avengers : Endgame                        |
+    | 9.140000 | Le cercle des poètes disparus             |
+    | 9.225000 | Fight Club                                |
+    | 9.110000 | Le fabuleux destin d'Amélie Poulain       |
+    | 9.280000 | Dikkenek                                  |
+    | 9.145000 | Pulp Fiction                              |
+    | 9.190000 | Astérix et Obélix : mission Cléopâtre     |
+    | 9.340000 | Forrest Gump                              |
+    +----------+-------------------------------------------+
+
+[Précédent](jointures)[Suivant](operateurs-ensemblistes)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

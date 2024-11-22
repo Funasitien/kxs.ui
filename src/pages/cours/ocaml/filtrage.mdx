@@ -1,0 +1,315 @@
+---
+title: "Filtrage en OCaml - Niveau MP2I"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## OCaml
+
+  * [Présentation](.)
+  * [Interaction et définitions](interaction-definition)
+  * [Fonctions](fonctions)
+  * [If … then … else …](if-then-else)
+  * [Fonctions récursives](fonctions-recursives)
+  * [Réels](reels)
+  * [Chaînes de caractères](string)
+  * [Execices 1](exercices-1)
+  * [Listes](listes)
+  * [Unit](unit)
+  * [Produits](produits)
+  * [Enregistrements](enregistrements)
+  * [Énumérations](enumerations)
+  * [Sommes](sommes)
+  * [Filtrage](filtrage)
+  * [Fonctions avancées](fonctions-avancees)
+  * [Aspects impértifs](aspects-imperatifs)
+
+# Filtrage
+
+Nous avons déjà utilisé le filtrage dans des définitions de fonctions. Mais
+son utilisation est plus générale. Nous revenons sur ce principe puissant
+d'OCaml pour explorer toutes ses utilisations.
+
+## Définition
+
+D'une manière générale, un filtrage (ou pattern matching) se fait avec la
+syntaxe suivante :
+
+    
+    
+    match expr with
+    | p1 -> expr1
+    | …
+    | pn -> exprn
+
+Ainsi pour faire le lien avec notre utilisation précédente, les deux
+définitions suivantes sont équivalentes (dans la première, le `match` est
+implicite grâce au mot-clé function) :
+
+    
+    
+    # let rec fact = function
+       | 0 -> 1
+       | n -> n * fact (n - 1);;
+    
+    # let rec fact n = match n with
+       | 0 -> 1
+       | k -> k * fact (k - 1);;
+
+## Fonctionnement général
+
+Les motifs `pi` sont évalués séquentiellement et si un motif `pi` correspond
+au paramètre en entrée alors l'expression `expri` est évaluée.
+
+La première `|` est facultative. Les motifs `pi` doivent être de même type.
+Les expressions `expri` doivent également être de même type. Une variable ne
+peut apparaitre qu'une seule fois dans un même motif.
+
+De plus l'ensemble des motifs doit couvrir exhaustivement toutes les
+possibilités offertes par le type du paramètre évalué. Dans le cas contraire
+un warning sera renvoyé.
+
+Il est possible d'utiliser le motif universel `_` qui filtre toutes les
+valeurs possibles.
+
+**1)** Dire si les filtrages suivants sont valides ou non :
+
+    
+    
+    (* 1 *)
+    # let f x = match x with
+    | 0 -> 1
+    | 1 -> False;;
+    
+    
+    (* 2 *)
+    # let f x = match x with
+    | 0 -> 1
+    | 1 -> 0;;
+    
+    
+    (* 3 *)
+    # let f x = match x with
+    | 0 -> 1
+    | 1.0 -> 0;;
+    
+    
+    (* 4 *)
+    # let f x = match x with
+    | 0 -> 1
+    | _ -> 0;;
+
+1) Erreur : 1 et False n'ont pas le même type 2) Erreur : l'ensemble des
+motifs n'est pas exhaustif 3) Erreur : 0 et 1.0 n'ont pas le même type 4) Ok
+
+## Combinaison de motifs
+
+Il est possible de combiner plusieurs motifs pour une seule expression de
+sortie. On ne peut alors pas faire de déclaration de variables dans le motif :
+
+    
+    
+    match expr with
+    | a | b -> expr1
+    | c -> expr2
+    | …
+    | _ -> exprn
+
+**2)** Réécrire la fonction choixpeau du chapitre sur les
+[énumérations](enumerations) avec la combinaison de motifs.
+
+    
+    
+    let choixpeau = function
+    | "Harry Potter" | "Ron Weasley" | "Hermione Granger" | "Neville Londubat" -> Gryffondor
+    | "Luna Lovegood" -> Serdaigle
+    | "Drago Malfoy" -> Serpentard
+    | _ -> let a = Random.int 4 in
+    if a = 0 then Gryffondor
+    else if a = 1 then Serdaigle
+    else if a = 2 then Poufsouffle
+    else Serpentard;;
+
+## Filtrage conditionnel
+
+Il est possible d'ajouter une condition après un motif de filtrage.
+L'expression correspondante ne s'appliquera que si la condition est vérifiée.
+Attention OCaml supposera que toutes les conditions sont fausses pour vérifier
+l'exhaustivité des motifs. Il faudra donc souvent utiliser le motif universel
+pour assurer l'exhaustivité.
+
+Voici un exemple de fonction qui renvoie `true` si deux éléments consécutifs
+d'une liste sont égaux :
+
+    
+    
+    let rec consegaux = function
+    | [] -> false
+    | [_] -> false
+    | x :: y :: l when x = y -> true
+    | x :: l -> consegaux l;;
+
+**3)** Écrire une fonction récursive permettant de calculer ab utilisant la
+propriété : ab = ab/2 x ab/2 si b est pair et a x a(b-1)/2 x a(b-1)/2 si b est
+impair. Il faudra faire attention aux cas limites et on prendra 00 = 1.
+
+    
+    
+    let rec puissance a b =
+    match b with
+    | 0 -> 1
+    | 1 -> a
+    | b when b mod 2 = 1 -> let p = puissance a ((b-1)/2) in a * p * p
+    | _ -> let p = puissance a (b/2) in p * p;;
+
+**4)** Modifier la fonction précédente pour que 00 = 0.
+
+    
+    
+    let rec puissance a b =
+    match b with
+    | 0 when a != 0 -> 1
+    | 0 when a = 0 -> 0
+    | 1 -> a
+    | b when b mod 2 = 1 -> let p = puissance a ((b-1)/2) in a * p * p
+    | _ -> let p = puissance a (b/2) in p * p;;
+
+## Déconstruction de type construits
+
+Nous avons déjà utilisé la déconstruciotn des listes dans des filtres avec la
+notation `h::t`. Il est possible de déconstruire des tupes construits dans des
+fonctions mais également dans une définition :
+
+    
+    
+    (* Définition d'un enregistrement *)
+    # type t = {a:int; b:float*char; c:string};;
+    type t = { a : int; b : float * char; c : string; }
+    
+    (* Déclaration de v *)
+    # let v = {a = 2; b = (5.3,'r'); c = "test"};;
+    val v : t = {a = 2; b = (5.3, 'r'); c = "test"}
+    
+    (* Déconstruction d'une partie de v dans les variables x et y *)
+    # let {b = (x,_); c = y} = v;;
+    val x : float = 5.3
+    val y : string = "test"
+
+**5)** Trouver le bon filtrage pour récupérer dans deux variables x et y les
+valeurs du premier et cinquième élément du type ci-dessous :
+
+    
+    
+    # let a = (1, (2, 3), (4, 5));;
+    
+    
+    let (x, (_, _), (_, y)) = a;;
+    val x : int = 1
+    val y : int = 5
+
+## Nommage d'une valeur filtrée
+
+Le mot-clé `as` permet de nommer une valeur filtrée pour pouvoir la
+réutiliser. Voici l'exemple d'une fonction qui renvoie le plus petit couple
+d'un produit au sens de l'ordre produit (on notera l'utilisation d'une
+exception dans le cas où les deux couples ne sont pas comparables) :
+
+    
+    
+    # let inf c =
+    match c with
+    | ((a1, a2) as a, (b1, b2)) when a1 <= b1 && a2 <= b2 -> a
+    | ((a1, a2), ((b1, b2) as b)) when a1 >= b1 && a2 >= b2 -> b
+    | _ -> failwith "Non comparables";;
+    
+    # inf ((1,3),(0,2));;
+    - : int * int = (0, 2)
+    
+    # inf ((1,3),(3,2));;
+    Exception: Failure "Non comparables".
+
+## Exercices
+
+**6)** Étant donnée la définition de type ci-dessous, le filtrage de la
+fonction g est-il exhaustif ? Si non, donner un exemple de valeur non filtrée.
+
+    
+    
+    # type t = A of t | B of int * t | C
+    # let g v =
+    match v with
+    | A (C) -> 0
+    | A (B (x, C)) -> 2
+    | A (_) -> 1
+    | B (0, _) -> 3
+    | B (y, A (_) ) -> 4
+    | C -> 5;;
+
+Proposer un filtrage exhaustif. On donnera la valeur 6 aux nouveaux cas.
+
+Le filtrage n'est pas exhaustif. Il manque par exemple le cas `B (1, C)` On
+peut le capture avec le motif `B (y, _)`
+
+    
+    
+    # let g v =
+    match v with
+    | A (C) -> 0
+    | A (B (x, C)) -> 2
+    | A (_) -> 1
+    | B (0, _) -> 3
+    | B (y, A (_) ) -> 4
+    | B (y, _) -> 6
+    | C -> 5;;
+
+**7)** Étant donnée la définition d'énumération `type t = B | N | R`, écrire les fonctions suivante : 
+
+  * Étant donnée une liste `l`, la fonction `permute : t list -> t list` renvoie une nouvelle liste dans laquelle les valeurs B de l sont remplacées par des N, les N par des R et les R par des B.
+  * La fonction récursive terminale `compte_B : t list -> int`qui compte le nombre de B dans la liste passée en paramètre.
+  * La fonction `plus_grande_sequence : t list -> int` qui renvoie la longueur de la plus grande séquence de B dans la liste passée en paramètre.
+
+    
+    
+    # let rec permute = function
+    | [] -> []
+    | B::t -> N::permute t
+    | N::t -> R::permute t
+    | R::t -> B::permute t;;
+    val permute : t list -> t list = <fun>
+    
+    (* version non récursive terminale *)
+    # let rec compte_B = function
+    | [] -> 0
+    | B::t -> 1 + compte_B t
+    | _::t -> compte_B t;;
+    val compte_B : t list -> int = <fun>
+    
+    (* version récursive terminale *)
+    # let rec compte_B2 l acc =
+    match l with
+    | [] -> acc
+    | B::t -> compte_B2 t (acc+1)
+    | _::t -> compte_B2 t acc;;
+    val compte_B2 : t list -> int -> int = <fun>
+    
+    # let rec plus_grande_sequence l r acc =
+    match l with
+    | [] -> max r acc
+    | B::t -> plus_grande_sequence t r (acc + 1)
+    | _::t -> plus_grande_sequence t (max r acc) 0;;
+    val plus_grande_sequence : t list -> int -> int -> int = <fun>
+
+[Précédent](sommes)[Suivant](fonctions-avancees)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

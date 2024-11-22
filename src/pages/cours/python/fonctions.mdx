@@ -1,0 +1,187 @@
+---
+title: "Fonctions"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## Python
+
+  * [Introduction](.)
+  * [Bases](bases)
+    * [Opérations mathématiques](operations)
+    * [Variables](variables)
+    * [Types de base](types-de-base)
+  * [Structures de contrôle](structures-de-controle)
+    * [If… else](if-else)
+    * [Interaction avec l'utilisateur](interaction)
+  * [Exercices bases et structures de contrôle](exercices-bases-structures)
+  * [Commentaires](commentaires)
+  * [Boucles](boucles)
+  * [Booléens](booleens)
+  * [Modules](modules)
+  * [Fonctions](fonctions)
+  * [Exercices boucles et fonctions](exercices-boucles-fonctions)
+  * [Tuples](tuples)
+  * [Exercices tuples](exercices-tuples)
+  * [Tableaux](tableaux)
+  * [Exercices tableaux](exercices-tableaux)
+  * [Dictionnaires](dictionnaires)
+  * [Chaînes de caractères](chaines-de-caracteres)
+  * [Docstring](docstring)
+  * [Doctest](doctest)
+  * [Assert](assert)
+
+# Fonctions
+
+Il est possible d’écrire ses propres fonctions. Cela permet de simplifier un
+programme et d’éviter de répéter du code.
+
+## Fonction sans paramètres
+
+Voici une fonction simple qui affiche juste « coucou » :
+
+    
+    
+    def coucou():
+        print("Coucou")
+
+Il faut donc utiliser le mot clé `def` suivi du nom de la fonction avec deux
+parenthèses et deux points. Ensuite les instructions de la fonction sont
+indentées.
+
+Pour exécuter le code d’une fonction, il faut appeler cette fonction :
+
+    
+    
+    def coucou():
+        print("Coucou")
+    
+    coucou()
+    coucou()
+
+Ici, on appelle deux fois la fonction `coucou`. Elle affichera donc deux fois
+« Coucou ».
+
+**1)** Créez une fonction `nombreAleatoire()` qui affiche un entier aléatoire
+en 1 et 100. Appelez cette fonction cinq fois.
+
+## Fonction avec paramètres
+
+Une fonction avec paramètres est une fonction qui a besoin d'un ou plusieurs
+arguments pour fonctionner. Ils faut les faire figurer entre les parenthèses
+de la fonction, séparés par des virgules. Voici par exemple une fonction qui
+calcule le périmètre d’un cercle :
+
+    
+    
+    import math
+    
+    def perimetreCercle(r):
+        print(2 * math.pi * r)
+
+**2)** Créez et testez une fonction qui calcule la surface d’un disque.
+
+**3)** Créez et testez une fonction qui calcule le périmètre et la surface
+d’un rectangle.
+
+## Valeur retournée par une fonction
+
+Il est possible de « récupérer » le résultat d'une fonction plutôt que
+d'utiliser `print()`. Pour cela, il faut dire à notre fonction de « retourner
+» quelque-chose avec le mot-clef `return`.
+
+Par exemple voici une fonction qui retourne le volume d’une boule :
+
+    
+    
+    import math
+    
+    def volumeBoule(r):
+        volume = 4/3 * math.pi * r**3
+        return volume
+    
+    # Utilisation de la fonction
+    v = volumeBoule(3)
+    print("Le volume est", v)
+
+**4)** Créez et testez une fonction volBoite() qui calcule le volume d’une
+boite parallélépipédique.
+
+**5)** Créez et testez une fonction maximum() qui calcule le maximum de trois
+entiers.
+
+### Variables locales, variables globales
+
+Les variables définies à l’intérieur d’une fonction sont dites **locales**.
+C’est à dire qu’elles n’existent qu’à l’intérieur de la fonction. Par exemple
+si on utilise la fonction `volumeBoule()` précédente, la variable volume
+n’existe pas à l’extérieur de la fonction :
+
+    
+    
+    import math
+    
+    def volume_boule(r):
+        volume = 4/3 * math.pi * r**3
+        return volume
+    
+    v = volume_boule(3)
+    print("Le volume est", v)
+    print(volume)
+
+Ce programme revoie :
+
+    
+    
+    Le volume est 113.09733552923254
+    Traceback (most recent call last):
+      File "test.py", line 9, in <module>
+        print(volume)
+    NameError: name 'volume' is not defined
+
+La variable volume n’existe pas.
+
+Une variable définie à l’extérieur d’une fonction est globale. Elle est
+visible dans une fonction mais ne peut être modifiée par la fonction pour
+éviter qu’une fonction ne modifie par erreur une variable. Il est possible de
+changer ce comportement en déclarant une variable comme globale dans une
+fonction. Ainsi cette variable sera traitée globalement. Pour déclarer une
+variable globale, il faut utiliser l’instruction `global`. Voici un exemple
+pour comprendre cette notion :
+
+    
+    
+    def testVariables():
+        print(a, b)
+    
+    def modifieVariables():
+        global b # On déclare b comme globale
+        b = 2
+        a = 2 # la variable a locale vaut 2
+    
+    a = 1
+    b = 1
+    
+    testVariables() # Affiche 1 1 car la fonction peut voir les variables globales
+    
+    modifieVariables()
+    
+    print(a, b) # Affiche 1 2 car seule b a été déclarée globale et est donc modifiable dans la fonction
+
+Ce n'est pas une bonne pratique d'utiliser des variables globales. Il faudra
+plutôt envoyer la variable dans les paramêtres de la fonction.
+
+[Précédent](boucles)[Suivant](exercices-boucles-fonctions)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

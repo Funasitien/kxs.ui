@@ -1,0 +1,173 @@
+---
+title: "Projet : Pandémie - Niveau terminale"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## Projets
+
+  * [Notation](.)
+  * [Dé aléatoire](de)
+  * [Filtres photo](filtres-photo)
+  * [Puissance 4](puissance-4)
+  * [Jeu de la vie](jeu-de-la-vie)
+  * [Pandémie](pandemie)
+  * [Contacts](contacts)
+  * [Labyrinthe](labyrinthe)
+  * [Grenouille hurlante](grenouille-hurlante)
+  * [Contacts Plus](contacts-plus)
+  * [PyNFO](pynfo)
+  * [Machine de vote](machine-vote)
+  * [IMDb](imdb)
+  * [Envahisseurs](envahisseurs)
+  * [Chronos](chronos)
+  * [Icq](icq)
+  * [Tetris](tetris)
+  * [Casse briques](casse-briques)
+
+# Pandémie
+
+## Prérequis
+
+  * projet : [jeu de la vie](jeu-de-la-vie) ;
+  * structures de contrôle ;
+  * boucles ;
+  * tableaux à deux dimensions ;
+  * fonctions ;
+  * modules ;
+  * Programmation orientée objet.
+
+## Présentation
+
+Nous allons modifier le code du [projet sur le jeu de la vie](jeu-de-la-vie)
+pour le transformer en une simulation de pandémie. Ce projet étant destiné aux
+élèves très efficaces, il ne sera pas beaucoup guidé, excepté les consignes
+initiales.
+
+## Consignes
+
+Modifiez le code pour que le « monde » soit « infini » de façon à éviter les
+effets de bord (au sens litéral). Il faudra que les cases des bords soient
+voisines des cases du bord oposé.
+
+Le tableau initial sera toujours rempli de 1 et de 0, mais représenteront
+l'état contaminé ou non d'un individu dans l'état initial. On pourra prendre
+par exemple le tableau ci-dessous:
+
+    
+    
+    tableau =  [[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+               [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+               [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+               [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+               [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+               [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+               [0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+               [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+               [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+               [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+               [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+               [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+               [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+               [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+               [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+               [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0],
+               [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+               [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+               [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+               [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+               [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+               [0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0],
+               [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+               [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+               [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+               [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+               [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+               [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+               [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+               [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]
+
+On placera plusieurs individus contaminés pour limiter les effets du hasard
+qui pourrait stopper la pendémie dès le début de la simulation.
+
+Le tableau interne de la classe `Pandemie` contient des objets `Individu` avec
+les attributs `vaccine` et `contamine`
+
+Les règles d'évolution sont les suivantes:
+
+  * chaque individu rencontre ses huit voisins à chaque tour ;
+  * pour chaque voisin, si l'individu est sain et le voisin contaminé, alors il peut y avoir contamination (voir les règles ci-dessous), sinon l'individu reste sain ou devient sain.
+
+Les règles de contamination sont les suivantes :
+
+  * un voisin à 1 chance sur 4 de contaminer un individu ;
+  * si le voisin est vacciné, cette chance est divisée par deux :
+  * si l'individu n'est pas vacciné cette chance n'est pas modifiée ;
+  * si l'individu est vacciné, on divise cette chance encore une fois par deux ;
+
+Dans l'affichage, on fera apparaitre les individus contaminés. Vous pourrez
+ajouter des statistiques sur la population comme ci-dessous :
+
+    
+    
+    OO      O O              O      O    O OO  O OO     OO
+      O     O   O  O O O     OOO O       O     OO   O       OO
+     O  O     OOO O       O      O       O O OO   O O   O    O O
+      O           O O       OO        OO    OO OO    O
+      O     OO   OO        OO O   O O               O        O
+       O   OO  O  OOO        OO   O   O     O O
+        O    O O OOO     O        O OO             OO
+    O   O                O      O          O OO         OO    O O
+      O         OOO  O OO  OO O  O           O                   O
+         O     O          O   O O O   OO  O   O              O
+    O    O        O         O O   O       OOO             O
+        OO  O O    OO  O  O  OO   O O                  O
+    O     O OOO         O   O           OO  O  O  O O  O O O
+       O  OO O      OO OO          OO                            O
+              O  O    O  O  OO        O     O  OOOO       OO
+     O      O O  O         O O O    O  O                    OOO
+                 O          O O O  OO           O O O    OO   O  O
+    O  O         O O      O O                   O        OOO     O
+          OOO  O O O O             O          O      O        O O
+     O  O   O                   O   O       O O O       O O
+     O   O O   O O    O                     O       OO      O OO
+                    O              OO       OOO  O   O      O
+    OO  OOO  O O   O            O           O    O O O      O    O
+      O                     OOOO     O   O     O            O  OO
+        O              O                 O      OOOO     O   O OO
+    O    OO O O   O   O     OOO O         O      O         O   O O
+    O         OO OOO   OOOO               O O     O   OO   O     O
+      OO    O O       O       O O         O           O OOO     OO
+     O OO     O         O  OO                         O OO  O
+           O   O   O  O                             O            O
+    Population : 1860
+    Vaccinés : 591 (31%)
+    Contaminés : 375 (20%)
+    Vaccinés contaminés : 72 (12%)
+    Non vaccinés contaminés : 303 (23%)
+
+À l'instanciation, on pourra choisir les individus contaminés avec un tableau
+et aussi le taux de vaccination de la population. Il faudra alors initialiser
+chaque individu avec la bonne probabilité d'être vacciné.
+
+## Fonctionnement
+
+Il peut être intéressant de faire tourner la simulation avec différents
+niveaux de vaccination pour voir l'influence sur le pourcentage de population
+contaminée. On peut chercher à trouver le plus petit niveau de vaccination qui
+permete d'éviter la pandémie. Enfin on peut agmenter la virulence du virus en
+augmentant les chances d'une contamination, et voir son effet sur le niveau
+nécessaire de vaccination pour contenir la padémie.
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

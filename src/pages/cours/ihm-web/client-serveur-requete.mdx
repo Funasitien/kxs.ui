@@ -1,0 +1,206 @@
+---
+title: "Client, serveur, requête"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## Interaction entre l’homme et la machine sur le web
+
+  * [Introduction](.)
+  * [Bases de l'informatique et du web](bases-info-web)
+  * [HTML et CSS](html-css)
+  * [Javascript](javascript)
+  * [Client, serveur, requête](client-serveur-requete)
+  * [Formulaires](formulaire)
+
+# Client, serveur, requête
+
+## Introduction
+
+Nous avons déjà vu rapidement le fonctionnement en client/serveur du web avec
+l’envoi de requêtes au serveur par le client. Nous allons maintenant
+approfondir les choses.
+
+## Client
+
+Un client est un ordinateur qui envoie une requête à un serveur. Cela peut
+être un utilisateur par l’intermédiaire d’un navigateur ou un programme (bot)
+qui envoie une requête. Nous nous intéressons ici seulement au protocole http.
+
+## Requête
+
+Quand vous saisissez une URL dans un navigateur, il convertit cette URL en une
+requête et l’envoie vers le bon serveur.
+
+Par exemple cette URL <https://www.debian.org/intro/about> sera transformée en
+cette requête :
+
+    
+    
+    GET /intro/about HTTP/1.0
+    Host : www.debian.org
+    Accept : text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+    User-Agent : Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:70.0) Gecko/20100101 Firefox/70.0
+    …
+
+Détaillons cette requête :
+
+  * la première ligne contient la commande (ici GET), l’URL et le protocole ;
+  * Les lignes suivantes sont les entêtes (headers) qui contiennent différentes informations ;
+  * Host : précise le site web concerné par la requête ;
+  * Accept : indique ce que le navigateur accepte comme type de contenu ;
+  * User-Agent : donne des informations sur le client.
+
+Il existe beaucoup d’autres entêtes.
+
+**1)** Allez sur la page ci-dessus avec Chrome et notez cinq autres entêtes
+(seulement les noms) de la requête avec le moniteur réseau (ctrl + shift + J,
+puis onglet réseau, rechargez la page et cliquez sur une requête).
+
+Nous avons vu la commande GET qui est la plus utilisée car elle demande
+simplement la ressource. Il existe également une commande POST pour envoyer
+des données au serveur mais nous verrons ceci en détail dans le prochain
+chapitre. La commande HEAD permet de ne demander que les entêtes pour faire
+des tests par exemple.
+
+## Serveur
+
+Un serveur est aussi un ordinateur. Il n’est pas nécessairement puissant :
+votre téléphone peut être un serveur, un ordinateur de plus de dix ans, un
+Raspberry Pi. L’ordinateur que vous utilisez actuellement est un serveur (nous
+l’utiliserons plus tard).
+
+Il existe des ordinateurs spécialement conçus pour être des serveurs avec
+beaucoup (beaucoup) de mémoire et beaucoup de processeurs. Ces serveurs sont
+en général situés dans des datacenters, des bâtiments spéciaux climatisés avec
+une très bonne connexion internet :
+
+![](img/datacenter.jpg) Auteur : BalticServers.com | [source](https://commons.wikimedia.org/wiki/File:BalticServers_data_center.jpg) | [Attribution - Partage dans les Mêmes Conditions 3.0 non transposé](https://creativecommons.org/licenses/by-sa/3.0/deed.fr)
+
+Vous pouvez regarder une vidéo sur un datacenter d’OVH en France :
+
+et une autre sur Google :
+
+Les serveurs dans les datacenters peuvent être loués à des particuliers ou des
+entreprises.
+
+**2)** Allez sur le site d’OVH (leader européen situé à Roubaix) et relevez
+les caractéristiques (nombre de cœurs, RAM et disques) du plus cher serveur :
+<https://www.ovh.com/fr/serveurs_dedies/tarifs/>
+
+Comment faire pour qu’un ordinateur devienne un serveur web ? Il suffit d’y
+installer un logiciel qui répond aux requêtes http ! Il existe des dizaines de
+tels logiciels, les plus répandus sont les logiciels libres
+[Apache](https://httpd.apache.org/) et [Nginx](https://www.nginx.com/).
+
+## Réponse
+
+Une fois que le serveur a reçu une requête il renvoie une réponse. Si on
+continue avec la même requête, voici un extrait de la réponse :
+
+    
+    
+    HTTP/2 200 OK
+    date: Tue, 04 May 2021 14:40:31 GMT
+    server: Apache
+    content-location: about.fr.html
+    …
+    <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+    <html lang="fr">
+    <head>
+    …
+
+Détaillons cette réponse :
+
+  * la première ligne contient le protocole (HTTP/2) et le code de réponse (200 OK)
+  * Les lignes suivantes sont encore des entêtes (headers) qui contiennent différentes informations.
+  * Date : la date et l’heure de la réponse ;
+  * Server : le type de serveur ;
+
+Et beaucoup d’autres entêtes.
+
+Enfin après une ligne vierge, il y a la ressource demandée : ici la page HTML.
+
+**3)** Allez sur les sites de Debian et de l’ENT et notez les serveurs
+utilisés en regardant les entêtes dans Firefox.
+
+**4)** De même, trouvez le serveur utilisé par Google et chercher son nom
+complet.
+
+**5)** Cherchez la signification des codes de réponse suivants :
+
+  * 200
+  * 404
+  * 410
+  * 403
+  * 500
+
+## Serveur local
+
+Un serveur ne fournit pas nécessairement des page HTML « statiques ». Il peut
+exécuter du code avant de fournir une page. Ce code peut être du Python ou du
+Java par exemple. Nous utiliserons PHP car il est très répandu et reste assez
+simple d’utilisation.
+
+### Test du serveur
+
+**6)** Votre serveur local (sur votre machine) est accessible à l’adresse
+<http://localhost/>. Allez à cette adresse et vérifiez que cela fonctionne.
+
+### Premier script PHP
+
+Par défaut le serveur affiche le fichier `index.html` situé dans le dossier
+`/var/www/html/`.
+
+**7)** Créez un fichier nommé `test.php` dans ce dossier et mettez-y le code
+suivant :
+
+    
+    
+    <h1>Page générée avec php</h1>
+    <p>Il est <?php echo date("H:i:s"); ?></p>
+
+**8)** Allez ensuite à l’adresse <http://localhost/test.php> et regardez ce
+qu’il s’affiche. Rechargez éventuellement la page.
+
+L’interpréteur php est assez souple, il n’exécute que ce qui est entre les
+balises `<?php ` et ` ?>` et il ne touche pas au reste. Ainsi `echo` est
+l’équivalent de `print` en Python et le code affiche donc l’heure actuelle.
+
+### Envoi d’informations au serveur
+
+Il est possible d’envoyer simplement des informations au serveur en ajoutant
+des couples variable/valeur dans l’URL. Il faut ajouter un `?` Et séparer les
+couples par des `&`. Voici un exemple pour comprendre :
+
+http://localhost/test.php?var1=toto&var2=titi
+
+Cela va envoyer les variables `var1` et `var2` contenant respectivement `toto`
+et `titi` au serveur. Ces variables sont automatiquement stockées dans la
+variable php `$_GET` qui ressemble à un dictionnaire de Python. Cela permet de
+récupérer les variables sur le serveur. Testez le script suivant dans
+`test.php` pour comprendre :
+
+    
+    
+    <h1>Page générée avec php</h1>
+    <p>Voici var1 : <?php echo $_GET['var1']; ?></p>
+    <p>Voici var2 : <?php echo $_GET['var2']; ?></p>
+
+**9)** Écrire un script qui, à partir d’un prénom passé dans l’URL, affiche «
+Bonjour, `prénom`, il est `heure` ».
+
+[Précédent](javascript)[Suivant](formulaire)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

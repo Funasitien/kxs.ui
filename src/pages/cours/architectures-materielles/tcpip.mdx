@@ -1,0 +1,191 @@
+---
+title: "TCP/IP"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## Architectures matérielles
+
+  * [Introduction](.)
+  * [Von Neumann et langage machine](vonneumann)
+  * [Réseau](reseau)
+  * [TCP/IP](tcpip)
+
+# TCP/IP
+
+## Introduction
+
+Le fonctionnement d’un réseau est généralement décrit en couches. Il existe
+différentes façons de décrire un réseau informatique, le modèle le plus simple
+est actuellement le modèle _TCP/IP_ (le nom venant des deux principaux
+protocoles utilisés) :
+
+Couche | Exemple de protocole  
+---|---  
+Application | HTTP, FTP, POP…  
+Transport | TCP,UDP…  
+Internet | IP…  
+Accès Réseau | Ethernet, wifi…  
+  
+Chaque couche ne communique qu’avec les couches voisines.
+
+## Envoi simple
+
+Nous allons voir le fonctionnement général d’une communication simple d’un
+ordinateur A vers un ordinateur B.
+
+### Application A
+
+La couche application de l’ordinateur A veut envoyer des données vers la
+couche application de l’ordinateur B. L’application fourni donc des données à
+la couche transport de l’ordinateur A.
+
+Données
+
+### Transport A
+
+La couche transport de l’ordinateur A reçoit les données et les encapsule en
+ajoutant des informations (port, application…) c’est le protocole TCP ou UDP.
+
+Données TCP
+
+La couche transport envoie l’ensemble à la couche internet.
+
+### Internet A
+
+La couche internet encapsule les informations venant de la couche transport en
+ajoutant entre autre les adresses IP de l’ordinateur A et de l’ordinateur B.
+
+Données TCP IP IP A IP B
+
+Tout ceci est envoyé à la couche accès réseau.
+
+### Accès réseau A
+
+Dans le cas d’Ethernet la couche réseau va ajouter les adresses MAC des cartes
+réseaux pour que la connexion avec l’ordinateur B puisse se faire.
+
+Données TCP IP IP A IP B Ethernet MAC A MAC B
+
+Enfin cette trame Ethernet est envoyée à l’ordinateur B par la carte réseau.
+
+### Accès réseau B
+
+La carte réseau reçoit la trame Ethernet, vérifie qu’elle est bien
+destinataire de la trame et la dés-encapsule :
+
+Données TCP IP IP A IP B
+
+Elle envoie le résultat à la couche Internet
+
+### Internet B
+
+La couche internet vérifie l’adresse IP de destination, dés-encapsule et
+envoie le résultat à la couche transport :
+
+Données TCP
+
+### Transport B
+
+La couche transport vérifie que tout est correct puis les données sont
+envoyées à la bonne application :
+
+Données
+
+Dans le cas de TCP, un accusé de réception est envoyé à l’ordinateur A. UDP
+n’envoie pas d’accusé de réception, il est moins fiable mais plus rapide.
+
+### Application B
+
+L’application B reçoit les données.
+
+## Propriétés particulières des couches
+
+### Fragmentation
+
+IP peut fragmenter les données qu’il reçoit de la couche transport si elles
+sont trop volumineuses pour rentrer dans une trame Ethernet par exemple. En
+effet la trame Ethernet accepte des données de 1500 octets au maximum, il est
+donc indispensable de découper les données pour les envoyer par paquets. Le
+récepteur enregistre les paquets et les assemble pour reconstituer les données
+initiales.
+
+Les paquets peuvent ne pas arriver dans le bon ordre à cause du routage, ils
+sont donc numérotés. Ce phénomène est illustré ci-dessous.
+
+Fragmentation des paquets avec le protocole IP Ordinateur A
+1001100100011100011101011001010010100111 Fragmentation 10011001 Paquet 1
+00011100 Paquet 2 01110101 Paquet 3 10010100 Paquet 4 10100111 Paquet 5 Envoi
+des paquets dans l'ordre Réseau Ordinateur B Réception des paquets dans le
+désordre 00011100 Paquet 2 10011001 Paquet 1 10100111 Paquet 5 01110101 Paquet
+3 10010100 Paquet 4 Remise dans l'ordre des paquets 10011001 Paquet 1 00011100
+Paquet 2 01110101 Paquet 3 10010100 Paquet 4 10100111 Paquet 5 Défragmentation
+1001100100011100011101011001010010100111
+
+### Routage
+
+IP s’occupe également de savoir vers quel ordinateur envoyer un paquet en
+premier pour atteindre un ordinateur éloigné. Par exemple, pour joindre
+Marseille depuis Lille on pourra passer par Paris. C’est ce qu’on appelle le
+routage. Chaque routeur tient à jour une table de routage pour savoir en
+permanence le meilleur chemin pour atteindre une destination.
+
+La commande pour connaître la route utilisé par un paquet est traceroute.
+Cette commande ne fonctionnera pas correctement sur vos postes à cause du
+proxy utilisé par le lycée.
+
+**1)** Reprenez le logiciel Filius et reproduisez le 4e réseau du dernier TP.
+Sur l’ordinateur 1 saisissez traceroute 192.168.2.6 et regardez ce qu’il se
+passe.
+
+### Bit alterné
+
+Le protocole du bit alterné est implémenté au niveau de la couche accès
+réseau. Il permet de détecter des pertes de paquets comme le fait TCP au
+niveau transport.
+
+Lorsque A envoie une trame à B, il ajoute un drapeau qui vaut soit 0 soit 1.
+Lorsque B reçoit une trame de A il renvoie un accusé de réception avec le
+complément du drapeau pour indiquer qu’il a bien reçu la trame. Ainsi lorsque
+A reçoit l’accusé de réception il peut envoyer la trame suivante en changeant
+la valeur du drapeau :
+
+![Bit alterné quand tout va bien](img/bitalt1.png) Auteur : David Roche | [source](https://pixees.fr/informatiquelycee/n_site/nsi_prem_bit_alt.html) | [Attribution - Partage dans les Mêmes Conditions 3.0 non transposé](https://creativecommons.org/licenses/by-sa/3.0/deed.fr)
+
+Maintenant regardons les cas où un dysfonctionnement se produit. Le
+dysfonctionnement pourra être détecté par l’ordinateur A lorsqu’il ne reçoit
+pas un accusé de réception. Comme il attend cet accusé de réception il doit
+définir un temps au-delà duquel il considère la trame perdue. Il la renverra
+alors. On dit qu’il y a un « timeout ». Un timeout peut se produire lorsqu’une
+trame est perdue :
+
+![Bit alterné avec une trame perdue](img/bitalt2.png) Auteur : David Roche | [source](https://pixees.fr/informatiquelycee/n_site/nsi_prem_bit_alt.html) | [Attribution - Partage dans les Mêmes Conditions 3.0 non transposé](https://creativecommons.org/licenses/by-sa/3.0/deed.fr)
+
+Cela peut aussi arriver si l’accusé de réception est perdu :
+
+![Bit alterné avec un accusé de réception perdu](img/bitalt3.png) Auteur : David Roche | [source](https://pixees.fr/informatiquelycee/n_site/nsi_prem_bit_alt.html) | [Attribution - Partage dans les Mêmes Conditions 3.0 non transposé](https://creativecommons.org/licenses/by-sa/3.0/deed.fr)
+
+Dans ce cas l’ordinateur B reçoit deux trames avec le même drapeau. Il en
+déduit donc que son 1er accusé de réception s’est perdu et ignorera la trame
+reçue. Il enverra tout de même un nouvel accusé de réception pour que
+l’ordinateur A puisse continuer.
+
+Le protocole du bit alterné n’est pas parfait, c’est pourquoi il est remplacé
+actuellement pas des protocoles plus complexes.
+
+**2)** Essayez de trouver une situation ou le bit alterné est inefficace.
+
+[Précédent](reseau)[Suivant (page des cours)](..)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

@@ -1,0 +1,188 @@
+---
+title: "Fonction en OCaml - Niveau MP2I"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## OCaml
+
+  * [Présentation](.)
+  * [Interaction et définitions](interaction-definition)
+  * [Fonctions](fonctions)
+  * [If … then … else …](if-then-else)
+  * [Fonctions récursives](fonctions-recursives)
+  * [Réels](reels)
+  * [Chaînes de caractères](string)
+  * [Execices 1](exercices-1)
+  * [Listes](listes)
+  * [Unit](unit)
+  * [Produits](produits)
+  * [Enregistrements](enregistrements)
+  * [Énumérations](enumerations)
+  * [Sommes](sommes)
+  * [Filtrage](filtrage)
+  * [Fonctions avancées](fonctions-avancees)
+  * [Aspects impértifs](aspects-imperatifs)
+
+# Fonctions
+
+Les fonctions sont les éléments les plus importants d'OCaml.
+
+## Définition
+
+On utilise toujours le mot-clé `let` pour définir des fonctions. Par exemple,
+pour définir la fonction `carre(x) = x * x` :
+
+    
+    
+    # let carre(x) = x * x;;
+    val carre : int -> int = <fun>
+
+`carre` contient maintenant une valeur de type fonction (`<fun>`) d'entier
+vers entier (`int -> int`) :
+
+    
+    
+    # carre;;
+    - : int -> int = <fun>
+
+Pour plus de simplicité, il n'est pas nécessaire d'utiliser les parenthèses
+autour des arguments :
+
+    
+    
+    # let carre x = x * x;;
+    val carre : int -> int = <fun>
+
+## Application d'une fonction
+
+Pour appliquer une fonction on utilise la syntaxe habituelle :
+
+    
+    
+    # carre (2);;
+    - : int = 4
+
+Et on peut encore une fois omettre les parenthèses :
+
+    
+    
+    # carre 2;;
+    - : int = 4
+
+## Fonctions à plusieurs arguments
+
+Il suffit d'ajouter des arguments dans la définition de la fonction :
+
+    
+    
+    # let perimetre_rectangle longueur largeur =
+    	2 * (longueur + largeur);;
+    val perimetre_rectangle : int -> int -> int = <fun>
+
+Le retour d'OCaml indique que la fonction prend deux arguments de type int
+(`int -> int`) et calcul un entier (`-> int`).
+
+Pour utiliser une fonction avec plusieurs arguments, on les sépare par des
+espaces :
+
+    
+    
+    # perimetre_rectangle 5 2;;
+    - : int = 14
+
+## Fonctions anonymes
+
+On peut définir une fonction anonyme avec la syntaxe `function … -> …`. Une
+fonction anonyme est une fonction qui n'est pas associée à un nom :
+
+    
+    
+    (function x -> x +2);;
+    - : int -> int = <fun>
+
+La définition précédente n'est pas très utile car il n'est plus possible
+d'utiliser la fonction. Pour utiliser une fonction anonyme, il faut l'utiliser
+au moment de sa définition :
+
+    
+    
+    # (function x -> x +2) 5;;
+    - : int = 7
+
+On peut également définir une fonction à l'aide d'une fonction anonyme :
+
+    
+    
+    # let successeur = function x -> x + 1;;
+    val successeur : int -> int = <fun>
+
+Cette définition est absolument équivalente à :
+
+    
+    
+    # let successeur x = x + 1;;
+    val successeur : int -> int = <fun>
+
+Il est par contre peu courant d'utiliser cette notation pour les fonctions à
+plusieurs arguments car il est nécessaire de répéter le mot-clé `function … ->
+…`. Voici par exemple la définition d'une fonction moyenne :
+
+    
+    
+    # let moyenne = function a -> function b-> (a + b) / 2;;
+    val moyenne : int -> int -> int = <fun>
+
+## Définition locale de fonctions
+
+On peut définir localement des fonctions avec le mot-clé `in` de la meme façon
+que pour les variables :
+
+    
+    
+    # let carre x = x * x in
+    	carre 4 + carre 3;;
+    - : int = 25
+
+On peut également définir des fonctions dans des fonctions :
+
+    
+    
+    # let puissance4 x =
+    let carre x = x * x in
+    carre (carre x);;
+    val puissance4 : int -> int = <fun>
+
+## Exercices
+
+**1)** Définir une fonction `moyenne` faisant la moyenne de ses 3 paramètres.
+
+    
+    
+    # let moyenne a b c = (a + b + c)/3;;
+    val moyenne : int -> int -> int -> int = <fun>
+
+**2)** Écrire une fonction `somme_carres` qui fait la somme des carrés de ses
+deux paramètres.
+
+    
+    
+    # let somme_carre x y =
+    let carre x = x * x in
+    carre x + carre y;;
+    val somme_carre : int -> int -> int = <fun>
+
+[Précédent](interaction-definition)[Suivant](if-then-else)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

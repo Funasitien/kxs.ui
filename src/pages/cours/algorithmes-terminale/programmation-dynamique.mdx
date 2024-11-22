@@ -1,0 +1,146 @@
+---
+title: "Programmation dynamique"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## Algorithmes
+
+  * [Introduction](.)
+  * [Diviser pour régner](diviser-pour-regner)
+  * [Programmation dynamique](programmation-dynamique)
+  * [Boyer Moore](boyer-moore)
+
+# Programmation dynamique
+
+## Présentation
+
+La _programmation dynamique_ est le fait de décomposer un problème en sous-
+problèmes, de résoudre ses problèmes du plus petit au plus grand en stockant
+les résultats intermédiares pour gagner en efficacité. Le terme a été choisi
+par Richard Bellman dans les années 50. Il est utilisé dans le sens de
+_planification_ et pas dans le sens de la _programmation_ comme on l'entend
+aujourd'hui.
+
+## Exemple de Fibonacci
+
+Nous avons déjà évoqué la suite de Fibonacci qui est définie comme suit :
+
+F(0) = 0 ; F(1) = 1 ; F(n) = F(n-1) + F(n-2) pour n > 2
+
+Il est possible de la programmer par récurrence assez simplement :
+
+    
+    
+    def fibo(n):
+        if n == 0:
+            return 0
+        elif n == 1:
+            return 1
+        else:
+            return fibo(n-1) + fibo(n-2)
+
+**1)** Lancez ce programme pour n = 10, n = 20 et n = 30. Que constatez-vous ?
+
+**2)** Pour se rendre compte de la « lourdeur » de se programme, dessinez un
+graphe représentant les appels récursifs à la fonction `fibo` pour `fibo(5)`.
+
+**3)** Sans tout dessiner, compléter le graphe pour `fibo(6)`.
+
+**4)** Pour voir tous les appels à `fibo`, ajoutez un `print(n)` au début de
+la fonction et lancer `fibo(10)`.
+
+Nous allons maintenant utiliser la programmation dynamique et stocker les
+résultats dans une mémoire `mem` pour pouvoir les réutiliser.
+
+**5)** Complétez le programme suivant qui permet de faire cela :
+
+    
+    
+    def fibodyn(n):
+        mem = [0]*(n+1)
+        return fibomem(n, mem)
+    
+    def fibomem(n, mem):
+        if n == 0 or n == 1: # Cas d'arrêt
+            return n
+        elif mem[n] > 0: # Si le résultat est en mémoire
+            …
+        else: # S'il faut faire le calcul
+            mem[n] = fibomem(n-1, mem) + fibomem(n-2, mem)
+            …
+
+**6)** Lancez ce programme pour n = 10, n = 20, n = 30, n = 100 et n = 1000.
+Que constatez-vous ?
+
+**7)** Pour le comparer au programme précédent, dessinez un graphe
+représentant les appels récursifs à la fonction `fibomem` pour `fibo(5)`.
+
+**8)** Compléter le graphe pour `fibo(6)`.
+
+**9)** Pour voir tous les appels à `fibomem`, ajoutez un `print(n)` au début
+de la fonction et lancer `fibo(10)`.
+
+La programmation dynamique nous a ici permis de rendre le programme
+**beaucoup** plus efficace !
+
+## Rendue monnaie
+
+Nous avons déjà résolu le problème de rendu de monnaie en première avec un
+algorithme glouton. Nous disposons des pièces (et billets) pi :
+(1,2,5,10,20,50,100,200,500). Nous avions vu que cet algorithme ne donnait pas
+nécessairement la solution optimale (avec le moins de pièces). Il est possible
+de résoudre ce problème avec un algorithme récursif.
+
+Cet algorithme se base sur le principe suivant : si on cherche à rendre la
+somme V, la solution optimale contiendra une pièce de plus que la solution
+optimale parmi les solutions pour rendre V - pi. La solution à ce problème en
+Python est donnée ci-dessous :
+
+    
+    
+    def monnaie(p, x):
+        if x == 0:
+            return 0
+        else:
+            mini = 1000
+            for i in range(len(p)):
+                if p[i] <= x:
+                    nb = 1 + monnaie(p, x-p[i])
+                    if nb < mini:
+                        mini = nb
+            return mini
+    
+    pieces = (1,2,5,10,20,50,100,200,500)
+
+**10)** Essayez cette fonction avec la somme 11 puis 55. Que se passe-t-il ?
+
+**11)** De la même façon qu'avec Fibonacci, proposez une version de
+programmation dynamique `monnaiedyn` de cette fonction.
+
+**12)** Testez cette nouvelle fonction avec 11 puis 55. Que remarquez-vous ?
+
+**13)** Essayez alors avec 1325 et 12525. Que remarquez-vous ?
+
+Le problème vient du fait qu'avec le grand nombre de pièces la programmation
+dynamique ne permet pas de suffisement limiter les appels récursifs.
+
+**14)** Proposez alors une ammélioration permettant de simplifier le rendu de
+monnaie pour les grands nombres.
+
+**15)** Testez alors avec 12525 et 59665412256854.
+
+[Précédent](diviser-pour-regner)[Suivant](boyer-moore)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

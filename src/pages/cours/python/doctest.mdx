@@ -1,0 +1,137 @@
+---
+title: "Doctest - Python"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## Python
+
+  * [Introduction](.)
+  * [Bases](bases)
+    * [Opérations mathématiques](operations)
+    * [Variables](variables)
+    * [Types de base](types-de-base)
+  * [Structures de contrôle](structures-de-controle)
+    * [If… else](if-else)
+    * [Interaction avec l'utilisateur](interaction)
+  * [Exercices bases et structures de contrôle](exercices-bases-structures)
+  * [Commentaires](commentaires)
+  * [Boucles](boucles)
+  * [Booléens](booleens)
+  * [Modules](modules)
+  * [Fonctions](fonctions)
+  * [Exercices boucles et fonctions](exercices-boucles-fonctions)
+  * [Tuples](tuples)
+  * [Exercices tuples](exercices-tuples)
+  * [Tableaux](tableaux)
+  * [Exercices tableaux](exercices-tableaux)
+  * [Dictionnaires](dictionnaires)
+  * [Chaînes de caractères](chaines-de-caracteres)
+  * [Docstring](docstring)
+  * [Doctest](doctest)
+  * [Assert](assert)
+
+# Tests en Python
+
+## Pourquoi faire des tests ?
+
+Un test permet de dire à Python le résultat attendu d'une fonction (ou autre)
+pour des paramètres donnés. Cela permet de vérifier qu'une fonction fait bien
+ce qui lui est demandé. C'est particulièrement utile, lorsqu'on modifie
+légèrement un programme complexe, pour s'assurer que le reste du code n'est «
+cassé » suite à ce changement. Ainsi, on lance les tests et si tout
+fonctionne, on peut raisonnablement penser que nous n'avons pas ajouté
+d'erreurs.
+
+## Comment faire des tests ?
+
+Il existe plusieurs façons de faire des tests en PYthon. On peut utiliser des
+bibliothèques telles de [pytest](https://docs.pytest.org/) ou
+[unitest](https://docs.python.org/fr/3/library/unittest.html). Ces deux
+bibliothèques sont assez puissantes mais demandent des connaissances un peu
+plus avancées que les _doctests_ que nous allons utiliser.
+
+Les doctests s'intègrent dans les docstrings de Python. Même si cela peut
+paraître déroutant au début, cela reste la méthode la plus simple pour
+effectuer des test en Python. Pour comprendre commençons par un exemple :
+
+    
+    
+    def somme(a, b):
+        """
+    	# Ici c’est la documentation de la fonction
+        Ajoute deux nombres.
+    
+        # Le test avec son résultat
+        >>> somme(2,2)
+        4
+        """
+        return a + b
+    
+    # On demande à Python de parser les tests
+    if __name__ == "__main__":
+        import doctest
+        doctest.testmod()
+
+**1)** Testez ce programme. Il ne doit rien se passer.
+
+**2)** Remplacez maintenant le contenu de la fonction par `return a + b + 1`
+et relancez le test. Un message doit alors annoncer que le test a échoué.
+
+Les doctests se composent ainsi :
+
+    
+    
+    """
+    >>> une_instruction
+    >>> eventuellement un autre instruction
+    >>> puis une autre
+    le_résultat_attendu
+    """
+
+On peut en mettre plusieurs et les séparer par d'autres textes. Il faut juste
+sauter une ligne après un test si on veut mettre du texte :
+
+    
+    
+    def somme(a, b):
+        """
+        Ajoute deux nombres.
+    
+        >>> somme(2,2)
+        4
+    	>>> somme(0,5)
+    	5
+    
+    	Je peux ajouter un texte et ensuite faire un nouveau test
+    	>>> somme(-1,1)
+    	0
+    
+    	Et encore un texte
+        """
+        return a + b
+
+Les doctests participent ainsi à la documentation en donnant des exemples
+concrets d'utilisation de la fonction.
+
+## Sources et compléments
+
+[Documentation officielle de
+doctest](https://docs.python.org/3/library/doctest.html)
+
+    la page officelle de Python sur les docstrings
+  
+[Précédent](docstring)[Suivant](assert)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

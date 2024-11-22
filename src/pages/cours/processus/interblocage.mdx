@@ -1,0 +1,112 @@
+---
+title: "Interblocage"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## Processus
+
+  * [Introduction](.)
+  * [Processus sur Linux](processus-linux)
+  * [Processus avec Python](processus-python)
+  * [Ordonnancement](ordonnancement)
+  * [Interblocage](interblocage)
+
+# Interblocage
+
+## Présentation
+
+Un interblocage se produit lorsque deux processus (ou plus) s'attendent
+mutuellement. Cela peut arriver lorsqu'un processus attend une ressource
+occupée par un autre processus, qui attend une ressource occupée par ce
+premier processus… Le schéma ci-dessous explique simplement cette situation :
+
+![](img/interblocage.svg)
+
+## Cas pratique
+
+Il n'est possible d'avoir un interblocable qu'avec au moins deux processus.
+Nous allons utiliser ici les threads plutôt que fork. Nous utiliserons
+également des verrous (lock) pour permettre aux threads de s'attendre. Voici
+le code à utiliser :
+
+    
+    
+    import time
+    from threading import Lock, Thread
+    
+    
+    class myThread (Thread):
+    
+        def __init__(self, id, nom, verrou1, verrou2):
+              Thread.__init__(self)
+              self.id = id
+              self.nom = nom
+    
+        def run(self):
+            print ("Démarrage de " + self.nom)
+            if self.id == 1:
+                print("Aquisition du verrou 1 par le thread 1")
+                verrou1.acquire()
+            if self.id == 2:
+                print("Aquisition du verrou 2 par le thread 2")
+                verrou2.acquire()
+            time.sleep(2)
+            if self.id == 1:
+                print("Attente du verrou 2 par le thread 1")
+                verrou2.acquire()
+                print("Aquisition du verrou 2 par le thread 1")
+                print("Libération du verrou 1 par le thread 1")
+                verrou1.release()
+            if self.id == 2:
+                print("Attente du verrou 1 par le thread 2")
+                verrou1.acquire()
+                print("Aquisition du verrou 1 par le thread 2")
+                print("Libération du verrou 2 par le thread 2")
+                verrou2.release()
+            print ("Sortie de " + self.nom)
+    
+    # Création des deux verrous
+    verrou1 = Lock()
+    verrou2 = Lock()
+    
+    # Création des threads
+    thread1 = myThread(1, "Thread-1", verrou1, verrou2)
+    thread2 = myThread(2, "Thread-2", verrou1, verrou2)
+    
+    # Démarrage des threads
+    thread1.start()
+    #thread2.start()
+    
+    print("Sortie du thread principal")
+    
+    while True:
+        pass
+
+Ici, le deuxième thread n'est pas démarré, le Thread 1 doit donc se terminer.
+
+**1)** Lancez ce script et vérifiez que le thread se termine bien.
+
+**2)** Après avoir décommenté la ligne de démarrage du thread 2, relancez ce
+script et constatez l'interblocage.
+
+Une fois qu'on atteint un interblocage, il est inévitable de devoir arrêter un
+processus pour sortir de l'interblocage. En général, on cherchera à éviter et
+prévenir en amont les interblocages en gérant intelligement les ressources,
+par exemple en utilisant l'[algorithme du
+banquier](https://fr.wikipedia.org/wiki/Algorithme_du_banquier).
+
+[Précédent](ordonnancement)[Suivant (page des cours)](..)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

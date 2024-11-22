@@ -1,0 +1,273 @@
+---
+title: "Tableaux en Python (listes)"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## Python
+
+  * [Introduction](.)
+  * [Bases](bases)
+    * [Opérations mathématiques](operations)
+    * [Variables](variables)
+    * [Types de base](types-de-base)
+  * [Structures de contrôle](structures-de-controle)
+    * [If… else](if-else)
+    * [Interaction avec l'utilisateur](interaction)
+  * [Exercices bases et structures de contrôle](exercices-bases-structures)
+  * [Commentaires](commentaires)
+  * [Boucles](boucles)
+  * [Booléens](booleens)
+  * [Modules](modules)
+  * [Fonctions](fonctions)
+  * [Exercices boucles et fonctions](exercices-boucles-fonctions)
+  * [Tuples](tuples)
+  * [Exercices tuples](exercices-tuples)
+  * [Tableaux](tableaux)
+  * [Exercices tableaux](exercices-tableaux)
+  * [Dictionnaires](dictionnaires)
+  * [Chaînes de caractères](chaines-de-caracteres)
+  * [Docstring](docstring)
+  * [Doctest](doctest)
+  * [Assert](assert)
+
+# Tableaux
+
+Après les tuples nous allons voir les _tableaux_ qui sont également des
+séquences. À la différence des tuples, les tableaux sont modifiables. Point de
+vocabulaire important, nous parlerons de tableaux conformément au programme
+alors que Python utilise le terme _liste_.
+
+## Définition
+
+Un tableau est donc une séquence modifiable d’éléments. On sépare les éléments
+par des virgules et on entoure l’ensemble de crochets. Ainsi pour déclarer un
+tableau on peut faire comme ceci :
+
+    
+    
+    >>> t = ["a", "b", "c", "d"]
+    >>> t = [34, 56, 2]
+    >>> t_vide = []
+    >>> t_un_seul_element = ["a"]
+
+## Manipulation
+
+Tout ce que nous avons vu avec les tuples fonctionne avec les tableaux. Nous
+allons donc revoir les manipulations possibles. On considère le tableau
+suivant qu’on reprendra à chaque exemple :
+
+    
+    
+    >>> tab = ["a", "b", "c", "d"]
+
+### Accéder à un élément
+
+**1)** Quelle instruction permet d’accéder à l’élément "c" ?
+
+    
+    
+    tab[2]
+
+**2)** Comment accéder à "c" avec un index négatif ?
+
+    
+    
+    tab[-2]
+
+Attention ! Les tableaux sont modifiables :
+
+    
+    
+    >>> tab[0] = "début"
+
+remplace "a" par la chaîne "début".
+
+**3)** Quelle instruction permet de remplacer "d" par "fin" ?
+
+    
+    
+    tab[3] = "fin"
+
+Nous verrons plus loin les tableaux à deux dimensions.
+
+### Nombre d’éléments
+
+**4)** Quelle est l’instruction pour avoir le nombre d’éléments dans notre
+tableau ?
+
+    
+    
+    len(tab)
+
+### Fragment de tableau
+
+**5)** Quelle instruction renvoie `["b", "c", "d"]` ?
+
+    
+    
+    tab[1:]
+
+### Opérations
+
+**6)** Que faut-il faire pour concaténer tab avec le tableau `b = ["e", "f",
+"g"]` ?
+
+    
+    
+    tab + b
+
+**7)** Quelle instruction permet de répéter le tableau tab 9 fois ?
+
+    
+    
+    tab*9
+
+### Appartenance
+
+**8)** Quelle commande permet de tester si "d" appartient à notre tableau
+
+    
+    
+    "d" in tab
+
+### Parcours
+
+**9)** Écrire un petit programme qui permet de parcourir le tableau et
+d’afficher tout ses éléments.
+
+    
+    
+    for e in tab:
+    	print(e)
+
+### Suppression d’un élément
+
+Pour supprimer un élément d’un tableau à partir de son indice on utilise la
+fonction del() de cette façon :
+
+    
+    
+    >>> tab = ["a", "b", "c", "d"]
+    >>> del(tab[1])
+
+On peut également utiliser la méthode remove() pour supprimer un élément dont
+on ne connaît pas l’indice :
+
+    
+    
+    >>> tab = ["a", "b", "c", "d"]
+    >>> tab.remove("b")
+
+### Ajout d’un élément
+
+Pour ajouter un élément, on utilise la fonction (méthode) append() :
+
+    
+    
+    >>> tab = ["a", "b", "c", "d"]
+    >>> tab.append("e")
+
+**10)** À partir d’un tableau contenant des prénoms, créer deux tableaux dont
+l’un contiendra les prénoms de moins de 6 caractères et l’autre les prénoms de
+6 caractères ou plus. Voici le tableau des prénoms :
+
+    
+    
+    >>> prenoms = ["Roman", "Lucas", "Thomas", "Nathan", "Clément", "Ulysse", "Noam", "Aksel", "Logan", "Florian-Olivier", "Lélio", "Alexis"]
+    
+    
+    moinsde6 = []
+    plusde6 = [] 
+    for e in prenoms:
+    	if len(e) < 6:
+    		moinsde6.append(e)
+    	else:
+    		plusde6.append(e)
+
+**11)** À partir du tableau des prénoms précédent faites une fonction ou un
+script qui inverse l’ordre des élément du tableau.
+
+    
+    
+    tab_inverse = []
+    n = len(prenoms)
+    for i in range(n):
+    	tab_inverse.append(prenoms[n-1-i])
+
+### Tableau à 2 dimensions
+
+Un tableau à 2 dimensions est un tableau contenant des tableaux :
+
+    
+    
+    >>> t = [["a", "b", "c"],["d", "e", "f"],["g", "h", "i"]]
+
+On accède à ses éléments avec des crochets doubles :
+
+    
+    
+    >>> t[0][2]
+
+va retourner "c".
+
+Pour parcourir un tableau à 2 dimensions, il faut donc deux boucles for.
+
+**12)** Comment accéder à l’élément "h" ?
+
+    
+    
+    t[2][1]
+
+**13)** Créer un programme qui détermine le plus grand élément du tableau
+t_max ci-dessous :
+
+    
+    
+    >>> t_max = [[8, 12, 7],[7, 3, 1],[7, 14, 1]]
+    
+    
+    maxi = 0
+    for tab in t_max:
+    	for e in tab:
+    		if e > maxi:
+    			maxi = e
+    print(maxi)
+
+### Compréhensions
+
+Les compréhensions sont des outils très puissants pour générer des tableaux en
+python. Pour les comprendre il est plus simple de voir quelques exemples :
+
+    
+    
+    # Le tableau de départ
+    tab = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    
+    # Crée un tableau des carrés des éléments du tableau initial
+    print([x ** 2 for x in tab])
+    
+    # Crée un tableau des nombres pairs
+    print([x for x in tab if x % 2 == 0])
+    
+    # Crée un tableau des carrés des nombres pairs (combinaison des deux)
+    print([x ** 2 for x in tab if x % 2 == 0])
+
+**14)** En utilisant les compréhensions, écrivez un programme qui ne garde que
+les éléments positifs d’un tableau. (on pourra tester avec le tableau `tab =
+[1,-1,6,-8,-4,9,7,-5]`)
+
+[Précédent](exercices-tuples)[Suivant](exercices-tableaux)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

@@ -1,0 +1,179 @@
+---
+title: "Bases de données - Imdb"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## Bases de données
+
+  * [Introduction](.)
+  * [Prise en main](prise-en-main)
+  * [Structure](structure)
+  * [Contenu](contenu)
+  * [Clés](cles)
+  * [Jointure](jointure)
+  * [Compléments](complements)
+  * [Agrégateurs](agregateurs)
+  * [Exercices](exercices)
+  * [IMDb](imdb)
+
+# IMDb
+
+![Logo de l'IMDb](img/imdb.svg)
+
+## Introduction
+
+L'[IMDb](https://imdb.com) est la plus grosse base de donnée mondiale sur les
+films, séries et animations. Il est possible de [récupérer (légalement) une
+partie limitée leur base de données](/outils/imdb-database).
+
+Même si elle n'est pas complète, la base de donnée reste conséquente avec 1Go
+compressée et plusieurs dixaine de millions de lignes. La taille de la base
+fait que certaines requêtes peuvent êtres **très** longues. Il y aura donc des
+précautions à prendre comme nous le verrons dans la prochaine partie. Les
+tables originales ont été légèrement modifiées pour faciliter la
+compréhension. Pour information, l'importation sur les ordinateurs modestes du
+lycée a pris une dizaine d'heures.
+
+Voici le schéma relationnel de la base de données :
+
+![Schéma relationnel de la base de donnée de l'IMDb](img/schema-
+relationnel.svg)
+
+## Avertissement !
+
+N'importe quelle requête innocente peut prendre plusieurs secondes ou minutes
+à être générée et encore plus pour être affichée (s'il y a des millions de
+lignes). Par prudence, il vous faudra ajouter systématiquement la clause
+`LIMIT 100` (ou une valeur inférieure si besoin) à la fin de vos requêtes.
+Comme vous l'avez compris, cela limite l'affichage à 100 lignes. Cela évitera
+d'avoir des millions de lignes à défiler en plusieurs minutes devant vos yeux.
+
+**Vous ne ferez que des SELECT** pour ne pas modifier la base de données. En
+cas de suppression de lignes ou de tables, il ne sera pas possible de recréer
+la base en un temps raisonnable.
+
+## Connexion à MySQL
+
+Dans un terminal, saisissez la comande suivante :
+
+    
+    
+    mysql
+
+Vous devez alors avoir l'invite de commande mysql comme ceci :
+
+    
+    
+    mysql>
+
+## Découverte et nouvelles instructions
+
+Une fois dans MySQL, placez-vous dans la base « imdb » :
+
+    
+    
+    use imdb;
+
+La table principale qui contient entre autre le nom des œuvres, leur date de
+sortie et leur durrée est `work_basics`. Nous allons nous intéresser à cette
+table pour commencer. Le mot « work » est utilisé pour désigner une œuvre
+(film, série, épisode…). On utilisera le champ `originalTitle` pour avoir le
+titre d'une œuvre.
+
+Pour jauger cette base de données nous allons avoir besoin de nouvelles
+instructions SQL. La première est `count(*)` qui permet d'avoir le nombre de
+lignes d'une requête sans que toutes les lignes s'affichent.
+
+**1)** Exécutez la requête suivante pour connaitre le nombre d'œuvres dans la
+base :
+
+    
+    
+    SELECT count(*) FROM work_basics;
+
+**2)** Avec la commande `DESCRIBE` donnez les champs composant de la table
+`work_basics`.
+
+**3)** D'après son domaine, expliquez ce qu'est le champ `worktype`.
+
+Nous utiliserons également la clause `LIMIT` déjà évoquée plus haut pour
+limiter le nombre de lignes à afficher.
+
+**4)** Donnez une requête affichant le nom et la durée des 10 films (movie)
+les plus longs. En déduire la durée en heures du plus long film.
+
+**5)** Donnez une requête affichant le nom et l'année de « sortie »
+(startYear) des 10 premiers films (movie) de l'histoire. Donner le nom et la
+date du premier film de l'histoire. (aide : pour éviter d'avoir des champs
+nuls on peut utiliser la condition `IS NOT NULL`)
+
+**6)** Donnez une requête affichant le nombre de films pour adultes dans la
+base et donnez ce nombre.
+
+Le champ `genre` contient la liste des genres attribués à l'œuvre.
+
+**7)** Donnez une requête affichant le nombre de comédies (comedy) et donnez
+ce nombre.
+
+## Requêtes avancées
+
+La table `work_ratings` regroupe les notes attribuées à chaque œuvre par les
+utilisateur de l'Imdb.
+
+**8)** Donnez les champs de cette table.
+
+**9)** Sur quel champ allez-vous faire une jointure pour faire le lien avec la
+table `work_basics`?
+
+**10)** Donnez une requête renvoyant les 10 films (movie) avec le plus de
+votes. Quel est le film avec le plus de votes ?
+
+**11)** Donnez une requête renvoyant les 100 films (movie) avec la meilleure
+note. On ne gardera que les films avec plus de 100000 votes. Quel est le film
+avec le mieux noté ?
+
+**12)** Donnez une requête renvoyant les 100 œuvres avec la meilleure note. On
+ne gardera que les œuvres avec plus de 100000 votes. Quel est le type de
+l'œuvre la mieux notée ?
+
+La table `work_episode` permet de faire le lien entre un épisode et la série
+dont il est issu.
+
+Il est possible d'utiliser des alias pour les tables lorsqu'elles apparaissent
+dans plusieurs jointures :
+
+    
+    
+    SELECT a.champA, b.champA FROM table1 a JOIN table2 … JOIN table1 b …;
+
+Ici `a` et `b` sont des alias.
+
+Sacahant tout cela, répondez à la question très difficile suivante :
+
+**13)** Donnez une requête renvoyant les 100 épisodes de série avec la
+meilleure note. On ne gardera que les épisodes avec plus de 10000 votes.
+Quelle est la seule série avec un épisode ayant une note de 10 ?
+
+La table `work_director` fait le lien entre les œuvres et les réalisateurs de
+la table `name_basics`
+
+**14)** Donner une requête permettant de lister tous les films de Christopher
+Nolan par ordre chronologique avec leur année de sortie.
+
+**15)** Inventez une requête pour impressionner le prof.
+
+[Précédent](projet)[Suivant (page des cours)](..)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

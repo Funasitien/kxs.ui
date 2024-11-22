@@ -1,0 +1,196 @@
+---
+title: "Projet : Machine de vote"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## Projets
+
+  * [Notation](.)
+  * [Dé aléatoire](de)
+  * [Filtres photo](filtres-photo)
+  * [Puissance 4](puissance-4)
+  * [Jeu de la vie](jeu-de-la-vie)
+  * [Pandémie](pandemie)
+  * [Contacts](contacts)
+  * [Labyrinthe](labyrinthe)
+  * [Grenouille hurlante](grenouille-hurlante)
+  * [Contacts Plus](contacts-plus)
+  * [PyNFO](pynfo)
+  * [Machine de vote](machine-vote)
+  * [IMDb](imdb)
+  * [Envahisseurs](envahisseurs)
+  * [Chronos](chronos)
+  * [Icq](icq)
+  * [Tetris](tetris)
+  * [Casse briques](casse-briques)
+
+# Machine de vote (truquée)
+
+![](img/machine-vote.jpg) Auteur : kafka4prez | [source](https://www.flickr.com/photos/kafka4prez/298119881)| [Licence](https://creativecommons.org/licenses/by-sa/2.0/)
+
+## Prérequis
+
+  * structures de contrôle ;
+  * fonctions ;
+  * boucles ;
+  * tableaux à deux dimensions ;
+
+## Introduction
+
+Vous allez concevoir une machine de vote truquée. C'est à dire que c'est vous
+qui allez choisir le résultat du vote. Mais attention ! Il y aura un audit
+avant le vote pour vérifier que votre machine n'est pas truquée.
+
+Ce projet a été inspiré par la vidéo ci-dessous (en anglais, mais les sous-
+titres français sont disponibles) :
+
+Nous allons seulement effleurer l'ensemble des possibilités de fraude avec un
+système basé sur les machines à voter. Nous nous intéressons simplement au
+code de la machine.
+
+## Présentation
+
+### Situation
+
+Nous sommes en 2036 et les législateurs ont autorisé le vote électronique pour
+toutes les élections. Vous êtes chargé de concevoir une machine de vote pour
+les élections présidentielles de 2037. Vous êtes quelqu'un d'honnête mais on
+vous a proposé 50 milions d'euros pour faire gagner un candidat, dur de
+résister ! Vous allez donc devoir créer une machine de vote truquée qui va
+faire gagner un candidat précis. Mais bien sur, la machine ne devra tricher
+que pour le véritable vote, pas pour les tests qui le précéderont.
+
+Le paysage politique ayant changé dans les années 2030, voici la liste des
+candidats :
+
+  * Squeezie
+  * Cyprien
+  * Natoo
+  * Michou
+  * Norman
+  * Amixem
+
+Vous devez faire gagner **Norman**.
+
+La date de l'audit vous sera donnée par le professeur et la date de l'élection
+égalmement.
+
+### La machine
+
+Nous n'avons pas de véritable machine physique à notre disposition, nous
+allons utiliser l'ordinateur et limiter son utilisation à quelques touches.
+
+Vous dispposez donc des 9 touches de 1 à 9 du pavé numérique, de la touche «
+entrée » et de la touche « m » accessible seulement aux opérateurs pour
+accéder au menu (elle correspond par exemple à un bouton avec une clé qui ne
+peut pas être activé par les votants). Voici l'ensemble des touches sur la
+machine :
+
+1 2 3 4 5 6 7 8 9 m entrée
+
+L'appui sur un bouton est donc équivalent à la saisie d'un chiffre ou de « m »
+au clavier et de l'appui sur la touche entrée.
+
+La machine dispose également d'un écran modélisé par le terminal Python.
+
+## Fonctionnement
+
+Nous n'allons pas aborder l'identification du votant, nous supposerons donc
+que les votants se succèdent et votent normalement.
+
+La machine dispose de deux modes de fonctionnement :
+
+  * mode **administration** : accessible uniquement par l'administrateur, il permet de définir les choix de vote, de voir les résultats, de réinitialiser le compte et de passer au mode vote.
+  * mode **vote** : propose les choix de vote et enregistre les votes. L'appui sur la touche « m » permet de passer au mode administration.
+
+Le menu d'administration pourra ressembler à ceci :
+
+    
+    
+    ### Administration ###
+    
+     1 - Chargement des choix
+     2 - Voir les résultats
+     3 - Mise à zéro
+     4 - Passer en mode vote
+
+Et le mode vote :
+
+    
+    
+    ### Vote ###
+    
+     1 - Squeezie
+     2 - Cyprien
+     3 - Natoo
+     4 - Michou
+     5 - Norman
+     6 - Amixem
+
+Voici quelques précisions sur le fonctionnement :
+
+  * le chargement des choix se fait à partir d'un fichier texte `candidats.txt` et crée un fichier `résultats.txt` avec les compteurs à zero ;
+  * les résultats seront écrits dans un ficher texte `résultats.txt` au fur et à mesure du déroulement du vote ;
+  * la machine lit les valeurs des compteurs dans le fichier `résultats.txt` avant d'incrémenter les compteurs ;
+  * la mise à zéro met les compteurs dans le fichier fichier `résultats.txt` ;
+  * le trucage doit se faire sans manipulation. Le résultat doit être faussé seulement le jour de l'élection ;
+  * à vous de truquer le résultat intelligemment pour que cela ne soit pas trop suspect (pas 100% des voix !) ;
+  * les machines ne sont pas connectées à internet.
+
+## Tableau du barème
+
+Voilà le barème complet sur 20 pour ce projet.
+
+Tâche | Barème  
+---|---  
+fonctionnement du menu administration | 1 point  
+chargement des candidats depuis un ficher | 2 points  
+fonctionnement du menu vote | 1 point  
+respect des dates | 1 point  
+augmentation des compteurs dans le fichier `résultats.txt` lors d'un vote | 2 points  
+passage du menu administration au menu vote | 1 point  
+passage de l'audit, fonctionnement global de la machine | 2 points  
+trucage effectif | 2 points  
+trucage intelligent (pas 100% des votes…) | 2 points  
+qualité du trucage, discrétion du trucage dans le code, résistance à un audit du code | 2 points  
+code optimisé | 1.5 point  
+commentaires | 1 point  
+code propre | 1.5 point  
+Total | 20  
+  
+## Aides
+
+### Lire et écrire dans un fichier
+
+Pour stocker et lire les votes vous aurez besoin d'écrire et lire dans un
+fichier :
+
+    
+    
+    # Écriture
+    f = open("fichier.txt", "w") # Ouvre un fichier ou le crée et efface le contenu du fichier
+    f.write("Une ligne\n") # Écrit dans le fichier et va à la ligne (avec le « \n »)
+    f.close() # Ferme le fichier (important pour ne pas perdre des infos)
+    
+    f = open("fichier.txt", "a") # Ouvre un fichier ou le crée et se place à la fin
+    f.write("Une ligne\n") # Écrit dans le fichier et va à la ligne (avec le « \n »)
+    f.close() # Ferme le fichier (important pour ne pas perdre des infos)
+    
+    # Lecture
+    f = open("fichier.txt", "r") # Ouvre en lecture le fichier
+    for line in f: # Parcourt toute les lignes
+        print(line,end="") # Affiche chaque ligne
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

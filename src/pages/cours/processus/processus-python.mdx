@@ -1,0 +1,181 @@
+---
+title: "Processus avec Python"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## Processus
+
+  * [Introduction](.)
+  * [Processus sur Linux](processus-linux)
+  * [Processus avec Python](processus-python)
+  * [Ordonnancement](ordonnancement)
+  * [Interblocage](interblocage)
+
+# Processus et Python
+
+## PID et PPID
+
+Voici un script simple `prog1.py` affichant son propre PID et celui de son
+parent :
+
+    
+    
+    import os
+    import time
+    
+    def identifierProcessus():
+    
+        print('Voici des infos sur le processus instancié par le programme prog1.py')
+        print('PID :', os.getpid())
+        print('PPID :', os.getppid())
+    
+    identifierProcessus()
+    
+    time.sleep(20)
+
+Pour ne pas compliquer les choses, il faudra dans ce chapitre, lancer les
+scripts à partir de la console avec une commande comme celle-ci pour
+`prog1.py` :
+
+    
+    
+    python3 prog1.py
+
+**1)** En utilisant une double fenêtre dans Tilix, lancer ce script et
+vérifiez les informations données avec `ps`.
+
+**2)** Qui est le père de ce script ?
+
+## Fork
+
+Il existe une commande Linux qui permet de dupliquer un processus : `fork`.
+Pour l'utiliser dans Python, on utilisera la commande `os.fork()`. Cette
+commande est très particulière car elle crée un processus fils identique au
+père. Elle crée donc un script identique au premier qui va s'éxécuter en
+parallèle. Le seul moyen de les différencier est la valeur de retour qui vaut
+0 pour le fils et le PID du fils pour le père.
+
+**3)** Exécutez dans la console l'exemple `prog2.py` ci-dessous pour tenter de
+comprendre. Il faudra appuyer sur « Ctrl + c » pour interrompre le processus à
+la fin.
+
+    
+    
+    import os
+    import time
+    
+    def pereFils():
+        print("je suis le père")
+        # Création du fils
+        newpid = os.fork()
+        # os.fork() renvoie 0 pour le fils et le PID du fils pour le père
+    
+    	if newpid == -1:
+            print("Erreur de création")
+    
+        elif newpid == 0: # dans le fils
+            for loop in range(8):
+                print("Dans le fils", os.getpid(), os.getppid())
+                time.sleep(2)
+    
+        else: #newpid>0 -> dans le père
+            for loop in range(3):
+                print("Dans le père", os.getpid(), os.getppid())
+                time.sleep(2)
+    
+    pereFils()
+
+**4)** Faite un `pstree` pendant l'exécution du script pour visualiser les
+processus.
+
+**5)** Modifiez le script pour qu'il affiche « fin du processus père » quand
+le père se termine et « fin du processus fils » quand le fils se termine.
+
+**6)** Quel processus devient le parent du fils lorsque son père se termine ?
+
+Ce phénomène est normal, lorsque le père d'un processus se termine, le
+processus est « adopté » par `systemd`.
+
+**7)** Faite un `pstree` pendant l'exécution du script pour visualiser ce
+phénomène. (Allongez éventuellement les boucles pour avoir plus de temps)
+
+**8)** Modifiez ce script pour avoir un arbre de processus comme celui ci-
+dessous. Chaque processus devra afficher cinq fois « dans le … » et attendre
+deux secondes entre chaque affichage.
+
+    
+    
+    père─┬─fils 1───petit fils
+         └─fils 2
+
+## Wait
+
+Il est possible de demander à un processus d'atendre que ces fils soient
+terminés avec la commande `wait()`. Pour l'utiliser dans Python, on utilisera
+la commande `os.wait()`. On dispose du programme `prog3.py` suivant :
+
+    
+    
+    import os
+    import time
+    
+    def pereFils():
+        #Création du fils
+        newpid = os.fork()
+    
+        if newpid == -1:
+            print("Erreur de création")
+    
+        elif newpid == 0: # dans le fils
+            for i in range(0, 5):
+                time.sleep(2)
+    
+        else: # newpid>0 -> dans le père
+            childProcExitInfo = os.wait()
+    
+    pereFils()
+
+On veut qu'il affiche ceci :
+
+    
+    
+    Je suis le père
+    Le père attend que le fils ait terminé
+    Dans le fils
+    Le fils écrit 0
+    Le fils écrit 1
+    Le fils écrit 2
+    Le fils écrit 3
+    Le fils écrit 4
+    Le processus fils se termine
+    Le processus fils a terminé
+    Le père se termine après que le fils ait terminé
+
+**9)** Compléter le programme `prog3.py` ci-dessus avec les instructions
+suivantes pour qu'il affiche ce qui est demandé.
+
+    
+    
+    print("Le processus fils a terminé")
+    print("Le père se termine après que le fils ait terminé")
+    print("Je suis le père")
+    print("Dans le fils")
+    print("Le processus fils se termine")
+    print("Le père attend que le fils ait terminé")
+    print("Le fils écrit",i)
+
+[Précédent](processus-linux)[Suivant](ordonnancement)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

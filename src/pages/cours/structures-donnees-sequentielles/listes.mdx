@@ -1,0 +1,379 @@
+---
+title: "C - Listes - Niveau MP2I"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## Structures de données séquentielles
+
+  * [Introduction](.)
+  * [Listes](listes)
+  * [Piles](piles)
+  * [Files](files)
+  * [Dictionnaires](dictionnaires)
+
+# Listes
+
+Insere Retire
+
+## Spécification
+
+Il n'y a pas de spécification officielle d'un TAD liste. Néanmoins, on
+s'accorde généralement sur des caractéristiques communes aux listes.
+
+Une liste représente un ensemble de valeurs ordonné d'un même type (entiers,
+string…). « ordonné » ne signifie pas « trié » mais simplement que les valeurs
+ont une position (ou indice) dans la liste. On considère généralement le
+primitives suivantes pour une liste :
+
+creationListe()
+
+    Créer une nouvelle liste vide ;
+  
+insere(val, pos)
+
+    insère un élément `val` en position `pos` ;
+  
+estVide()
+
+    renvoie `true` si la liste est vide, `false` sinon ;
+  
+retire(pos)
+
+    retire l'élément `pos` de la liste ;
+  
+taille()
+
+    renvoie le nombre d'éléments de la liste ;
+  
+element(pos)
+
+    renvoie la valeur de l'element en position `pos` ;
+  
+affiche()
+
+    affiche la liste dans le shell.
+  
+
+Pour simplifier l'implémentation, nous implémenterons uniquement des listes
+d'entiers.
+
+## Implémentation
+
+La plupart des langages implémentent par défaut des listes. Le C étant un
+langage de bas niveau, il n'implémente pas de structure de liste. Il faut donc
+le faire nous même. Un première idée pourrait être d'utiliser un tableau.
+
+### Implémentation avec un tableau
+
+#### Présentation
+
+On utilisera un tableau avec une taille fixe grande pour ne pas trop limiter
+la taille des listes. Les éléments seront alors dans des espaces mémoire
+contigus :
+
+5 22 13
+
+Nous avons également besoin de stocker la taille de la liste. Nous allons donc
+utiliser une structure et créer des fonctions pour implémenter les différentes
+primitives :
+
+    
+    
+    #include <stdio.h>
+    #include <stdlib.h>
+    #include <stdbool.h>
+    
+    #define TAILLE_MAX 10000
+    
+    typedef struct ListEntier {
+    	int tab[TAILLE_MAX];
+    	int taille;
+    } listEntier;
+    
+    listEntier* creationListe() {
+    	listEntier* list = malloc(sizeof(listEntier)); 
+    	list->taille = 0;
+    	return list;
+    }
+    
+    
+    listEntier* insere(listEntier* list, int pos, int val) {
+    	// Si la demande est impossible
+    	if ((pos < 0) || (pos > list->taille) || (list->taille == TAILLE_MAX)) {
+    		return list;
+    	}
+    	// On décale tous les éléments au dessus de pos
+    	for (int i = list->taille; i >= pos; i--) {
+    		list->tab[i+1] = list->tab[i];
+    	}
+    	// On insère la nouvelle valeur
+    	list->tab[pos] = val;
+    
+    	// On incrémente alors la taille
+    	list->taille = list->taille + 1;
+    	return list;
+    }
+    
+    bool estVide(listEntier* list) {
+    	if (list->taille == 0) {
+    		return true;
+    	} else {
+    		return false;
+    	}
+    }
+    
+    listEntier* retire(listEntier* list, int pos) {
+    	// Si la demande n'est pas valide
+    	if ((pos < 0) || (pos >= list->taille)) {
+    		return list;
+    	}
+    	// On décale les éléments au dessus de l'élément à supprimer
+    	for (int i = pos; i < list->taille; i++) {
+    		list->tab[i] = list->tab[i+1];
+    	}
+    	list->taille = list->taille - 1;
+    	return list;
+    }
+    
+    int taille(listEntier* list) {
+    	return list->taille;
+    }
+    
+    int element(listEntier* list, int pos) {
+    	return list->tab[pos];
+    }
+    
+    void affiche(listEntier* list) {
+    	for (int i = 0; i < list->taille; i++) {
+    		printf("%d, ", list->tab[i]);
+    	}
+    	printf("\n");
+    }
+
+#### Utilisation
+
+**1)** Proposer un code qui permmette de créer une liste, d'y placer les trois
+entiers « 3, 6 et 9 », d'afficher la liste, de supprimer « 3 » et d'afficher à
+nouveau la liste.
+
+    
+    
+    int main() {
+    	listEntier* maListe = creationListe();
+    	insere(maListe, 0, 3);
+    	insere(maListe, 1, 6);
+    	insere(maListe, 2, 9);
+    	affiche(maListe);
+    	retire(maListe, 0);
+    	affiche(maListe);
+    }
+
+**2)** Modifier la fonction `affiche` pour qu'elle n'affiche pas la dernière
+virgule à la fin de la liste.
+
+    
+    
+    void affiche(listEntier* list) {
+    	for (int i = 0; i < list->taille-1; i++) {
+    		printf("%d, ", list->tab[i]);
+    	}
+    	printf("%d", list->tab[list->taille-1]);
+    	printf("\n");
+    }
+
+**3)** Proposer une nouvelle fonction `somme` qui renvoie la somme des
+éléments de la liste.
+
+    
+    
+    int somme(listEntier* list) {
+    	int s = 0;
+    	for (int i = 0; i < list->taille; i++) {
+    		s = s + list->tab[i];
+    	}
+    	return s;
+    }
+
+**4)** Quels sont les avantages et inconvenients de cette implémentation ?
+
+L'accès aux éléments est rapide car c'est un tableau mais la suppression et
+l'insertion sont lents car il faut déplacer tous les éléments à droite. La
+taille est limité par `TAILLE_MAX` et la place ocupée en mémoire est grande
+quelque-soit la taille de la liste.
+
+### Implémentation avec une liste chaînée
+
+#### Présentation
+
+Dans une liste chaînée, les éléments ne sont pas les uns à la suite des autres
+en mémoire, mais chaque élément pointe vers le suivant :
+
+5 22 13
+
+Nous utilisons une structure pour la liste (qui pointera vers la tete de
+liste) et une structure pour chaque élément :
+
+    
+    
+    // Élement de liste
+    typedef struct ElementListe {
+    	int valeur;
+    	struct ElementListe* suivant;
+    } elementListe;
+    
+    // Liste qui pointe juste vers le premier élément
+    typedef struct ListEntier {
+    	int taille;
+    	elementListe* tete; 
+    } listEntier;
+    
+    // Création d'une liste vide
+    listEntier* creationListe() {
+    	listEntier* liste = malloc(sizeof(listEntier));
+    	liste->taille = 0;
+    	liste->tete = NULL;
+    	return liste;
+    }
+    
+    listEntier* insere(listEntier* list, int pos, int val) {
+    	// Si la demande est impossible
+    	if ((pos < 0) || (pos > list->taille)) {
+    		return list;
+    	}
+    
+    	// On créer le nouvel élément
+    	elementListe* nouveau = malloc(sizeof(elementListe));
+    	nouveau->valeur = val;
+    
+    	// Si on ajoute l'élément en 0
+    	// nouveau devient la tête et la tête devient son élément suivant
+    	if (pos == 0) {
+    		nouveau->suivant = list->tete;
+    		list->tete = nouveau;
+    	} else {
+    		elementListe* elt = list->tete;
+    		// On décale jusqu'à l'élément précédent
+    		for (int i = 0; i < (pos - 1); i++) {
+    			elt = elt->suivant;
+    		}
+    		// On insère nouveau
+    		nouveau->suivant = elt->suivant;
+    		elt->suivant = nouveau;
+    	}
+    	list->taille = list->taille + 1;
+    	return list;
+    }
+    
+    bool estVide(listEntier* list) {
+    	if (list->taille == 0) {
+    		return true;
+    	} else {
+    		return false;
+    	}
+    }
+    
+    listEntier* retire(listEntier* list, int pos) {
+    	// Si la demande n'est pas valide
+    	if ((pos < 0) || (pos >= list->taille)) {
+    		return list;
+    	}
+    	elementListe* elt;
+    	// si l'indice est 0, on supprime la tête
+    	if (pos == 0) {
+    		elt = list->tete->suivant;
+    		free(list->tete);
+    		list->tete = elt;
+    	} else {
+    		elt = list->tete;
+    		// On avance jusqu'à l'élément précédent celui qui doit être supprimé
+    		for (int i = 0; i < (pos - 1); i++) {
+    			elt = elt->suivant;
+    		}
+    		elementListe* tmp = elt->suivant;
+    		// On 'saute' l'élément à supprimer
+    		elt->suivant = elt->suivant->suivant;
+    		// On libère l'élément à supprimer
+    		free(tmp);
+    	}
+    	list->taille = list->taille - 1;
+    	return list;
+    }
+    
+    int taille(listEntier* list) {
+    	return list->taille;
+    }
+    
+    int element(listEntier* list, int pos) {
+    	elementListe* elt = list->tete;
+    	for (int i = 0; i < pos; i++) {
+    		elt = elt->suivant;
+    	}
+    	return elt->valeur;
+    }
+    
+    void affiche(listEntier* list) {
+    	for (int i = 0; i < list->taille; i++) {
+    		printf("%d, ", element(list, i));
+    	}
+    	printf("\n");
+    }
+
+#### Utilisation
+
+**5)** Tester le même code qu'à la question 1) et vérifier que cela
+fonctionne.
+
+    
+    
+    int main() {
+    	listEntier* maListe = creationListe();
+    	insere(maListe, 0, 3);
+    	insere(maListe, 1, 6);
+    	insere(maListe, 2, 9);
+    	affiche(maListe);
+    	retire(maListe, 0);
+    	affiche(maListe);
+    }
+
+**6)** Proposer une fonction `ajouteFin` qui ajoute un élément en fin de
+liste.
+
+    
+    
+    listEntier* ajouteFin(listEntier* list, int val) {
+    	// On créer le nouvel élément
+    	elementListe* nouveau = malloc(sizeof(elementListe));
+    	nouveau->valeur = val;
+    
+    	// On se place en tête de liste
+    	elementListe* elt = list->tete;
+    	// On avance jusqu'au dernier élément de la liste
+    	for (int i = 0; i < (list->taille - 1); i++) {
+    		elt = elt->suivant;
+    	}
+    	elt->suivant = nouveau;
+    	list->taille = list->taille + 1;
+    }
+
+**7)** Proposer une nouvelle fonction `somme` qui renvoie la somme des
+éléments de la liste.
+
+**8)** Quels sont les avantages et inconvenients de cette implémentation ?
+
+**9)** Créer une fonction qui inverse l'ordre des éléments de la liste.
+
+[Précédent](.)[Suivant](piles)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

@@ -1,0 +1,223 @@
+---
+title: "Von Neumann et langage machine"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## Architectures matérielles
+
+  * [Introduction](.)
+  * [Von Neumann et langage machine](vonneumann)
+  * [Réseau](reseau)
+  * [TCP/IP](tcpip)
+
+# Architecture de von Neumann et langage machine
+
+## Composition d’un ordinateur
+
+**1)** En suivant le démontage d’un ordinateur, notez les principaux
+composants qui le constituent et leur fonction.
+
+## Architecture de von Neumann
+
+### Introduction
+
+![](img/VonNeumann.jpg)
+
+John von Neumann est un mathématicien et physicien americano-hongrois. Il est
+considéré avec Alan Turing comme le père de l’informatique. Il est souvent
+considéré comme l’une des personnes les plus intelligentes du XXe siècle.
+
+Il propose en 1945 une architecture pour les ordinateurs qui est toujours
+utilisée aujourd’hui.
+
+### Architecture de von Neumann
+
+L’architecture de von Neumann établit la relation entre les différents
+composants d’un ordinateur. Ces composants sont :
+
+  * l’unité arithmétique et logique (UAL) : elle effectue les opérations de base (processeur aujourd’hui) ;
+  * l’unité de contrôle : s’occupe du séquençage des opérations (dans le processeur aujourd’hui);
+  * la mémoire : contient les données et le programme ;
+  * les entrées/sorties : permettent de communiquer avec l’extérieur. 
+
+La révolution de cette architecture à l’époque est le fait de considérer le
+programme comme une donnée. C’est cette idée qui va fonder l’informatique et
+qui concrétise le concept de machine universelle de Turing.
+
+Cette architecture peut être représentée sur un schéma simple :
+
+![Architecture de Von Neumann](img/archi.gif)
+
+L’UAL accède à la mémoire grâce à des adresses par l’intermédiaire d’un bus.
+Mais elle possède aussi des registres qui lui permettent d’effectuer des
+opérations simples.
+
+Aujourd’hui les ordinateurs ont toujours une architecture proche de celle de
+von Neumann :
+
+![Architecture moderne des ordinateurs](img/archi2.gif)
+
+Les entrées/sorties sont gérées maintenant par des processeurs autonomes et on
+utilise plusieurs cœurs/processeurs.
+
+## Langage machine
+
+### Introduction
+
+Le langage machine ou langage assembleur est le langage de plus bas niveau qui
+existe, il est directement compréhensible par le processeur. Il dépend donc du
+processeur.
+
+Il permet de faire uniquement des opérations simples mais on peut toujours
+recréer des instructions de haut niveau en langage machine. En effet tout
+programme est « converti » en langage machine avant de pouvoir être éxécuté
+par le processeur.
+
+### Exemple réel
+
+#### Une instruction
+
+Le code ci-dessous :
+
+    
+    
+    10110000 01100001
+
+correspond en assembleur lisible par un humain à :
+
+    
+    
+    movb $0x61, %al
+
+qui signifie « écrire le nombre 97 dans le registre AL ».
+
+**2)** Où est le nombre 97 dans cette instruction ?
+
+#### Code complet
+
+Voici un code ([de wikipédia](https://fr.wikipedia.org/wiki/Assembleur))
+permettant simplement d'afficher « Bonsoir » en assembleur :
+
+    
+    
+    section .data                                 ; Variables initialisées
+            Buffer:         db 'Bonsoir', 10      ; En ascii, 10 = '\n'. La virgule sert à concaténer les chaines
+            BufferSize:     equ $-Buffer          ; Taille de la chaine
+    
+    section .text                                 ; Le code source est écrit dans cette section
+            global _start                         ; Définition de l'entrée du programme
+    
+    _start:                                       ; Entrée du programme
+    
+            mov eax, 4                            ; Appel de sys_write
+            mov ebx, 1                            ; Sortie standard STDOUT
+            mov ecx, Buffer                       ; Chaine à afficher
+            mov edx, BufferSize                   ; Taille de la chaine
+            int 80h                               ; Interruption du kernel
+    
+            mov eax, 1                            ; Appel de sys_exit
+            mov ebx, 0                            ; Code de retour
+            int 80h                               ; Interruption du kernel
+
+Vous pouvez tester ce code sur votre machine ! Copiez-le dans un fichier
+`test.asm` puis exécutez les commandes suivantes :
+
+    
+    
+    nasm -f elf test.asm
+    ld -o test test.o -melf_i386
+    ./test
+
+Vous devriez voir « Bonsoir » s'afficher.
+
+### Simulation simplifié
+
+Pour bien comprendre la philosophie de l’assembleur nous allons utiliser un
+simulateur avec des instructions compréhensibles disponible à l’adresse :
+<https://lipn.univ-paris13.fr/~boudes/amilweb/>
+
+AMIL permet de simuler un processeur disposant de
+
+  * 8 registres généraux R0 à R7 (contenant les opérandes et les résultats des calculs)
+  * un registre compteur de programme CP (contenant l’adresse de la prochaine instruction à exécuter)
+  * un registre instruction RI (contenant l’instruction en cours d’exécution)
+  * une unité arithmétique (mais pas logique) effectuant des calculs entiers et flottants
+
+Le simulateur affiche l’ensemble processeur et mémoire centrale. Pour le
+processeur, seul le contenu des différents registres est affiché (pas l’UAL).
+La mémoire centrale est affichée à raison d’une cellule par ligne. Au
+démarrage, le simulateur est en mode édition de la mémoire centrale.
+L’utilisateur peut modifier interactivement le contenu de la mémoire centrale
+en y inscrivant les données et les instructions de son programme. La
+simulation peut ensuite être démarrée avec le bouton « Charger ». Le programme
+peut être simulé instruction par instruction (bouton « pas-à-pas ») ou jusqu’à
+sa terminaison éventuelle (bouton « Exécuter »). Le bouton « Reset »
+réinitialise le processeur en reprenant la simulation au début du programme.
+Un double clic dans la zone de la mémoire principale permet de revenir au mode
+d’édition de la mémoire centrale.
+
+Les mnémoniques utilisées pour les instructions sont de simples mots en
+français (il n’y a pas de format binaire défini). Les instructions possèdent
+deux champs d’adresse, l’opérande destination étant toujours placée en
+dernière position. Les registres sont symbolisés par leur noms en minuscules,
+r0 par exemple. Les valeurs littérales pour les nombres entiers présents dans
+les instructions utilisent la base 10 (pas de valeur en binaire ou
+hexadécimal). L’ensemble des instructions est donné en annexe.
+
+### Travail 1
+
+**3)** Comprendre le programme chargé par défaut dans le simulateur en
+l’exécutant pas à pas. Décrire en quelques phrases son fonctionnement.
+
+### Travail 2
+
+**4)** Écrire dans le simulateur un programme qui convertit des degrés Celsius
+en Fahrenheit. La formule est la suivante :
+
+°F = °C x 9 / 5 + 32
+
+### Annexe : Instruction disponibles dans le simulateur
+
+Instructions de transferts de données  
+---  
+valeur x ri | Initialise le registre i avec la valeur x  
+lecture i rj | Charge, dans le registre j, le contenu de la mémoire d’adresse i  
+ecriture ri j | Écrit le contenu du registre i dans la mémoire d’adresse j  
+ecriture ri rj | Écrit le contenu du registre i dans le registre j  
+Instructions de calcul arithmétique  
+---  
+inverse ri | Calcule la négation du contenu du registre i  
+add ri rj | Ajoute la valeur du registre i à celle du registre j  
+soustr ri rj | Soustrait la valeur du registre i à celle du registre j  
+mult ri rj | Multiplie la valeur du registre j par celle du registre i  
+div ri rj | divise la valeur du registre j par celle du registre i  
+divent ri rj | quotient de la division de la valeur du registre j par celle du registre i. (division entière)  
+mod ri rj | reste de la division de la valeur du registre j par celle du registre i. (division entière)  
+add x ri | Ajoute x à la valeur du registre i  
+soustr x ri | Soustrait la valeur x à celle du registre i  
+mult x ri | Multiplie la valeur du registre i par x  
+div x ri | divise la valeur du registre i par x  
+divent x ri | quotient de la division de la valeur du registre i par x. (division entière)  
+mod x ri | reste de la division de la valeur du registre i par x. (division entière)  
+Instructions de saut et d’arrêt  
+---  
+saut i | Met le compteur de programme à la valeur i  
+sautpos ri j | Si la valeur contenue dans le registre i est positive ou nulle, met le compteur de programme à la valeur j  
+sautnul ri j | Si la valeur contenue dans le registre i est nulle, met le compteur de programme à la valeur j  
+sautnonnul ri j | Si la valeur contenue dans le registre i est non nulle, met le compteur de programme à la valeur j  
+stop | Arrête l’exécution du programme  
+[Précédent](.)[Suivant](reseau)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

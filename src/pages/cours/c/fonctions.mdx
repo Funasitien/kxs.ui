@@ -1,0 +1,168 @@
+---
+title: "C - Fonctions"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## C
+
+  * [Matériel](.)
+  * [Hello world!](hello-world)
+  * [Printf](printf)
+  * [Nombres](nombres)
+  * [Structures de contrôle](structures-de-controle)
+  * [Fonctions](fonctions)
+  * [Commentaires](commentaires)
+  * [Portée des variables](portee-variables)
+  * [Pointeurs](pointeurs)
+  * [Tableaux](tableaux)
+  * [Bibliothèque stdbool](stdbool)
+  * [Projet puissance 4](projet-p4)
+  * [Chaînes de caractères](chaines-de-caracteres)
+  * [Structures](structures)
+  * [Exercices](exercices)
+  * [Headers](headers)
+
+# Fonctions
+
+Les fonctions sont des outils qui permettent de rendre son code plus lisible
+et d'éviter des répétitions (factorisation du code). Nous avons déjà vu et
+utilisé la fonction `main`, nous allons voir comment définir nos propres
+fonctions.
+
+## Définition
+
+Voici comment définir une fonction :
+
+    
+    
+    type_de_retour nom_fonction(liste_arguments) {
+    	…
+    	instructions
+    	…
+    	return eventuelle_valeur_de_retour;
+    }
+
+Voici à quoi correpondent les élèments de la définition :
+
+type_de_retour
+
+    type de la valeur renvoyée par la fonction (`int`, `char`…). Si la fonction de renvoie rien, il faut utiliser `void`.
+  
+nom_fonction
+
+    Nom que l'on donne à la fonction. Le nom doit refléter ce que fait la fonction.
+  
+liste_arguments
+
+    Liste de variables internes (on parlera de variables locales) à la fonction qui prendront les valeurs fournies en paramètre à la fonction.
+  
+eventuelle_valeur_de_retour
+
+    Si la fonction renvoie une valeur il faut explicitement lui dire quoi renvoyer avec le mot-clé `return`.
+
+Prenons l'exemple d'une fonction `max` qui calcule le maximum de deux entiers
+:
+
+    
+    
+    int max(int a, int b) {
+    	if (a > b) {
+    		return a;
+    	} else {
+    		return b;
+    	}
+    }
+
+## Appel d'une fonction
+
+Pour appeler une fonction (et donc l'exécuter), il faut écrire son nom et lui
+donner des paramètres correspondant à ses arguments. Reprenons l'exemple de la
+fonction `max` :
+
+    
+    
+    #include <stdio.h>
+    
+    int max(int a, int b) {
+    	if (a > b) {
+    		return a;
+    	} else {
+    		return b;
+    	}
+    }
+    
+    int main() {
+    	int c = max(8, 3);
+    	printf("%d\n",c);
+    }
+
+Ici la variable `c` prend la valeur renvoyée par la fonction.
+
+## Passage par valeur
+
+En C, les fonctions reçoivent uniquement les valeurs des paramètres et pas
+leurs références. On dit qu'elles utilisent un passage par valeur. Il est donc
+impossible de modifier (dans l'état de nos connaissances) une variable externe
+à une fonction :
+
+    
+    
+    #include <stdio.h>
+    
+    void test(int b) {
+    	b = b + 1;
+    }
+    
+    int main() {
+    	int a = 2;
+    	test(a);
+    	printf("%d\n", a);
+    }
+
+La fonction `test` reçoit donc la valeur `2` et n'a pas « connaissance » de
+l'existence de `a`. Le programme affiche alors `2`.
+
+## Déclaration
+
+On peut avoir besoin de simplment déclarer une fonction sans la définir
+complètement. Dans ce cas, on donne ce qu'on appelle son prototype :
+
+    
+    
+    type_de_retour nom_fonction(liste_arguments);
+
+Il faut ensuite définr la fonction plus loin dans le code si on veut pouvoir
+l'utiliser.
+
+Pour notre exemple cela donnerait :
+
+    
+    
+    int max(int a, int b);
+
+## Exercices
+
+**1)** Écrire une fonction `int estImpaire(int a);` qui renvoie 1 si `a` est
+impaire et 0 sinon.
+
+**2)** Écrire une fonction `int sum(int n);` qui renvoie la somme des entiers
+de 1 à n (il y a une formule).
+
+**3)** Écrire une fonction `int fact(int n);` qui renvoie la factorielle de n
+(il faudra utiliser une boucle).
+
+[Précédent](structures-de-controle)[Suivant](commentaires)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

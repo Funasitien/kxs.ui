@@ -1,0 +1,313 @@
+---
+title: "jointures"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## TD MP2I
+
+  * [intro](.)
+  * [Conversions](conversions)
+  * [Unix](unix)
+  * [Arbres](arbres)
+  * [ABR](arbres-binaires-recherche)
+  * [Graphes](graphes)
+  * [Bases de données](bases-de-donnees)
+  * [Jointures](jointures)
+  * [Agrégations](agregation)
+  * [Opérateurs ensemblistes](operateurs-ensemblistes)
+  * [Exercices bases de données](exercices-db)
+
+# Jointures
+
+Les jointures donnent toute leur puissance aux bases de données relationnelle.
+
+## Clé primaire
+
+Une clé primaire est un champ d'une table dont toutes les valeurs doivent être
+distinctes. La clé primaire permet alors d'identifier de manière unique la
+ligne d'une table. Ce champ peut avoir un sens pour la table mais pas
+nécessairement. Par exemple une table contenant les patient d'un medcin pourra
+avoir les numéro de sécurité sociale comme clé primaire. Mais comme dans la
+table `fims` on peut également créer un champ uniquement pour avoir ce rôle
+(`id_film` ici). Il faut noter que la clé primaire est indiquée dans la
+description d'une table dans la colonne `key`, il y aura le mot `PRI`.
+
+**5)** Pourquoi le champ `annee` ne peut pas être une clé primaire de la table
+`films` ?
+
+Parce qu'il peut y avoir deux films avec la mêmé année.
+
+**6)** En regardant la descripton de la table `citations` donner la clé
+primaire de cette table.
+
+    
+    
+    +-------------+---------+------+-----+---------+-------+
+    | Field       | Type    | Null | Key | Default | Extra |
+    +-------------+---------+------+-----+---------+-------+
+    | id_citation | int(11) | NO   | PRI | NULL    |       |
+    | texte       | text    | YES  |     | NULL    |       |
+    | id_film     | int(11) | YES  |     | NULL    |       |
+    +-------------+---------+------+-----+---------+-------+
+
+C'est le champ `id_citation`
+
+## Clé étrangère
+
+Regardons le contenu de la table `citations`.
+
+    
+    
+    +-------------+-----------------------------------------------------------------------------------------------+---------+
+    | id_citation | texte                                                                                         | id_film |
+    +-------------+-----------------------------------------------------------------------------------------------+---------+
+    |           1 | Vers l'infini et au-dela !                                                                    |       1 |
+    |           2 | Allez bonne nuit, et tâche de dormir sinon je vends tout tes jouets !                         |       2 |
+    |           3 | Avengers rassemblement !                                                                      |       2 |
+    |           4 | La fin fait partie du voyage.                                                                 |       2 |
+    |           5 | C'est dans ses rêves que l'homme trouve la liberté, cela fût, est, et restera la vérité.      |       3 |
+    |           6 | C'est seulement quand on a tout perdu qu'on est libre de faire tout ce qu'on veut.            |       4 |
+    |           7 | On a frôlé la vie !                                                                           |       4 |
+    |           8 | Monsieur, quand le doigt montre le ciel, l'imbécile regarde le doigt.                         |       5 |
+    |           9 | Ou tu sors ou je te sors, mais faudra prendre une décision.                                   |       6 |
+    |          10 | Ce n'est pas parce que tu as une personnalité que tu as de la personnalité.                   |       7 |
+    |          11 | C'est à une demi-heure d'ici. J'y suis dans dix minutes.                                      |       7 |
+    |          12 | Je préfère partir plutôt que d'entendre ça plutôt que d'être sourd !                          |       8 |
+    |          13 | Raté, vous nous avez raté ! Eh les romains, vous êtes des romaines !                          |       9 |
+    |          14 | À mon signal, déchaine les enfers.                                                            |      10 |
+    |          15 | Cours Forrest, cours !                                                                        |      11 |
+    |          16 | Joue pour ton grand frère ça lui fera plaisir.                                                |    NULL |
+    |          17 | On va tous dans la même direction, on prend des chemins différents c’est tout.                |      15 |
+    +-------------+-----------------------------------------------------------------------------------------------+---------+
+
+La table `citations` contient un champ `id_film` qui ne peut pas être une clé
+primaire car des valeurs sont semblables. C'est ce qu'on appelle une clé
+étrangère car elle correspond à la clé primaire d'une autre table. Ici elle
+correspond à la clé primaire de la table films. Elle permet de faire le lien
+entre deux enregistrements de la base de données et surtout d'éviter d'écrire
+les informations d'un film (titre, année) à plusieurs endroits.
+
+Par exemple si un film possédait plusieurs centaines de citations on aurait la
+même information recopiée des centaines de fois. Ainsi, l'utilisation de deux
+tables liées par un clé étrangère permet de limiter la redondance dans une
+base de donnée.
+
+On peut représenter les relation entre les tables par un schéma relationnel
+comme ci-dessous. On fait alors un lien entre les deux champs `id_film` et on
+note un `1` au niveau de la table `film` et une `*` au niveau de la table
+`citations` pour indiquer qu'une ligne de la table `film` peut être reliée à
+plusieurs lignes de la table `citations`
+
+citations id_citation texte id_film films id_film titre annee * 1
+
+On parle alors d'association 1-* entre les deux tables.
+
+Il peut y avoir des associations 1-1. Par exemple la table `notes` avec la
+table `citations`. La table `notes` contient des notes attribuées aux
+citations.
+
+**7)** En regardant la descripton de la table `notes` dessiner le shéma
+relationnel entre la table `notes` et la table `citations`.
+
+Il y a également des associations *-* qui ne sont pas directement modélisables
+avec des bases de données relationnelles. Pour cela nous avons besoin de créer
+une table intermédiaire avec les deux clés étrangères pour faire l'association
+entre les deux tables. C'est la fonction de la table `lien_films_realisateurs`
+car un film peut avoir plusieurs réalisateurs et un réalisateur peut être sur
+plusieurs films.
+
+**8)** En regardant les descriptions des tables, proposer un shéma relationnel
+entre les trois tables `films`, `lien_films_realisateurs` et `realisateurs`.
+
+## Jointures internes
+
+Il y a donc une correspondance entre les tables `citations` et `films` grâce à
+la clé étrangère _id_film_ qui fait le lien entre les citations et leur film.
+Il n'est néanmoins pas pratique de devoir regarger le film de la citation dans
+une autre table. Pour que tout s'affiche en une seule fois nous allons
+utiliser une _jointure_ :
+
+    
+    
+    SELECT texte, titre FROM citations JOIN films ON citations.id_film = films.id_film;
+
+Cette requête renvoie alors la table suivante :
+
+    
+    
+    +-----------------------------------------------------------------------------------------------+-------------------------------------------+
+    | texte                                                                                         | titre                                     |
+    +-----------------------------------------------------------------------------------------------+-------------------------------------------+
+    | Vers l'infini et au-dela !                                                                    | Toy Story                                 |
+    | Allez bonne nuit, et tâche de dormir sinon je vends tout tes jouets !                         | Avengers : Endgame                        |
+    | Avengers rassemblement !                                                                      | Avengers : Endgame                        |
+    | La fin fait partie du voyage.                                                                 | Avengers : Endgame                        |
+    | C'est dans ses rêves que l'homme trouve la liberté, cela fût, est, et restera la vérité.      | Le cercle des poètes disparus             |
+    | C'est seulement quand on a tout perdu qu'on est libre de faire tout ce qu'on veut.            | Fight Club                                |
+    | On a frôlé la vie !                                                                           | Fight Club                                |
+    | Monsieur, quand le doigt montre le ciel, l'imbécile regarde le doigt.                         | Le fabuleux destin d'Amélie Poulain       |
+    | Ou tu sors ou je te sors, mais faudra prendre une décision.                                   | Dikkenek                                  |
+    | Ce n'est pas parce que tu as une personnalité que tu as de la personnalité.                   | Pulp Fiction                              |
+    | C'est à une demi-heure d'ici. J'y suis dans dix minutes.                                      | Pulp Fiction                              |
+    | Je préfère partir plutôt que d'entendre ça plutôt que d'être sourd !                          | La classe américaine                      |
+    | Raté, vous nous avez raté ! Eh les romains, vous êtes des romaines !                          | Astérix et Obélix : mission Cléopâtre     |
+    | À mon signal, déchaine les enfers.                                                            | Gladiator                                 |
+    | Cours Forrest, cours !                                                                        | Forrest Gump                              |
+    | On va tous dans la même direction, on prend des chemins différents c’est tout.                | Benjamin Button                           |
+    +-----------------------------------------------------------------------------------------------+-------------------------------------------+
+    16 rows in set (0.001 sec)
+
+Elle se décompose comme ceci :
+
+  * `SELECT` : désigne les champs que l'on veut afficher ;
+  * `FROM` : désigne la première table (on dira celle de gauche) ;
+  * `JOIN` : désigne la deuxième table (on dira celle de droite) ;
+  * `ON` : désigne les deux clés avec lesquels il faut faire la jointure.
+
+La jointure fait alors correspondre les éléments des deux tables qui ont le
+même `id_film` et renvoie seulement les lignes ayant une correspondance. C'est
+pour cela que la citation 16 n'apparait pas car elle n'a pas d'`id_film`
+
+**9)** Proposez et testez une requête affichant les citations, films et années
+pour les films avant les années 2000.
+
+    
+    
+    SELECT texte, titre, annee FROM citations JOIN films ON citations.id_film = films.id_film WHERE annee < 2000;
+
+## Jointures externes
+
+Les jointures externes fonctionnent sur le même principe que les jointures
+internes. La différence réside dans l'inclusion ou non des lignes sans
+correspondance. Par exemple la jointure externe `LEFT JOIN` va inclure toutes
+les lignes de la table gauche, même celles qui n'ont pas de correspondances.
+Ainsi dans notre exemple au aura la citation 16 qui va apparaitre :
+
+    
+    
+    SELECT texte, titre FROM citations LEFT JOIN films ON citations.id_film = films.id_film;
+    
+    
+    +-----------------------------------------------------------------------------------------------+-------------------------------------------+
+    | texte                                                                                         | titre                                     |
+    +-----------------------------------------------------------------------------------------------+-------------------------------------------+
+    | Vers l'infini et au-dela !                                                                    | Toy Story                                 |
+    | Allez bonne nuit, et tâche de dormir sinon je vends tout tes jouets !                         | Avengers : Endgame                        |
+    | Avengers rassemblement !                                                                      | Avengers : Endgame                        |
+    | La fin fait partie du voyage.                                                                 | Avengers : Endgame                        |
+    | C'est dans ses rêves que l'homme trouve la liberté, cela fût, est, et restera la vérité.      | Le cercle des poètes disparus             |
+    | C'est seulement quand on a tout perdu qu'on est libre de faire tout ce qu'on veut.            | Fight Club                                |
+    | On a frôlé la vie !                                                                           | Fight Club                                |
+    | Monsieur, quand le doigt montre le ciel, l'imbécile regarde le doigt.                         | Le fabuleux destin d'Amélie Poulain       |
+    | Ou tu sors ou je te sors, mais faudra prendre une décision.                                   | Dikkenek                                  |
+    | Ce n'est pas parce que tu as une personnalité que tu as de la personnalité.                   | Pulp Fiction                              |
+    | C'est à une demi-heure d'ici. J'y suis dans dix minutes.                                      | Pulp Fiction                              |
+    | Je préfère partir plutôt que d'entendre ça plutôt que d'être sourd !                          | La classe américaine                      |
+    | Raté, vous nous avez raté ! Eh les romains, vous êtes des romaines !                          | Astérix et Obélix : mission Cléopâtre     |
+    | À mon signal, déchaine les enfers.                                                            | Gladiator                                 |
+    | Cours Forrest, cours !                                                                        | Forrest Gump                              |
+    | Joue pour ton grand frère ça lui fera plaisir.                                                | NULL                                      |
+    | On va tous dans la même direction, on prend des chemins différents c’est tout.                | Benjamin Button                           |
+    +-----------------------------------------------------------------------------------------------+-------------------------------------------+
+
+La jointure externe `RIGHT JOIN` va inclure toutes les lignes de la table
+gauche, même celles qui n'ont pas de correspondances :
+
+    
+    
+    SELECT texte, titre FROM citations RIGHT JOIN films ON citations.id_film = films.id_film;
+    
+    
+    +-----------------------------------------------------------------------------------------------+-------------------------------------------+
+    | texte                                                                                         | titre                                     |
+    +-----------------------------------------------------------------------------------------------+-------------------------------------------+
+    | Vers l'infini et au-dela !                                                                    | Toy Story                                 |
+    | Allez bonne nuit, et tâche de dormir sinon je vends tout tes jouets !                         | Avengers : Endgame                        |
+    | Avengers rassemblement !                                                                      | Avengers : Endgame                        |
+    | La fin fait partie du voyage.                                                                 | Avengers : Endgame                        |
+    | C'est dans ses rêves que l'homme trouve la liberté, cela fût, est, et restera la vérité.      | Le cercle des poètes disparus             |
+    | C'est seulement quand on a tout perdu qu'on est libre de faire tout ce qu'on veut.            | Fight Club                                |
+    | On a frôlé la vie !                                                                           | Fight Club                                |
+    | Monsieur, quand le doigt montre le ciel, l'imbécile regarde le doigt.                         | Le fabuleux destin d'Amélie Poulain       |
+    | Ou tu sors ou je te sors, mais faudra prendre une décision.                                   | Dikkenek                                  |
+    | Ce n'est pas parce que tu as une personnalité que tu as de la personnalité.                   | Pulp Fiction                              |
+    | C'est à une demi-heure d'ici. J'y suis dans dix minutes.                                      | Pulp Fiction                              |
+    | Je préfère partir plutôt que d'entendre ça plutôt que d'être sourd !                          | La classe américaine                      |
+    | Raté, vous nous avez raté ! Eh les romains, vous êtes des romaines !                          | Astérix et Obélix : mission Cléopâtre     |
+    | À mon signal, déchaine les enfers.                                                            | Gladiator                                 |
+    | Cours Forrest, cours !                                                                        | Forrest Gump                              |
+    | On va tous dans la même direction, on prend des chemins différents c’est tout.                | Benjamin Button                           |
+    | NULL                                                                                          | Les tontons flingueurs                    |
+    | NULL                                                                                          | Top Gun                                   |
+    | NULL                                                                                          | Man on Fire                               |
+    | NULL                                                                                          | Matrix                                    |
+    +-----------------------------------------------------------------------------------------------+-------------------------------------------+
+
+## Jointures multiples
+
+Il est possible d'effectuer plusieurs jointures en rajoutant des clauses `JOIN
+… ON …`. Par exemple, pour avoir en plus les notes des citations :
+
+    
+    
+    SELECT texte, titre, note FROM citations
+    JOIN films ON citations.id_film = films.id_film
+    JOIN notes ON citations.id_citation = notes.id_citation;
+    
+    
+    +-----------------------------------------------------------------------------------------------+-------------------------------------------+------+
+    | texte                                                                                         | titre                                     | note |
+    +-----------------------------------------------------------------------------------------------+-------------------------------------------+------+
+    | Vers l'infini et au-dela !                                                                    | Toy Story                                 | 9.01 |
+    | Allez bonne nuit, et tâche de dormir sinon je vends tout tes jouets !                         | Avengers : Endgame                        | 9.25 |
+    | Avengers rassemblement !                                                                      | Avengers : Endgame                        | 9.37 |
+    | La fin fait partie du voyage.                                                                 | Avengers : Endgame                        | 9.39 |
+    | C'est dans ses rêves que l'homme trouve la liberté, cela fût, est, et restera la vérité.      | Le cercle des poètes disparus             | 9.14 |
+    | C'est seulement quand on a tout perdu qu'on est libre de faire tout ce qu'on veut.            | Fight Club                                | 9.17 |
+    | On a frôlé la vie !                                                                           | Fight Club                                | 9.28 |
+    | Monsieur, quand le doigt montre le ciel, l'imbécile regarde le doigt.                         | Le fabuleux destin d'Amélie Poulain       | 9.11 |
+    | Ou tu sors ou je te sors, mais faudra prendre une décision.                                   | Dikkenek                                  | 9.28 |
+    | Ce n'est pas parce que tu as une personnalité que tu as de la personnalité.                   | Pulp Fiction                              | 9.25 |
+    | C'est à une demi-heure d'ici. J'y suis dans dix minutes.                                      | Pulp Fiction                              | 9.04 |
+    | Je préfère partir plutôt que d'entendre ça plutôt que d'être sourd !                          | La classe américaine                      | 8.90 |
+    | Raté, vous nous avez raté ! Eh les romains, vous êtes des romaines !                          | Astérix et Obélix : mission Cléopâtre     | 9.19 |
+    | À mon signal, déchaine les enfers.                                                            | Gladiator                                 | 8.72 |
+    | Cours Forrest, cours !                                                                        | Forrest Gump                              | 9.34 |
+    +-----------------------------------------------------------------------------------------------+-------------------------------------------+------+
+
+**10)** Proposez et testez une requête affichant les citations, films et notes
+pour le film « Avengers : Endgame », classées par note décroissante.
+
+    
+    
+    SELECT texte, titre, note FROM citations
+    JOIN films ON citations.id_film = films.id_film
+    JOIN notes ON citations.id_citation = notes.id_citation
+    WHERE films.id_film = 2
+    ORDER BY note DESC;
+
+Pour avoir des requêtes plus concises, il est possible de donner des alias aux
+tables pour les réutiliser dans les diffèrentes clauses. La requête suivante
+utilise un alias pour chaque table :
+
+    
+    
+    SELECT texte, titre, note FROM citations c
+    JOIN films f ON c.id_film = f.id_film
+    JOIN notes n ON c.id_citation = n.id_citation;
+
+[Précédent](bases-de-donnees)[Suivant](agregation)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

@@ -1,0 +1,188 @@
+---
+title: "C - Piles - Niveau MP2I"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## Structures de données séquentielles
+
+  * [Introduction](.)
+  * [Listes](listes)
+  * [Piles](piles)
+  * [Files](files)
+  * [Dictionnaires](dictionnaires)
+
+# Piles
+
+Empile Dépile
+
+## Spécification
+
+Comme pour le listes, il n'y a pas de TAD officiel pour les piles.
+
+Une pile est un ensebmle de données ordonnées de même type (entier, chaîne de
+caractère…). À la différence des listes, les piles ont une structure en LIFO
+(Last In First Out). C'est à dire que le dernier élément inséré est le premier
+à être retiré. Voici donc les primitives pour une pile :
+
+creationPile()
+
+    Créer une nouvelle pile vide ;
+  
+empile(val)
+
+    insère un élément `val` en haut de la pile ;
+  
+estVide()
+
+    renvoie `true` si la pile est vide, `false` sinon ;
+  
+depile()
+
+    retire l'élément en haut de la pile ;
+  
+taille()
+
+    renvoie le nombre d'éléments de la pile ;
+  
+sommet()
+
+    renvoie la valeur de l'element en haut de la pile ;
+  
+affiche()
+
+    affiche la pile dans le shell.
+  
+
+Les primitives `taille()` et `affiche()` ne sont pas toujours implémentées.
+
+Pour simplifier l'implémentation, nous implémenterons uniquement des piles
+d'entiers.
+
+## Implémentation
+
+### Présentation
+
+L'implémentation d'une pile se fait naturelement avec une liste chaînée :
+
+    
+    
+    #include <stdio.h>
+    #include <stdlib.h>
+    #include <stdbool.h>
+    
+    // Élement de pile
+    typedef struct ElementPile {
+    	int valeur;
+    	struct ElementPile* suivant;
+    } elementPile;
+    
+    // Pile qui pointe juste vers le premier élément
+    typedef struct PileEntier {
+    	int taille;
+    	elementPile* tete; 
+    } pileEntier;
+    
+    // Création d'une pile vide
+    pileEntier* creationPile() {
+    	pileEntier* pile = malloc(sizeof(pileEntier));
+    	pile->taille = 0;
+    	pile->tete = NULL;
+    	return pile;
+    }
+    
+    void empile(pileEntier* pile, int val) {
+    	// On crée un nouvel élément
+    	elementPile* e = malloc(sizeof(elementPile));
+    	e->valeur = val;
+    	// On le met à la tête de la pile
+    	e->suivant = pile->tete;
+    	pile->tete = e;
+    	pile->taille = pile->taille + 1;
+    }
+    
+    
+    void depile(pileEntier* pile) {
+    	elementPile* e = pile->tete;
+    	// On enlève le premier élément
+    	pile->tete = e->suivant;
+    	free(e);
+    	pile->taille = pile->taille - 1;
+    }
+    
+    int taille(pileEntier* pile) {
+    	return pile->taille;
+    }
+    
+    bool estVide(pileEntier* pile) {
+    	return (pile->taille == 0);
+    }
+    
+    int sommet(pileEntier* pile) {
+    	return pile->tete->valeur;
+    }
+
+### Utilisation
+
+**1)** Pour tester le code, créer une pile vide, empiler `5`, `8` et `17`,
+afficher sa taille, afficher la valeur du sommet, depiler un élément et
+afficher la valeur du sommet.
+
+    
+    
+    int main() {
+    	pileEntier* maPile = creationPile();
+    	empile(maPile, 5);
+    	empile(maPile, 8);
+    	empile(maPile, 7);
+    	printf("%d\n", taille(maPile));
+    	printf("%d\n", sommet(maPile));
+    	depile(maPile);
+    	printf("%d\n", sommet(maPile));
+    }
+
+**2)** Créer une fonction qui affiche une pile verticalement de cette manière
+:
+
+    
+    
+    |7|
+    |8|
+    |5|
+    +-+
+    
+    
+    void affiche(pileEntier* pile) {
+    	elementPile* e = pile->tete;
+    	for (int i = 0; i < pile->taille; i++) {
+    		printf("|%d|\n", e->valeur);
+    		e = e->suivant;
+    	}
+    	printf("+-+\n");
+    }
+
+**3)** Quels sont les avantages et inconvénients de cette implémentation ?
+
+L'accès à la tête de pile est très rapide car elle est directement accessible.
+les actions emplie et dépile sont aussi très rapides pour les memes raisons.
+La place en mémoire est acceptable car elle dépend directement du nombre
+d'éléments dans la pile.
+
+**4)** Pourquoi nous n'allons-nous pas implémenter une pile avec un tableau ?
+
+Cela n'apporte aucun avantage.
+
+[Précédent](listes)[Suivant](files)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

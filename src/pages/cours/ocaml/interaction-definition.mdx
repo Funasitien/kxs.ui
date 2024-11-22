@@ -1,0 +1,199 @@
+---
+title: "Interaction et définitions - Niveau MP2I"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## OCaml
+
+  * [Présentation](.)
+  * [Interaction et définitions](interaction-definition)
+  * [Fonctions](fonctions)
+  * [If … then … else …](if-then-else)
+  * [Fonctions récursives](fonctions-recursives)
+  * [Réels](reels)
+  * [Chaînes de caractères](string)
+  * [Execices 1](exercices-1)
+  * [Listes](listes)
+  * [Unit](unit)
+  * [Produits](produits)
+  * [Enregistrements](enregistrements)
+  * [Énumérations](enumerations)
+  * [Sommes](sommes)
+  * [Filtrage](filtrage)
+  * [Fonctions avancées](fonctions-avancees)
+  * [Aspects impértifs](aspects-imperatifs)
+
+# Interaction et définitions
+
+Nous utiliserons ici uniquement l'interpréteur OCaml (utop de préférence).
+
+## Interaction
+
+Nous interagirons avec l'interpréteur en lui donnant des _phrases_. Une phrase
+se termine par `;;`. C'est à dire que l'interpréteur analysera notre saisie
+uniquement lorsqu'on aura écrit `;;` et appuyé sur « entrée ».
+
+    
+    
+    # 2+2;;
+    - : int = 4
+
+OCaml calcule alors le résultat et l'affiche (le « - » signifie que c'est une
+valeur). Il déduit même le type du résultat : `int`. C'est une force d'OCaml :
+il déduira systématiquement le type de sortie, quelque soit la complexité du
+programme.
+
+Une phrase peut s'étendre sur plusieurs lignes. OCaml n'est pas sensible aux
+multiples espaces et aux sauts de ligne (comme le C) :
+
+    
+    
+    # 2
+    
+    
+         +
+    
+    
+    
+    2
+    
+    
+    ;;
+    - : int = 4
+
+**1)** Essayer différents calculs pour vous familiariser avec l'interpréteur.
+
+## Définitions globales
+
+Il est possible de définir des « noms » ou des « variables » avec le mot-clé
+`let` :
+
+    
+    
+    # let a = 5;;
+    val a : int = 5
+
+`val` indique ici qu'on a attribué un nom à une valeur.
+
+Il est ensuite possible d'utiliser les noms dans d'autres expressions :
+
+    
+    
+    # a * 2;;
+    - : int = 10
+
+**Attention !** Il n'est pas possible de modifier la valeur associée à un nom.
+On peut par contre la redéfinir avec `let`
+
+**2)** Essayer de changer la valeur d'un nom et regarder ce qu'il se passe.
+
+## Définition locale
+
+Si nous avons besoin d'un nom pour un seul calcul, il n'est pas nécessaire
+d'utiliser une déclaration globale. Une déclaration locale peur suffire :
+
+    
+    
+    # let b = 3 in b * b;;
+    - : int = 9
+
+Dans ce cas le nom `b` n'existe que dans l'expression qui suit le mot-clé `in`
+:
+
+    
+    
+    # b;;
+    Error: Unbound value b
+
+Il est possible d'imbriquer des définitions locales :
+
+    
+    
+    # let x = 1 in
+    	let y = x + 1 in
+    		y + 2;;
+    - : int = 4
+
+On peut même redéfinir une variable :
+
+    
+    
+    # let x = 1 in
+    	let x = x + 1 in
+    		x;;
+    - : int = 2
+
+Il est également possible de définir plusieur variables locales en même temps
+avec le mot-clé `and` :
+
+    
+    
+    let x = 2 and y = 3 and z = 4 in
+    x + y + z;;
+    - : int = 9
+
+## Exercices
+
+**3)** Determiner la valeur de l'expression finale dans la phrase suivante :
+
+    
+    
+    let x = 6 in
+    	let y = x + 2 in
+    		let z = y + x in
+    			z + x +y + 3;;
+    
+    
+    31
+
+**4)** Determiner la valeur de l'expression finale dans la phrase suivante :
+
+    
+    
+    let x = 
+    	let y = 3 in
+    		let z = y + 2 in
+    			y + z in
+    	x * x;;
+    
+    
+    64
+
+**5)** Determiner la valeur de l'expression finale dans la phrase suivante :
+
+    
+    
+    let x = 2 in
+    	let y = x + 3 in
+    		let x = y + x in
+    			let z = let x = 1 + y in 2 + x in
+    				x + y + z;;
+    
+    
+    20
+
+## Opérateurs pour les entiers
+
+Les opérateurs des entiers sont les mêmes que pour la plupart des langages :
+
+  * \+ : addition ;
+  * \- : soustraction ;
+  * * : multiplication ;
+  * / : divsion entière ;
+  * mod : modulo.
+
+[Précédent](.)[Suivant](fonctions)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

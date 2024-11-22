@@ -1,0 +1,268 @@
+---
+title: "Représentation des données - Entiers positifs"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## Représentation des données - types de base
+
+  * [Introduction](.)
+  * [Entiers positifs](entiers-positifs)
+  * [Entiers relatifs](entiers-relatifs)
+  * [Entiers : exercices](entiers-exercices)
+  * [Réels](reels)
+  * [Réels : exercices](reels-exercices)
+  * [Booléens](booleens)
+  * [Booléens : exercices](booleens-exercices)
+  * [Chaînes de caractères](chaines-caracteres)
+  * [Chaînes de caractères : exercices](chaines-caracteres-exercices)
+  * [Exercices de révisions](revisions-exercices)
+
+# Écriture d’un entier positif
+
+## La base 10 (décimal)
+
+Pour représenter un nombre nous utilisons tous les jours la base 10. Mais
+comment compte-t-on en base 10 ?
+
+La base 10 s’appelle comme cela car elle contient 10 éléments : 0, 1, 2, 3, 4,
+5, 6, 7, 8 et 9. Pour compter on commence à 0 et on augmente jusqu’à 9.
+Ensuite, pour aller au delà, il faut changer de rang c’est à dire passer des
+unités aux dizaines. On passe donc à 10, puis jusqu’à 19 et on passe les
+dizaines à 2 pour arriver à 20… quand les dizaines sont arrivées à 9, on passe
+aux centaines…
+
+Chaque rang est égal au rang précédent multiplié par l’indice de la base : une
+dizaine est égale à 10 unités, une centaine est égale à 10 dizaines…
+
+Ainsi quand on écrit par exemple 243 en base 10 cela ce traduit de cette façon
+:
+
+24310 = 2x102 \+ 4x101 \+ 3x100
+
+Le 10 en indice signifie que l’on est en base 10. 100 correspond aux unités
+(rang 0), 101 correspond aux dizaines (rang 1) et 102 correspond aux centaines
+(rang 2). C’est la décomposition en base 10.
+
+**1)** Combien de valeurs peut-on représenter sur 3 chiffres en base 10 ?
+
+1000 = 103
+
+**2)** Combien de valeurs peut-on représenter sur n chiffres en base 10 ?
+
+10n
+
+## La base 2 (binaire)
+
+Le binaire est utilisé en informatique car les composants électroniques
+possèdent et savent traiter deux états : 1 (une tension) ou 0 (pas de
+tension). Il a donc fallu tout représenter en binaire. Nous commençons donc
+dans ce chapitre par les entiers positifs. En binaire il n’y a que deux
+éléments : 0 et 1 et on les appelle des bits (contraction de binary digit).
+
+### Compter en binaire
+
+**3)** En appliquant la même règle de comptage que pour la base 10, comptez en
+base 2 jusqu’à 10 :
+
+Base 10 | Base 2  
+---|---  
+0 |   
+1 |   
+2 |   
+3 |   
+4 |   
+5 |   
+6 |   
+7 |   
+8 |   
+9 |   
+10 |   
+  
+Base 10 | Base 2  
+---|---  
+0 | 0  
+1 | 1  
+2 | 10  
+3 | 11  
+4 | 100  
+5 | 101  
+6 | 110  
+7 | 111  
+8 | 1000  
+9 | 1001  
+10 | 1010  
+  
+**4)** Combien de valeurs peut-on représenter sur 1 bit, 2 bits, 3 bits, 4
+bits, n bits ?
+
+  * 1 bit : 2
+  * 2 bit : 2 x 2 = 4
+  * 3 bit : 2 x 2 x 2 = 23 = 8
+  * 4 bit : 24 = 16
+  * n bit : 2n
+
+### Conversion décimal → binaire
+
+Pour un nombre quelconque on ne peut pas compter à partir de zéro pour avoir
+son expression en binaire. Il faut donc une méthode pour convertir un nombre
+décimal en binaire : il faut faire des divisions euclidiennes successives et
+on s’arrête lorsqu’on arrive à 0.
+
+**5)** Faisons ensemble 24310 :
+
+111100112
+
+**6)** Convertir 48 en binaire.
+
+1100002
+
+**7)** Convertir 293 en binaire.
+
+1001001012
+
+### Conversion binaire → décimal
+
+La conversion binaire vers décimal est beaucoup plus simple car il suffit
+d’écrire la décomposition en base 2 du nombre : on multiplie chaque bit par la
+valeur de son rang et on ajoute tout.
+
+**8)** Faisons ensemble 110110112 :
+
+128 + 64 + 16 + 8 + 2 + 1 = 219
+
+**9)** Convertir 101001011102 en décimal.
+
+1326
+
+**10)** Convertir 111010001100100112 en décimal.
+
+119187
+
+## La base 16 (Hexadécimal)
+
+On utilise surtout l’hexadécimal pour représenter des nombres binaires de
+manière plus synthétique. En effet, 4 bits peuvent représenter 16 valeurs,
+cela correspond donc à un élément en hexadécimal.
+
+Mais comment fait-on pour coder les valeurs supérieures à 9 ? On utilise des
+lettres majuscules !
+
+**11)** Compléter alors le tableau ci-dessous :
+
+Base 10 | Base 2 | Base 16  
+---|---|---  
+0 | 0 |   
+1 | 1 |   
+2 | 10 |   
+3 | 11 |   
+4 | 100 |   
+5 | 101 |   
+6 | 110 |   
+7 | 111 |   
+8 | 1000 |   
+9 | 1001 |   
+10 | 1010 |   
+11 | 1011 |   
+12 | 1100 |   
+13 | 1101 |   
+14 | 1110 |   
+15 | 1111 |   
+16 | 10000 |   
+17 | 10001 |   
+  
+Base 10 | Base 2 | Base 16  
+---|---|---  
+0 | 0 | 0  
+1 | 1 | 1  
+2 | 10 | 2  
+3 | 11 | 3  
+4 | 100 | 4  
+5 | 101 | 5  
+6 | 110 | 6  
+7 | 111 | 7  
+8 | 1000 | 8  
+9 | 1001 | 9  
+10 | 1010 | A  
+11 | 1011 | B  
+12 | 1100 | C  
+13 | 1101 | D  
+14 | 1110 | E  
+15 | 1111 | F  
+16 | 10000 | 10  
+17 | 10001 | 11  
+  
+On remarque que les valeurs en hexadécimal vont jusqu’à F et on a donc :
+
+1510 = 11112 = F16
+
+### Conversion binaire → hexadécimal
+
+Pour convertir un nombre binaire en hexadécimal on regroupe les bits par
+quatre (on rajoute éventuellement des zéros à gauche) et on remplace les
+groupes de quatre par leur valeur en hexadécimal.
+
+**12)** Faisons ensemble 10110110112 :
+
+2DB16
+
+**13)** Convertir 01100110112 en hexadécimal.
+
+19B16
+
+**14)** Convertir 1101110110100100112 en hexadécimal.
+
+3769316
+
+### Conversion hexadécimal → binaire
+
+On remplace ici chaque valeur par son équivalent sur quatre bits.
+
+**15)** Faisons ensemble 4E16 :
+
+010011102
+
+**16)** Convertir 6C416 en binaire.
+
+110110001002
+
+**17)** Convertir BD03916 en binaire.
+
+101111010000001110012
+
+### Conversion décimal → hexadécimal
+
+Il existe deux méthodes :
+
+  * on passe par le binaire (plus long mais se fait sans calculatrice)
+  * on fait les divisions euclidiennes successive par 16 comme pour le binaire (plus court mais il faut faire des divisions par 16)
+
+**18)** Convertissons 37010 par les deux méthodes :
+
+**19)** Convertissez 356210 en hexadécimal par la méthode de votre choix.
+
+### Conversion hexadécimal → décimal
+
+Il existe également deux méthodes :
+
+  * on passe par le binaire (plus long mais plus simple)
+  * on utilise la décomposition en base 16 (court mais il faut connaître les puissances de 16 !)
+
+**20)** Prenons l’exemple de A716 :
+
+**21)** Convertissez 5B1D16 en décimal par la méthode de votre choix.
+
+[Précédent](.)[Suivant](entiers-relatifs)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

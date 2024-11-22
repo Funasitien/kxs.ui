@@ -1,0 +1,190 @@
+---
+title: "Graphes - Terminale NSI"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## Graphes et algorithmes
+
+  * [Introduction](.)
+  * [Graphes](graphes)
+  * [Arbres](arbres)
+  * [Arbres binaires](arbres-binaires)
+  * [Algo arbres binaires (1)](algo-arbres-binaires-1)
+  * [Implémentation arbres](implementation-arbres)
+  * [Algo arbres binaires (2)](algo-arbres-binaires-2)
+  * [Algo graphes](algo-graphes)
+  * [Implémentation graphes](implementation-graphes)
+
+# Graphes
+
+## Définition
+
+Un graphe est un objet mathématique très simple avec lequel on peut faire des
+choses extrêmement compliquées. Il est constitué de _sommets_ (ou nœuds)
+reliés par des _arêtes_ (ou liens). Si les arêtes sont fléchées, on parle de
+_graphe orienté_ sinon on parle de _graphe non-orienté_. Dans un graphe
+orienté, on appelle _parents_ d'un nœud, les nœuds qui pointent vers lui. On
+appelle _fils_ d'un nœud, les nœuds vers lesquels il pointe.
+
+Un graphe peut représenter un réseau social, des liens d'amitié, un réseau
+routier.
+
+**1)** Pour le graphe ci-dessous, dire s'il est orienté ou non, donner le
+nombre de sommets et le nombre d'arêtes.
+
+![Graphe avec six sommets et des flèches](img/graphe_oriente.svg)
+
+C'est un graphe orienté (il y a des flèches). Il a 6 sommets et 8 arêtes.
+
+**2)** Pour le graphe ci-dessous, dire s'il est orienté ou non, donner le
+nombre de sommets et le nombre d'arêtes.
+
+![Graphe avec cinq sommets sans flèches](img/graphe_non_oriente.svg)
+
+C'est un graphe non-orienté (il n'y a pas de flèches). Il a 5 sommets et 6
+arêtes.
+
+On utilisera parfois des graphes pondérés pour représenter par exemple des
+distances sur une carte. Dans un tel graphe, les arêtes sont associées à un
+poids :
+
+![Graphe avec cinq sommets, sans flèches et avec des valeurs sur les
+arêtes](img/graphe_pondere.svg)
+
+## Propriétés
+
+Les propriété les plus communes pour parler d'un graphe sont les suivantes :
+
+  * une _chaîne_ (ou _chemin_) est une suite d'arêtes consécutives ;
+  * la longueur d'un chaîne est le nombre d'arêtes qui la compose ;
+  * la _distance_ entre deux sommets est la longueur de la chaîne la plus courte entre ces deux sommets ;
+  * un _cycle_ est une chaîne fermée composée d'arêtes distinctes. C'est à dire qui commence et termine par le même sommet et qui n'empreinte pas deux fois la même arête.
+
+**3)** Pour le graphe ci-dessous, trouvez deux cycles. Donnez également la
+distance entre A et D.
+
+![Graphe avec cinq sommets sans flèches](img/graphe_non_oriente.svg)
+
+Voici les trois cycles possibles : DCBD, DCEBD et CEBC. La distance entre A et
+B est 2.
+
+## Représentation
+
+Nous avons utilisé intuituvement une représentation visuelle d'un graphe. Mais
+nous aurions pû utiliser une description textuelle d'un graphe. Par exemple
+pour celui de la question 2 :
+
+  * A est relié à E ;
+  * B est relié à C, D et E ;
+  * C est relié à B, D et E ;
+  * D est relié à C et B ;
+  * E est relié à A, B et C.
+
+**4)** Dessinez le graphe correspondant à la description ci-dessous :
+
+Kevin Mattéo Tom Emma Claire David
+
+  * Tom est ami avec Emma, Claire et Mattéo ;
+  * Claire est amie avec Tom, Emma et David ;
+  * Mattéo est ami avec Tom et Kevin ;
+  * Emma est amie avec Tom et Claire ;
+  * David est ami avec Claire ;
+  * Kevin est ami avec Mattéo.
+
+**5)** Dessinez le graphe correspondant à la description ci-dessous :
+
+  * A est à 12 km de B ;
+  * B est à 12 km de A, 9 km de C et 25 km de D ;
+  * C est à 9 km de B ;
+  * D est à 25 km de B et 6 km de E ;
+  * E est à 6 km de D.
+
+## Implémentations
+
+On parle d'implémentation lorsqu'il s'agit de « représenter » un graphe dans
+un système informatique. Même si nous ne verrons pas directement comment on
+implémente un graphe en Python nous allons parler des deux principales
+implémentations d'un graphe.
+
+### Matrice d'adjacence
+
+Une matrice n'est qu'un tableau à double entrée :
+
+![Matrice 3x4](img/matrice.svg)
+
+Nous avons ci-dessus une matrice à 3 lignes et 4 colonnes. En mathématiques on
+utilise les matrices pour effectuer des calculs, nous les utiliserons ici
+simplement comme des tableaux à deux dimensions.
+
+Une matrice d'adjacence est une matrice carrée (même nombre de lignes que de
+colonnes) où chaque ligne et chaque colonne représentent un sommet. Pour un
+graphe non-orienté on mettra un « 1 » sur la case [i][j] s'il y a une arête
+entre le sommet i et le sommet j, et un « 0 » sinon. Pour un graphe orienté on
+mettra un « 1 » sur la case [i][j] s'il y a une arête du sommet i vers le
+sommet j, et un « 0 » sinon. Pour un graphe pondéré on mettra sur la case
+[i][j] le poids du lien entre le sommet i et le sommet j.
+
+**6)** Donnez la matrice d'adjacence du graphe ci-dessous.
+
+![Graphe avec cinq sommets sans flèches](img/graphe_non_oriente.svg)
+
+**7)** Donnez la matrice d'adjacence du graphe ci-dessous.
+
+![Graphe avec six sommets et des flèches](img/graphe_oriente.svg)
+
+**8)** Donnez la matrice d'adjacence du graphe ci-dessous.
+
+![Graphe avec cinq sommets, sans flèches et avec des valeurs sur les
+arêtes](img/graphe_pondere.svg)
+
+### Listes d'adjacence
+
+Pour un graphe non orienté, une liste d'adjacence associe à chaque sommet la
+liste de ses voisins. Par exemple, pour le graphe ci-dessous
+
+![Graphe avec cinq sommets sans flèches](img/graphe_liste.svg)
+
+La liste d'adjacence serait :
+
+  * A → [B, C, E] ;
+  * B → [A] ;
+  * C → [A, D] ;
+  * D → [C, E] ;
+  * E → [A, D].
+
+Pour un graphe orienté, une liste d'adjacence associe à chaque sommet la liste
+de ses successeurs. C'est à dire les sommets vers lesquels il pointe. Il est
+également possible de faire une liste d'adjacence des prédécesseurs, ou même
+les deux pour des raisons de symétrie.
+
+**9)** Donnez la liste d'adjacence du graphe ci-dessous.
+
+![Graphe avec cinq sommets sans flèches](img/graphe_non_oriente.svg)
+
+**10)** Donnez la liste d'adjacence des successeurs du graphe ci-dessous.
+
+![Graphe avec six sommets et des flèches](img/graphe_oriente.svg)
+
+### Choix d'implémentation
+
+On utilisera une matrice d'adjacence dans le cas d'un graphe avec beaucoup de
+liens (on parle de graphe dense) et une liste d'adjacence dans le cas
+contraire. Cela permettera de gagner de la mémoire. Le choix peut aussi
+dépendre de l'utilité du graphe. En fonction de l'algorithme utilisé, on
+pourra préférer une implémentation à l'autre.
+
+[Précédent](.)[Suivant](arbres)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

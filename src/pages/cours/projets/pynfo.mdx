@@ -1,0 +1,232 @@
+---
+title: "Projet : PyNFO - Première NSI"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## Projets
+
+  * [Notation](.)
+  * [Dé aléatoire](de)
+  * [Filtres photo](filtres-photo)
+  * [Puissance 4](puissance-4)
+  * [Jeu de la vie](jeu-de-la-vie)
+  * [Pandémie](pandemie)
+  * [Contacts](contacts)
+  * [Labyrinthe](labyrinthe)
+  * [Grenouille hurlante](grenouille-hurlante)
+  * [Contacts Plus](contacts-plus)
+  * [PyNFO](pynfo)
+  * [Machine de vote](machine-vote)
+  * [IMDb](imdb)
+  * [Envahisseurs](envahisseurs)
+  * [Chronos](chronos)
+  * [Icq](icq)
+  * [Tetris](tetris)
+  * [Casse briques](casse-briques)
+
+# PyNFO
+
+## Prérequis
+
+  * structures de contrôle ;
+  * boucles ;
+  * fonctions ;
+  * tableaux ;
+  * modules ;
+
+## Présentation
+
+Les fichiers .nfo sont utilisés principalement sur les plateformes d'échange
+illégal de fichiers. Ce sont de simples fichiers texte qui permettent de
+rassembler les informations importantes sur les fichiers échangés. Pas de
+panique, nous n'alllons rien faire d'illégal ici ! Nous allons juste créer un
+programme en Python permettant de générer automatiquement le fichier nfo pour
+un album de musique à partir des fichiers MP3. Vous disposez de l'album Dookie
+de Green Day sur votre ordinateur. Demandez au professeur où le trouver.
+
+## Fichier nfo
+
+### Exemple
+
+Voici un exemple de fichier nfo pour l'album dont vous disposez :
+
+    
+    
+    ----------------------------------------------------------------------
+                              Green Day - Dookie
+    ----------------------------------------------------------------------
+    
+    Artist..............: Green Day
+    Album...............: Dookie
+    Genre...............: Punk Rock
+    Year................: 2004
+    Ripper..............: LAME 3.100.0+
+    Format..............: MPEG Audio Layer 3 (MP3)
+    Quality.............: 320 kbps
+    Channels............: 2
+    Sampling rate.......: 44.1 kHz
+    Mode................: Joint stereo
+    Cover...............: Front
+    
+    
+    ----------------------------------------------------------------------
+                                 Tracklisting
+    ----------------------------------------------------------------------
+    
+       01. Green Day - BURNOUT                                     [02:07]
+       02. Green Day - Having a blast                              [02:44]
+       03. Green Day - Chump                                       [02:54]
+       04. Green Day - Long view                                   [03:59]
+       05. Green Day - Welcome to paradise                         [03:44]
+       06. Green Day - Pulling teeth                               [02:30]
+       07. Green Day - Basket case                                 [03:03]
+       08. Green Day - She                                         [02:14]
+       09. Green Day - Sassafras roots                             [02:37]
+       10. Green Day - When I come around                          [02:58]
+       11. Green Day - Coming clean                                [01:34]
+       12. Green Day - Emenius sleepus                             [01:43]
+       13. Green Day - In the end                                  [01:46]
+       14. Green Day - F.O.D                                       [05:47]
+    
+    
+    Playing time........: 39:46
+    Total size..........: 91.25 Mb
+
+### Contenu du fichier nfo
+
+Il n'y a pas de format imposé pour les fichiers nfo, seulement un nombre
+minimum d'informations qui doivent y figurer obligatoirement. Vous devrez donc
+créer un fichier comme celui de l'exemple. Voici tout de même quelques
+précisions pour fixer certaines choses :
+
+  * les lignes font 70 caractères de long ;
+  * les titres de deux parties sont centrés ;
+  * s'il y a un fichier .jpg dans le dossier, on supposera que c'est la couverture et on indiquera « cover : front » comme dans l'exemple. Sinon on ne mettra rien ;
+  * la taille totale comprend la couverture de l'album ;
+  * la taille est exprimée en mébi octets (mais notée MB) ;
+  * on gardera le format « numero. artiste - titre » pour la liste des pistes ;
+  * le format sera toujours « MPEG Audio Layer 3 (MP3) ».
+
+### Obtenir les informations
+
+#### Mutagen
+
+Il est bien sûr possible d'obtenir ces informations dans les fichiers MP3 à
+l'aide de nombreux logiciels puis de créer manuellement le fichier nfo. Mais,
+pour gagner du temps nous allons créer un programme Python permettant de faire
+cela intantanément. Nous allons utiliser le module
+[Mutagen](https://mutagen.readthedocs.io/en/latest/). Nous aurons besoin
+d'importer deux composantes de ce module :
+
+    
+    
+    from mutagen.mp3 import MP3
+    from mutagen.id3 import ID3
+
+MP3 permet d'obtenir des informations techniques sur les fichiers et ID3 des
+informations sur les pistes. Voici comment obtenir ce dont nous aurons besoin
+dans ce projet :
+
+    
+    
+    from mutagen.mp3 import MP3
+    from mutagen.id3 import ID3
+    
+    # filename contient le chemin vers un fichier MP3
+    
+    info = ID3(filename)
+    # Numero de la pistes
+    numero = info["TRCK"].text[0]
+    # Titre de la piste
+    titre = info["TIT2"].text[0]
+    # Nom de l'artiste ou du goupe
+    artiste = info['TPE1'].text[0]
+    # Nom de l'album
+    album = info["TALB"].text[0]
+    # Genre de l'album
+    genre = info["TCON"].text[0]
+    # Année de sortie
+    year = info["TDRC"].text[0]
+    
+    
+    audio = MP3(filename)
+    # Longugeur en secondes de la piste
+    longueur = audio.info.length
+    # Le nombre de channels audio
+    channels = audio.info.channels
+    # Le débit (bitrate) en bits par seconde
+    bitrate = audio.info.bitrate
+    # Le sampling rate (fréquence d'échantillonnage) en Hz
+    sampling_rate = audio.info.sample_rate
+    # Le bitrate mode (on ne l'utilisera pas ici)
+    bit_rate_type = str(audio.info.bitrate_mode)[-3:]
+    # Le ripper (extracteur) utilisé
+    ripper = audio.info.encoder_info
+    # Le mode (0 : Stereo ; 1 : Joint stereo ; 2 : Dual channel ; 3 : Mono)
+    mode = audio.info.mode
+
+#### Autres infos
+
+Voici un extrait de code permettant de lister tous les fichiers du répertoire
+courant et de les trier par ordre alphabétique :
+
+    
+    
+    from os import walk
+    
+    files = []
+    for (dirpath, dirnames, filenames) in walk("."):
+        for file in filenames:
+            files.append(dirpath+"/"+file)
+    
+    files.sort()
+
+Voici comment obtenir la taille d'un fichier :
+
+    
+    
+    import os
+    
+    os.path.getsize(filename)
+
+## Travail
+
+À partir de toutes ces informations, créez un programme Python permettant de
+générer un fichier nfo pour n'importe quel album. Dans un premier temps, vous
+pouvez placer votre programme dans le même dossier que les fichiers MP3. Si
+vous avez le temps, vous pourrez ajouter du [ASCII
+Art](https://fr.wikipedia.org/wiki/Art_ASCII) pour personaliser votre nfo.
+
+## Tableau du barème
+
+Voilà le barème complet sur 20 pour ce projet.
+
+Tâche | Barème  
+---|---  
+info génériques | 5 points  
+cover | 1 points  
+titre et tracklisting | 1 points  
+titre pistes | 2 point  
+temps pistes | 2 points  
+Playing time | 1 point  
+Total size | 1 point  
+file.nfo | 2 points  
+allure générale | 1 points  
+commentaires | 1 points  
+code propre | 1.5 point  
+code optimisé | 1.5 points  
+Totals | 20  
+  
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

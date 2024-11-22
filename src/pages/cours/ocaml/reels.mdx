@@ -1,0 +1,171 @@
+---
+title: "Réels en OCaml - Niveau MP2I"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## OCaml
+
+  * [Présentation](.)
+  * [Interaction et définitions](interaction-definition)
+  * [Fonctions](fonctions)
+  * [If … then … else …](if-then-else)
+  * [Fonctions récursives](fonctions-recursives)
+  * [Réels](reels)
+  * [Chaînes de caractères](string)
+  * [Execices 1](exercices-1)
+  * [Listes](listes)
+  * [Unit](unit)
+  * [Produits](produits)
+  * [Enregistrements](enregistrements)
+  * [Énumérations](enumerations)
+  * [Sommes](sommes)
+  * [Filtrage](filtrage)
+  * [Fonctions avancées](fonctions-avancees)
+  * [Aspects impértifs](aspects-imperatifs)
+
+# Réels
+
+## Définition
+
+Un réel en OCaml est un nombre avec un point `.` :
+
+    
+    
+    # 5.4;;
+    - : float = 5.4
+
+On peut également utiliser la notation scientifique avec `e` ou `E` :
+
+    
+    
+    # 5.4e-3;;
+    - : float = 0.0054
+    5.4E-3;;
+    - : float = 0.0054
+
+## Opérateurs pour les réels
+
+Les opérateurs des réels sont les mêmes que ceux des entiers mais suivis d'un
+point (sauf `**` qui n'existe pas pour les entiers):
+
+  * +. : addition ;
+  * -. : soustraction ;
+  * *. : multiplication ;
+  * /. : divsion entière ;
+  * ** : puissance ;
+
+Il n'est pas possible d'effectuer des opérations avec des entiers et des
+réels, c'est d'ailleurs pour cela que les opérateurs ne sont pas les mêmes.
+Par exemple il n'est pas correct d'écrire `1 + 1.0`.
+
+## Fonctions mathématiques sur les réels
+
+Il existe de nombreuses fonctions mathématique en OCaml, en voici quelques-
+unes :
+
+  * `sqrt` (racine carrée)
+  * `exp` (exponentielle de base e)
+  * `log` (logarithme népérien)
+  * `sin`
+  * `cos`
+  * `tan`
+  * …
+
+## Fonctions de troncature
+
+  * `floor` : arrondit à l'entier inférieur mais le résultat est un réel
+  * `ceil` : arrondit à l'entier supérieur mais le résultat est un réel
+
+## Fonctions de conversion
+
+Il est possible de passer d'un entier à un réel et d'un réel à un entier :
+
+  * `float_of_int` : convertit un entier en réel
+  * `int_of_float` : convertit un réel en entier en enlevant la partie décimale
+
+## Exercices
+
+**1)** Déterminer les résultats des expressions suivantes sans utiliser
+l'interpréteur OCaml (il peut y avoir des erreurs) :
+
+  1. `1e-2 +. 2.5 *. 2.0 -. 1e+2;;`
+  2. `-. 1.0 /. 2.0;;`
+  3. `4 +. 1.2;;`
+  4. `1.3 + 1.2;;`
+
+    
+    
+    # 1e-2 +. 2.5 *. 2.0 -. 1e+2;;
+    - : float = -94.99
+    
+    # -. 1.0 /. 2.0;;
+    - : float = -0.5
+    
+    # 4 +. 1.2;;
+    Error: This expression has type int but an expression was expected of type
+             float
+      Hint: Did you mean `4.'?
+    
+    # 1.3 + 1.2;;
+    Error: This expression has type float but an expression was expected of type
+             int
+
+**2)** Déterminer les résultats des expressions suivantes sans utiliser
+l'interpréteur OCaml (il peut y avoir des erreurs) :
+
+  1. `sqrt(4.0);;`
+  2. `sqrt(4);;`
+  3. `float_of_int(4) /. 2.0 ;;`
+  4. `int_of_float(2.6) ;;`
+  5. `int_of_float(-3.7) ;;`
+  6. `floor(2.6) ;;`
+  7. `floor(-3.7) ;;`
+  8. `ceil(2.6) ;;`
+  9. `ceil(-3.7) ;;`
+
+    
+    
+    # sqrt(4.0);;
+    - : float = 2.
+    
+    # sqrt(4);;
+    Error: This expression has type int but an expression was expected of type
+             float
+      Hint: Did you mean `4.'?
+    
+    # float_of_int(4) /. 2.0 ;;
+    - : float = 2.
+    
+    # int_of_float(2.6);;
+    - : int = 2
+    
+    # int_of_float(-3.7) ;;
+    - : int = -3
+    
+    # floor(2.6) ;;
+    - : float = 2.
+    
+    # floor(-3.7) ;;
+    - : float = -4.
+    
+    # ceil(2.6) ;;
+    - : float = 3.
+    
+    # ceil(-3.7) ;;
+    - : float = -3.
+
+[Précédent](fonctions-recursives)[Suivant](string)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

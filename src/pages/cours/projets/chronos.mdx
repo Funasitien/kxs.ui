@@ -1,0 +1,229 @@
+---
+title: "Projet Chronos - Dessiner automatiquement une frise chronologique"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## Projets
+
+  * [Notation](.)
+  * [Dé aléatoire](de)
+  * [Filtres photo](filtres-photo)
+  * [Puissance 4](puissance-4)
+  * [Jeu de la vie](jeu-de-la-vie)
+  * [Pandémie](pandemie)
+  * [Contacts](contacts)
+  * [Labyrinthe](labyrinthe)
+  * [Grenouille hurlante](grenouille-hurlante)
+  * [Contacts Plus](contacts-plus)
+  * [PyNFO](pynfo)
+  * [Machine de vote](machine-vote)
+  * [IMDb](imdb)
+  * [Envahisseurs](envahisseurs)
+  * [Chronos](chronos)
+  * [Icq](icq)
+  * [Tetris](tetris)
+  * [Casse briques](casse-briques)
+
+# Chronos
+
+## Prérequis
+
+  * structures de contrôle ;
+  * boucles ;
+  * tableaux ;
+  * fonctions ;
+  * modules ;
+  * Programmation orientée objet.
+
+## Présentation
+
+Vous allez réaliser un programme permettant de dessiner automatiquement une
+frise chronologique à partir d'une liste d'évènements. Nous allons commencer
+par une frise simple, puis nous ajouterons des dificultés au fur et à mesure.
+
+## Outils
+
+### SVG
+
+Nous utiliserons le format SVG ([Scalable Vector
+Graphics](https://fr.wikipedia.org/wiki/Scalable_Vector_Graphics)) qui permet
+de faire du [dessin
+vectoriel](https://fr.wikipedia.org/wiki/Image_vectorielle). L'avantage du SVG
+est qu'il est au format texte. Il est donc relativement facile de créer un
+ficher SVG avec un programme : il suffit d'écrire dans un fichier ce que l'on
+veut dessiner.
+
+Il existe déjà plusieurs bibliothèques pour créer des images SVG à partir de
+Python : [svgwrite](https://pypi.org/project/svgwrite/) ou
+[pysvg](https://codeboje.de/pysvg/). Elles sont complètes mais manquent de
+simplicité. C'est pourquoi je vous propose d'utiliser
+[svgnsi.py](/files/python/svgnsi.py) pour ce projet. Cette bibliothèque permet
+de tracer des lignes, des rectangles, des cercles et d'écrire du texte. Toutes
+les fonctionnalités sont expliquées dans le code source.
+
+### Chronos
+
+Nous utiliserons la programmation orientée objet pour créer notre frise
+chronologique. Voici une ébauche du progrmme `chronos.py` que vous devrez
+compléter et améliorer :
+
+    
+    
+    from svgnsi import *
+    
+    class Event:
+        """
+            Évènement défini par un titre, un jour, un moi et une année.
+        """
+        def __init__(self, title, day, month, year):
+            self.title = title
+            self.day = day
+            self.month = month
+            self.year = year
+            # Calcul grossier du nombre de jours depuis JC
+            # Permet de trier chronologiquement les évènements
+            self.timecode = year*366 + month*31 + day
+    
+        def display(self):
+            """
+                Renvoie la date et le titre d'un évènement dans une chaîne de caractère.
+    
+                Exemple : "24 Novembre 2019 : La Fille de Vercingétorix"
+            """
+            pass
+    
+    class Period:
+        """
+            Période définie par un titre et deux évènements (un pour le début et un pour la fin)
+            Le titre des évènement n'a pas d'importance.
+        """
+        pass
+    
+    class Timeline:
+        """
+            Frise chronologique pouvant contenir des évènements et des périodes.
+            Seulement les énvènements sont traités actuellement.
+        """
+    
+        def __init__(self, name):
+            self.listEvent = []
+            self.name = name
+    
+        def addEvent(self, event):
+            self.listEvent.append(event)
+            # On remet la lsite dans l'ordre chronologique
+            self.listEvent.sort(key=lambda event: event.timecode)
+    
+        def display(self):
+            """
+                Affiche la liste des évènements et des périodes dans le shell
+            """
+            pass
+    
+        def minMaxEvent(self):
+            """
+                Renvoie les timecodes du premier et du dernier évènement.
+            """
+            return self.listEvent[0].timecode, self.listEvent[-1].timecode
+    
+    
+        def toSVG(self):
+            """
+                Dessine la frise en utilisant la bibliothèque svgnsi.
+            """
+            pass
+    
+    
+    # Création de frise avec quelques BD d'Astérix
+    timeline = Timeline("asterix")
+    timeline.addEvent(Event("Astérix le Gaulois", 0, 0, 1961))
+    timeline.addEvent(Event("La serpe d'or", 0, 0, 1962))
+    timeline.addEvent(Event("Astérix chez les Pictes", 0, 0, 2013))
+    timeline.addEvent(Event("La Fille de Vercingétorix",24,10,2019))
+    timeline.addEvent(Event("Astérix en Corse",0,0,1973))
+    timeline.addEvent(Event("Le grand fossé",0,0,1980))
+    timeline.addEvent(Event("Astérix chez les Bretons",0,0,1966))
+    timeline.addEvent(Event("La galère d'Obélix",0,0,1996))
+    timeline.addEvent(Event("Le ciel lui tombe sur la tête",0,0,2005))
+    timeline.addEvent(Event("Astérix chez Rahàzade",0,0,1987))
+    timeline.addEvent(Event("Astérix gladiateur",0,0,1964))
+
+## Travail demandé
+
+### Création de Event.display
+
+Créez la méthode `display` de la classe `Event`. Cette méthode doit retourner
+une chaîne de caractères contenant toutes les informations de l'évènement.
+Elle doit être lisible par un humain.
+
+### Création de Timeline.display
+
+Créez la méthode `display` de la classe `Timeline`. Cette méthode doit
+afficher la liste des évènements de la frise dans le shell.
+
+### Création de Timeline.toSVG
+
+Créez la méthode `toSVG` de la classe `Timeline`. Cette méthode doit créer une
+frise en SVG avec tous les évènements. On pourra les afficher au dessus de la
+frise légèrement penchés. Voici un exemple simple d'affichage :
+
+1961 : Astérix le Gaulois 1962 : La serpe d'or 1964 : Astérix gladiateur  1966
+: Astérix chez les Bretons 1973 : Astérix en Corse 1980 : Le grand fossé 1987
+: Astérix chez Rahàzade  1996 : La galère d'Obélix 2005 : Le ciel lui tombe
+sur la tête 2013 : Astérix chez les Pictes 24 Novembre 2019 : La Fille de
+Vercingétorix
+
+### Period
+
+Créez la classe `Period`. Elle permet de définir une période. Elle doit au
+moins posséder une méthode `__init__` et une méthode `display`. Elle doit
+également avoir un attribut `timecode` correspondant au début de la prériode
+pour pouvoir être triée. Vous pourrez ajouter les périodes des différents
+scénaristes Goscinny, Uderzo et Ferri.
+
+### Création de Timeline.addPeriod
+
+Créez la méthode `addPeriod` de la classe `Timeline`. Cette méthode doit
+ajouter une période à la frise. Il faudra certainement modifer d'autres
+méthodes pour prendre en compte cet ajout.
+
+### Compléter Timeline.display
+
+Compléter la méthode `display` de la classe `Timeline` de façon à afficher les
+périodes.
+
+### Compléter Timeline.toSVG
+
+Compléter la méthode `toSVG` de la classe `Timeline` de façon à afficher les
+périodes dans le SVG. On pourra les afficher en dessous de la frise.
+
+### Années identiques
+
+Ajouter l'évènement suivant à votre frise :
+
+    
+    
+    timeline.addEvent(Event("Le combat des chefs",0,0,1966))
+
+Si cela pose un problème d'affichage sur la frise, trouvez une solution pour
+que l'affichage soit lisible.
+
+### Superposition des périodes
+
+Gérez la superposition des périodes sur la frise en les décalant
+verticalement. Pour vos tests vous pourrez ajouter les périodes des
+dessinateurs Uderzo et Conrad.
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

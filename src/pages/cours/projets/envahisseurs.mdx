@@ -1,0 +1,291 @@
+---
+title: "Projet : Envahisseurs - Première NSI et Terminale NSI"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## Projets
+
+  * [Notation](.)
+  * [Dé aléatoire](de)
+  * [Filtres photo](filtres-photo)
+  * [Puissance 4](puissance-4)
+  * [Jeu de la vie](jeu-de-la-vie)
+  * [Pandémie](pandemie)
+  * [Contacts](contacts)
+  * [Labyrinthe](labyrinthe)
+  * [Grenouille hurlante](grenouille-hurlante)
+  * [Contacts Plus](contacts-plus)
+  * [PyNFO](pynfo)
+  * [Machine de vote](machine-vote)
+  * [IMDb](imdb)
+  * [Envahisseurs](envahisseurs)
+  * [Chronos](chronos)
+  * [Icq](icq)
+  * [Tetris](tetris)
+  * [Casse briques](casse-briques)
+
+# Envahisseurs
+
+## Prérequis
+
+  * structures de contrôle ;
+  * boucles ;
+  * tableaux ;
+  * fonctions ;
+  * modules ;
+  * programmation orientée objet (pour les terminales)
+
+**Ce projet peut être fait aussi bien par des premières que des terminales.
+Les terminales le feront en POO.**
+
+## Présentation
+
+[Space Invaders](https://fr.wikipedia.org/wiki/Space_Invaders) est un jeu de
+borne d'arcade sorti en 1978. C'est un jeu de « shoot them up » fixe qui fut
+extrèmement populaire et influent. Nous allons donc tenter de faire un jeu
+ressemblant à Space Invaders.
+
+Pour cela nous allon utiliser la bibliothèque
+[Pyxel](https://github.com/kitao/pyxel) qui permet de créer des jeux rétro.
+
+## Architecture
+
+En fonction de votre classe, vous n'allez pas utiliser la même architecture.
+Les premières utiliserons la programmation impérative et les terminales la
+programmation objet.
+
+### Programmation impérative (Premières)
+
+Voici une architecture de départ pour le jeu. Elle permet de seulement faire
+bouger le vaisseau vers la droite.
+
+    
+    
+    import pyxel
+    
+    # Création de la fenêtre
+    pyxel.init(120, 200)
+    
+    # Caractéristiques du vaisseau
+    x_vaisseau = 60
+    y_vaisseau = 180
+    taille_vaisseau = 8
+    
+    def update():
+        """
+            Mise à jour des positions et des états.
+            Pas d'affichage ici !
+        """
+        # Déplacement à droite
+        if pyxel.btn(pyxel.KEY_RIGHT):
+            deplace_vaisseau(1,0)
+    
+    def draw():
+        """
+            Affichage des éléments.
+        """
+        pyxel.cls(0)
+        affiche_vaisseau()
+    
+    
+    def deplace_vaisseau(dx, dy):
+        """
+            Déplacement du vaisseau
+        """
+        # On déclare les variables globales pour pouvoir les modifier
+        global x_vaisseau, y_vaisseau
+    
+        x_vaisseau = x_vaisseau + dx
+        y_vaisseau = y_vaisseau + dy
+    
+    
+    def affiche_vaisseau():
+        """
+            Affichage du vaisseau
+        """
+        decal = taille_vaisseau // 2
+        pyxel.rectb(x_vaisseau - decal, y_vaisseau - decal, taille_vaisseau, taille_vaisseau, 7)
+    
+    
+    # On lance le moteur de Pyxel
+    pyxel.run(update, draw)
+
+### Programmation objet (Terminales)
+
+Voici une architecture de départ pour le jeu. Elle permet de seulement faire
+bouger le vaisseau vers la droite.
+
+    
+    
+    import pyxel
+    
+    class Ship:
+        """
+            Vaisseau principal
+        """
+        def __init__(self, x, y):
+            """
+                Caractéristiques du vaisseau.
+                C'est un carré dans un premier temps.
+            """
+            self.x = x
+            self.y = y
+            self.taille = 8
+    
+        def draw(self):
+            """
+                Affichage du vaisseau
+            """
+            decal = self.taille // 2
+            pyxel.rectb(self.x - decal, self.y - decal, self.taille, self.taille, 7)
+    
+        def move(self, dx, dy):
+            """
+                Déplacement du vaisseau
+            """
+            self.x += dx
+            self.y += dy
+    
+    
+    class App:
+        def __init__(self):
+            """
+                Initialisation de la fenêtre et des éléments
+            """
+            # Fenêtre de 120 par 200 pyxels
+            pyxel.init(120, 200)
+            # Vaisseau en (60,180)
+            self.ship = Ship(60,180)
+            # On lance le moteur du jeu
+            pyxel.run(self.update, self.draw)
+    
+        def update(self):
+            """
+                Mise à jour des positions et des états.
+                Pas d'affichage ici !
+            """
+            # Déplacement à droite
+            if pyxel.btn(pyxel.KEY_RIGHT):
+                self.ship.move(1,0)
+    
+        def draw(self):
+            """
+                On affiche les éléments
+            """
+            # On rempli le fond avec une couleur
+            pyxel.cls(0)
+            # On affiche le vaisseau
+            self.ship.draw()
+    
+    
+    App()
+
+## Cahier des charges
+
+Vous trouverez toutes les informations nécessaires sur la [page Github de
+Pyxel](https://github.com/kitao/pyxel).
+
+Voici un premier cahier des charges :
+
+  * faire bouger le vaisseau vers la gauche ;
+  * créer un groupe d'ennemis ;
+  * lancer un missile en appuyant sur la touche espace (on utilisera pyxel.btnr() pour éviter la répétition) ;
+  * faire disparaitre un ennemei lorsqu'il est touché par un missile (on fera aussi disparaitre le missile) ;
+  * faire exploser un ennemei lorsqu'il est touché par un missile ;
+  * faire bouger les ennemis ;
+  * faire lancer des missiles par les ennemis ;
+  * faire exploser le vaisseau lorsqu'il est touché par un missile ;
+  * compter les points et les afficher ;
+  * afficher de nouveaux ennemis lorsque tout le groupe est mort ;
+  * faire descendre les ennemis ;
+  * faire bouger les ennemis de plus en plus vite ;
+  * faire exploser le vaisseau lorsqu'il est touché par un ennemi ;
+  * utiliser les fonctionalités de Pyxel pour dessiner des jolis vaisseaux et ajouter des sons (voir ci-dessous).
+
+## Graphismes
+
+Nous allons voir comment ajouter des images en pixel art dans votre jeu.
+
+### Banque d'images
+
+Le plus simple est de créer une « banque d'images » avec l'utilitaire fourni
+par Pyxel. Pour le lancer il faut taper dans la console linux :
+
+    
+    
+    pyxel edit ressources.pyxres
+
+Cela va créer un fichier `ressources.pyxres` qui pourra contenir des images,
+des sons et des musiques. Vous pouvez alors créer plusieurs petites images
+regroupées sur une même grande image (on appelle ça un «
+[sprite](https://fr.wikipedia.org/wiki/Sprite_\(jeu_vid%C3%A9o\)) »). Il
+faudra ensuite aller les chercher au bon endroit pour les afficher dans votre
+jeu.
+
+### Afficher vos images
+
+Pour afficher vos images, il faut d'abord charger votre banque d'images. Pour
+cela on utilise la commande suivante placée après le `pyxel.init()` :
+
+    
+    
+    pyxel.load("ressources.pyxres")
+
+Une fois que votre banque d'images est chargée, vous pouvez afficher n'importe
+quelle image à l'aide de la commande `blt()`. Voici comment la commande
+s'utilise :
+
+    
+    
+    pyxel.blt(x, y, img, u, v, w, h)
+
+Cette commande copie à la position (x, y) l'image de la banque d'image située
+à la position (u, v) de taille (w, h). `img` correspond à l'une des trois
+grandes images de la banque d'images. Par défaut sa valeur est zéro.
+
+![](img/blt_figure.png) Auteur : Takashi Kitao | [source](https://github.com/kitao/pyxel) | [Licence](https://github.com/kitao/pyxel/blob/main/LICENSE)
+
+Ainsi, pour afficher en (x, y) une image de 16 pixels en haut à gauche de la
+banque d'image on utilisera la commande :
+
+    
+    
+    pyxel.blt(x, y, 0, 0, 0, 16, 16)
+
+## Tableau du barème
+
+Voilà le barème complet sur 20 pour ce projet.
+
+Tâche | Barème  
+---|---  
+mouvement gauche | 1 point  
+groupe d'ennemis | 2 points  
+lancer missile | 1 points  
+impact missile | 2 points  
+mouvement ennemis | 2 points  
+missiles ennemis | 1 point  
+impact missile ennemis | 1 points  
+compter des points | 1 point  
+afficher des nouveaux ennemis | 0.5 point  
+faire descendre les ennemis | 0.5 point  
+mouvement accéléré des ennemis | 0.5 point  
+impact ennemis sur vaisseau | 0.5 point  
+code optimisé | 1.5 point  
+commentaires | 1 point  
+code propre | 1.5 point  
+Qualité du jeu | 3 points + 2 points bonus  
+Total | 20  
+  
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

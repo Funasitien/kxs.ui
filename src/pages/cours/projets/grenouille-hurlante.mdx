@@ -1,0 +1,287 @@
+---
+title: "Projet : Grenouille hurlante - Niveau terminale"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## Projets
+
+  * [Notation](.)
+  * [Dé aléatoire](de)
+  * [Filtres photo](filtres-photo)
+  * [Puissance 4](puissance-4)
+  * [Jeu de la vie](jeu-de-la-vie)
+  * [Pandémie](pandemie)
+  * [Contacts](contacts)
+  * [Labyrinthe](labyrinthe)
+  * [Grenouille hurlante](grenouille-hurlante)
+  * [Contacts Plus](contacts-plus)
+  * [PyNFO](pynfo)
+  * [Machine de vote](machine-vote)
+  * [IMDb](imdb)
+  * [Envahisseurs](envahisseurs)
+  * [Chronos](chronos)
+  * [Icq](icq)
+  * [Tetris](tetris)
+  * [Casse briques](casse-briques)
+
+# Grenouille hurlante
+
+## Prérequis
+
+  * structures de contrôle ;
+  * boucles ;
+  * manipulation de chaînes de caractère ;
+  * fonctions ;
+  * modules ;
+  * programmation orientée objet ;
+  * **cours** : files, graphes.
+
+## Présentation
+
+Dans ce projet, nous allons créer un _crawler de site_ comme le logiciel
+[Screaming Frog](https://www.screamingfrog.co.uk/). Le but d'un tel logiciel
+est de parcourir toutes les pages d'un site afin d'en analyser le contenu et
+de détecter d'éventuelles anomalies. Le logiciel Screaming Frog est très riche
+et complet, nous allons donc faire une version **très** simplifiée d'un tel
+logiciel.
+
+![](img/screaming-frog.png)
+
+Les pages d'un site web constituent les nœuds d'un graphe et les liens ses
+arrêtes. Notre programme va donc effectuer un parcours en largeur du site web
+et relever des informations sur chaque page.
+
+Nous allons voir les différents éléments nécessaires pour réaliser le projet.
+
+## Éléments de code
+
+### Modules nécessaires
+
+Nous allons avoir besoin de trois modules dans ce projet :
+
+    
+    
+    import requests
+    from bs4 import BeautifulSoup
+    from urllib.parse import urlparse, urljoin
+
+Le module `requests` permet de faire une requête http et de récupérer le
+contenu de la réponse.
+
+Le module `BeautifulSoup` permet, à partir une page récupérée avec `requests`,
+de créer une « soupe » permettant d'accéder facilement aux éléments de la
+page. Ce module fait ce qu'on appelle un _parsing_ de la page.
+
+Enfin le module `urllib.parse` permet de manipuler facilement les urls.
+
+### Décomposer et recomposer une url
+
+Voici un code permettant de comprendre comment décomposer et recomposer une
+url :
+
+    
+    
+    from urllib.parse import urlparse, urljoin
+    
+    depart = "https://kxs.fr/"
+    print("Url de depart : " + depart)
+    
+    # On détermine le domaine
+    domaine = urlparse(depart).hostname
+    # On détermine le protocole
+    protocole = urlparse(depart).scheme
+    # On détermine le chemin
+    chemin = urlparse(depart).path
+    # On écrit tout ça
+    print("Domaine : " + domaine)
+    print("Protocle : " + protocole)
+    print("Chemin : " + chemin)
+    
+    # Recomposition d'une url
+    url = protocole + "://" + domaine + chemin
+    print("Url recomposée : " + url)
+
+Testez ce code et essayez éventuellement avec d'autres url pour bien
+comprendre ce qu'il se passe.
+
+Nous allons avoir besoin de décomposer une url car nous ne stockerons que les
+chemins des urls et il nous faudre déterminer si les liens sont internes (vers
+le même domaine) ou externes (vers un autre domaine).
+
+### Explorer une url
+
+Voici un code permettant d'extraire des informations d'une url :
+
+    
+    
+    import requests
+    from bs4 import BeautifulSoup
+    
+    proxyDict = {
+                  "http"  : "http://demander_au_prof:demander_au_prof@172.16.0.253:3128",
+                  "https" : "https://demander_au_prof:demander_au_prof@172.16.0.253:3128"
+                }
+    
+    url = "https://kxs.fr/"
+    requete = requests.get(url)
+    # On récupère le contenu de la page
+    page = requete.content
+    # On crée la soupe
+    soup = BeautifulSoup(page, "lxml")
+    # On affiche le titre
+    print(soup.title.string)
+    # On affiche le statut
+    print(requete.status_code)
+    
+    # On récupère les liens
+    liens = soup.find_all('a')
+    
+    # On affiche les liens et leur cible
+    for lien in liens:
+        print(lien, end=" : ")
+        cible = lien.get('href')
+        print(cible)
+
+Testez ce code en changeant éventuellement l'url pour voir ce qu'il se passe.
+
+### Reformer une url à partir d'un lien
+
+Bien souvent, les cibles des liens (href) sur les page ne contiennent pas des
+url (commencant par https) mais des chemins. On peut voir ça sur l'exemple
+précédent :
+
+    
+    
+    href : cours/
+    url induite : https://kxs.fr/cours/
+
+Il n'est pas vraiment simple de reconstituer l'url à partir de la cible. C'est
+pour cela que nous allons utiliser le module `urllib.parse` pour faire ce
+travail. On utilisera ainsi la méthode `urljoin` en lui fournissant la page
+actuelle et la cible du lien :
+
+    
+    
+    from urllib.parse import urlparse, urljoin
+    # Url de la page
+    url = "https://kxs.fr/"
+    # Cible du lien
+    cible = "cours/"
+    # Url pointée par le lien
+    url_lien = urljoin(url, cible)
+    
+    print("Url :", url)
+    print("Cible :", cible)
+    print("Url du lien :", url_lien)
+
+L'exemple étant simpliste, cela peut sembler être une simple concaténation. Ça
+n'est pas toujours aussi simple car les cibles des liens peuvent être absolues
+:
+
+    
+    
+    from urllib.parse import urlparse, urljoin
+    # Url de la page
+    url = "https://kxs.fr/cours/unepage"
+    # Cible du lien
+    cible = "/cours/uneautrepage"
+    # Url pointée par le lien
+    url_lien = urljoin(url, cible)
+    
+    print("Url :", url)
+    print("Cible :", cible)
+    print("Url du lien :", url_lien)
+
+## Cahier des charges
+
+Dans un premier temps, nous allons chercher à simplement afficher la liste des
+pages du site avec la liste de leurs liens comme ci-dessous. Pour chaque page
+on affiche le chemin de la page, son titre et son statut :
+
+    
+    
+    cheminpage1 titre1 statut1
+     - url lien 1
+     - url lien 2
+    cheminpage2 titre2 statut2
+     - url lien 1
+     - url lien 2
+    …
+
+Vous aurez besoin d'un file pour stocker les chemins à explorer. Je vous
+suggère de faire au moins deux fonctions :
+
+`exploreChemin(chemin)`
+
+    Cette fonction explore l'url associée au chemin. Elle doit donc afficher les informations de la page et ses liens. Il faut également ajouter les chemins des liens dans la file. Pour cela on utilisera une autre fonction `ajouteLien(url)`
+  
+`ajouteLien(url)`
+
+    À partir d'une url, cette fonction détermine si le lien est interne. Si c'est le cas, elle ajoute son chemin à la file.
+
+Attention, il faut prendre garde à plusieurs dangers plus ou moins fatals dans
+ce programme :
+
+  * chaque page ne doit être explorée qu'une seule fois (attention aux boucles infinies) ;
+  * **il ne faut absolument pas explorer les liens externes** sinon votre programme va explorer tout le web !
+  * il est déconseillé de lancer le programme sur un autre site que celui du prof car un tel programme peut ralentir un site si on ne prend pas de précautions. Et surtout certains sites possèdent des millions de pages, l'exploration prendrait des jours avec un programme comme celui-ci.
+  * enfin si votre programme explore trop rapidement certains sites, vous risquez de faire bannir l'IP du lycée et le site ne serait plus accessible pour tous les ordinateurs du lycée pendant un certain temps ! Nous verrons dans les améliorations comme éviter ceci.
+
+Lorsque vous avez réussi à coder les fonctionalités de base, vous pouvez vous
+attaquer aux améliorations suivantes :
+
+  * afficher le nombre total de pages du site ;
+  * pour chaque page, afficher le nombre de liens internes et le nombre de liens externes ;
+  * faire une liste de tous les liens externes ;
+  * faire une liste de tous les liens « morts » (c'est à dire avec un statut 404) ;
+  * exporter le rapport complet dans un fichier texte ;
+  * exporter la liste des pages avec leurs informations (sans la liste des liens) dans un fichier csv ;
+  * ajouter un temps aléatoire de moins d'une seconde entre chaque page explorée pour ne pas être détecté et éviter de surcharger le serveur ;
+  * ne pas explorer les fichiers image, sql et pdf ;
+  * [difficile] pour chaque page, afficher sa profondeur (c'est à dire, le nombre minimum de liens la reliant à la page d'acceuil).
+
+Pour les plus rapides, avec des recherches à faire, en bonus :
+
+  * Exporter en SQL la liste des pages avec leurs info (chemin, titre, statut, nombre de liens internes, nombre de liens externes, nombre de liens mort)
+  * Lister les liens nofollow du site (liens avec l'attribut rel="nofollow")
+
+## Tableau du barème
+
+Voilà le barème complet sur 20 pour ce projet.
+
+Tâche | Barème  
+---|---  
+Liste des liens de la page /cours/ | 1 points  
+Liste de presque toutes les pages du site | 2 points  
+Avec les liens de chaque page | 2 points  
+Avec le titre et le statut | 1 point  
+Éviter d'explorer les pages externes | 1 point  
+Affichage du nombre total de pages | 1 points  
+Nombre de liens internes et externe pour chaque page | 1 point  
+Liste de tous les liens externes | 1 points  
+Liste de tous les liens morts | 1 points  
+Export dans un fichier texte | 1 points  
+Export de la liste des pages avec leurs infos dans un fichier csv | 1 points  
+Temps aléatoire | 1 points  
+Exclure les fichiers images, pdf et sql | 1 points  
+Profondeur de chaque page | 1 points  
+Code propre | 1.5 points  
+Code optimisé | 1 point  
+Commentaires | 1.5 points  
+Export SQL | 0.5 point bonus  
+liens nofollow | 0.5 points bonus  
+Total | 20  
+  
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

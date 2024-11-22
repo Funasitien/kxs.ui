@@ -1,0 +1,89 @@
+---
+title: "Bases de données - Clé primaire, clé étrangère"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## Bases de données
+
+  * [Introduction](.)
+  * [Prise en main](prise-en-main)
+  * [Structure](structure)
+  * [Contenu](contenu)
+  * [Clés](cles)
+  * [Jointure](jointure)
+  * [Compléments](complements)
+  * [Agrégateurs](agregateurs)
+  * [Exercices](exercices)
+  * [IMDb](imdb)
+
+# Clé primaire, clé étrangère
+
+## Clé primaire
+
+Nous avons souvent utilisé le champ _id_citation_ de la table _citations_ dans
+les exemples précédents. Il nous a servi à selectionner une ligne sans
+équivoque : c'est parce qu'il est unique pour chaque ligne. C'est ce qu'on
+appelle une _clé primaire_ : elle identifie un enregistrement de façon unique.
+Nous verrons comment s'assurer de son unicité dans la partie suivante.
+
+**1)** La table _films_ possède également une clé primaire comment s'appelle-
+t-elle ?
+
+## Clé étrangère
+
+**2)** La table _citations_ possède un attribut _id_film_ qui ressemble à une
+clé primaire. Pourquoi ne peut elle pas être une clé primaire ?
+
+C'est ce qu'on appelle une _clé étrangère_ car elle correspond à la clé
+primaire d'une autre table. Ici elle correspond à la clé primaire de la table
+_films_. Elle permet de faire le lien entre deux enregistrements de la base de
+données et surtout d'éviter d'écrire les informations d'un film (titre, année)
+à plusieurs endroits.
+
+Par exemple si un film possédait plusiquers centaines de citations on aurait
+la même information recopiée des centaines de fois. Ainsi, l'utilisation de
+deux tables liées par un clé étrangère permet de **limiter la redondance**
+dans une base de donnée.
+
+**3)** Pour garder la cohérence de la base de données, proposez une requête
+pour ajouter le film de votre citation à la table _films_. Faites bien
+attention à la valeur de l'_id_film_.
+
+**4)** Proposez et testez enfin une requête pour modifier l'_id_film_ de votre
+citation dans la table _citations_.
+
+## Schéma relationnel
+
+Il est courant de représenter les tables d'une base de données par un _schéma
+relationnel_ comme celui ci-dessous :
+
+![Exemple de schéma relationnel](img/schema.svg)
+
+Ce schema reprend les noms des tables et leurs attributs. Les clés primaires
+sont mises en valeur et on les relie aux clés étrangères des autres tables. On
+indique sur ces liens la cardinalité de la relation avec le chiffre « 1 » pour
+dire « un » ou la lettre « n » pour dire « plusieurs ». La cardinalité
+représente les possibilités de relation entre les tables. Ainsi sur le schéma
+ci-dessus on peut comprendre qu'un film peut être associé à plusieurs
+citations mais pas l'inverse (une citation vient a priori d'un seul film).
+
+C'est pour cela que l'on parle de _base de données relationnelle_
+
+Nous allons voir dans la partie suivante comment utiliser ces relations dans
+les requêtes.
+
+[Précédent](contenu)[Suivant](jointure)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

@@ -1,0 +1,208 @@
+---
+title: "HTML et CSS"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## Interaction entre l’homme et la machine sur le web
+
+  * [Introduction](.)
+  * [Bases de l'informatique et du web](bases-info-web)
+  * [HTML et CSS](html-css)
+  * [Javascript](javascript)
+  * [Client, serveur, requête](client-serveur-requete)
+  * [Formulaires](formulaire)
+
+# HTML et CSS
+
+## Introduction
+
+Ce TP constitue une introduction aux langages HTML et CSS en vue d’une
+utilisation de Javascript.
+
+## HTML
+
+Le HTML (HyperText Langage Markup) est un langage de description qui permet de
+construire une page web.
+
+**1)** Allez sur la page d’accueil de Wikipedia et faites `ctrl + u` pour voir
+le code source de la page : c’est du HTML.
+
+Nous allons construire des page simples pour comprendre le HTML. Pour cela,
+nous utiliserons le site <https://jsfiddle.net/>.
+
+### Bases
+
+**2)** Saisissez ou copiez le code suivant dans la fenêtre HTML puis appuyez
+sur run pour voir le résultat :
+
+    
+    
+    <h1>Mon titre</h1>
+    
+    <p>
+        Ceci est un paragraphe. Et un élément <strong>important</strong>.
+    </p>
+
+Vous venez de créer une page web ! Essayons de voir comment cela fonctionne :
+
+  * `<h1>`, `<p>` et `<strong>` sont des balises ouvrantes et `</h1>`, `</p>` et `</strong>` sont des balises fermantes. Ce qu’il y a entre une balise ouvrante et une fermante est son contenu ;
+  * la balise `<h1>` est le titre le plus important. Il existe des balises `<h1>` jusqu’à `<h6>` pour les titres moins importants ;
+  * la balise `<p>` représente un paragraphe ;
+  * la balise `<strong>` sert à mettre en valeur un texte important.
+
+**3)** Reprenez la page précédente et ajoutez deux titres `<h2>` ainsi qu’un
+paragraphe.
+
+### Liens
+
+Pour faire un lien hypertexte il faut utiliser la balise `<a>`. Son contenu
+est le texte cliquable et on lui ajoute un attribut `href` pour indiquer la
+cible du lien.
+
+**4)** Ajoutez le lien suivant à votre page :
+
+    
+    
+    <a href="https://www.google.fr">Lien vers Google</a>
+
+Pour l’ouvrir dans un nouvel onglet, cliquez dessus avec la molette.
+
+**5)** Transformez le lien précédent pour qu’il pointe vers Bing.
+
+**Appelez le professeur.**
+
+### Listes
+
+Les listes se font grâce aux balises `<ul>` ou `<ol>`. Les éléments d’une
+liste sont défini par la balise `<li>`.
+
+**6)** Saisissez le code suivant dans votre page :
+
+    
+    
+    <ul>
+        <li>un élément</li>
+        <li>un deuxième élément</li>
+        <li>un autre élément</li>
+    </ul>
+    
+    <ol>
+        <li>un élément</li>
+        <li>un deuxième élément</li>
+        <li>un autre élément</li>
+    </ol>
+
+**7)** Quelle est la différence entre `<ul>` et `<ol>` ?
+
+### Images
+
+Pour ajouter une image, on utilisera la balise `<img>` sans balise fermante.
+Un attribut `src` permettra d’indiquer l’url de l’image, qu’elle soit locale
+ou sur internet.
+
+**8)** Après avoir cherché une image sur internet et copié son url, ajouter le
+code ci-dessous à votre page :
+
+    
+    
+    <img src="url_de_l_image">
+
+**Appelez le professeur.**
+
+### Balises neutres
+
+Il existe deux balises qui n’ont aucune signification. Cela permet d’organiser
+la page, de regrouper des éléments dans une même entité.
+
+La première est la balise `<div>`. Elle permet de créer un bloc qui va prendre
+toute la largeur de l’écran. Elle peut contenir n’importe quels éléments. Elle
+est très utilisée.
+
+La deuxième est la balise `<span>` qui permet de regrouper un groupe de mot ou
+tout élément « en ligne » comme un lien par exemple.
+
+**9)** Ajoutez les balises `<span>` et `</span>` autour du mot « deuxième »
+dans vos deux listes. Que se passe-t-il ?
+
+**Appelez le professeur.**
+
+## CSS
+
+Le CSS (Cascading Style Sheet) permet d’apporter un peu de style à une page
+HTML. C’est à dire changer la mise en page ou les couleurs par exemple.
+
+### Bases
+
+Pour appliquer un style à un élément il faut écrire des instructions dans la
+fenêtre CSS à droite.
+
+**10)** Ajoutez le code suivant dans la fenêtre CSS et décrire ce qu’il se
+passe :
+
+    
+    
+    h1 {
+        text-align: center;
+        color: red;
+    }
+    
+    strong {
+        background-color: green;
+    }
+
+### Classes
+
+Il est aussi possible de cibler des éléments HTML en CSS en leur ajoutant un
+attribut class.
+
+**11)** Remplacez une balise `<p>` par `<p class="toto">` dans votre page puis
+ajoutez le code suivant dans la fenêtre CSS :
+
+    
+    
+    .toto {
+        color: yellow;
+    }
+
+Seul le paragraphe avec l’attribut `class="toto"` devient jaune.
+
+### Identifiant unique
+
+Si on veut cibler un seul élément, on peut utiliser l’attribut `id`.
+
+**12)** Remplacez l'autre balise `<p>` par `<p id="titi">` dans votre page
+puis ajoutez le code suivant dans la fenêtre CSS :
+
+    
+    
+    #titi {
+        color: pink;
+    }
+
+Seul le paragraphe avec l’attribut id titi devient rose.
+
+**Appelez le professeur.**
+
+**13)** Pour terminer créez une page web qui décrit vos trois sites web
+préférés. Elle doit avoir : un titre, des sous-titres, des liens vers les
+sites, des paragraphes et des couleurs différentes pour chaque paragraphe.
+Vous ajouterez également une liste avec des liens vers vos pages préférées
+d’un de ces sites.
+
+**Appelez le professeur.**
+
+[Précédent](bases-info-web)[Suivant](javascript)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

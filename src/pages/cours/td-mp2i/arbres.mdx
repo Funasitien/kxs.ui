@@ -1,0 +1,391 @@
+---
+title: "TD Arbres"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## TD MP2I
+
+  * [intro](.)
+  * [Conversions](conversions)
+  * [Unix](unix)
+  * [Arbres](arbres)
+  * [ABR](arbres-binaires-recherche)
+  * [Graphes](graphes)
+  * [Bases de données](bases-de-donnees)
+  * [Jointures](jointures)
+  * [Agrégations](agregation)
+  * [Opérateurs ensemblistes](operateurs-ensemblistes)
+  * [Exercices bases de données](exercices-db)
+
+# Arbres
+
+## Implémentation
+
+### C
+
+Nous allons implémenter des arbres binaires en C. Voici le programme initial
+auquel il faudra ajouter des fonctions :
+
+    
+    
+    #include <stdio.h>
+    #include <stdbool.h>
+    #include <stdlib.h>
+    
+    typedef struct Noeud {
+    	int etiquette;
+    	struct Noeud * gauche;
+    	struct Noeud * droit;
+    } noeud;
+    
+    typedef noeud * arbre;
+    
+    arbre arbre_vide() {
+    	return NULL;
+    }
+    
+    int main() {
+    	return 0;
+    }
+
+**1)** Implémenter la primitive `est_vide`
+
+    
+    
+    bool est_vide(arbre a) {
+    	return a == NULL;
+    }
+
+**2)** Implémenter la primitive `enraciner`
+
+    
+    
+    arbre enraciner (int n, arbre g, arbre d) {
+    	arbre racine = malloc(sizeof(noeud));
+    	racine->etiquette = n;
+    	racine->gauche = g;
+    	racine->droit = d;
+    	return racine;
+    }
+
+**3)** Implémenter la primitive `taille`
+
+    
+    
+    int taille(arbre a) {
+    	if (est_vide(a)) {
+    		return 0;
+    	} else {
+    		return 1 + taille(a->gauche) + taille(a->droit);
+    	}
+    }
+
+**4)** Implémenter la primitive `hauteur`
+
+    
+    
+    int max(int n, int m) {
+    	if (n >= m) {
+    		return n;
+    	} else {
+    		return m;
+    	}
+    }
+    
+    int hauteur(arbre a) {
+    	if (est_vide(a)) {
+    		return -1;
+    	} else {
+    		return 1 + max(hauteur(a->gauche),hauteur(a->droit));
+    	}
+    }
+
+**5)** Implémenter l'arbre ci-dessous et calculer sa taille et sa hauteur.
+
+![Arbre binaire](img/arbre-binaire.svg)
+
+    
+    
+    int main() {
+    	arbre a = 	enraciner(7,
+    					enraciner(2,
+    						enraciner(5,NULL,NULL),
+    						enraciner(4,NULL,NULL)),
+    					enraciner(3,
+    						enraciner(6,NULL,NULL),
+    						enraciner(1,NULL,NULL)));	
+    	printf("Taille : %i\n", taille(a));
+    	printf("Hauteur : %i\n", hauteur(a));
+    	return 0;
+    }
+
+### OCaml
+
+Nous allons maintenant implémenter un arbre binaire en OCaml. Nous définissons
+un arbre binaire à l'aide d'une somme :
+
+    
+    
+    type arbre = Vide | Noeud of int * arbre * arbre;;
+
+**6)** Implémenter la primitive `arbre_vide` qui renvoie un arbre vide.
+
+    
+    
+    let arbre_vide () = Vide;;
+
+**7)** Implémenter la primitive `est_vide`
+
+    
+    
+    let est_vide a = a = Vide;;
+
+**8)** Implémenter la primitive `enraciner`
+
+    
+    
+    let enraciner n g d = Noeud (n, g, d);;
+
+**9)** Implémenter la primitive `racine` qui renvoie la racine d'un arbre. On
+pourra retourner `failwith "Arbre_vide"` en cas d'arbre vide.
+
+    
+    
+    let racine a =
+    match a with
+    | Vide -> failwith "Arbre_vide"
+    | Noeud(e,_,_) -> e;;
+
+**10)** Implémenter les primitives `sous_arbre_gauche` et `sous_arbre_droit`
+qui renvoient le sous-arbe gauche et le sous-arbre droit d'un arbre. On pourra
+retourner `failwith "Arbre_vide"` en cas d'arbre vide.
+
+    
+    
+    let sous_arbre_gauche a =
+    match a with
+    | Vide -> failwith "Arbre_vide"
+    | Noeud(_,g,_) -> g;;
+    
+    let sous_arbre_droit a =
+    match a with
+    | Vide -> failwith "Arbre_vide"
+    | Noeud(_,_,d) -> d;;
+
+**11)** Implémenter la primitive `taille`
+
+    
+    
+    let rec taille a =
+    match a with
+    | Vide -> 0
+    | Noeud(e,g,d) -> 1 + taille(g) + taille(d);;
+
+**12)** Implémenter la primitive `hauteur`
+
+    
+    
+    let rec hauteur a =
+    match a with
+    | Vide -> -1
+    | Noeud(e,g,d) -> 1 + max (hauteur g) (hauteur d);;
+
+**13)** Implémenter l'arbre ci-dessous et calculer sa taille et sa hauteur.
+
+![Arbre binaire](img/arbre-binaire.svg)
+
+    
+    
+    let a = enraciner 7
+    			(enraciner 2
+    				(enraciner 5 Vide Vide)
+    				(enraciner 4 Vide Vide))
+    			(enraciner 3
+    				(enraciner 6 Vide Vide)
+    				(enraciner 1 Vide Vide));;
+    
+    print_int (taille a);;
+    
+    print_int (hauteur a);;
+
+## Parcours en profondeur
+
+### C
+
+**14)** Implémenter le parcours préfixe d'un arbre binaire en C. Le parcours
+affichera juste les étiquettes. On vérifiera le bon fonctionnement sur
+l'exemple de la question 14.
+
+    
+    
+    void parcours_prefixe(arbre a) {
+    	if (a != NULL) {
+    		printf("%d ", a->etiquette);
+    		parcours_prefixe(a->gauche);
+    		parcours_prefixe(a->droit);
+    	}
+    }
+
+**15)** Implémenter le parcours infixe d'un arbre binaire en C. Le parcours
+affichera juste les étiquettes. On vérifiera le bon fonctionnement sur
+l'exemple de la question 14.
+
+    
+    
+    void parcours_infixe(arbre a) {
+    	if (a != NULL) {
+    		parcours_infixe(a->gauche);
+    		printf("%d ", a->etiquette);
+    		parcours_infixe(a->droit);
+    	}
+    }
+
+**16)** Implémenter le parcours suffixe d'un arbre binaire en C. Le parcours
+affichera juste les étiquettes. On vérifiera le bon fonctionnement sur
+l'exemple de la question 14.
+
+    
+    
+    void parcours_suffixe(arbre a) {
+    	if (a != NULL) {
+    		parcours_suffixe(a->gauche);
+    		parcours_sufffixe(a->droit);
+    		printf("%d ", a->etiquette);
+    	}
+    }
+
+### OCaml
+
+**17)** Implémenter le parcours préfixe d'un arbre binaire en Ocaml. Le
+parcours affichera juste les étiquettes. On vérifiera le bon fonctionnement
+sur l'exemple de la question 14.
+
+    
+    
+    let rec parcours_prefixe = function
+    | Vide -> ()
+    | Noeud(x,g,d) -> 	print_int x;
+    					parcours_prefixe g;
+    					parcours_prefixe d;;
+
+**18)** Implémenter le parcours infixe d'un arbre binaire en OCaml. Le
+parcours affichera juste les étiquettes. On vérifiera le bon fonctionnement
+sur l'exemple de la question 14.
+
+    
+    
+    let rec parcours_infixe = function
+    | Vide -> ()
+    | Noeud(x,g,d) -> 	parcours_infixe g;
+    					print_int x;
+    					parcours_infixe d;;
+
+**19)** Implémenter le parcours suffixe d'un arbre binaire en OCaml. Le
+parcours affichera juste les étiquettes. On vérifiera le bon fonctionnement
+sur l'exemple de la question 14.
+
+    
+    
+    let rec parcours_suffixe = function
+    | Vide -> ()
+    | Noeud(x,g,d) -> 	parcours_suffixe g;
+    					parcours_suffixe d;
+    					print_int x;;
+
+## Parcours en largeur
+
+Le parcours en largeur est un peu plus complexe que les précédents car nous
+avons besoin de mémoriser les fils du niveau suivant avant de finir d'explorer
+les pères. Nous allons donc avoir besoin d'une structure de file pour les
+arbres :
+
+    
+    
+    #include <stdio.h>
+    #include <stdbool.h>
+    #include <stdlib.h>
+    
+    typedef struct ElementFile {
+    	arbre valeur;
+    	struct ElementFile* precedent;
+    	struct ElementFile* suivant;
+    } elementFile;
+    
+    typedef struct FileArbre {
+    	int taille;
+    	elementFile* tete;
+    	elementFile* queue;
+    } fileArbre;
+    
+    
+    fileArbre* creationFile() {
+    	fileArbre* file = malloc(sizeof(fileArbre));
+    	file->taille = 0;
+    	file->tete = NULL;
+    	file->queue = NULL;
+    	return file;
+    }
+    
+    void enfile(fileArbre* file, arbre val) {
+    	// On crée un nouvel élément
+    	elementFile* e = malloc(sizeof(elementFile));
+    	e->valeur = val;
+    	// qui devient la tête de la file
+    	e->precedent = NULL;
+    	e->suivant = file->tete;
+    	// Si la file n'était pas vide
+    	if (file->tete != NULL) {
+    		file->tete->precedent = e;
+    	} else { // Si elle était vide, e devient la queue
+    		file->queue = e;
+    	}
+    	file->tete = e;
+    	file->taille = file->taille + 1;
+    }
+    
+    bool estVide(fileArbre* file) {
+    	return (file->tete == NULL);
+    }
+    
+    void defile(fileArbre* file) {
+    	// Si la file n'est pas vide
+    	if (!estVide(file)) {
+    		// On mémorise la queue
+    		elementFile* e = file->queue;
+    		// Si la file ne contenait qu'un seul élément
+    		if (file->queue->precedent == NULL) {
+    			// La file devient vide
+    			file->tete = NULL;
+    		} else {
+    			// Lavant dernier élément doit pointer vers NULL
+    			file->queue->precedent->suivant = NULL;
+    		}
+    		file->queue = file->queue->precedent;
+    		free(e);
+    		file->taille = file->taille - 1;
+    	}
+    }
+    
+    arbre sortie(fileArbre* file) {
+    	return file->queue->valeur;
+    }
+
+**20)** Implémenter le parcours en largeur d'un arbre binaire en C. Le
+parcours affichera juste les étiquettes. On vérifiera le bon fonctionnement
+sur l'exemple de la question 14.
+
+[Précédent](unix)[Suivant (page des cours)](..)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

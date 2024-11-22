@@ -1,0 +1,334 @@
+---
+title: "Javascript"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## Interaction entre l’homme et la machine sur le web
+
+  * [Introduction](.)
+  * [Bases de l'informatique et du web](bases-info-web)
+  * [HTML et CSS](html-css)
+  * [Javascript](javascript)
+  * [Client, serveur, requête](client-serveur-requete)
+  * [Formulaires](formulaire)
+
+# Javascript
+
+![Logo de Javascript](img/js.png)
+
+## Introduction
+
+Javascript est un ancien langage créé en quelques jours dans les années 90 qui
+s’exécute sur le client. Il a été utilisé pour des animations superflues
+pendant des années et était beaucoup raillé. À partir des années 2000 et
+l’utilisation d’AJAX (Asynchronous JavaScript And XML), Javascript connaît un
+essor fulgurant car il permet une interaction directe (sans recharger la page)
+entre le client et le serveur. À la fin des années 2000 la bibliothèque JQuery
+finit de populariser Javascript. Les années 2010 voient l’apparition
+d’environnements (comme node.js) basés sur Javascript et permettant une
+utilisation sur le serveur et même hors du Web.
+
+Javascript est actuellement le langage le plus utilisé au monde.
+
+## Environnement de travail
+
+### La page HTML
+
+Pour utiliser et tester Javascript dans un environnement web, nous avons
+besoin au minimum d’une page HTML. Nous allons partir d’une page simple et
+ajouter progressivement des éléments. Une page HTML doit comporter plus
+d’informations que ce que vous avez créé dans le dernier TP avec jsfiddle.net.
+Voici donc une page HTML simple pour commencer :
+
+    
+    
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <title>Une page pour tester Javascript</title>
+            <meta charset="utf-8">
+        </head>
+    
+        <body>
+            <h1>Un titre</h1>
+            <p>Un paragraphe inutile</p>
+        </body>
+    </html>
+
+Analysons ce code :
+
+  * la première ligne indique que c’est un fichier HTML 5 ;
+  * la balise `<html>` indique le début du code HTML ;
+  * la balise `<head>` va contenir des informations sur la page. C’est ici qu’on fera des liens vers d’autres fichiers. Rien de ce qui est ici ne s’affichera sur la page ;
+  * la balise `<title>` indique le titre qui apparaîtra dans la fenêtre du navigateur ;
+  * la balise `<meta charset>` indique l’encodage des caractères ;
+  * la balise `<body>` va englober le contenu de la page.
+
+**1)** Copiez le code ci-dessus et enregistrez-le dans un fichier index.html
+que vous mettrez dans un dossier html.
+
+**2)** Ouvrez ce fichier avec un navigateur, votre page doit apparaître.
+Appelez le professeur.
+
+### Le fichier CSS
+
+Comme nous l’avons vu dans le précédent TP il est possible d’ajouter du style
+à cette page à l’aide du CSS.
+
+Il y a trois façons d’ajouter du CSS à une page :
+
+#### CSS en ligne
+
+On met une règle CSS directement dans la balise à laquelle on veut appliquer
+la règle.
+
+**3)** Remplacez la balise `<h1>` par `<h1 style="color: red;">`. Que ce
+passe-t-il ?
+
+Le CSS en ligne n’est pas recommandé car il alourdi la page et n’est pas très
+lisible.
+
+#### CSS interne
+
+On place le code CSS dans une balise `</style>` située dans la partie `<head>`
+de la page.
+
+**4)** Placez le code ci-dessous juste avant la balise fermante `</head>` et
+décrire ce qu’il se passe :
+
+    
+    
+    <style>
+        h1 {
+            color: green;
+        }
+    </style>
+
+Le CSS en ligne est prioritaire sur le CSS interne il faut donc supprimer
+l’ajout de la question 3 si on veut que le code précédent fonctionne.
+
+**5)** Supprimez l’ajout de la question 3. Que se passe-t-il ?
+
+On déconseille le CSS en interne car il alourdi la page.
+
+#### CSS externe
+
+La dernière façon d’ajouter du style à une page est d’utiliser un fichier CSS
+externe.
+
+**6)** Pour cela on rajoute l’instruction suivante dans la partie `<head>` de
+la page :
+
+    
+    
+    <link rel="stylesheet" href="style.css">
+
+Ainsi le navigateur ira chercher un fichier `style.css`.
+
+**7)** Créez un fichier `style.css` dans le dossier html et mettez-y le
+contenu suivant :
+
+    
+    
+    h1 {
+    	color: blue;
+    }
+
+De la même manière que précédemment, le CSS interne est prioritaire sur le CSS
+externe. Il faut donc supprimer l’ajout de la question 4 pour que le titre
+apparaisse en bleu.
+
+**8)** Supprimer l’ajout de la question 4 et appelez le professeur.
+
+### Le fichier Javascript
+
+Il existe deux façons d’introduire du code javascript dans une page HTML :
+
+#### Javascript en ligne
+
+**9)** Ajoutez le code suivant dans la partie `<head>` de la page et expliquer
+ce qu’il se passe (la fonction `alert()` affiche un pop-up avec le texte
+saisi) :
+
+    
+    
+    <script type="text/javascript">
+        alert("Salut");
+    </script>
+
+#### Javascript externe
+
+Pour utiliser un fichier javascript externe on doit ajouter une balise dans la
+partie `<head>` de la page.
+
+**10)** Ajoutez cett balise à la fin de la partie `<head>` de votre page :
+
+    
+    
+    <script src="script.js"></script>
+
+Ainsi le navigateur ira chercher un fichier `script.js`.
+
+**11)** Créez un fichier `script.js` dans le dossier html et mettez-y le
+contenu suivant :
+
+    
+    
+    alert("Coucou");
+
+**12)** Que se passe-t-il alors lorsque vous rechargez la page ?
+
+Le navigateur lit le code javascript dans l’ordre dans lequel il apparaît dans
+la page HTML.
+
+## Interactions avec l’utilisateur
+
+### Afficher un message
+
+Nous allons maintenant utiliser la page HTML suivante :
+
+    
+    
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <title>Une page pour tester Javascript</title>
+            <meta charset="utf-8">
+            <link rel="stylesheet" href="style.css">
+    		<script src="script.js"></script>
+        </head>
+    
+        <body>
+            <h1>Un titre</h1>
+            <p id="roger">Un paragraphe inutile</p>
+            <button onclick="mafonction()">Bouton</button>
+        </body>
+    </html>
+
+et le code CSS suivant :
+
+    
+    
+    h1 {
+    	color: blue;
+    }
+
+On videra le contenu du fichier `script.js` pour le moment.
+
+La page possède maintenant un bouton sur lequel on peut cliquer. Lorsqu’on
+clique dessus l’attribut `onclick` exécute la fonction javascript
+`mafonction()`. Il faut donc la définir :
+
+**13)** Ajoutez le code suivant dans le fichier `script.js` et cliquez sur le
+bouton :
+
+    
+    
+    function mafonction() {
+        alert("Ça marche")
+    }
+
+On définit une fonction en javascript avec le mot-clef « function » et des
+accolades.
+
+### Accéder à un élément
+
+Il est possible d’accéder aux éléments de la page avec javascript. Pour cela,
+on utilisera deux méthodes : `document.getElementById()` ou
+`document.querySelector()`. La première attend un identifiant (correspondant à
+un attribut id) et la seconde attend un sélecteur quelconque comme en CSS
+(identifiant, class, balise…) s’il y en a plusieurs dans la page il prend le
+premier. Ainsi si on veut accéder au paragraphe on pourra utiliser l’une des
+méthodes ci-dessous :
+
+    
+    
+    document.getElementById("roger")
+    
+    
+    document.querySelector("p")
+    
+    
+    document.querySelector("#roger")
+
+### Modifier un élément
+
+Une fois qu’on a accès à un élément, on peut le modifier.
+
+On peut changer le style d’un élément :
+
+    
+    
+    document.getElementById("roger").style = "color:red;"
+
+ou
+
+    
+    
+    document.getElementById("roger").style.color = "red"
+
+**14)** Changez le code de `mafonction()` pour qu’un clic sur le bouton rende
+le texte du paragraphe vert.
+
+On peut changer le contenu d’une balise :
+
+    
+    
+    document.getElementById("roger").innerHTML = "Le contenu a changé"
+
+**15)** Changer le code de `mafonction()` pour qu’un clic sur le bouton
+remplace le titre par « Mon nouveau titre ».
+
+On peut ajouter ou retirer des classes à une balise :
+
+    
+    
+    document.getElementById("roger").classList.add("rouge")
+    document.getElementById("roger").classList.remove("rouge")
+
+**16)** En utilisant deux classes `.rouge` et `.vert` en CSS et deux fonctions
+`enVert()` et `enRouge()` créez deux boutons pour que l’un rende le paragraphe
+rouge et l’autre rende le paragraphe vert.
+
+### Évènements
+
+Pour le moment nous n’avons vu qu’un seul évènement, l’évènement « onclick »
+qui se déclenche lorsqu’on clique avec la souris. Il en existe de nombreux
+autres (voir [les évènements sur
+W3schools](https://www.w3schools.com/tags/ref_eventattributes.asp)) et on peut
+les utiliser sur d’autres éléments que les boutons. Voici des évènements de la
+souris qui peuvent être utiles :
+
+  * onclick : se déclenche avec un clic de la souris sur l’élément ;
+  * onmouseover : se déclenche lorsque la souris passe sur l’élément ;
+  * onmouseout : se déclenche lorsque la souris sort de l’élément ;
+
+**17)** Réalisez une page avec 5 paragraphes ayant un fond rouge (`background-
+color: red`). Faites en sorte que les paragraphes aient un fond vert lorsque
+la souris passe dessus et qu’ils récupèrent leur fond rouge lorsque la souris
+s’en va. On pourra dans un premier temps utiliser 10 fonctions puis utiliser
+deux fonctions appelées avec `this` (qui contient l’élément appelant).
+
+**18)** Réalisez une page avec 5 paragraphes. Lorsqu’on clique sur un
+paragraphe il devient vert puis orange au bout de 2 secondes puis rouge avec
+un texte qui devient « Attention je vais disparaître » au bout de deux
+secondes et disparaît enfin (display:none) au bout de 2 secondes. On utilisera
+`setTimeout(fonction, délai)` pour exécuter une fonction après un délai en
+millisecondes. On peut passer des paramètres à la fonction en les rajoutant en
+paramètre de setTimeout.
+
+[Précédent](html-css)[Suivant](client-serveur-requete)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

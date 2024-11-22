@@ -1,0 +1,199 @@
+---
+title: "Diviser pour régner"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## Algorithmes
+
+  * [Introduction](.)
+  * [Diviser pour régner](diviser-pour-regner)
+  * [Programmation dynamique](programmation-dynamique)
+  * [Boyer Moore](boyer-moore)
+
+# Diviser pour régner
+
+## Description
+
+_Diviser pour régner_ est une technique algorithmique qui se déroule en trois
+étapes :
+
+  * diviser : découper le problème en sous-problèmes ;
+  * régner : résoudre les sous-problèmes (en utilisant éventuellement diviser pour régner) ;
+  * combiner : trouver une solution au problème initial à partir des solutions des sous-problèmes.
+
+## Exemple du tri fusion
+
+Le _tri fusion_ est encore un algorithme de tri. Celui-ci est récursif et
+utilise, bien sur, la méthode _diviser pour régner_. Voici un algorithme
+décrivant le tri fusion :
+
+    
+    
+    triFusion(liste):
+        si la liste contient un élément ou moins:
+    		retourner liste
+        sinon:
+    		listegauche = demi-liste gauche de liste
+    		listedroite = demi-liste droite de liste
+    		retourner combinaison(triFusion(listegauche), triFusion(listedroite))
+    
+    combinaison(listegauche, listedroite):
+    	# listegauche et listedroite sont des listes ordonées
+    	listeretour = liste vide
+    	indicelistegauche = 1
+    	indicelistedroite = 1
+    	tant que indicelistegauche < taille(listegauche) et indicelistedroite < taille(listedroite):
+    		si listegauche[indicelistegauche] < listedroite[indicelistedroite]:
+    			on ajoute listegauche[indicelistegauche] à listeretour
+    			indicelistegauche = indicelistegauche + 1
+    		sinon:
+    			on ajoute listedroite[indicelistedroite] à listeretour
+    			indicelistedroite = indicelistedroite + 1
+    	renvoyer listeretour + la fin de la liste non totalement explorée
+
+Voici un schéma montrant le déroulement de cet algorithme sur la liste `[4, 3,
+8, 2, 7, 1, 5]` :
+
+![](img/trifusion.svg)
+
+**1)** Quelle ligne de l'algorithme fait qu'il est récursif ?
+
+**2)** Expliquer en une phrases ce que fait la fonction `combinaison`.
+
+**3)** Proposez une implémentation en Python de la fonction `combinaison`.
+
+**4)** Proposez enfin une implémentation en Python du tri fusion.
+
+## Application : rotation d'image
+
+Il est possible d'appliquer la méthode _diviser pour régner_ à la rotation
+d'une image carrée. Nous ferons tourner l'image de 90° dans le sens
+trigonométrique. La méthode est illustrée sur le schéma ci-dessous :
+
+![](img/quart.svg)
+
+  * on coupe l'image en quatre quadrants ;
+  * on effectue une rotation récursive de chacun des quadrants ;
+  * on applique une permutation circulaire des quadrants.
+
+Nous utiliserons le module [PIL](https://he-arc.github.io/livre-
+python/pillow/index.html) déjà utilisé l'année dernière. L'image à faire
+tourner sera [la joconde](img/joconde.png). Elle est carrée avec une taille
+égale à une puissance de 2. Voici la structure que vous pourrez utiliser :
+
+    
+    
+    from PIL import Image
+    
+    img = Image.open("joconde.png")
+    # Affiche l'image originale
+    img.show()
+    
+    def echangePixels(image,pixel_a,pixel_b):
+    	"""
+    	Échange la couleur des deux pixels pixel_a et pixel_b.
+    	pixel_a : tuple de coordonnées
+    	pixel_b : tuple de coordonnées
+    
+    	À compléter !
+    	"""
+    	…
+    
+    def tourne(image):
+    	"""
+    	Lance la fonction récursive sur l'image originale.
+    
+    	Fonction complète.
+    	"""
+        tourneRecursif(image,(0,0),image.size[0])
+    
+    def echangeQuadrant(image,coinHautGauche_a,coinHautGauche_b,n):
+    	"""
+    	Échange les pixels entre les deux quadrants de taille n
+    	définis par leur coin haut gauche.
+    
+    	coinHautGauche_a : tuple des coordonnées du coin supérieur gauche du quadrant a
+    	coinHautGauche_b : tuple des coordonnées du coin supérieur gauche du quadrant b
+    	n : taille des deux quadrants
+    
+    	À compléter !
+    	"""
+    	…
+    
+    def tourneRecursif(image,coinHautGauche,taille):
+    	"""
+    	Applique une rotation du quadrant de l'image défini par
+    	son coin supérieur gauche et sa taille.
+    
+    	coinHautGauche : tuple des coordonnées du coin supérieur gauche du quadrant
+    	taille : taille du quadrant à faire tourner
+    
+    	À compléter !
+    	"""
+    	…
+    
+    # Lance le programme
+    tourne(img)
+    # Affiche l'image
+    img.show()
+
+Vous chercherez vous-même sur la [documentation de PIL](https://he-
+arc.github.io/livre-python/pillow/index.html) les méthodes à utiliser pour
+accéder aux pixels de l'image.
+
+## Application : minimum et maximum d'un tableau
+
+L'objectif est d'écrire une fonction récursive `min_et_max(T, a, b)` renvoyant
+le couple `(minimum, maximum)` du tableau T[a:b].
+
+Un algorithme du type « diviser pour régner » permet de déterminer ce couple
+en exploitant le fait qu’une seule comparaison suffit pour obtenir à la fois
+le minimum et le maximum d'un tableau de taille 2. Voici cet algorithme :
+
+    
+    
+    VARIABLES
+    T : tableau
+    
+    DEBUT
+    si T ne contient qu'un élément:
+    	retourner (T[0], T[0])
+    sinon si T contient deux éléments:
+    	retourner le couple (minimum, maximum)
+    sinon:
+    	tableaugauche = demi-tableau gauche de T
+    	tableaudroit = demi-tableau droit de T
+    	calculer récursivement le couple (min, max) des deux tableaux
+    	fusionner les résultats précédents
+    	retourner le couple (minimum, maximum)
+    FIN
+
+**5)** Écrire la fonction `min_et_max(T)` en Python.
+
+**6)** La tester sur le tableau `T = [1, 6, -5, 8, 14, -2, -7, 21]` en lancant
+la commande `min_et_max(T)`
+
+**7)** Combien cette fonction utilise de comparaisons pour un tableau de 4
+éléments ?
+
+**8)** Combien un algorithme classique utilise de comparaisons pour un tableau
+de 4 éléments ?
+
+**9)** Répondez aux deux questions précédentes pour des tableaux de 8, 16 et
+32 éléments. Que pouvez-vous conclure sur la complexité de cet algorithme ?
+
+[Précédent](.)[Suivant](programmation-dynamique)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

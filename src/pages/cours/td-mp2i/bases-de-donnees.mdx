@@ -1,0 +1,372 @@
+---
+title: "Bases de données"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## TD MP2I
+
+  * [intro](.)
+  * [Conversions](conversions)
+  * [Unix](unix)
+  * [Arbres](arbres)
+  * [ABR](arbres-binaires-recherche)
+  * [Graphes](graphes)
+  * [Bases de données](bases-de-donnees)
+  * [Jointures](jointures)
+  * [Agrégations](agregation)
+  * [Opérateurs ensemblistes](operateurs-ensemblistes)
+  * [Exercices bases de données](exercices-db)
+
+# Bases de données
+
+## Présentation
+
+Une base de données est un système ou une structure permettant de stocker et
+d'organiser des données ou de l'information. Il existe de nombreux systèmes de
+gestion base de données et de nombreux langages pour interroger des bases de
+données. Nous utiliserons MariaDB avec le langage SQL qui sont libres et
+extrèmement populaires.
+
+## Préparation
+
+Connectez-vous au serveur en utilisant la commande donnée par le professeur.
+Lancez alors la commande :
+
+    
+    
+    mariadb -p
+
+Après avoir saisit le mot de passe, vous devez avoir un nouveau shell comme
+ceci :
+
+    
+    
+    MariaDB [(none)]>
+
+Vous êtes prêt pour saisir des requêtes SQL.
+
+## Structure
+
+Pour pouvoir exécuter des _requêtes_ , nous avons besoin de choisir une base
+de données. Vous allez pouvoir travailler sur la base `mp2i` en saisissant la
+commande :
+
+    
+    
+    USE mp2i;
+
+On remarquera que les mot-clés du langage SQL sont traditionnellement écrit en
+majuscules et que les requêtes SQL se terminent pas un point virgule.
+
+Vous devez alors avoir l'invite de commande suivante :
+
+    
+    
+    MariaDB [(mp2i)]>
+
+La base de données `mp2i` concerne les citations de films.
+
+Une base de donnée est constituée de _tables_ ou _relations_. Il est possible
+de voir toutes les tables d'une base de données avec la commande :
+
+    
+    
+    SHOW tables;
+
+Vous devriez alors voir ceci :
+
+    
+    
+    +-------------------------+
+    | Tables_in_mp2i          |
+    +-------------------------+
+    | citations               |
+    | films                   |
+    | lien_films_realisateurs |
+    | notes                   |
+    | realisateurs            |
+    +-------------------------+
+
+La base de données contient 5 tables. Intéressons-nous à la table `films`.
+
+Pour connaitre la structure d'une table on utilise la commande :
+
+    
+    
+    DESCRIBE films;
+
+On obtient alors le résultat suivant :
+
+    
+    
+    +---------+--------------+------+-----+---------+-------+
+    | Field   | Type         | Null | Key | Default | Extra |
+    +---------+--------------+------+-----+---------+-------+
+    | id_film | int(11)      | NO   | PRI | NULL    |       |
+    | titre   | varchar(100) | YES  |     | NULL    |       |
+    | annee   | int(11)      | YES  |     | NULL    |       |
+    +---------+--------------+------+-----+---------+-------+
+
+Une table est composée de _champs_ (ou attributs ou colonnes ou field en
+anglais) qui peuvent contenir certains types de données : on parle alors du
+_domaine_ du champ. La commande `DESCRIBE` liste tous les champs d'une table.
+
+**1)** Quels sont les attributs (Field) de la table `films` (il y en a trois)
+?
+
+id_film, titre et annee
+
+Il y a de nombreux domaines possibles pour les champs en voici certains :
+
+int
+
+    entier (on ignorera le nombre entre parenthèses) ;
+  
+varchar(n)
+
+    chaîne de caractère de taille n (on peut chois ce qu'on veut pour n) ;
+  
+text
+
+    long texte ;
+  
+float
+
+    nombre à virgule flottante ;
+  
+decimal(n,p)
+
+    nombre à virgule fixe (n chiffres dont p après la virgule).
+
+**2)** Quels sont les types des attributs de la table `films` ?
+
+  * id_film : int
+  * titre : varchar(100)
+  * annee : int
+
+## Contenu
+
+Une telle structure de table peut contenir des _enregistrements_ ou des
+_lignes_. Pour voir ces enregistrements, il faut faire une _requête_ avec le
+mot-clé `SELECT`. Voici donc un premier exemple de requête pour afficher tout
+le contenu d'une table :
+
+    
+    
+    SELECT * FROM films;
+
+On obtient le résultat suivant :
+
+    
+    
+    +---------+-------------------------------------------+-------+
+    | id_film | titre                                     | annee |
+    +---------+-------------------------------------------+-------+
+    |       1 | Toy Story                                 |  1995 |
+    |       2 | Avengers : Endgame                        |  2019 |
+    |       3 | Le cercle des poètes disparus             |  1989 |
+    |       4 | Fight Club                                |  1999 |
+    |       5 | Le fabuleux destin d'Amélie Poulain       |  2001 |
+    |       6 | Dikkenek                                  |  NULL |
+    |       7 | Pulp Fiction                              |  1994 |
+    |       8 | La classe américaine                      |  1993 |
+    |       9 | Astérix et Obélix : mission Cléopâtre     |  2002 |
+    |      10 | Gladiator                                 |  2000 |
+    |      11 | Forrest Gump                              |  1994 |
+    |      12 | Les tontons flingueurs                    |  1963 |
+    |      13 | Top Gun                                   |  1986 |
+    |      14 | Man on Fire                               |  2004 |
+    |      15 | Benjamin Button                           |  2008 |
+    |      16 | Matrix                                    |  1999 |
+    +---------+-------------------------------------------+-------+
+
+Le contenu d'une table est donc un tableau dont les **colonnes sont ses
+champs** et les **ligne ses enregistrements**.
+
+L'instruction `SELECT … FROM …` permet de faire une sélection sur une table.
+Il faut indiquer après le `SELECT` les champs que l'on veut afficher. On les
+sépare par des virgules. `*` signifie tous les champs de la table. On indique
+après le `FROM` la table sur laquelle on fait la sélection.
+
+**3)** Proposez et testez une requête qui permet d'afficher uniquement le
+titre et l'année des films.
+
+    
+    
+    SELECT titre, annee FROM films;
+
+## Clause WHERE
+
+La clause `WHERE` permet de filtrer seulement les résultats vérifiant une
+condition. Par exemple, les films datant d'avant 2000 :
+
+    
+    
+    SELECT titre, annee FROM films WHERE annee <= 2000;
+    
+    
+    +--------------------------------+-------+
+    | titre                          | annee |
+    +--------------------------------+-------+
+    | Toy Story                      |  1995 |
+    | Le cercle des poètes disparus  |  1989 |
+    | Fight Club                     |  1999 |
+    | Pulp Fiction                   |  1994 |
+    | La classe américaine           |  1993 |
+    | Gladiator                      |  2000 |
+    | Forrest Gump                   |  1994 |
+    | Les tontons flingueurs         |  1963 |
+    | Top Gun                        |  1986 |
+    | Matrix                         |  1999 |
+    +--------------------------------+-------+
+
+Voici la liste des opérateurs à votre disposition : +, -, *, /, =, , , >=,
+AND, OR, NOT, IS NULL, IS NOT NULL.
+
+Le mot-clé `NULL` dans un champs signifie qu'il n'y a pas de donnée.
+
+**4)** Proposez et testez des requêtes pour afficher les résultats suivants
+(on affichera le titre et l'année) :
+
+  * a) Les films entre 2000 et 2010
+  * b) Les films avant 2000 et après 2010
+  * c) Les films sans date
+  * d) Les films avec une date
+  * e) Les films qui ne sont pas de 1999
+  * f) Les films d'avant 1990
+
+## Arrangement des résultats
+
+Il est possible d'influer sur la façon dont les résultats sont affichés.
+
+On peut par exemple changer l'ordre d'affichage avec `ORDER BY` suivit du nom
+de la colonne. On peut également ajouter `DESC` pour afficher par ordre
+décroissant :
+
+    
+    
+    SELECT * FROM films ORDER BY annee;
+    
+    
+    +---------+-------------------------------------------+-------+
+    | id_film | titre                                     | annee |
+    +---------+-------------------------------------------+-------+
+    |       6 | Dikkenek                                  |  NULL |
+    |      12 | Les tontons flingueurs                    |  1963 |
+    |      13 | Top Gun                                   |  1986 |
+    |       3 | Le cercle des poètes disparus             |  1989 |
+    |       8 | La classe américaine                      |  1993 |
+    |      11 | Forrest Gump                              |  1994 |
+    |       7 | Pulp Fiction                              |  1994 |
+    |       1 | Toy Story                                 |  1995 |
+    |      16 | Matrix                                    |  1999 |
+    |       4 | Fight Club                                |  1999 |
+    |      10 | Gladiator                                 |  2000 |
+    |       5 | Le fabuleux destin d'Amélie Poulain       |  2001 |
+    |       9 | Astérix et Obélix : mission Cléopâtre     |  2002 |
+    |      14 | Man on Fire                               |  2004 |
+    |      15 | Benjamin Button                           |  2008 |
+    |       2 | Avengers : Endgame                        |  2019 |
+    +---------+-------------------------------------------+-------+
+    
+    
+    SELECT * FROM films ORDER BY annee DESC;
+    
+    
+    +---------+-------------------------------------------+-------+
+    | id_film | titre                                     | annee |
+    +---------+-------------------------------------------+-------+
+    |       2 | Avengers : Endgame                        |  2019 |
+    |      15 | Benjamin Button                           |  2008 |
+    |      14 | Man on Fire                               |  2004 |
+    |       9 | Astérix et Obélix : mission Cléopâtre     |  2002 |
+    |       5 | Le fabuleux destin d'Amélie Poulain       |  2001 |
+    |      10 | Gladiator                                 |  2000 |
+    |      16 | Matrix                                    |  1999 |
+    |       4 | Fight Club                                |  1999 |
+    |       1 | Toy Story                                 |  1995 |
+    |       7 | Pulp Fiction                              |  1994 |
+    |      11 | Forrest Gump                              |  1994 |
+    |       8 | La classe américaine                      |  1993 |
+    |       3 | Le cercle des poètes disparus             |  1989 |
+    |      13 | Top Gun                                   |  1986 |
+    |      12 | Les tontons flingueurs                    |  1963 |
+    |       6 | Dikkenek                                  |  NULL |
+    +---------+-------------------------------------------+-------+
+
+Il est possible de limiter le nombre de lignes affichées avec `LIMIT` suivi du
+nombre de lignes. On peut également afficher un nombre de lignes limité à
+partir d'une certaine ligne en utilisant `OFFSET`. Par exemple, pour afficher
+5 lignes à partir de la 11e on fera :
+
+    
+    
+    SELECT * FROM films ORDER BY annee LIMIT 5 OFFSET 10;
+    
+    
+    +---------+-------------------------------------------+-------+
+    | id_film | titre                                     | annee |
+    +---------+-------------------------------------------+-------+
+    |      10 | Gladiator                                 |  2000 |
+    |       5 | Le fabuleux destin d'Amélie Poulain       |  2001 |
+    |       9 | Astérix et Obélix : mission Cléopâtre     |  2002 |
+    |      14 | Man on Fire                               |  2004 |
+    |      15 | Benjamin Button                           |  2008 |
+    +---------+-------------------------------------------+-------+
+
+Cela est très utile pour les paginations de résultats.
+
+**4)** Proposez et testez une requête qui permet d'afficher les titres des
+films par année croissante en ignorant les films sans année et en gardant les
+résultats de 6 à 10.
+
+    
+    
+    SELECT titre FROM films WHERE annee IS NOT NULL ORDER BY annee LIMIT 5 OFFSET 5 ;
+
+## DISTINCT
+
+Le mot-clé `DISTINCT` accolé à un champ permet de ne garder qu'une seul ligne
+par valeur de ce champ.
+
+Par exemple, si on veut lister toutes les dates de films sans avoir de
+doublons :
+
+    
+    
+    SELECT DISTINCT annee FROM films WHERE annee IS NOT NULL ORDER BY annee;
+    
+    
+    +-------+
+    | annee |
+    +-------+
+    |  1963 |
+    |  1986 |
+    |  1989 |
+    |  1993 |
+    |  1994 |
+    |  1995 |
+    |  1999 |
+    |  2000 |
+    |  2001 |
+    |  2002 |
+    |  2004 |
+    |  2008 |
+    |  2019 |
+    +-------+
+
+[Précédent](graphes)[Suivant](jointures)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

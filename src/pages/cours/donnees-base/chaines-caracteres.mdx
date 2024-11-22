@@ -1,0 +1,330 @@
+---
+title: "Représentation des données - Chaînes de caractères"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## Représentation des données - types de base
+
+  * [Introduction](.)
+  * [Entiers positifs](entiers-positifs)
+  * [Entiers relatifs](entiers-relatifs)
+  * [Entiers : exercices](entiers-exercices)
+  * [Réels](reels)
+  * [Réels : exercices](reels-exercices)
+  * [Booléens](booleens)
+  * [Booléens : exercices](booleens-exercices)
+  * [Chaînes de caractères](chaines-caracteres)
+  * [Chaînes de caractères : exercices](chaines-caracteres-exercices)
+  * [Exercices de révisions](revisions-exercices)
+
+# Chaînes de caractères
+
+## Introduction
+
+Nous avons vu comment représenter des booléens, des entiers et des nombres à
+virgule flottante dans un ordinateur. Nous allons voir comment sont
+représentés les textes ou les chaînes de caractères.
+
+## Premier codage : ASCII
+
+La première norme pour coder les caractères informatiques a été créée en 1963
+et s’appelle donc ASCII (American Standard Code for Information Interchange).
+Elle associe un nombre sur 7 bits (de 0 à 127) aux lettres de l’alphabet, aux
+chiffres, aux symboles mathématiques et de ponctuation. 33 codes (les 32
+premiers et le dernier) sont réservés à des caractères de contrôle et ne
+peuvent pas être représentés visuellement. Le code 32 correspond à l'espace.
+Voici une table recensant tous les caractères ASCII :
+
+Table ASCII Dec | Hex | Bin | Caractère | Dec | Hex | Bin | Caract | Dec | Hex | Bin | Caract  
+---|---|---|---|---|---|---|---|---|---|---|---  
+0| 0| 0| [Null] | 43| 2B| 101011| + | 86| 56| 1010110| V  
+1| 1| 1| [Start of Heading] | 44| 2C| 101100| , | 87| 57| 1010111| W  
+2| 2| 10| [Start of Text] | 45| 2D| 101101| - | 88| 58| 1011000| X  
+3| 3| 11| [End of Text] | 46| 2E| 101110| . | 89| 59| 1011001| Y  
+4| 4| 100| [Ene of Transmission] | 47| 2F| 101111| / | 90| 5A| 1011010| Z  
+5| 5| 101| [Enduiry] | 48| 30| 110000| 0 | 91| 5B| 1011011| [  
+6| 6| 110| [Acknowledge] | 49| 31| 110001| 1 | 92| 5C| 1011100| \  
+7| 7| 111| [Bell] | 50| 32| 110010| 2 | 93| 5D| 1011101| ]  
+8| 8| 1000| [Backspace] | 51| 33| 110011| 3 | 94| 5E| 1011110| ^  
+9| 9| 1001| [Horizontal Tab] | 52| 34| 110100| 4 | 95| 5F| 1011111| _  
+10| A| 1010| [Linefeed] | 53| 35| 110101| 5 | 96| 60| 1100000| `  
+11| B| 1011| [Vertical Tab] | 54| 36| 110110| 6 | 97| 61| 1100001| a  
+12| C| 1100| [Form Feed] | 55| 37| 110111| 7 | 98| 62| 1100010| b  
+13| D| 1101| [Carriage Return] | 56| 38| 111000| 8 | 99| 63| 1100011| c  
+14| E| 1110| [Shift Out] | 57| 39| 111001| 9 | 100| 64| 1100100| d  
+15| F| 1111| [Shift In] | 58| 3A| 111010| : | 101| 65| 1100101| e  
+16| 10| 10000| [Data Link Escape] | 59| 3B| 111011| ; | 102| 66| 1100110| f  
+17| 11| 10001| [Device Control 1] | 60| 3C| 111100|  | 103| 67| 1100111| g  
+18| 12| 10010| [Device Control 2] | 61| 3D| 111101| = | 104| 68| 1101000| h  
+19| 13| 10011| [Device Control 3] | 62| 3E| 111110| > | 105| 69| 1101001| i  
+20| 14| 10100| [Device Control 4] | 63| 3F| 111111| ? | 106| 6A| 1101010| j  
+21| 15| 10101| [Negative Acknowledge] | 64| 40| 1000000| @ | 107| 6B| 1101011| k  
+22| 16| 10110| [Synchronous Idle] | 65| 41| 1000001| A | 108| 6C| 1101100| l  
+23| 17| 10111| [Eng of Trans. Block] | 66| 42| 1000010| B | 109| 6D| 1101101| m  
+24| 18| 11000| [Cancel] | 67| 43| 1000011| C | 110| 6E| 1101110| n  
+25| 19| 11001| [End of Medium] | 68| 44| 1000100| D | 111| 6F| 1101111| o  
+26| 1A| 11010| [Substitute] | 69| 45| 1000101| E | 112| 70| 1110000| p  
+27| 1B| 11011| [Escape] | 70| 46| 1000110| F | 113| 71| 1110001| q  
+28| 1C| 11100| [File Separator] | 71| 47| 1000111| G | 114| 72| 1110010| r  
+29| 1D| 11101| [Group Separator] | 72| 48| 1001000| H | 115| 73| 1110011| s  
+30| 1E| 11110| [Record Separator] | 73| 49| 1001001| I | 116| 74| 1110100| t  
+31| 1F| 11111| [Unit Separator] | 74| 4A| 1001010| J | 117| 75| 1110101| u  
+32| 20| 100000|  | 75| 4B| 1001011| K | 118| 76| 1110110| v  
+33| 21| 100001| ! | 76| 4C| 1001100| L | 119| 77| 1110111| w  
+34| 22| 100010| " | 77| 4D| 1001101| M | 120| 78| 1111000| x  
+35| 23| 100011| # | 78| 4E| 1001110| N | 121| 79| 1111001| y  
+36| 24| 100100| $ | 79| 4F| 1001111| O | 122| 7A| 1111010| z  
+37| 25| 100101| % | 80| 50| 1010000| P | 123| 7B| 1111011| {  
+38| 26| 100110| & | 81| 51| 1010001| Q | 124| 7C| 1111100| |  
+39| 27| 100111| ' | 82| 52| 1010010| R | 125| 7D| 1111101| }  
+40| 28| 101000| ( | 83| 53| 1010011| S | 126| 7E| 1111110| ~  
+41| 29| 101001| ) | 84| 54| 1010100| T | 127| 7F| 1111111| [DEL]  
+42| 2A| 101010| * | 85| 55| 1010101| U | | | |   
+  
+Lorsqu'on donne donne un code ASCII, on utilise généralement son codage
+**hexadécimal**.
+
+**1)** Quel est la signification du code ASCII ci-dessous ?  
+
+41 53 43 49 49 20 69 73 20 73 77 61 67
+
+**2)** Donner le code ASCII (en hexadécimal) de la chaîne ci-dessous :
+
+« Vive le LOSC ! »
+
+**3)** En Python la fonction `ord()` donne (entre autres) le code ASCII d’un
+caractère. Ce code est en décimal mais on peut le convertir en hexadécimal
+avec la fonction `hex()` et en binaire avec la fonction `bin()`. Créer un
+script qui parcourt une chaine de caractère et affiche chaque caractère avec
+son code ASCII en hexadécimal. Vérifier alors vos deux réponses précédentes.
+
+Le codage ASCII ne permettant pas de représenter de nombreux caractères
+utilisés en Europe (les caractères accentués par exemple) une nouvelle norme
+vit le jour dans les années 80.
+
+## Une extension d’ASCII : ISO-8859-1
+
+Aussi appelée latin-1 cette extension du codage ASCII permet d’ajouter de
+nombreux caractères utilisés dans les langues européennes. Elle utilise un bit
+supplémentaire et offre donc 256 possibilités :
+
+Table ISO-8859-1 (ajout à la table ASCII) Dec | Hex | Bin | Caractère | Dec | Hex | Bin | Caract | Dec | Hex | Bin | Car  
+---|---|---|---|---|---|---|---|---|---|---|---  
+128| 80| 10000000| [Padding Character] | 171| AB| 10101011| « | 214| D6| 11010110| Ö  
+129| 81| 10000001| [High Octet Preset] | 172| AC| 10101100| ¬ | 215| D7| 11010111| ×  
+130| 82| 10000010| [Break Permitted Here] | 173| AD| 10101101| [­Soft hyphen] | 216| D8| 11011000| Ø  
+131| 83| 10000011| [No Break Here] | 174| AE| 10101110| ® | 217| D9| 11011001| Ù  
+132| 84| 10000100| [Index] | 175| AF| 10101111| ¯ | 218| DA| 11011010| Ú  
+133| 85| 10000101| [Next Line] | 176| B0| 10110000| ° | 219| DB| 11011011| Û  
+134| 86| 10000110| [Start of Selected Area] | 177| B1| 10110001| ± | 220| DC| 11011100| Ü  
+135| 87| 10000111| [End of Selected Area] | 178| B2| 10110010| ² | 221| DD| 11011101| Ý  
+136| 88| 10001000| [Character Tab Set] | 179| B3| 10110011| ³ | 222| DE| 11011110| Þ  
+137| 89| 10001001| [Char Tab with Justification] | 180| B4| 10110100| ´ | 223| DF| 11011111| ß  
+138| 8A| 10001010| [Line Tabulation Set] | 181| B5| 10110101| µ | 224| E0| 11100000| à  
+139| 8B| 10001011| [Partial Line Forward] | 182| B6| 10110110| ¶ | 225| E1| 11100001| á  
+140| 8C| 10001100| [Partial Line Backward] | 183| B7| 10110111| · | 226| E2| 11100010| â  
+141| 8D| 10001101| [Reverse Line Feed] | 184| B8| 10111000| ¸ | 227| E3| 11100011| ã  
+142| 8E| 10001110| [Single-Shift Two] | 185| B9| 10111001| ¹ | 228| E4| 11100100| ä  
+143| 8F| 10001111| [Single-Shift Three] | 186| BA| 10111010| º | 229| E5| 11100101| å  
+144| 90| 10010000| [Device Control String] | 187| BB| 10111011| » | 230| E6| 11100110| æ  
+145| 91| 10010001| [Private Use One] | 188| BC| 10111100| ¼ | 231| E7| 11100111| ç  
+146| 92| 10010010| [Private Use Two] | 189| BD| 10111101| ½ | 232| E8| 11101000| è  
+147| 93| 10010011| [Set Transmit State] | 190| BE| 10111110| ¾ | 233| E9| 11101001| é  
+148| 94| 10010100| [Cancel character] | 191| BF| 10111111| ¿ | 234| EA| 11101010| ê  
+149| 95| 10010101| [Message Waiting] | 192| C0| 11000000| À | 235| EB| 11101011| ë  
+150| 96| 10010110| [Start of Protected Area] | 193| C1| 11000001| Á | 236| EC| 11101100| ì  
+151| 97| 10010111| [End of Protected Area] | 194| C2| 11000010| Â | 237| ED| 11101101| í  
+152| 98| 10011000| [Start of String] | 195| C3| 11000011| Ã | 238| EE| 11101110| î  
+153| 99| 10011001| [Single Graphic Character Introducer] | 196| C4| 11000100| Ä | 239| EF| 11101111| ï  
+154| 9A| 10011010| [Single Character Introducer] | 197| C5| 11000101| Å | 240| F0| 11110000| ð  
+155| 9B| 10011011| [Control Sequence Introducer] | 198| C6| 11000110| Æ | 241| F1| 11110001| ñ  
+156| 9C| 10011100| [String Terminator] | 199| C7| 11000111| Ç | 242| F2| 11110010| ò  
+157| 9D| 10011101| [Operating System Command] | 200| C8| 11001000| È | 243| F3| 11110011| ó  
+158| 9E| 10011110| [Private Message] | 201| C9| 11001001| É | 244| F4| 11110100| ô  
+159| 9F| 10011111| [Application Program Command] | 202| CA| 11001010| Ê | 245| F5| 11110101| õ  
+160| A0| 10100000|  [Non-breaking space] | 203| CB| 11001011| Ë | 246| F6| 11110110| ö  
+161| A1| 10100001| ¡ | 204| CC| 11001100| Ì | 247| F7| 11110111| ÷  
+162| A2| 10100010| ¢ | 205| CD| 11001101| Í | 248| F8| 11111000| ø  
+163| A3| 10100011| £ | 206| CE| 11001110| Î | 249| F9| 11111001| ù  
+164| A4| 10100100| ¤ | 207| CF| 11001111| Ï | 250| FA| 11111010| ú  
+165| A5| 10100101| ¥ | 208| D0| 11010000| Ð | 251| FB| 11111011| û  
+166| A6| 10100110| ¦ | 209| D1| 11010001| Ñ | 252| FC| 11111100| ü  
+167| A7| 10100111| § | 210| D2| 11010010| Ò | 253| FD| 11111101| ý  
+168| A8| 10101000| ¨ | 211| D3| 11010011| Ó | 254| FE| 11111110| þ  
+169| A9| 10101001| © | 212| D4| 11010100| Ô | 255| FF| 11111111| ÿ  
+170| AA| 10101010| ª | 213| D5| 11010101| Õ | 256| 100| 100000000| Ā  
+  
+**4)** En Python la fonction `ord()` donne également le code ISO-8859-1 d’un
+caractère. À l’aide du script de la question 3, donner le codage de la phrase
+suivante :
+
+« Ça coûte des sous »
+
+La norme ISO-8859-1 n’était toujours pas parfaite, il manquait par exemple le
+caractère « œ » pour le français et « ß » pour l’allemand. Il y eu encore
+d’autre normes pour s’adapter à ces spécificités. Les alphabets asiatiques
+avaient également leur propre codage. Avec le développement d’internet dans
+les années 90 et donc la cohabitation de nombreuses langues, le besoin d’un
+codage universel se faisait sentir.
+
+## Codage universel : UTF-8
+
+Apparu en 1996 et adopté définitivement en 2003 l’UTF-8 permet de représenter
+tous les alphabets du monde. Bien sur UTF-8 a besoin de plus d’un octet pour
+représenter tout ça !
+
+### Unicode
+
+UTF-8 utilise le point de code de chaque caractère. Le point de code d’un
+caractère est défini de manière unique par la norme _unicode_. Cette norme
+contient aujourd’hui 137 929 caractères. Les 256 premiers caractères sont les
+mêmes que l’ISO-8859-1. On écrit un point de code sous la forme « U+xxxx » ou
+« xxxx » est exprimé en **hexadécimal**. Ainsi U+00E0 est le code du « à » et
+U+0052 le code du « R » (voir les parties précédentes).
+
+Il existe une vidéo sur Youtube faisant défiler les milliers de caractères
+unicode. Elle dure plus de deux heures :
+
+**5)** Testez le script suivant pour vérifier que les premiers caractères
+d’unicode sont les mêmes que pour l’ISO-8859-1 (`hex()` convertit en
+hexadécimal et `chr()` affiche un caractère à partir de son unicode **en
+décimal**) :
+
+    
+    
+    for c in range(256):
+        print(c,hex(c),chr(c))
+
+**6)** Tester maintenant le script ci-dessous pour voir les 5000 premiers
+caractères unicode (cela prend du temps) :
+
+    
+    
+    for c in range(5000):
+        print(c,hex(c),chr(c))
+
+### UTF-8
+
+UTF-8 correspond à la façon dont on va écrire le code d’un caractère en
+mémoire. Les 127 premiers caractères sont codés sur un octet, ainsi UTF-8 est
+compatible avec l’ASCII. Les caractères suivants seront codés sur plusieurs
+octets (jusqu’à 4 octets).
+
+Le principe de l'encodage UTF-8 est le suivant :
+
+  * si le bit de poids fort (celui à gauche) d'un octet est à 0, alors il s'agit d'un caractère ASCII codé sur les 7 bits restant.
+  * sinon, les premiers bits de poids fort de l'octet indiquent le nombre d'octets utilisés pour encoder le caractère à l'aide d'une séquence de bits à 1 et se terminant par un bit à 0. Par exemple, si le premier octet commence par 110xxxxx, cela signifie que le caractère est codé sur 2 octets, puisqu'il commence par une séquence de deux bits de poids fort à 1 suivi d'un 0.
+  * enfin, dans le cas d'un encodage sur k octets, les k-1 octets de poids fort doivent tous être de la forme 10xxxxxx.
+
+On peut résumer cela dans le tableau ci-dessous :
+
+Codage utf-8 Caractères | Représentation binaire utf-8 | Signification  
+---|---|---  
+U+0000 à U+007F| 0xxxxxxx| 1 octet codant 7 bits  
+U+0080 à U+07FF| 110xxxxx 10xxxxxx| 2 octets codant 11 bits  
+U+0800 à U+FFFF| 1110xxxx 10xxxxxx 10xxxxxx| 3 octets codant 16 bits  
+U+10000 à U+10FFFF| 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx| 4 octets codant 21
+bits  
+  
+Ainsi, les bits en vert doivent être mis bout à bout pour obtenir le code
+unicode d’un caractère.
+
+**7)** Pourquoi utilise-t-on un nombre d’octets variable au lieu d’utiliser
+toujours 4 octets par caractère ?
+
+**8)** Quel est le code UTF-8 du caractère « j » ?
+
+**9)** Quel caractère correspond au code UTF-8 « C5 93 » (vous aurez besoin de
+la fonction `chr()` en Python qui donne le caractère correspondant à un code
+unicode en décimal)
+
+**10)** Quel est le code UTF-8 du signe euro « € » ? (son code unicode est
+U+20AC, mais vous pouvez utiliser la fonction `ord()` qui donne aussi le code
+unicode décimal d’un caractère)
+
+## Aide pour les conversions en Python
+
+Il est possible d'utiliser Python pour effectuer des conversions entre
+décimal, binaire et hexadécimal.
+
+### Écriture
+
+Avant de convertir un nombre il faut pouvoir l'écrire dans différentes bases.
+La base dix étant la base par défaut, il n'y a rien à faire pour écrire un
+nombre en base 10 :
+
+    
+    
+    # 355 en base 10
+    355
+
+Pour écrire un nombre en base 2, il faut le faire précéder par '0b'.
+
+    
+    
+    # 01110 en base 2
+    0b01110
+
+Pour écrire un nombre en base 16 (hexadécimal), il faut le faire précéder par
+'0x'.
+
+    
+    
+    # A4F en base 16
+    0xA4F
+
+### Conversion vers décimal
+
+La conversion se fait automatiquement, il suffit d'écrire le nombre dans la
+console :
+
+    
+    
+    # Hexadécimal vers décimal
+    >>> 0xA4F
+    2639
+    # Binaire vers décimal
+    >>> 0b01110
+    14
+
+### Conversion vers binaire
+
+On utilise ici la fonction `bin()`
+
+    
+    
+    # Décimal vers binaire
+    >>> bin(1234)
+    '0b10011010010'
+    # Hexadécimal vers binaire
+    >>> bin(0xA4F)
+    '0b101001001111'
+
+### Conversion vers hexadécimal
+
+On utilise ici la fonction `hex()`
+
+    
+    
+    # Binaire vers hexadécimal
+    >>> hex(0b01110)
+    '0xe'
+    # Décimal vers exadécimal
+    >>> hex(1234)
+    '0x4d2'
+
+[Précédent](booleens-exercices)[Suivant](chaines-caracteres-exercices)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

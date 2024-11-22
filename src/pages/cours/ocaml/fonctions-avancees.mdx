@@ -1,0 +1,334 @@
+---
+title: "Fonctions avancées - Niveau MP2I"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## OCaml
+
+  * [Présentation](.)
+  * [Interaction et définitions](interaction-definition)
+  * [Fonctions](fonctions)
+  * [If … then … else …](if-then-else)
+  * [Fonctions récursives](fonctions-recursives)
+  * [Réels](reels)
+  * [Chaînes de caractères](string)
+  * [Execices 1](exercices-1)
+  * [Listes](listes)
+  * [Unit](unit)
+  * [Produits](produits)
+  * [Enregistrements](enregistrements)
+  * [Énumérations](enumerations)
+  * [Sommes](sommes)
+  * [Filtrage](filtrage)
+  * [Fonctions avancées](fonctions-avancees)
+  * [Aspects impértifs](aspects-imperatifs)
+
+# Fonctions avancées
+
+## `fun`
+
+Le mot-clé `fun` peut avantageusement remplacer `function` car il permet de
+déclarer des fonctions à plusieurs arguments :
+
+    
+    
+    (* Non valide *)
+    # let moyenne = function x y -> (x+.y)/.2.;;
+    Error: Syntax error
+    
+    (* Valide : *)
+    # let moyenne = fun x y -> (x+.y)/.2.;;
+    val moyenne : float -> float -> float = <fun>
+
+Par contre, `fun` n'accepte pas un filtrage implicite comme `function` :
+
+    
+    
+    (* Valide *)
+    # let rec fact = function
+       | 0 -> 1
+       | n -> n * fact (n - 1);;
+    val fact : int -> int = <fun>
+    
+    (* Non valide *)
+    # let rec fact = fun
+       | 0 -> 1
+       | n -> n * fact (n - 1);;
+    Error: Syntax error
+    
+    (* Valide *)
+    # let rec fact = fun n -> match n with
+       | 0 -> 1
+       | n -> n * fact (n - 1);;
+    val fact : int -> int = <fun>
+    
+    (* Valide sans le 'fun' *)
+    # let rec fact n = match n with
+       | 0 -> 1
+       | k -> k * fact (k - 1);;
+
+## Filtrage avancé
+
+Nous n'avons pas encore vu explicitement comment faire du filtrage dans une
+fonction à plusieurs arguments. Nous avons maintenant toutes les connaissances
+pour le faire.
+
+Commencons par le filtrage d'un paramètre parmi deux :
+
+    
+    
+    # let rec fonc1 l1 l2 =
+    match l1 with
+    | [] -> l2
+    | x :: reste -> x :: fonc1 reste l2;;
+    fonc1 : ’a list -> ’a list -> ’a list = <fun>
+
+**1)** Que fait la fonction `fonc1`?
+
+Elle concatène deux listes
+
+On peut également filtrer les deux paramètres simultanément :
+
+    
+    
+    let rec fonc2 l1 l2 =
+    match (l1, l2) with
+    | ([], []) -> true
+    | (_ :: reste1, _ :: reste2) -> fonc2 reste1 reste2
+    | (_, _) -> false;;
+    val fonc2 : 'a list -> 'b list -> bool = <fun>
+
+**2)** Que fait la fonction `fonc2`?
+
+Elle teste si deux listes ont la même longueur.
+
+## Fonctions de fonctions
+
+Il est possible de créer en OCaml des fonctions ayant en paramètre des
+fonctions :
+
+    
+    
+    # let g = function f -> f 0 + 1;;
+    val g : (int -> int) -> int = <fun>
+    
+    (* Sans le mot-clé function *)
+    # let g f = f 0 + 1;;
+    val g : (int -> int) -> int = <fun>
+
+La fonction `g` ci-dessus prend en argument une fonction `f` et renvoie la
+valeur de `f` en 0 plus 1 :
+
+    
+    
+    # g (function x -> x*x + 2);;
+    - : int = 3
+
+**3)** Écrire une fonction `centsupdix` qui prend une fonction `f` de type
+`int -> int` et qui retourne vrai si `f(100)≤f(10)`. Appliquer cette fonction
+aux fonctions `f(x) = x + 1` et `f(x) = -x + 1`
+
+    
+    
+    # let centsupdix f =
+    f 100 >= f 10;;
+    val centsupdix : (int -> 'a) -> bool = <fun>
+    
+    # centsupdix (function x -> x + 1);;
+    - : bool = true
+    
+    # centsupdix (function x -> -x + 1);;
+    - : bool = false
+
+## Fonctions retournant une fonction
+
+Nous allons créer la fonction `fois_x` qui à partir d'un paramètre `x` créer
+une fonction qui multiplie par `x` :
+
+    
+    
+    # let fois_x x = function y -> x * y;;
+    val fois_x : int -> int -> int = <fun>
+
+Et on peut alors définir par exemple la fonction `double` par :
+
+    
+    
+    # let double = fois_x 2;;
+    val double : int -> int = <fun>
+    
+    # double 4;;
+    - : int = 8
+
+On peut remarquer que `fois_x` est simplement une fonction à deux arguments et
+quand on lui fournit un seul argument elle reste une fonction à un argument.
+Ainsi, il est strictement équivalent de définir `fois_x` ainsi :
+
+    
+    
+    # let fois_x x y = x * y;;
+    val fois_x : int -> int -> int = <fun>
+
+**4)** Écrire une fonction `sigma` avec deux arguments `f` et `i`. `sigma`
+doit alors renvoyer la somme des termes `f` pour i allant de 0 à n. Vérifier
+le fonctionnement de `sigma` en calculant la somme des entiers de 0 à 10 (55)
+et la somme des carrés de 1 à 10 (385) (On utilisera des fonctions anonymes).
+
+    
+    
+    # let rec sigma f n =
+    if n = 0 then f 0
+       else f n + sigma f (n-1);;
+    val sigma : (int -> int) -> int -> int = <fun>
+    
+    # sigma (function x -> x) 10;;
+    - : int = 55
+    
+    # sigma (function x -> x*x) 10;;
+    - : int = 385
+
+## Polymorphisme
+
+On parle de polymorphisme lorsqu'une valeur n'a pas de type défini. Cela
+arrive lorsqu'il n'y a pas de contrainte sur une valeur. On peut par exemple
+définir la fonction identité :
+
+    
+    
+    # let id x = x;;
+    val id : 'a -> 'a = <fun>
+
+On voit bien ici que OCaml n'est pas en mesure de déterminer le type de la
+valeur d'entrée ou de la valeur de sortie. Il a donc écrit un type indéterminé
+`'a`. On remarquera que le même type apparait en entrée et en sortie.
+
+Il peut y avoir plusieurs types indéterminés, dans ce cas OCaml utilisera les
+lettres suivantes de l'alphabet (`'b`, `'c`…) :
+
+    
+    
+    # let idtrio (x,y,z) = (x,y,z);;
+    val idcouple : 'a * 'b * 'c -> 'a * 'b * 'c = <fun>
+
+Nous avions déjà rencontré ce type indéterminé à différentes occasions, par
+exemple dans une fonction renvoyant la taille d'une liste :
+
+    
+    
+    # let rec longueur = function
+    | [] -> 0
+    | x::r -> 1 + longueur r;;
+    val longueur : 'a list -> int = <fun>
+
+## Typage forcé
+
+Il est possible de forcer le type d'une valeur avec la syntaxe `:type` :
+
+    
+    
+    # let id x:int = x;;
+    val id : int -> int = <fun>
+
+## Exercices
+
+**5)** Donner les réponses OCaml des phrases suivantes (sans utiliser le
+shell) :
+
+    
+    
+    # let delta = function f -> function x -> f (x+1) - 1;;
+    
+    # let g = function x -> 3*x+2;;
+    
+    # delta g;;
+    
+    # (delta g) 4;;
+    
+    # delta (g 4);;
+    
+    # delta g 4;;
+    
+    
+    # let delta = function f -> function x -> f (x+1) - 1;;
+    val delta : (int -> int) -> int -> int = <fun>
+    
+    # let g = function x -> 3*x+2;;
+    val g : int -> int = <fun>
+    
+    # delta g;;
+    - : int -> int = <fun>
+    
+    # (delta g) 4;;
+    - : int = 16
+    
+    # delta (g 4);;
+    Error: This expression has type int but an expression was expected of type
+             int -> int
+    
+    # delta g 4;;
+    - : int = 16
+
+**6)** Définir des expressions ayant pour type :
+
+    
+    
+    (bool -> bool) -> bool
+    string -> string -> string
+    (float -> float) -> float -> float
+    (bool -> string) -> int
+    
+    
+    # fun f -> f true && true;;
+    - : (bool -> bool) -> bool = <fun>
+    
+    # let merge a b =
+    a ^ b;;
+    val merge : string -> string -> string = <fun>
+    
+    # let g f x = f (x +. 1.) +. 2.;;
+    val g : (float -> float) -> float -> float = <fun>
+    
+    # fun f -> String.length (f (false) ^ "abc");;
+    - : (bool -> string) -> int = <fun>
+
+**7)** Donner les réponses OCaml des phrases suivantes (sans utiliser le
+shell) :
+
+    
+    
+    # let iter f = fun x -> f (f x);;
+    
+    # let succ n = n+1;;
+    
+    # iter succ;;
+    
+    # iter succ 3;;
+    
+    # let compose f g = fun x -> f (g x);;
+    
+    # let g n = sqrt (float_of_int n);;
+    
+    # compose g succ;;
+    
+    # compose g succ 35;;
+
+## Sources
+
+  * [Formation au langage Caml par Claude Marché et Ralf Treinen](https://www.lri.fr/~paulin/LGL/docs/polycaml-etuds.pdf)
+  * [Le langage CAML de Pierre Weis et Xavier Leroy](https://caml.inria.fr/pub/distrib/books/llc.pdf)
+
+[Précédent](filtrage)[Suivant](aspects-imperatifs)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

@@ -1,0 +1,150 @@
+---
+title: "Programmation orientée objet : méthode 4"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## POO
+
+  * [Introduction](.)
+  * [Programmation impérative](programmation-imperative)
+  * [Programmation orientée objet](programmation-orientee-objet)
+  * [Exercices sur la POO](exercices)
+  * [Notions de POO hors programme](poo-hors-programme)
+
+# Programmation orientée objet
+
+## Classe de base
+
+Il est temps de voir la POO. Nous allons créer une classe Personnage qui va
+contenir tout ce dont un personnage a besoin. Les classes permettent de
+construire les objets de la programmation orientée objet.
+
+Voici le code permettant de déclarer une classe Personnage :
+
+    
+    
+    class Personnage:
+    
+        def __init__(self, nom, force):
+            self.nom = nom
+            self.force = force
+
+Quelques explications :
+
+  * le nom d’une classe doit toujours commencer par une majuscule ;
+  * les fonctions définies à l’intérieur d’une classe sont appelées méthodes ;
+  * une méthode possède nécessairement un paramètre appelé `self` en premier. C’est une référence d’instance, nous verrons cela plus bas. Ce paramètre n’apparaît pas lors de l’appel de la méthode ;
+  * une classe possède des attributs ou variables d’instance qui doivent être appelé avec le préfixe self. La classe Personnage ci-dessus possède donc deux attributs `nom` et `force` ;
+  * une classe possède une méthode spéciale `__init__()` nommée constructeur qui est appelée lorsqu’on créer une instance de cette classe.
+
+Comment utiliser cette classe ? Il faut l’instancier ! Ce n’est pas très
+compliqué :
+
+    
+    
+    p1 = Personnage("Murzol", 50)
+
+`p1` est alors une instance de la classe Personnage : c'est à dire un objet
+crée à partir de la classe Personnage. Les arguments `"Murzol"` et `50` ont
+été envoyés au constructeur qui les a affecté aux bonnes variables d’instances
+(self est un paramètre « fantôme »).
+
+Nous pouvons alors accéder aux attributs de notre instance (même si c’est
+déconseillé de faire ainsi) :
+
+    
+    
+    print(p1.nom)
+    print(p1.force)
+
+Qu’avons-nous amélioré ici ?
+
+  * Le code est plus sûr : tous les personnages auront les mêmes caractéristiques par construction ;
+  * Le code est plus sûr : comme il est très déconseillé de modifier les attributs d’une classe, il y a peu de chance que le nom et la force soient modifiés par erreur.
+
+## Ajout d’une méthode
+
+Pour découvrir encore un avantage de la POO, nous allons créer une méthode qui
+va permettre d’afficher les caractéristiques du personnage.
+
+**8)** Écrivez une méthode `affiche()` qui va permettre d’afficher pour `p1`
+ses caractéristiques sous cette forme :
+
+    
+    
+    nom : Murzol | force : 50
+
+On fera appel à cette méthode avec la commande `p1.affiche()`.
+
+Qu’avons-nous amélioré ici ?
+
+  * le code est mieux structuré : la méthode d’affichage est dans la classe Personnage. Il sera plus facile de la retrouver.
+
+## Ajout d’un docstring
+
+Comme nous l'avons vu pour les fonctions, il est recommandé d’ajouter une
+description de la classe en utilisant une chaîne de caractère directement sous
+le nom de la classe. Cette chaîne de caractère doit utiliser trois guillemets
+`"""`. Par exemple on pourra mettre ceci :
+
+    
+    
+    class Personnage:
+        """Personnage quelconque avec un nom et une force"""
+
+Ce n’est pas indispensable mais c’est une bonne habitude à prendre. Et
+pourquoi ne pas mettre simplement un commentaire ? Car de cette façon votre
+docstring sera affichée en cas d’appel à `help(Personnage)` pour afficher
+l’aide.
+
+**9)** Ajoutez la docstring ci-dessus et affichez l’aide de la classe.
+
+Qu’avons-nous amélioré ici ?
+
+  * le code est plus facilement maintenable.
+
+## Ajout d’une méthode de combat
+
+Pour faire combattre nos deux personnages, nous allons créer une méthode
+combat qui prend en paramètre self (comme toujours) et une deuxième instance
+contre qui faire le combat. Comme avant, cette méthode doit afficher le nom du
+vainqueur.
+
+**10)** Complétez la définition de la fonction combat ci-dessous :
+
+    
+    
+    def combat(self, combattant):
+
+**11)** Testez cette méthode avec deux instances `p1` et `p2` pour Murzol et
+Grunak.
+
+Qu’avons-nous amélioré ici ?
+
+  * le code est mieux structuré : la méthode de combat est dans la classe Personnage. Il sera plus facile de la retrouver.
+
+## Amélioration de la méthode de combat
+
+**12)** Améliorez la méthode de combat pour qu’elle affiche plus
+d’informations comme dans l’exemple ci-dessous :
+
+    
+    
+    Combat entre Murzol et Grunak
+    Vainqueur : Murzol
+
+[Précédent](programmation-imperative)[Suivant](exercices)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

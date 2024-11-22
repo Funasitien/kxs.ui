@@ -1,0 +1,132 @@
+---
+title: "Algorithmes gloutons"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## Algorithmes
+
+  * [Introduction](.)
+  * [Algorithmes de tri](algorithmes-tri)
+  * [Correction d'un algorithme](correction-algorithme)
+  * [Recherche par dichotomie](recherche-dichotomique)
+  * [Algorithmes gloutons](algorithmes-gloutons)
+  * [K plus proches voisins](algorithme-k-plus-proches-voisins)
+  * [Choixpeau](choixpeau)
+
+# Algorithmes gloutons
+
+![](img/glouton.jpg) Spencer Wright | [source](https://commons.wikimedia.org/wiki/File:Gulo_gulo_-Whipsnade_Zoo,_Bedfordshire,_England-8a.jpg) | [Licence](https://creativecommons.org/licenses/by/2.0/deed.fr)
+
+## Introduction
+
+Un algorithme glouton résout un problème étape par étape. À chaque étape il
+fait le meilleur choix dans la situation présente. La solution trouvée n’est
+pas nécessairement optimale (la meilleure) mais l’algorithme permet de trouver
+rapidement une solution. Nous allons voir une application de cet algorithme
+pour le problème du sac à dos.
+
+## Problème du sac à dos
+
+### Présentation
+
+Le problème du sac à dos est un classique des problèmes d’algorithmique. Nous
+disposons d’un sac à dos avec une capacité limité et de différents objets avec
+chacun une valeur différente. Le but est de placer des objets dans le sac à
+dos de façon à maximiser la valeur contenue dans le sac.
+
+Considérons l’exemple ci-dessous :
+
+![](img/sacados.svg) Dake | [source](https://commons.wikimedia.org/wiki/File:Knapsack.svg) | [Licence](https://creativecommons.org/licenses/by-sa/2.5/deed.fr)
+
+**1)** Trouvez la combinaison qui vous semble être la meilleure.
+
+Avec un peu d’intuition, il est aisé de trouver la solution optimale. Un
+algorithme simple pour trouver cette solution serait d’essayer toutes les
+combinaisons possibles et de garder la meilleure. Le problème de cette méthode
+est sa complexité qui est en O(an) (exponentielle). Elle n’est donc pas
+utilisable pour des problèmes de grande taille. C’est ici qu’intervient
+l’algorithme glouton qui a une complexité en O(n).
+
+### Algorithme glouton
+
+Comme nous cherchons à maximiser la valeur contenue dans le sac, il faut
+d’abord calculer la valeur massique de chaque objet (on divise la valeur de
+l’objet par sa masse). Cela nous donne en quelque sorte « l’efficacité » de
+chaque objet. C’est ce qui à été fait dans la partie gauche de l’image ci-
+dessous :
+
+![](img/sacados-glouton.svg) Dake | [source](https://commons.wikimedia.org/wiki/File:Knapsack_greedy.svg) | [Licence](https://creativecommons.org/licenses/by-sa/2.5/deed.fr)
+
+Ces objets ont ensuite été classés par valeur massique décroissante. On
+remplit enfin le sac en prenant les objets dans l’ordre. On s’arrête lorsqu’on
+a essayé tous les objets ou lorsque le sac est rempli. C’est ce qui est
+détaillé dans la partie droite de l’image ci-dessus :
+
+  * 9kg ? → ok (9kg dans le sac, valeur 10€)
+  * 12kg ? → non, on dépasse les 15kg (9kg dans le sac, valeur 10€)
+  * 2kg ? → ok (11kg dans le sac, valeur 11€)
+  * 7kg ? → non, on dépasse les 15kg (11kg dans le sac, valeur 11€)
+  * 5kg ? → non, on dépasse les 15kg (11kg dans le sac, valeur 11€)
+
+La solution trouvée est donc 11kg et une valeur de 11€. Vous avez dû trouver
+une meilleure solution à la question 1. Il est donc très important de noter
+qu’**un algorithme glouton ne donne pas nécessairement la meilleure solution**
+, mais **une** solution en un temps raisonnable.
+
+**2)** En utilisant la liste d'objets ci-dessous (correspondant aux objets de
+l'exemple précédent) écrire, en Python, un algorithme glouton permettant de
+résoudre le problème du sac à dos.
+
+    
+    
+    objets = [(1,2), (7, 12), (3, 7), (2, 5), (10,9)]
+
+## Rendu de monnaie
+
+Le problème du rendu de monnaie consiste à obtenir une certaine somme en
+utilisant le moins de pièces possible. Les pièces (en nombre infini) dont nous
+disposons sont :
+
+  * 1 centime
+  * 2 centimes
+  * 5 centimes
+  * 10 centimes
+  * 20 centimes
+  * 50 centimes
+  * 1 euro
+  * 2 euros
+
+**3)** Écrivez un algorithme glouton en Python pour le rendu de monnaie.
+(Attention il sera un peu différent du premier) Cet algorithme devra donner la
+liste de toutes les pièces à rendre. On pourra utiliser la liste des pièces
+(en centimes) ci-dessous :
+
+    
+    
+    pieces = [200, 100, 50, 20, 10, 5, 2, 1]
+
+**4)** Appliquez cet algorithme à la somme 3,68€ et vérifier qu'in fonctionne
+bien.
+
+**5)** Appliquez cet algorithme à la somme 4,93€ et vérifier qu'in fonctionne
+bien.
+
+**6)** À votre avis, l’algorithme glouton donne-t-il ici toujours la solution
+optimale ? (Vous pouvez tenter une justification)
+
+[Précédent](recherche-dichotomique)[Suivant](algorithme-k-plus-proches-
+voisins)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

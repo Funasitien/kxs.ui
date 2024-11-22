@@ -1,0 +1,244 @@
+---
+title: "Programme en tant que donnée"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+# Programme en tant que donnée
+
+##  Parties du programme abordées
+
+Contenus | Capacités attendues | Commentaires  
+---|---|---  
+Notion de programme en tant que donnée. Calculabilité, décidabilité.  |  Comprendre que tout programme est aussi une donnée. Comprendre que la calculabilité ne dépend pas du langage de programmation utilisé. Montrer, sans formalisme théorique, que le problème de l’arrêt est indécidable.  |  L’utilisation d’un interpréteur ou d’un compilateur, le téléchargement de logiciel, le fonctionnement des systèmes d’exploitation permettent de comprendre un programme comme donnée d’un autre programme.   
+  
+## Présentation
+
+Nous allons parler de la calculabilité et de la décidabilité qui font partie
+de l'informatique théorique. Cette branche de l'informatique travaille entre
+autre sur des programmes qu'elle analyse et étudie. Les programmes sont alors
+considérés comme des données.
+
+## Compilation
+
+### Description
+
+Certains langages de programmation comme Python ou Java, sont directement
+exécutés par un programme : linterpréteur. L'interpréteur de Python s'appelle
+par exemple `python` et doit être installé sur l'ordinateur. N'importe quel
+code source est donc exécutable sur n'importe quelle machine possédant un
+interpréteur. Voici le schéma de fonctionnement :
+
+Code source Interpréteur Données d'entrée Données de sortie
+
+Il existe des langages de programmation qui nécessitent d'être _compilés_.
+C'est à dire qu'ils ne sont pas exécutés par un interpréteur comme Python mais
+doivent d'abord être transformés en code binaire exécuté par le système
+d'exploitation. Le code compilé appelé _binaire_ ne peut être exécuté que sur
+les machines de même architecture. Si on veut exécuter le code sur des
+machines différentes, il faut le recompiler. Voici le schéma de fonctionnement
+:
+
+Code source Compilateur Code binaire Syst. d'exploitation Données d'entrée
+Données de sortie
+
+Le compilateur considère bien ici le programme en entrée comme une donnée.
+
+### Avantages
+
+Il est possible de débattre indéfiniment des avantages et inconvénients des
+langages interprétés par rapport aux langages compilés. Voici néanmoins les 2
+principales différences entre ces deux types de langage :
+
+  * Un programme compilé s'exécutera en général plus vite qu'un programme interprété car le binaire est directement éxécuté par le système d'exploitation ;
+  * Un programme dans un langage compilé devra être compilé pour chaque architecture de processeur. Quand vous téléchargez un logiciel le fichier n'est pas le même pour Linux, Mac ou Windows, cela correspond à différentes compilations.
+
+### Pratique
+
+Vous allez maintenant compiler votre premier programme. Il faut donc choisir
+un langage compilé, nous choisirons le plus emblématique : le C.
+
+Un compilateur C est déja installé sur Linux : _gcc_. Il vous faut donc créer
+votre premier fichier C avec `nano` que vous nommerez `hello.c` :
+
+    
+    
+    #include <stdio.h>
+    
+    int main() {
+       printf("Hello, World!");
+       return 0;
+    }
+
+Ensuite, exécutez la commande suivante pour compiler votre code :
+
+    
+    
+    gcc -o hello hello.c
+
+Un fichier `hello` est alors créé. C'est un fichier exécutable, vous pouvez
+donc l'exécuter directement dans la console avec la commande :
+
+    
+    
+    ./hello
+
+Il est nécessaire de mettre `./` devant le nom du ficher pour que le système
+ne cherche pas un programme qui s'appelle `hello` mais regarde dans le
+répertoire courant `.` s'il existe un fichier `hello`.
+
+Le texte `Hello World!` a dû s'afficher. Il y a quatre choses à noter dans ce
+programme :
+
+  * `#include <stdio.h>` importe la bibliothèque `stdio` qui permet d'écrire dans le terminal.
+  * `int main()` est la fonction principale qui sera exécutée au lancement du programme. Son code est entouré par des acolades ;
+  * `printf("Hello, World!")` effectue l'affichage dans la console ;
+  * `return 0` renvoie `0` pour dire que le programme s'est bien exécuté.
+
+Vous avez surement remarqué qu'il n'y avait pas de retour à la ligne après
+l'affichage.
+
+**1)** Modifiez le code pour ajouter un retour à la ligne ('\n') et exécutez-
+le après l'avoir recompilé.
+
+**2)** En cherchant sur internet, créez un programme en C qui affiche tous les
+nombres entre 0 et 19.
+
+**3)** Juste pout voir ce que certains s'amusent à faire en C, essayez ce
+programme avec la commande de compilation `gcc -o hello hello.c -lm` :
+
+    
+    
+    /**/
+                 k;double sin()
+             ,cos();main(){float A=
+           0,B=0,i,j,z[1760];char b[
+         1760];printf("\x1b[2J");for(;;
+      ){memset(b,32,1760);memset(z,0,7040)
+      ;for(j=0;6.28>j;j+=0.07)for(i=0;6.28
+     >i;i+=0.02){float c=sin(i),d=cos(j),e=
+     sin(A),f=sin(j),g=cos(A),h=d+2,D=1/(c*
+     h*e+f*g+5),l=cos      (i),m=cos(B),n=s\
+    in(B),t=c*h*g-f*        e;int x=40+30*D*
+    (l*h*m-t*n),y=            12+15*D*(l*h*n
+    +t*m),o=x+80*y,          N=8*((f*e-c*d*g
+     )*m-c*d*e-f*g-l        *d*n);if(22>y&&
+     y>0&&x>0&&80>x&&D>z[o]){z[o]=D;;;b[o]=
+     ".,-~:;=!*#$@"[N>0?N:0];}}/*#****!!-*/
+      printf("\x1b[H");for(k=0;1761>k;k++)
+       putchar(k%80?b[k]:10);A+=0.04;B+=
+         0.02;}}/*****####*******!!=;:~
+           ~::==!!!**********!!!==::-
+             .,~~;;;========;;;:~-.
+                 ..,--------,*/
+
+## Calculabilité et décidabilité
+
+### Machine de Turing
+
+Une machine de Turing est une machine théorique composée d'un ruban infini,
+d'une tête de lecture écriture qui peut bouger sur ce ruban et d'une liste
+d'actions que la machine doit effectuer en fonction de son état et de ce
+qu'elle lit sur le ruban.
+
+![](img/machine.png) Auteur : Schadel | [source](https://commons.wikimedia.org/wiki/File:Maquina.png) | Domaine public
+
+Cette machine fût inventée par Alan Turing en 1936 avant l'apparition des
+premiers ordinateurs. Aussi basique soit-elle il est admis (c'est de manière
+simplifiée la [thèse de
+Chuch](https://fr.wikipedia.org/wiki/Th%C3%A8se_de_Church)) que tout programme
+écrit dans n'importe quel langage peut être réécrit pour fonctionner sur une
+machine de turing. Ainsi la machine de Turing est en quelque sorte la machine
+la plus simple permettant de faire tout ce que n'importe quel programme est
+capable de faire.
+
+Il est donc équivalent de dire qu'il existe un programme pour résoudre un
+problème ou qu'il existe une machine de Turing pour résoudre ce problème ou
+même qu'il existe un algorithme permettant de résoudre ce problème.
+
+### Calculabilité et décidabilité
+
+On dira alors qu'un problème est calculable ou décidable **s'il existe une
+machine de Turing capable de le résoudre**. Cela revient également à dire
+qu'un problème est calculable ou décidable s'il existe un algorithme capable
+de le résoudre ou même s'il existe un programme Python capable de le résoudre.
+
+On parlera de décidabilité d'un problème si ça réponse est oui ou non et de
+calculabilité dans les autres cas.
+
+### Exemples
+
+Voici des exemples de problèmes décidables :
+
+  * Soit n un entier > 1, n est-il premier ?
+  * Soit m et n deux entiers > 1\. m est-il multiple de n ?
+
+Il est possible (et même facile ici) d'écrire des algorithmes pour répondre à
+ces questions. Ce sont donc des problèmes décidables.
+
+Voici maintenant un problème indécidable :
+
+> Soient F1, F2… Fn une liste de formes polygonales. Peut-on paver le plan,
+> sans recouvrement ni espace vide avec des exemplaires de F1, F2… Fn ?
+
+Ce problème a été montré indécidable, c'est à dire qu'il est impossible
+d'écrire un algorithme permettant de répondre à cette question dans tous les
+cas de figure.
+
+Cela ne veut pas dire qu'il est impossible de trouver une solution dans un cas
+particulier (par exemple avec les formes carrées identiques) mais qu'il est
+_impossible_ de trouver un algorithme résolvant ce problème dans tous les cas.
+
+Cela ne veut pas dire que personne n'a trouvé d'algorithme jusqu'à maintenant,
+cela veut dire qu'il est _impossible_ de trouver un algorithme. Cela ne sert à
+rien de chercher !
+
+Les démonstrations de décidabilité sont en général compliquées, néanmoins il
+en existe une relativement simple : celle du problème de l'arrêt.
+
+### Problème de l'arrêt
+
+#### Explication
+
+Le problème de l'arrêt est un problème assez simple : sertait-il possible de
+créer une machine qui pourrait nous dire si n'importe quel programme va
+s'arrèter ou s'il va planter ? Il serait très intéressant d'avoir une telle
+machine car elle permettrait de trouver de nombreux bugs.
+
+Malheureusement le problème de l'arrêt est indécidable. Il est impossible de
+créer une telle machine.
+
+Il existe des machines permettant de détecter si un programme va s'arrêter ou
+non mais il n'est pas possible de créer une machine qui permettrait de
+détecter si n'importe quel programme va s'arrèter.
+
+#### Démonstration
+
+Nous allons faire la démonstration ensemble.
+
+## Sources et compléments
+
+[Langages interprétés et langages compilés](http://www.france-
+ioi.org/algo/course.php?idChapter=561&idCourse=2368)
+
+    le cours de France-ioi sur les langages interprétés et compilés.
+  
+[Langage compilé vs interprété](https://leblogducodeur.fr/langage-compile-vs-
+interprete/)
+
+    article de blog expliquant simplement les différences entre les deux types de langage.
+  
+[Précédent (page des cours)](..)[Suivant (page des cours)](..)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

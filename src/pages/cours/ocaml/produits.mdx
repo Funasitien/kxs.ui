@@ -1,0 +1,152 @@
+---
+title: "Produits en OCaml - Niveau MP2I"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## OCaml
+
+  * [Présentation](.)
+  * [Interaction et définitions](interaction-definition)
+  * [Fonctions](fonctions)
+  * [If … then … else …](if-then-else)
+  * [Fonctions récursives](fonctions-recursives)
+  * [Réels](reels)
+  * [Chaînes de caractères](string)
+  * [Execices 1](exercices-1)
+  * [Listes](listes)
+  * [Unit](unit)
+  * [Produits](produits)
+  * [Enregistrements](enregistrements)
+  * [Énumérations](enumerations)
+  * [Sommes](sommes)
+  * [Filtrage](filtrage)
+  * [Fonctions avancées](fonctions-avancees)
+  * [Aspects impértifs](aspects-imperatifs)
+
+# Produits
+
+## Définitions
+
+On peut créer des **n-uplets** ou **produits** en OCaml. Un **couple** est un
+produit avec deux éléments. Un produit peut être composé d'éléments de types
+différents. On sépare les éléments d'un produit par des virgules et on les
+encadre de parenthèses :
+
+    
+    
+    # (2,3);;
+    - : int * int = (2, 3)
+    # (1, 4.3, "abc");;
+    - : int * float * string = (1, 4.3, "abc")
+
+On voit qu'un produit est représenté comme le produit des types de ses
+éléments.
+
+Il est possible d'extraire les composante d'un produit avec `let` :
+
+    
+    
+    # let (a,b,c) = (1,2,3);;
+    val a : int = 1
+    val b : int = 2
+    val c : int = 3
+
+## Fonctions sur les produits
+
+  * `fst c` : renvoie le premier élément du couple `c` (first) ;
+  * `snd c` : renvoie le deuxième élément du couple `c` (second) ;
+
+Il est possible d'écrire des fonctions ayant des produits comme paramètres.
+Par exemple la fonction addition qui ajoute les entiers d'un 3-uplet :
+
+    
+    
+    # let addition (x,y,z) = x+y+z;;
+    val addition : int * int * int -> int = <fun>
+    # addition (1,2,3);;
+    - : int = 6
+
+On peut également utiliser le pattern matching :
+
+    
+    
+    # let addition = function
+    | (x,y,z) -> x+y+z;;
+    val addition : int * int * int -> int = <fun>
+
+La première `|` n'étant pas obligatoire, on pourra également écrire (pour plus
+de concision) :
+
+    
+    
+    # let addition = function
+    (x,y,z) -> x+y+z;;
+    val addition : int * int * int -> int = <fun>
+
+## Exercices
+
+**1)** Écrire une fonction qui transforme les coordonnées polaire d'un vecteur
+en coordonnées cartésiennes.
+
+    
+    
+    # let proj (theta, r) = (r *. cos theta, r *. sin theta);;
+    val proj : float * float -> float * float = <fun>
+
+**2)** Écrire une fonction qui calcule le produit scalaire de deux vecteurs en
+dimension 3 :
+
+    
+    
+    # let prod_scal v1 v2 =
+    …
+    
+    
+    # let prod_scal v1 v2 =
+    let (v1x, v1y, v1z) = v1 in
+    let (v2x, v2y, v2z) = v2 in
+    v1x * v2x + v1y * v2y + v1z * v2z;;
+
+**3)** On considère un nombre complexe a + ib représenté par le couple (a, b).
+Implémenter les fonctions suivantes :
+
+  * `preelle` : renvoie la partie réelle d'un nombre complexe ;
+  * `pimg` : renvoie la partie imaginaire d'un nombre complexe ;
+  * `somme_c` : renvoie la somme de deux nombre complexes ;
+  * `module_c` : renvoie le module d'un nombre complexe ;
+  * `arg` : renvoie l'argument d'un nombre complexe ;
+
+On travaillera de préférence avec des float. On pourra utiliser les fonctions
+primitives `acos`, `asin` et `atan`.
+
+    
+    
+    # let preelle = function
+    (a, b) -> a;; 
+    # let pimg = function
+    (a, b) -> b;; 
+    # let somme z1 z2 =
+    let (a1, b1) = z1 in
+    let (a2, b2) = z2 in
+    (a1 + a2, b1 + b2);;
+    # let module_c = function
+    (a, b) -> sqrt(a *. a +. b *. b);;
+    # let arg z =
+    let theta = acos (preelle z /. module_c z) in
+    if pimg z > 0. then theta else -. theta;;
+
+[Précédent](unit)[Suivant](enregistrements)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

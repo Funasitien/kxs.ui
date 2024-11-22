@@ -1,0 +1,282 @@
+---
+title: "Piles : interface et implémentation"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## Listes, piles, files et dictionnaires
+
+  * [Introduction](.)
+  * [Listes](listes)
+  * [Piles](piles)
+  * [Files](files)
+  * [Dictionnaires](dictionnaires)
+  * [Bilan](bilan)
+  * [Exercices](exercices)
+
+# Piles
+
+## Présentation
+
+En informatique, une _pile_ est une liste avec des restrictions. On peut
+prendre l'image d'une pile d'assiettes pour comprendre. Si on ajoute une
+assiette, on ne peut la mettre que au sommet de la pile et de même si on veut
+retirer une assiette on ne peut prendre que celle du dessus. On peut
+éventuellement voir l'assiette du dessus sans l'enlever.
+
+On ne peut surtout pas insérer un nouvel élément ailleur que au sommet ni
+retirer un élément autre que celui au sommet.
+
+Empile Dépile
+
+## Interface
+
+### Définition
+
+Voici donc les éléments les plus courants de l'interface d'un pile :
+
+empile(x)
+
+    insère un élément en haut de pile ;
+  
+depile()
+
+    enlève l'élément en haut de pile ;
+  
+sommet()
+
+    renvoie l'élément au sommet sans le dépiler ;
+  
+taille()
+
+    renvoie le nombre d'éléments de la pile ;
+  
+estVide()
+
+    renvoie `True` si la pile est vide, `False` sinon ;
+  
+
+### Exemple
+
+**1)** Considérant la suite d'instructions suivante, donnez le contenu de la
+pile à chaque ligne repérée par un numéro en commentaire. `ma_pile` est
+initialement une pile vide. On représentera une pile par des éléments
+superposés.
+
+    
+    
+    ma_pile.empile(4)
+    ma_pile.empile(8) #1
+    ma_pile.empile(1)
+    ma_pile.empile(3) #2
+    ma_pile.depile()  #3
+    ma_pile.sommet()  #4
+    ma_pile.empile(3)
+    ma_pile.depile()  #5
+    
+    
+    #1 [4, 8]
+    #2 [4, 8, 1, 3]
+    #3 [4, 8, 1]
+    #4 1
+    #5 [4, 8, 1]
+
+## Implémentation
+
+### Liste chaînée
+
+Comme nous l'avons vu dans la partie sur les listes, il existe plusieurs
+façons d'implémenter une même interface. Voici donc une implémentation d'une
+pile avec des listes chaînées :
+
+    
+    
+    class Noeud:
+        def __init__(self, valeur, suivant = None):
+            self.valeur = valeur
+            self.suivant = suivant
+    
+    class Pile:
+        def __init__(self):
+            self.sommetpile = None
+            self.nb = 0
+    
+        def empile(self, x):
+            self.nb = self.nb + 1
+            nouveau_noeud = Noeud(x)
+            if self.sommetpile is not None: # La pile n’est pas vide
+                nouveau_noeud.suivant = self.sommetpile
+            self.sommetpile = nouveau_noeud
+    
+        def depile(self):
+            self.nb = self.nb - 1
+            self.sommetpile = self.sommetpile.suivant
+    
+        def sommet(self):
+            return self.sommetpile.valeur
+    
+        def affiche(self):
+            print("--")
+            noeud_actuel = self.sommetpile
+            while noeud_actuel is not None:
+                print(noeud_actuel.valeur)
+                noeud_actuel = noeud_actuel.suivant
+            print("--")
+    
+        def taille(self):
+            return self.nb
+    
+        def estVide(self):
+            return self.sommetpile is None
+
+**2)** Étudiez ce programme et créez des tests sur la base de l'exemple ci-
+dessus pour vérifier qu'il fonctionne correctement.
+
+    
+    
+    """
+        Classe qui implémente une pile avec une liste chaînée.
+    
+        >>> ma_pile = Pile()
+        >>> ma_pile.empile(2)
+        >>> ma_pile.empile(4)
+        >>> ma_pile.affiche()
+        --
+        4
+        2
+        --
+    
+        >>> ma_pile = Pile()
+        >>> ma_pile.empile(2)
+        >>> ma_pile.empile(4)
+        >>> ma_pile.sommet()
+        4
+    
+        >>> ma_pile = Pile()
+        >>> ma_pile.empile(2)
+        >>> ma_pile.empile(4)
+        >>> ma_pile.depile()
+        >>> ma_pile.sommet()
+        2
+    
+        >>> ma_pile = Pile()
+        >>> ma_pile.empile(1)
+        >>> ma_pile.empile(3)
+        >>> ma_pile.taille()
+        2
+    
+        >>> ma_pile = Pile()
+        >>> ma_pile.estVide()
+        True
+    
+        >>> ma_pile = Pile()
+        >>> ma_pile.empile(3)
+        >>> ma_pile.estVide()
+        False
+    
+        """
+
+### `list` Python
+
+Il est possible (et plus simple) d'utiliser le type `list` de Python pour
+implémenter une pile comme nous l'avions fait pour les listes.
+
+**3)** Proposez un programme implémentant une pile avec une `list` Python. Ce
+programme doit proposer la même interface que celui avec la liste chaînée.
+
+    
+    
+    class Pile2:
+        def __init__(self):
+            self.liste = []
+    
+        def empile(self, x):
+            self.liste.append(x)
+    
+        def depile(self):
+            self.liste.pop(len(self.liste)-1)
+    
+        def sommet(self):
+            return self.liste[-1]
+    
+        def affiche(self):
+            print("--")
+            for i in range(len(self.liste),0,-1):
+                print(self.liste[i-1])
+            print("--")
+    
+        def taille(self):
+            return len(self.liste)
+    
+        def estVide(self):
+            return self.liste == []
+
+**4)** Utilisez les mêmes tests que précédement pour vérifier que votre
+programme fonctionne correctement.
+
+    
+    
+    """
+        Classe qui implémente une pile avec un tableau.
+    
+        >>> ma_pile = Pile2()
+        >>> ma_pile.empile(2)
+        >>> ma_pile.empile(4)
+        >>> ma_pile.affiche()
+        --
+        4
+        2
+        --
+    
+        >>> ma_pile = Pile2()
+        >>> ma_pile.empile(2)
+        >>> ma_pile.empile(4)
+        >>> ma_pile.sommet()
+        4
+    
+        >>> ma_pile = Pile2()
+        >>> ma_pile.empile(2)
+        >>> ma_pile.empile(4)
+        >>> ma_pile.depile()
+        >>> ma_pile.sommet()
+        2
+    
+        >>> ma_pile = Pile2()
+        >>> ma_pile.empile(1)
+        >>> ma_pile.empile(3)
+        >>> ma_pile.taille()
+        2
+    
+        >>> ma_pile = Pile2()
+        >>> ma_pile.estVide()
+        True
+    
+        >>> ma_pile = Pile2()
+        >>> ma_pile.empile(3)
+        >>> ma_pile.estVide()
+        False
+    
+        """
+
+## Bilan
+
+Les piles sont basées sur le principe _LIFO_ pour _Last In First Out_ , ce qui
+signifie « dernier entré, premier sorti ». Quand on sera dans une telle
+situation, il faudra alors utiliser cette structure de données. Elle est
+utilisée par exemple pour envoyer des paramètres à une fonction. Cela permet
+d'accéder plus rapidement aux paramètres.
+
+[Précédent](listes)[Suivant](files)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

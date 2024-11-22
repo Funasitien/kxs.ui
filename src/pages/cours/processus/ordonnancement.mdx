@@ -1,0 +1,189 @@
+---
+title: "Ordonnancement"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## Processus
+
+  * [Introduction](.)
+  * [Processus sur Linux](processus-linux)
+  * [Processus avec Python](processus-python)
+  * [Ordonnancement](ordonnancement)
+  * [Interblocage](interblocage)
+
+# Ordonnancement
+
+## Présentation
+
+L'_ordonnanceur_ est un composant du noyau d'un système d'exploitation qui
+détermine l'ordre d'exécution des processus sur les processeur d'un
+ordinateur. En effet, un processeur ne peut effectuer qu'une tâche à la fois.
+Avec plusieurs processeurs ou cœurs, il est possible d'effectuer plusieurs
+tâche simultanément, mais il y aura en général plus de processus que de
+processeurs ou cœurs. Il faut donc choisir à chaque instant quel processus va
+utiliser tel processeur : c'est l'_ordonnancement_. C'est un domaine assez
+complexe dont nous n'allons voir que certaines manifestations simples.
+
+L'ordonnancement donne l'illusion que toutes les tâches sont exécutées en
+parrallèle alors qu'elles sont exécutées les unes à la suite des autres sur
+des temps très courts. L'ordonnanceur attribue du temps processeur aux
+processus. Ainsi, de manière schématique, si nous avons 10 processus (A, B,
+C…) avec un temps d'exécution infini et la même priorité. Pour un seul
+processeur, chacun des processus va avoir droit, par exemple, à 1 ms toutes
+les 10 ms :
+
+A B C D E F G H I J A B …
+
+## Stratégies d'ordonnancement
+
+On considère maintenant des processus arrivant successivement et dont on
+connait le temps d'exécution. Voici les processus que nous allons ordonner :
+
+Processus | Temps d'arrivée | Temps d'exécution  
+---|---|---  
+A | 0 | 3  
+B | 1 | 6  
+C | 4 | 4  
+D | 6 | 2  
+E | 7 | 1  
+  
+Il est alors possible de définir plusieurs algorithmes d'ordonnancement.
+
+### Parrallèle
+
+Dans le cas où nous avons plusieurs cœurs à diposition, on exécute les
+processus simultanément dans l'ordre dans lequel ils arrivent.
+
+**1)** Donnez sur une ligne de temps l'ordre d'exécution des processus avec
+cet algorithme.
+
+### Premier arrivé, premier servi
+
+Cet algorithme First-Come First-Served (FCFS) attirbue les ressources dans
+l'ordre d'arrivé des processus. Chaque processus est exécuté jusqu'à son
+arrêt. Nous supposons ici que nous n'avons qu'cœur à disposition.
+
+**2)** Donnez sur une ligne de temps l'ordre d'exécution des processus avec
+cet algorithme.
+
+### Le plus court d'abord
+
+Cat algorithme Short Job First (SJF) exécute en priorité le processus le plus
+court. Néanmoins, il n'interromp pas un processus en cours d'exécution. Nous
+supposons ici que nous n'avons qu'un cœur à disposition
+
+**3)** Donnez sur une ligne de temps l'ordre d'exécution des processus avec
+cet algorithme.
+
+## Proiorité des processus
+
+Nous avon parlé dans la présentation de priorité de processus. C'est une
+notion centrale de l'ordonnancement. Nous n'allons pas chercher à reproduire
+un algorithme utilisant les priorités mais nous allons tenter de voir son
+utilisation sous Linux. Ainsi de manière logique, ce sont les processus avec
+la plus grande priorité qui auront le plus de temps processeur.
+
+Sous Linux, pour la plupart des processus, la priorité est un nombre entre 0
+et 39. Attention ! **plus le nombre est petit, plus le processus est
+prioritaire**.
+
+**4)** Lancez une commande `htop` et observez la colonne `PRI` qui correspond
+à la priorité.
+
+Sous Linux, on peut changer soi-même la priorité d'un processus en agissant
+sur `nice`. C'est la colonne `NI` dans `htop`. Il existe une relation très
+simple entre la valeur de nice et la priorité.
+
+**5)** Essayez de deviner la relation mathématique entre `PRI` et `NI` en
+observant leurs valeurs dans `htop`. (Ne faites pas attention aux colonnes
+avec une priorité négative)
+
+Les processus ont donc une valeur de nice qui varie entre -20 et 19. Les
+utilisateurs normaux ne peuvent utiliser que des valeurs entre 0 et 19, les
+autres valeurs (les plus prioritaires) étant réservées à root. Nous allons
+voir maintenant comment donner une valeur de nice à un processus.
+
+**6)** Dans un terminal lancez la commande suivante et notez la valeur de nice
+pour le processus gnome-2048.
+
+    
+    
+    gnome-2048
+
+La plupart des processus ont une valeur de nice à 0. Cela veut dire que leur
+priorité est à 20. On peut donc choisir de donner une valeur plus élevée à
+nice pour que le processus soit moins prioritaire (par exemple pour un long
+calcul si on ne veut pas utiliser toutes les ressources du système). Pour
+cela, on utilise la syntaxe suivante :
+
+    
+    
+    nice -n valeur commande
+
+**7)** Relancez gnome-2048 avec un nice à 10. Vérifiez cette valeur dans
+`htop`.
+
+Comme votre machine n'est pas très solicitée, des valeurs de nice différentes
+ne changent pas grand chose car il y a plein de temps processeur disponible.
+Pour voir les effets de nice, nous allons utiliser un script Python qui va
+faire travailler votre ordinateur :
+
+    
+    
+    import os
+    
+    newpid = os.fork()
+    
+    if newpid == 0: # Dans le fils
+        newpid = os.fork()
+        newpid = os.fork()
+        newpid = os.fork()
+    
+    #else: # Pour le père
+    #     os.nice(5)
+    
+    print(os.getpid(), ":", os.nice(0))
+    
+    i = 0
+    while i < 100000000:
+        i += 1
+
+Ce script lance 9 processus qui comptent jusqu'à 100 millions. Il vous faudra
+peut-être réduire ce nombre pour que les processus se terminent par eux-même.
+
+Pour la suite, il est recommandé d'avoir deux fenêtres de terminal côte à
+côte. L'une avec `htop` et l'autre pour lancer les commandes.
+
+**8)** Lancez ce script en ligne de commande et relevez la charge cpu des
+processus dans `htop`.
+
+Décommentez maintenant les deux lignes qui changent la valeur de nice pour le
+processus père.
+
+**9)** Relancez ce script en ligne de commande et relevez la charge cpu
+moyenne des processus fils et celle du père.
+
+**10)** Quel processus se termine en dernier ?
+
+Modifiez alors le script pour donner une valeur de nice à 19 au père.
+
+**11)** Relancez encore une fois ce script en ligne de commande et relevez la
+charge cpu moyenne des processus fils et celle du père.
+
+**12)** Que constatez-vous ? Est-ce en accord avec le fonctionnement de nice ?
+
+[Précédent](processus-python)[Suivant](interblocage)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

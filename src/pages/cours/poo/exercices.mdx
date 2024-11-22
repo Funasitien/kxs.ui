@@ -1,0 +1,146 @@
+---
+title: "Exercices sur la programmation orientée objet"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## POO
+
+  * [Introduction](.)
+  * [Programmation impérative](programmation-imperative)
+  * [Programmation orientée objet](programmation-orientee-objet)
+  * [Exercices sur la POO](exercices)
+  * [Notions de POO hors programme](poo-hors-programme)
+
+# Exercices sur la programmation orientée objet
+
+## Exercice 1
+
+**1)** Créez une classe `Point` qui possède deux attributs `x` et `y`
+correspondant aux coordonées du point. Ces deux attributs doivent être
+affectés par le constructeur.  
+**2)** Ajoutez une méthode `affiche()` qui affiche les coordonnées du point
+comme ci-dessous (ici, x = 2 et y = 3) :
+
+    
+    
+    Point | x : 2 | y : 3
+
+**3)** Ajoutez une méthode `translater(tx,ty)` qui ajoute `tx` à `x` et `ty` à
+`y`.
+
+    
+    
+    class Point:
+        """ Point dans un plan """
+        def __init__(self, x, y):
+            self.x = x
+            self.y = y
+    
+        def affiche(self):
+            print("Point | x :", self.x, " | y :", self.y)
+    
+        def translater(self, tx, ty):
+            self.x = self.x + tx
+            self.y = self.y + ty
+    
+    mon_point = Point(2,3)
+    mon_point.affiche()
+    mon_point.translater(2,2)
+    mon_point.affiche()
+
+## Exercice 2
+
+**1)** Créez une classe `Compte` modélisant un compte en banque. La classe
+possède deux attributs `somme` et `taux` correspondant à la somme placée sur
+le compte et au taux d'intérêt. Ces deux attributs doivent être affectés par
+le constructeur.  
+**2)** Ajoutez une méthode `affiche()` qui affiche la somme et le taux comme
+ci-dessous :
+
+    
+    
+    Compte | somme : 2000€ | taux : 2%
+
+**3)** Ajoutez une méthode `depot(x)` qui ajoute `x` à la somme sur le compte.
+
+**4)** Ajoutez une méthode `retrait(x)` qui enlève `x` à la somme sur le
+compte. Elle pourra renvoyer un erreur si la somme sur le compte devient
+négative et annuler alors l'opération.
+
+**5)** Ajoutez une méthode `interets()` qui calcule les intérêts perçus en un
+an et les ajoute à la somme placée. Pour rappel les intérets se calculent avec
+la formule `interets = taux x somme / 100`
+
+    
+    
+    class Compte:
+        """ Compte en banque """
+        def __init__(self, somme, taux):
+            self.somme = somme
+            self.taux = taux
+    
+        def affiche(self):
+            # On met sep="" pour pouvoir coller € et %
+            print("Compte | somme : ", self.somme, "€ | taux : ", self.taux, "%", sep="")
+    
+        def depot(self, x):
+            self.somme = self.somme + x
+    
+        def retrait(self, x):
+            if self.somme > x: # Si le compte reste créditeur
+                self.somme = self.somme - x
+            else:
+                print("Erreur : découvert non autorisé !")
+    
+        def interets(self):
+            """ Calcule les intérets sur 1 an et les crésite au compte. """
+            interets = self.somme * self.taux / 100
+            self.somme = self.somme + interets
+    
+    mon_compte = Compte(5000, 10)
+    mon_compte.affiche()
+    mon_compte.depot(5000)
+    mon_compte.affiche()
+    mon_compte.retrait(4000)
+    mon_compte.affiche()
+    mon_compte.retrait(10000)
+    mon_compte.interets()
+    mon_compte.affiche()
+
+## Exercice 3
+
+**1)** En vu de faire un site web recensant des citations de films, créez une
+classe `Citation` permettant d'enregistrer le texte de la cittion et son film.
+
+**2)** Créez une méthode `affiche` permettant d'afficher la citation de cette
+façon :
+
+    
+    
+    Si je connaissais le con qu’a fait sauter le pont !
+     -- On a retrouvé la 7e compagnie
+
+**3)** Ajouter deux attributs `vote_plus` et `vote_moins` pour enregistrer les
+votes des utilisateurs sur chaque citation.
+
+**4)** Ajouter deux méthodes `vote_pour` et `vote_contre` qui permettent
+respectivement d'incrémenter `vote_plus` et `vote_moins`.
+
+**5)** Enfin, ajoutez une méthode `affiche_votes` qui affiche le nombre de
+votes pour et le nombre de votes contre la citation.
+
+[Précédent](programmation-orientee-objet)[Suivant](poo-hors-programme)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

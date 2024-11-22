@@ -1,0 +1,217 @@
+---
+title: "Algorithmes sur les arbres binaires"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## Graphes et algorithmes
+
+  * [Introduction](.)
+  * [Graphes](graphes)
+  * [Arbres](arbres)
+  * [Arbres binaires](arbres-binaires)
+  * [Algo arbres binaires (1)](algo-arbres-binaires-1)
+  * [Implémentation arbres](implementation-arbres)
+  * [Algo arbres binaires (2)](algo-arbres-binaires-2)
+  * [Algo graphes](algo-graphes)
+  * [Implémentation graphes](implementation-graphes)
+
+# Algorithmes sur les arbres binaires (Partie 1)
+
+Nous parlerons ici uniquempent des arbres binaires. Voici l'arbre que nous
+utiliserons comme exemple pour commencer.
+
+![](img/arbre-binaire.svg)
+
+## Taille d'un arbre
+
+**1)** Quelle est la taille de cet arbre ?
+
+La taille de cet arbre est 11. (nombre de nœuds)
+
+**2)** Proposez un algorithme récursif permettant de calculer la taille d'un
+arbre.
+
+Une solution sans autoriser l'appel à un arbre vide (utile en POO) :
+
+    
+    
+    taille(arbre):
+        taille = 1
+        si arbre.gauche est non vide:
+            taille = taille + taille(arbre.gauche)
+        si arbre.droit est non vide:
+            taille = taille + taille(arbre.droit)
+        retourner taille
+
+Une solution permettant l'appel sur un arbre vide :
+
+    
+    
+    taille(arbre):
+        Si l'arbre est vide:
+            retourner 0
+        Sinon:
+            retourner 1 + taille(sous-arbre gauche) + taille(sous-arbre droit))
+
+## Hauteur d'un arbre
+
+**3)** Quelle est la hauteur de cet arbre ?
+
+La hauteur de cet arbre est 3. (La plus grande profonfeur)
+
+**4)** Proposez un algorithme récursif permettant de calculer la hauteur d'un
+arbre.
+
+    
+    
+    hauteur(arbre):
+        si arbre.gauche est vide et arbre.droit est vide:
+            retourner 0
+        si arbre.gauche est vide et arbre.droit est non vide:
+            retourner 1 + hauteur(arbre.droit)
+        si arbre.gauche est non vide et arbre.droit est vide:
+            retourner 1 + hauteur(arbre.gauche)
+        si arbre.gauche est non vide et arbre.droit est non vide:
+            retourner 1 + max(hauteur(arbre.droit),hauteur(arbre.gauche))
+
+## Parcours d'un arbre
+
+Le parcours d'un arbre correspond à l'ordre dans lequel on parcourt ses nœuds.
+Voici les différentes façons de parcourir un arbre :
+
+### Parcours en largeur
+
+On commence par la racine puis ses fils, puis les fils des fils etc. On avance
+niveau par niveau et on attend qu'un niveau soit complètement parcouru avant
+de passer au suivant. Sur chaque niveau, on avance de gauche à droite.
+
+Sur le graphe ci-dessus cela donne : R-G-S-D-K-M-N-B-A-T-U.
+
+### Parcours en profondeur
+
+Ici, on visite le sous-arbre gauche avant le sous-arbre droit pour chaque
+nœud. Il existe trois types de parcours en profondeur en fonction de l'ordre
+de visite des fils par rapport à leur père.
+
+#### Préfixe
+
+Père-Filsgauche-Filsdroit. Si filsgauche est également père, on visitera son
+propre filsgauche avant de passer à filsdroit (c'est le parcours en
+profondeur).
+
+Sur l'exemple : R-G-D-B-A-K-T-S-M-N-U
+
+#### Infixe
+
+Filsgauche-Père-Filsdroit.
+
+Avec l'exemple : B-D-A-G-K-T-R-M-S-U-N
+
+#### Suffixe
+
+Filsgauche-Filsdroit-Père.
+
+Sur l'exemple : B-A-D-T-K-G-M-U-N-S-R.
+
+### Exercices
+
+On considère l'arbre ci-dessous :
+
+![](img/arbre-binaire-2.svg)
+
+**5)** Donner l'ordre des nœuds pour un parcours en largeur.
+
+I-D-E-B-K-Z
+
+**6)** Donner l'ordre des nœuds pour un parcours en profondeur préfixe.
+
+I-D-B-E-K-Z
+
+**7)** Donner l'ordre des nœuds pour un parcours en profondeur infixe.
+
+B-D-I-K-E-Z
+
+**8)** Donner l'ordre des nœuds pour un parcours en profondeur suffixe.
+
+B-D-K-Z-E-I
+
+**9)** Donnez le type de parcours d'arbre des algorithmes suivants :
+
+    
+    
+    parcours1(nœud):
+        si nœud non vide:
+            parcours1(nœud.gauche)
+            affiche(nœud.valeur)
+            parcours1(nœud.droit)
+    
+    
+    parcours2(nœud):
+        si nœud non vide:
+            affiche(nœud.valeur)
+            parcours2(nœud.gauche)
+            parcours2(nœud.droit)
+    
+    
+    VARIABLES
+    f : file
+    
+    DEBUT
+    parcours3(nœud):
+        f.enfile(nœud)
+        tant que f est non vide:
+            x = f.defile()
+            affiche x.valeur
+            si x.gauche non vide:
+                f.enfile(x.gauche)
+            si x.droit non vide:
+                f.enfile(x.droit)
+    FIN
+    
+    
+    parcours4(nœud):
+        si arbre non vide:
+            parcours4(nœud.gauche)
+            parcours4(nœud.droit)
+            affiche(nœud.valeur)
+
+  * parcours 1 : infixe ;
+  * parcours 2 : prefixe ;
+  * parcours 3 : largeur ;
+  * parcours 4 : suffixe.
+
+On considère maintenant l'arbre ci-dessous :
+
+![](img/arbre-binaire-3.svg)
+
+**10)** Donner l'ordre des nœuds pour un parcours en largeur.
+
+R-G-S-D-K-M-N-A-T-X-U-Y-W
+
+**11)** Donner l'ordre des nœuds pour un parcours en profondeur préfixe.
+
+R-G-D-A-K-T-W-S-M-X-N-U-Y
+
+**12)** Donner l'ordre des nœuds pour un parcours en profondeur infixe.
+
+D-A-G-K-W-T-R-M-X-S-U-N-Y
+
+**13)** Donner l'ordre des nœuds pour un parcours en profondeur suffixe.
+
+A-D-W-T-K-G-X-M-U-Y-N-S-R
+
+[Précédent](arbres-binaires)[Suivant](implementation-arbres)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

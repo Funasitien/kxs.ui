@@ -1,0 +1,183 @@
+---
+title: "Dictionnaires en Python"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## Python
+
+  * [Introduction](.)
+  * [Bases](bases)
+    * [Opérations mathématiques](operations)
+    * [Variables](variables)
+    * [Types de base](types-de-base)
+  * [Structures de contrôle](structures-de-controle)
+    * [If… else](if-else)
+    * [Interaction avec l'utilisateur](interaction)
+  * [Exercices bases et structures de contrôle](exercices-bases-structures)
+  * [Commentaires](commentaires)
+  * [Boucles](boucles)
+  * [Booléens](booleens)
+  * [Modules](modules)
+  * [Fonctions](fonctions)
+  * [Exercices boucles et fonctions](exercices-boucles-fonctions)
+  * [Tuples](tuples)
+  * [Exercices tuples](exercices-tuples)
+  * [Tableaux](tableaux)
+  * [Exercices tableaux](exercices-tableaux)
+  * [Dictionnaires](dictionnaires)
+  * [Chaînes de caractères](chaines-de-caracteres)
+  * [Docstring](docstring)
+  * [Doctest](doctest)
+  * [Assert](assert)
+
+# Dictionnaires
+
+Les dictionnaires sont les derniers types construits que nous verrons cette
+année.
+
+## Définition
+
+Pour faire une présentation simple, on peut dire qu’un dictionnaire est un
+tableau non-ordonné pour lequel on accède aux éléments à l’aide d’une clé. Un
+dictionnaire est représenté entre accolades.
+
+Les clés peuvent être des nombres ou des chaînes de caractère et les éléments
+peuvent être d’à peu près n’importe quel type.
+
+Prenons comme exemple les meilleurs marqueurs de l’histoire de la ligue des
+champions et utilisons un dictionnaire pour enregistrer leur nombre de buts.
+On commence par créer un dictionnaire vide et on ajoute les entrées une à une
+avec un combinaison clé → valeur (faites-le sur votre ordinateur) :
+
+    
+    
+    >>> buts = {}
+    >>> buts["Cristiano Ronaldo"] = 128
+    >>> buts["Messi"] = 113
+    >>> buts["Raul"] = 71
+    >>> buts["van Nistelrooy"] = 60
+    >>> buts["Benzema"] = 60
+
+On affiche le dictionnaire buts :
+
+    
+    
+    >>> buts
+    {'Cristiano Ronaldo': 128, 'Messi': 113, 'Raul': 71, 'van Nistelrooy': 60, 'Benzema': 60}
+
+Nous avons donc créé un dictionnaire avec des chaînes de caractère comme clés
+et des entiers comme valeurs. L’ordre d’affichage n’a pas d’importance car
+nous accéderons à un élément avec sa clé, il n’y a plus d’index.
+
+## Accès à un élément
+
+Pour accéder à un élément il faut « l’appeler » avec sa clé.
+
+**1)** Que renvoie l’instruction suivante ?
+
+    
+    
+    >>> buts["Messi"]
+
+Comme pour les tableaux on peut modifier un élément (cette fois en utilisant
+la clé).
+
+**2)** Quelle instruction utiliser pour passer le nombre de buts de Benzema à
+61 ?
+
+## Ajout d’un élément
+
+Pour ajouter un élément il ne faut pas utiliser de méthode particulière, il
+faut ajouter un couple clé → valeur comme pour la création de notre exemple.
+
+**3)** Ajouter alors Shevchenko avec 59 buts et notez l’instruction.
+
+## Suppression d’un élément
+
+Pour supprimer un élément on utilise la fonction del() comme pour les
+tableaux. Par exemple, pour supprimer Benzema de notre dictionnaire il
+faudrait faire :
+
+    
+    
+    >>> del(buts["Benzema"])
+
+## Taille d’un dictionnaire
+
+On utilisera encore la fonction len() pour connaître le nombre d’élément dans
+un dictionnaire
+
+**4)** Donner l’instruction pour avoir la taille de notre dictionnaire buts.
+
+## Appartenance
+
+Pour tester l’appartenance d’une clé au dictionnaire, on utilise la même
+syntaxe que pour les tableaux avec in.
+
+**5)** Que renvoient les expressions suivantes ?
+
+    
+    
+    >>> "Raul" in buts
+    
+    
+    >>> "Zidane" in buts
+
+## Méthodes keys(), values() et items()
+
+Ces trois méthodes retournent respectivement une séquence des clés du
+dictionnaire, une séquence des valeurs du dictionnaire et une séquence des
+tuples clé → valeur. Ces méthodes renvoient des séquences particulières, il
+faudra les convertir par exemple en tableau avec le fonction list() (les
+tableaux sont appelés des listes en Python).
+
+**6)** Noter le résultat des instructions suivantes :
+
+    
+    
+    >>> list(buts.keys())
+    
+    
+    >>> list(buts.values())
+    
+    
+    >>> list(buts.items())
+
+## Parcours
+
+Il y a principalement deux méthodes pour parcourir un dictionnaire : avec les
+clés ou avec les clé et les valeurs.
+
+**7)** Notez le résultat des instructions suivantes :
+
+    
+    
+    for cle in buts:
+        print(cle, buts[cle])
+    
+    
+    for cle, valeur in buts.items():
+        print(cle, valeur)
+
+On préférera la deuxième qui est plus rapide.
+
+## Exercice
+
+Écrivez un programme qui échange les clés et les valeurs d’un dictionnaire.
+Pour que cela fonctionne, il ne doit pas y avoir deux valeurs identiques.
+
+[Précédent](exercices-tableaux)[Suivant](chaines-de-caracteres)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

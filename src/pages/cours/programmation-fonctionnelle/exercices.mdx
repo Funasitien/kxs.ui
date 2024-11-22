@@ -1,0 +1,79 @@
+---
+title: "Programmation fonctionnelle - Exercices"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## Programmation fonctionnelle
+
+  * [Introduction](.)
+  * [Découverte](decouverte)
+  * [Exercices](exercices)
+
+# Exercices
+
+## Exercice 1
+
+**1)** Quelles propriétés de la programmation fonctionnelle, le programme ci-
+dessous ne respecte-il pas ?
+
+    
+    
+    a = 5
+    
+    def multiplie(b):
+        return a * b
+    
+    print(multiplie(3))
+
+**2)** Transformez le programme ci-dessus en un programme fonctionnel.
+
+## Exercice 2
+
+Pour la suite vous aurez besoin de la fonction `map` qui prend comme argument
+une fonction et une liste. Elle renvoie en sortie, une liste contenant le
+résultat de l'envoi de chacun des éléments de la liste d'entrée dans la
+fonction.
+
+Regardez le programme ci-dessous qui renvoie la longueur des chaînes de
+caractère de la liste en entrée :
+
+    
+    
+    print(list(map(len, ["Aksel", "Nathan", "Nicolas"])))
+
+Nous utilisons également ma fonction `list` car la valeur retournée par `map`
+n'est pas exactement une liste.
+
+Proposez un programme impératif faisant la même chose.
+
+## Exercice 3
+
+Considérons le programme suivant, qui remplace des chaînes de caractères par
+leur hash :
+
+    
+    
+    noms = ["Aksel", "Nathan", "Nicolas"]
+    
+    for i in range(len(noms)):
+        noms[i] = hash(noms[i])
+    
+    print(noms)
+
+Proposez un programme fonctionnel faisant la même chose.
+
+[Précédent](decouverte)[Suivant (page des cours)](..)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

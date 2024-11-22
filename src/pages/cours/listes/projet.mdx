@@ -1,0 +1,123 @@
+---
+title: "Projet 2 : contacts"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## Listes, piles, files et dictionnaires
+
+  * [Introduction](.)
+  * [Listes](listes)
+  * [Piles](piles)
+  * [Files](files)
+  * [Dictionnaires](dictionnaires)
+  * [Bilan](bilan)
+  * [Exercices](exercices)
+
+# Projet 2 : contacts
+
+## Présentation
+
+L'objectif de ce projet est de créer un répertoire contenant les noms, prénoms
+et numéros de téléphone de personnes. Pour ne pas complexifier, le programme
+fonctionnera sans interface graphique avec un menu permettant de choisir des
+actions comme celui-ci :
+
+    
+    
+    Que voulez-vous faire ?
+    1 - Ajouter un contact
+    2 - Supprimmer un contact
+    3 - Afficher tous les contacts
+    4 - Chercher un contact
+    5 - Quitter
+    Choix :
+
+Vous utiliserez **obligatoirement** la programmation orientée objet pour
+réaliser ce projet. C'est à dire que vous devez avoir une classe `Repertoire`
+et une classe `Contact`. La classe `Repertoire` aura une méthode `run()`
+(parmi d'autres) qui lancera le programme.
+
+Ce projet se fera si possible en **binôme** et sera noté. Pour avoir les
+détails concernant la notation consultez la page sur [l'évaluation des
+projets](/cours/projets/) et le tableau ci-dessous.
+
+Vous apporterez un soin particulier à votre code en respectant les règles de
+bonne conduite habituelles :
+
+Un programme
+
+  1. doit être lisible et clair ;
+  2. doit être découpé en petits composants faisant peu de choses, mais les faisant bien ;
+  3. ne doit pas avoir du code répété ;
+  4. doit séparer calculs et interface homme/machine ;
+  5. doit être documenté ;
+  6. doit être testé.
+
+## Cahier des charges
+
+Voici les fonctionalités que votre projet doit implémenter :
+
+  * un menu (identique à celui ci-dessus) pour choisir les différentes actions
+  * ajout d'un contact ;
+  * suppression d'un contact avec demande de confirmation (trouvez une façon simple de le faire) ;
+  * affichage de tous les contacts par ordre alphabétique des noms puis des prénoms ;
+  * recherche parmis les contacts (nom et prénom) ;
+  * quitter l'application
+  * sauvegarde des contacts dans un fichier texte et chargement depuis un fichier texte au démarrage de l'application
+
+Il vous est demandé de bien utiliser les fonctionalités de la programmation
+orientée objet.
+
+Pour commencer, vous pouvez créer la classe `Contact` avec une méthode
+`affiche()`. Puis vous pouvez vous attaquer à la classe `Repertoire` qui devra
+stocker une liste de contacts.
+
+## Tableau du barème
+
+Tâche | Barème  
+---|---  
+Menu | 2 points  
+Ajout d'un contact | 3 points  
+Suppression d'un contact | 1 point  
+Demande de confirmation avant la suppression | 1 point  
+Affichage de tous les contacts | 1 point  
+Affichage de tous les contacts dans l'ordre spécifié | 1 point  
+Recherche parmi les contacts | 2 points  
+Quitter l'application | 1 point  
+Sauvegarde dans un fichier / chargement depuis un fichier | 2 points  
+Totals | 14  
+  
+## Aides
+
+### Lire et écrire dans un fichier
+
+Pour la dernière partie du projet vous aurez besoin de lire et écrire dans un
+fichier, voici donc comment procéder :
+
+    
+    
+    # Écriture
+    f = open("fichier.txt", "a") # Ouvre un fichier ou le crée et se place à la fin
+    f.write("Une ligne\n") # Écrit dans le fichier et va à la ligne (avec le « \n »)
+    f.close() # Ferme le fichier (important pour ne pas perdre des infos)
+    
+    # Lecture
+    f = open("fichier.txt", "r") # Ouvre en lecture le fichier
+    for line in f: # Parcourt toute les lignes
+        print(line,end="") # Affiche chaque ligne
+
+[Précédent](exercices)[Suivant (page des cours)](..)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

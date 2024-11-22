@@ -1,0 +1,238 @@
+---
+title: "Recherche textuelle - Algorithme de Boyer-Moore"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## Algorithmes
+
+  * [Introduction](.)
+  * [Diviser pour régner](diviser-pour-regner)
+  * [Programmation dynamique](programmation-dynamique)
+  * [Boyer Moore](boyer-moore)
+
+# Recherche textuelle
+
+## Présentation
+
+Ce qu'on appelle la recherche textuelle est la recherche d'un motif dans un
+texte. On parle également de [recherche de sous-
+chaîne](https://fr.wikipedia.org/wiki/Algorithme_de_recherche_de_sous-
+cha%C3%AEne). C'est ce qu'il se passe lorsqu'on appuie sur « Ctrl + f » dans
+un document.
+
+Il exite plusieurs algorithmes de recherche textuelle. Nous verrons d'abord
+l'algorithme dit naïf puis l'algorithme de Boyer-Moore beaucoup plus efficace.
+
+Pour expliquer les algorithmes, nous prendrons toujours le même exemple dans
+la suite. Le texte sera `NBCSNINSID` et nous chercherons la sous-chaîne `NSI`.
+Le but d'un alogorithme de recherche de texte est de renvoyer la position du
+premier caractère du motif dans le texte.
+
+## Algorithme naïf
+
+### Description
+
+L'algorithme naïf parcourt le texte de gauche à droite de caractère en
+caractère. Pour chaque position, il regarde si le premier caractère du motif
+correspond, si c'est le cas, il regarde le second… Si tous les caractères du
+motif sont trouvé alors on a trouvé le motif, sinon, il faut recommencer en
+décalant la recherche d'un caractère vers la droite. Regardons sur notre
+exemple pour comprendre.
+
+Nous cherchons la correspondance en position i = 0 :
+
+    
+    
+    i:0123456789…
+      NBCSNINSID
+      NSI
+    j:012
+
+Le caractère en j = 0 correspond (N = N), on regarde celui en j = 1, il ne
+correspond pas (B ≠ S). On décale alors la position de recherche en i = 1 :
+
+    
+    
+    i:0123456789…
+      NBCSNINSID
+       NSI
+    j: 012
+
+Le caractère en j = 0 ne correspond pas (B ≠ N). On décale alors la position
+de recherche en i = 2 :
+
+    
+    
+    i:0123456789…
+      NBCSNINSID
+        NSI
+    j:  012
+
+On continue ainsi jusqu'à la position i = 6 :
+
+    
+    
+    i:0123456789…
+      NBCSNINSID
+            NSI
+    j:      012
+
+Le caractère en j = 0 correspond (N = N), en j = 1 correspond (S = S) et celui
+en j = 2 correspond (I = I). On a trouvé le motif, on renvoie alors la
+position trouvée : 6
+
+### Implémentation
+
+**1)** Donnez la complexité de cet alogrithme.
+
+**2)** Programmez une fonction `cherche(texte, motif)` qui applique cet
+algorithme. Vérifiez son bon fonctionnement sur l'exemple.
+
+**3)** Mofifiez légèrement la fonction précédente pour créer une fonction
+`cherche_verb(texte, motif)` qui renvoie un tuple contenant la position
+trouvée et le nombre de comparaisons effectuées. Vérifiez son bon
+fonctionnement sur l'exemple.
+
+## Algorithme de Boyer-Moore-Horspool
+
+Nous verrons ici l'algorithme de Boyer-Moore-Horspool qui est une
+simplification (moins efficace) de l'algorithme de Boyer-Moore.
+
+### Description
+
+L'algorithme de Boyer-Moore-Horspool améliore l'algorithme naïf en effectuant
+un décalage intelligent en cas d'échec. C'est à dire qu'on ne se déplace pas
+d'un caractère vers la droite lorsque le motif n'a pas été trouvé. Le décalage
+va dépendre de la lettre qui a échouée. Ainsi, le texte est parcouru plus
+rapidement et la recherche est plus efficace. La deuxième idée est de faire la
+comparaison avec le motif de la droite vers la gauche de façon à tirer encore
+plus avantage du décalage variable. Regardons cela sur notre exemple.
+
+Nous cherchons la correspondance en position i = 0 :
+
+    
+    
+    i:0123456789…
+      NBCSNINSID
+      NSI
+    j:012
+
+On commence par regarder le motif en j = 2. Il n'y a pas de correspondance car
+C ≠ I. On décale alors le motif de 3 caractères vers la droite car la lettre C
+n'est pas dans le motif. Les positions intermédiaires ne peuvent donc pas
+réussir. On est alors en position i = 3 :
+
+    
+    
+    i:0123456789…
+      NBCSNINSID
+         NSI
+    j:   012
+
+En j = 2 il y a correspondance (I = I), on regarde en j = 1, il n'y a pas
+correspondance (N ≠ S). Comme le N est dans le motif, on décale d'une lettre
+vers la droite pour faire correspondre les N. On est alors en position i = 4 :
+
+    
+    
+    i:0123456789…
+      NBCSNINSID
+          NSI
+    j:    012
+
+En j = 2 N et I ne correspondent pas, on décale cette fois de 2 lettres pour
+faire correspondre les N. On se trouve en position i = 6 :
+
+    
+    
+    i:0123456789…
+      NBCSNINSID
+            NSI
+    j:      012
+
+En j = 2 il y a correspondance (I = I) mais aussi en j = 1 (S = S) puis en j =
+0 (N = N). Le motif est trouvé, on renvoie 6.
+
+### Implémentation
+
+Pour savoir quel décalage appliquer lorsqu'il y a un échec de correspondance,
+il faut effectuer un pré-traitement sur le motif. Ce pré-traitement est
+effectué une seule fois au début de la recherche. Il doit créer un
+dictionnaire contenant la position la plus à droite de chaque lettre composant
+le motif. Par exemple pour le motif `NSI` le doctionnaire serait :
+
+    
+    
+    aDroite = {"N": 0, "S": 1, "I": 2}
+
+**4)** Écrivez une fonction `calculADroite(motif)` qui crée le dictionnaire
+`aDroite` pour un motif.
+
+Ensuite, nous avons besoin d'une fonction `droite(c)` qui renvoie la valeur
+contenue dans le dictionnaire `aDroite` pour le caractère `c` et qui renvoie
+`-1` si le caractère n'est pas dans le dictionnaire.
+
+**5)** Écrivez la fonction `droite(c)` décrite précédemment.
+
+Enfin le décalge à appliquer pourra se calculer avec les règles ci-dessous. on
+appelle c le caratère du texte qui ne correspond pas à la lettre du motif en
+position j.
+
+  * Si c n'apparait pas dans le motif, il faut alors décaler le motif de façon à arriver à droite de c. Le décalage est donc `d = j + 1` ;
+  * Si c apparait dans le motif à la position la plus à droite r, il faut effectuer un décalage `d = j - r` si d est positif ;
+  * Si `d ≤ 0` on effectue simplement un décalage `d = 1`.
+
+**6)** Implémentez une fonction `decalage(j, c)` qui applique les règles
+précédentes.
+
+**7)** Implémentez l'algorithme de Boyer-Moore-Horspool dans une fonction
+`cherche_BoyerMoore(texte, motif)` en utilisant les fonctions précédentes.
+
+**8)** Écrivez une fonction `cherche_BoyerMoore_verb(texte, motif)` qui
+renvoie un tuple contenant la position trouvée et le nombre de comparaisons
+effectuées. Vérifiez son bon fonctionnement sur l'exemple.
+
+## Comparaison
+
+Pour comparer l'efficacité des algorithmes, il nous faudra utiliser un texte
+plus grand. Nous utiliserons donc le texte du [Rouge et le
+noir](le_rouge_et_le_noir.txt) de Stendhal. Pour commencer, nous pouvons
+tester l'algorithme de python avec `find` :
+
+    
+    
+    import time
+    
+    fichier =open('le rouge et le noir.txt', 'r')
+    
+    texte = fichier.read()
+    motif = "Julien"
+    
+    t = time.time()
+    print(texte.find(motif))
+    print(time.time() - t)
+    
+    fichier.close()
+
+**9)** Complétez le code ci-dessus pour calculer le temps de recherche de nos
+deux algorithmes. Lequel est le plus efficace ?
+
+**10)** En utilisant les implémentations verbeuses comparez le nombre de
+comparaisons de l'algorithme naïf et celui de Boyer-Moore-Horspool pour cette
+recherche.
+
+[Précédent](programmation-dynamique)[Suivant (page des cours)](..)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

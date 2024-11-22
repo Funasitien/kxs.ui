@@ -1,0 +1,300 @@
+---
+title: "Boucles en Python"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## Python
+
+  * [Introduction](.)
+  * [Bases](bases)
+    * [Opérations mathématiques](operations)
+    * [Variables](variables)
+    * [Types de base](types-de-base)
+  * [Structures de contrôle](structures-de-controle)
+    * [If… else](if-else)
+    * [Interaction avec l'utilisateur](interaction)
+  * [Exercices bases et structures de contrôle](exercices-bases-structures)
+  * [Commentaires](commentaires)
+  * [Boucles](boucles)
+  * [Booléens](booleens)
+  * [Modules](modules)
+  * [Fonctions](fonctions)
+  * [Exercices boucles et fonctions](exercices-boucles-fonctions)
+  * [Tuples](tuples)
+  * [Exercices tuples](exercices-tuples)
+  * [Tableaux](tableaux)
+  * [Exercices tableaux](exercices-tableaux)
+  * [Dictionnaires](dictionnaires)
+  * [Chaînes de caractères](chaines-de-caracteres)
+  * [Docstring](docstring)
+  * [Doctest](doctest)
+  * [Assert](assert)
+
+# Boucles
+
+Les boucles permettent d’effectuer des opérations répétitives. Il en existe
+deux types.
+
+## Boucles bornées : `for`
+
+Lorsqu’on veut répéter une opération un nombre de fois connu à l’avance on
+utilisera la boucle for. Par exemple, l’algorithme suivant :
+
+    
+    
+    Pour i allant de 0 à 5
+        écrire i
+
+se traduira en Python en :
+
+    
+    
+    for i in range(6):
+        print(i)
+
+Vous noterez les « : » et l’indentation pour que l’instruction soit valide.
+
+La fonction `range()` permet beaucoup de souplesse :
+
+  * range(n) : tous les élément de 0 à n-1 (range(6) : [0, 1, 2, 3, 4, 5]) ;
+  * range(n, m) : tous les éléments de n à m-1 (range(2, 6) : [2, 3, 4, 5]) ;
+  * range(n, m, k) : tous les éléments de n à m-1 en allant de k en k (range(2, 6, 2) : [2, 4])
+
+**1)** Que fait la fonction suivante ?
+
+    
+    
+    s = 0
+    for i in range(101):
+        s = s + i
+    print(s)
+
+Elle effectue la somme des entiers de 1 à 100.
+
+**2)** On souhaite placer une somme sur un compte bancaire. Celui-ci est
+rémunéré à 2,5% chaque année. On souhaite connaître la somme disponible dix
+ans plus tard. Complétez le script suivant pour qu’il réponde à la question :
+
+    
+    
+    c = int(input("Quelle est la somme placée ? "))
+    for i in range(………):
+        c = ………
+    print(c)
+    
+    
+    c = int(input("Quelle est la somme placée ? "))
+    for i in range(10):
+    	c = c + c * 2.5 / 100
+    print(c)
+
+**3)** Quelle somme avez-vous à disposition si vous avez placé 5000€ ?
+
+6400€.
+
+**4)** Écrire un programme qui affiche la table de multiplication par 5 comme
+ci-dessous :
+
+    
+    
+    5 x 0 = 0
+    5 x 1 = 5
+    5 x 2 = 10
+    5 x 3 = 15
+    5 x 4 = 20
+    5 x 5 = 25
+    5 x 6 = 30
+    5 x 7 = 35
+    5 x 8 = 40
+    5 x 9 = 45
+    
+    
+    for i in range(10):
+        print("5 x", i, "=", 5*i)
+
+**5)** La comète Tchouri est passée dans notre système solaire pour la
+dernière fois en 2015. Elle a une période de révolution de 7 ans, ce qui
+signifie qu'elle repassera dans notre système solaire en 2022, 2029… La comète
+Encke qui est passée pour la dernière fois en 2017, a une période de
+révolution de 3 ans. On cherche à déterminer en quelle année, au plus tôt, les
+deux comètes Tchouri et Encke traverseront simultanément notre système
+solaire.  
+**1.** On appelle a le nombre de révolutions de la comète Tchouri et b le
+nombre de révolutions de la comète Encke. Écrire l'équation que doivent
+vérifier a et b pour que les deux comètes traversent le système solaire la
+même année.  
+**2.** Copier le script ci-dessous dans votre éditeur et compléter le de sorte
+qu'il réponde à la question posée.
+
+    
+    
+    for a in range(10):
+        for b in range(20):
+            if (…………):
+                print("Rencontre dans ", ………, " ans en ", …………)
+
+  
+**3.** Exécuter ce programme et en déduire la prochaine année de rencontre de
+ces deux comètes dans le système solaire.
+
+    
+    
+    # 1.
+    2015 + 7*a = 2017 + 3*b
+    
+    # 2.
+    for a in range(10):
+        for b in range(20):
+            if (2015 + 7*a == 2017 + 3*b):
+                print("Rencontre dans ", 2015 + 7*a - 2021, " ans en ", 2015 + 7*a)
+
+On obtient alors dans le shell :
+
+    
+    
+    # 3.
+    Rencontre dans  8  ans en  2029
+    Rencontre dans  29  ans en  2050
+    Rencontre dans  50  ans en  2071
+
+La prochaine année de rencontre sera 2029.
+
+## Boucles non bornées : `while`
+
+Si on veut répéter des instructions tant qu’une condition est vraie, sans
+savoir à l’avance lorsque ça s’arrêtera, on utilise la boucle while. Par
+exemple, l’algorithme suivant :
+
+    
+    
+    mettre i à 0
+    Tant que i est plus petit que 6
+        écrire i
+        mettre i+1 dans i
+
+se traduira en Python par :
+
+    
+    
+    i = 0
+    while (i < 6):
+        print(i)
+        i = i + 1
+
+**6)** Écrire un programme qui calcule puis affiche la somme des entiers de 1
+à n, n étant une valeur demandée à l’utilisateur au début du programme. Par
+exemple, pour n = 5, le résultat est 15 (1 + 2 + 3 + 4 + 5).
+
+    
+    
+    n = int(input("n ? "))
+    i = 1
+    s = 0
+    while i <= n:
+        s = s + i
+        i = i + 1
+    print(s)
+
+**7)** On considère le script suivant :
+
+    
+    
+    n = 0
+    s = 0
+    while s < 1000:
+        n = n + 1
+        s = s + n**2
+    print("Le plus grand entier naturel n tel que la somme des carrés soit inférieure à 1000 est :", n -1)
+
+  1. Que fait le script ci-dessus ?
+  2. Expliquer l'utilité de la variable n.
+  3. Que se passe-t-il si on inverse les deux exécutions de la boucle ?
+  4. Modifier le script de manière à obtenir le plus grand entier n tel que la somme des cubes soit inférieur à 3000. Afficher la somme ainsi que l'entier n.
+
+1\. Il calcul le plus grand entier n etl que la somme des carrés de 1 à n soit
+inférieure à 1000.
+
+2\. Elle permet de savoir à quel entier on est arrivé.
+
+3\. La boucle s'arrète trop loin, la somme qui échoue correspond au n
+précédent. Elle ne donne pas le bon résultat.
+
+    
+    
+    # 4.
+    n = 0
+    s = 0
+    while s < 3000:
+        n = n + 1
+        s = s + n**3
+    print("Le plus grand entier naturel n tel que la somme des cubes soit inférieure à 3000 est :", n -1)
+    print("La somme vaut alors", s-n**3)
+
+**8)** On place un grain de blé sur la 1ere case d'un échiquier, deux grains
+de blés sur la deuxième case, quatre sur la troisième, et ainsi de suite en
+doublant la quantité de grains à chaque case. Sachant que je possède Q grains
+de blé, combien de cases vais-je pouvoir remplir ?
+
+  1. Écrire un script pour répondre à cette question.
+  2. Exécuter le programme pour trouver le nombre de cases pour Q valant 20, 100, 1000 et 1000000
+
+    
+    
+    Q = 1000000
+    total_posés = 0
+    case = 0
+    # On commence à 1/2 ir que le premier passage soit à 1
+    grains = 1/2
+    
+    while total_posés <= Q:
+        case = case + 1
+        grains = int(grains * 2)
+        total_posés = total_posés + grains
+    
+    # Si on sort du while c'est qu'on était allé une case trop loin
+    print("Nombre de grains à poser :", Q)
+    print("Nombre de cases remplies :", case - 1)
+    print("Nombre de grains posés :", total_posés - grains)
+    print("Nombre de grains restant :", Q - (total_posés - grains))
+    
+    # Détail des cases en bonus
+    for c in range(case-1):
+        print("case", c + 1,":", 2**c)
+
+**9)** Écrire un programme qui calcule les 50 premiers termes de la table de
+multiplication par 13, mais n’affiche que ceux qui sont multiples de 7.
+
+## Sortir d'une boucle avant la fin : `break`
+
+Il est possible de sortir d'une boucle prématurément avec l'instruction
+`break`. Cela peut être utile, par exemple, lorsqu'on cherche une solution et
+qu'on veut s'arrêter de chercher dès qu'on a trouvé. Voici un exemple pour
+comprendre :
+
+    
+    
+    for i in range(10):
+        if i == 6:
+            break
+        print(i)
+
+Dans cet exemple, on pourrait avantageusement remplacer le `for` par un
+`while`. Mais nous verrons des situations ou il sera plus « naturel »
+d'utiliser un `break` (on peut par exemple penser à la question 5 sur les
+comètes ou on aurait pu ajouter un break à la fin pour arrêter l'éxécution).
+
+[Précédent](commentaires)[Suivant](booleens)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

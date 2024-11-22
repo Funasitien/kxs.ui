@@ -1,0 +1,166 @@
+---
+title: "Programmation fonctionnelle - Découverte"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## Programmation fonctionnelle
+
+  * [Introduction](.)
+  * [Découverte](decouverte)
+  * [Exercices](exercices)
+
+# Découverte
+
+La programmation fonctionnelle est un paradigme de programmation qui vise à
+n'utiliser que des fonctions et à interdire les changements d'état et les
+affectations. Il est donc interdit de changer la valeur d'une variable en
+programmation fonctionnelle. Il n'y a donc plus de variables mais des donées
+immuables en programmation fonctionnelle.
+
+Pour aborder la programmation fonctionnelle, il est nécessaire de comprendre
+quelques notions importantes en informatique.
+
+## Effet de bord
+
+Le terme effet de bord se rapporte généralement à une fonction. On dit qu'une
+fonction possède des effets de bord lorsqu'elle modifie une variable
+extérieure. Pour comprendre ce phénomène, voici quelques exemples d'une
+fonction qui incrémente une variable :
+
+### Programme 1
+
+Nous utilisons ici une fonction avec un paramètre.
+
+    
+    
+    def incremente(a):
+        a = a + 1
+        return a
+    
+    a = 1
+    
+    print(a)
+    print(incremente(a))
+    print(a)
+
+**1)** Devinez ce qui va être affiché en sortie de ce programme. Testez-le
+pour vérifier votre réponse.
+
+Ici, la fonction ne mofifie pas la variable extérieure, elle ne possède pas
+d'effets de bord.
+
+### Programme 2
+
+Ici, la fonction ne prend aucun paramètre et modifie directement la variable
+extérieure.
+
+    
+    
+    def incremente():
+        global a
+        a = a + 1
+    
+    a = 1
+    
+    print(a)
+    incremente()
+    print(a)
+
+**2)** Devinez ce qui va être affiché en sortie de ce programme. Testez-le
+pour vérifier votre réponse.
+
+Ici, la fonction mofifie la variable extérieure, elle possède donc un effet de
+bord. C'est même voulu !
+
+### Programmation fonctionnele
+
+La programmation interdit simplement les effets de bord. Cela signifie
+concètement que le programme 2 déclenchera une erreur dans un langage
+strictement fonctionnel.
+
+Pour des raisons pratiques, car cela limite les bugs et améliore la
+compréhension d'un programme, il est conseillé, quelque-soit le paradigme de
+programmation, d'éviter les effets de bord.
+
+## Indépendance aux paramètres extérieurs
+
+Il est important de savoir si la sortie d'une fonction ne dépend que de ses
+paramètres. Regardons les exemples suivants :
+
+### Programme 3
+
+    
+    
+    def plusGrand(b):
+        if a > b:
+            return True
+        else:
+            return False
+    
+    a = 4
+    print(plusGrand(3))
+
+**3)** Devinez ce qui va être affiché en sortie de ce programme. Testez-le
+pour vérifier votre réponse.
+
+Ici, la fonction ne retournera pas la même valeur en fonction de la valeur de
+a. Sa valeur de retour ne dépendra pas que de ses paramètres.
+
+### Programme 4
+
+    
+    
+    def plusGrand(a, b):
+        if a > b:
+            return True
+        else:
+            return False
+    
+    print(plusGrand(4, 3))
+
+**4)** Devinez ce qui va être affiché en sortie de ce programme. Testez-le
+pour vérifier votre réponse.
+
+Ici, la valeur de sortie de la fonction ne dépend que de ses paramètres `a` et
+`b`.
+
+### Programmation fonctionnele
+
+La programmation fonctionnelle impose cette propriété.
+
+Il est également recommandé de respecter cette propriété avec tout type de
+paradigme de façon à faciliter le débogage et à simplifier la compréhension du
+code.
+
+## Bilan
+
+On peut donc maintenant définir plus clairement le paradigme de programmation
+fonctionnelle :
+
+  * pas d'affectation ;
+  * fonctions sans effet de bord ;
+  * les valeurs de sortie des fonctions ne dépendent que des entrées.
+
+Nous allons maintenant tenter d'écrire des programmes en Python respectant ce
+paradigme. Il est en effet possible d'écrire un programme en Python avec le
+paradigme fonctionnel comme nous l'avions fait avec le paradigme objet. Python
+est un langage acceptant plusieurs paradigmes, il est même courant de mélanger
+plusieurs paradigmes dans un même programme. Vous avez d'ailleur utilisé le
+paradigme impératif avec le paradigme objet. Il faut savoir utiliser le
+meilleur paradigme en fonction du problème à résoudre.
+
+[Précédent](.)[Suivant](exercices)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

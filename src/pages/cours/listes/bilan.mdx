@@ -1,0 +1,145 @@
+---
+title: "Bilan"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## Listes, piles, files et dictionnaires
+
+  * [Introduction](.)
+  * [Listes](listes)
+  * [Piles](piles)
+  * [Files](files)
+  * [Dictionnaires](dictionnaires)
+  * [Bilan](bilan)
+  * [Exercices](exercices)
+
+# Bilan
+
+Nous avons vu trois types de structure de données linéaires : les listes, les
+piles et les files. Enfin nous avons revu les dctionnaires ou tableaux
+associatifs. L'avantage des tableaux associatifs est qu'ils utilisent une
+_table de hashage_ qui permet de trouver une clé en un temps indépendant de la
+taille du tableau.
+
+## Complexité des opérations
+
+Nous allons résumer les complexités de différentes opérations dans les
+structures de données en fonction de leur implémentation.
+
+### Liste (avec un tableau dynamique)
+
+Ceci est la façon dont python implémente ses listes.
+
+Action | Complexité  
+---|---  
+Insertion en fin de liste | O(1)  
+Insertion à la position i | O(n)  
+Insertion en début de liste | O(n)  
+Suppression du dernier élément | O(1)  
+Suppression de l'élément i | O(n)  
+Recherche d'un élément | O(n)  
+  
+### Liste (avec une liste chainée)
+
+Nous avons utilisé cette implémentation dans le chapitre sur les listes.
+
+Action | Complexité  
+---|---  
+Insertion en fin de liste | O(1)  
+Insertion à la position i | O(n)  
+Insertion en début de liste | O(1)  
+Suppression du dernier élément | O(1)  
+Suppression de l'élément i | O(n)  
+Recherche d'un élément | O(n)  
+  
+### Pile (peu importe l'implémentation)
+
+On ne s'intéresse ici qu'à l'empilement et au dépilement car si on veut faire
+davantage de choses, on utilisera une liste.
+
+Action | Complexité  
+---|---  
+Empilement | O(1)  
+Depilement | O(1)  
+  
+### File (avec une liste chainée)
+
+Ici on considère une File implémentée avec une liste chaînée car avec un
+tableau dynamique, cela ne serait pas intéressent du point de vue de la
+complexité. Comme pour la pile, on ne s'intéresse ici qu'à l'enfilement et au
+défilement car si on veut faire davantage de choses, on utilisera une liste.
+
+Action | Complexité  
+---|---  
+Enfilement | O(1)  
+Defilement | O(1)  
+  
+### Dictionnaire
+
+Les dictionnaires de Python ou les tableaux associatifs.
+
+Action | Complexité  
+---|---  
+Ajout d'un élément | O(1)  
+Suppression d'un élément | O(1)  
+Accès à un élément | O(1)  
+Recherche d'un élément à partir de sa clé | O(1)  
+Recherche d'un élément à partir de sa valeur | O(n)  
+  
+**1)** Expliquez simplement la complexité des recherches dans les deux
+implémentations de liste et dans les dictionnaires.
+
+Pour terminer, voici un programme qui permet de comparer le temps de recherche
+dans une liste et dans un dictionnaire :
+
+    
+    
+    import time
+    
+    for p in [3,4,5,6,7]:
+    
+        n = 10**p
+        print("n =", n, ":")
+    
+        # Création d'une liste [0, 1, ..., n]
+        liste = list(range(n))
+        # Création d'un dictionnaire {0: None, 1: None, ..., n: None}
+        dictionnaire = dict.fromkeys(range(n))
+    
+        debut = time.perf_counter()
+        # Recherche infructueuse dans la liste
+        'a' in liste
+        fin = time.perf_counter()
+        temps = round((fin - debut)*1000, 3)
+    
+        print("Temps d'exécution pour la liste :", temps, "ms")
+    
+        debut = time.perf_counter()
+        # Recherche infructueuse dans le dictionnaire
+        'a' in dictionnaire
+        fin = time.perf_counter()
+        temps = round((fin - debut)*1000, 3)
+    
+        print("Temps d'exécution pour le dictionnaire :", temps, "ms")
+        print()
+
+**2)** Recopiez et exécutez ce programme puis analysez les résultats.
+
+**3)** Avec un programme similaire comparez le temps d'insertion d'un élément
+en début et en fin de liste.
+
+[Précédent](dictionnaires)[Suivant](exercices)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

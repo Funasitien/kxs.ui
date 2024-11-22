@@ -1,0 +1,147 @@
+---
+title: "C - Portée des variables"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## C
+
+  * [Matériel](.)
+  * [Hello world!](hello-world)
+  * [Printf](printf)
+  * [Nombres](nombres)
+  * [Structures de contrôle](structures-de-controle)
+  * [Fonctions](fonctions)
+  * [Commentaires](commentaires)
+  * [Portée des variables](portee-variables)
+  * [Pointeurs](pointeurs)
+  * [Tableaux](tableaux)
+  * [Bibliothèque stdbool](stdbool)
+  * [Projet puissance 4](projet-p4)
+  * [Chaînes de caractères](chaines-de-caracteres)
+  * [Structures](structures)
+  * [Exercices](exercices)
+  * [Headers](headers)
+
+# Portée des variables
+
+Nous avons volontairement éludé la question de la portée des variables lors de
+l'étude des fonctions.
+
+## Bloc
+
+Un bloc en C est délimité par des accolades. Il peut être associé à une
+structure de contrôle mais ce n'est pas nécessaire. Les blocs peuvent être
+imbriqués.
+
+    
+    
+    {
+    	// un bloc
+    	
+    	{
+    		// un bloc imbriqué
+    	}
+    }
+    
+    if (i==0) {
+    	// un autre bloc
+    	
+    }
+
+## Variable locale
+
+Une varaible déclarée dans un bloc n'existe que dans ce bloc. On dit que c'est
+une variable **locale**.
+
+**1)** Compiler le programme ci-dessous et expliquer le problème.
+
+    
+    
+    int main() {
+    	{
+    		int a = 25;
+    	}
+    	a = 2;
+    	return 0;
+    }
+
+Les arguments d'une fonction sont considérés comme des variables locales à
+l'intérieur de la fonction.
+
+**2)** Quelle sera la sortie du programme suivant ? Justifier.
+
+    
+    
+    #include <stdio.h>
+    
+    void incr(int a) {
+    	a = a + 1;
+    }
+    
+    int main() {
+    
+    	int a = 6;
+    	incr(a);
+    	printf("%d\n", a);
+    	return 0;
+    }
+
+**3)** Comment transformer le programme précédent pour pouvoir effectivement
+utiliser la fonction `incr` ?
+
+## Variable globale
+
+Une variable globale est une variable déclarée en dehors de tout bloc. Elle
+est alors accessible partout dans le code et peut être modifiée par n'importe
+quelle fonction.
+
+    
+    
+    #include <stdio.h>
+    
+    int c = 1; // varaible globale
+    
+    int main() {
+    
+    	printf("%d\n", c); // 1
+    	c = c + 1; // On modifie la variable globale
+    	printf("%d\n", c); // 2
+    	return 0;
+    }
+
+Si une variable locale a le même nom qu'une variable globale, elle "cache" la
+variable globale dans la fonction.
+
+    
+    
+    #include <stdio.h>
+    
+    int c = 1; // varaible globale
+    
+    int main() {
+    	int c = 10; // la variable locale "cache" la variable globale
+    	printf("%d\n", c); // 10
+    	c = c + 1; // On modifie la variable locale
+    	printf("%d\n", c); // 11
+    	return 0;
+    }
+
+Il est **fortement déconseillé d'utiliser des variables globales** car il est
+très facile d'oublier où elles sont modifiées. Cela peut entraîner de nombreux
+bugs.
+
+[Précédent](commentaires)[Suivant](pointeurs)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

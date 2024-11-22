@@ -1,0 +1,228 @@
+---
+title: "Listes en OCaml - Niveau MP2I"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## OCaml
+
+  * [Présentation](.)
+  * [Interaction et définitions](interaction-definition)
+  * [Fonctions](fonctions)
+  * [If … then … else …](if-then-else)
+  * [Fonctions récursives](fonctions-recursives)
+  * [Réels](reels)
+  * [Chaînes de caractères](string)
+  * [Execices 1](exercices-1)
+  * [Listes](listes)
+  * [Unit](unit)
+  * [Produits](produits)
+  * [Enregistrements](enregistrements)
+  * [Énumérations](enumerations)
+  * [Sommes](sommes)
+  * [Filtrage](filtrage)
+  * [Fonctions avancées](fonctions-avancees)
+  * [Aspects impértifs](aspects-imperatifs)
+
+# Listes
+
+## Définitions
+
+Une liste en OCaml est constituée d'éléments **de même type** séparés par des
+points-virgules en encadrés par des crochets :
+
+    
+    
+    # [1;2;3;4];;
+    - : int list = [1; 2; 3; 4]
+    # ["a";"abc";"def"];;
+    - : string list = ["a"; "abc"; "def"]
+
+La liste vide est notée `[]`.
+
+## Opérateurs pour les listes
+
+  * `x::l` : ajout de `x` en tête de la liste `l` ;
+  * `l1 @ l2` : concaténation de `l1` avec `l2` ;
+
+## Fonctions sur les listes
+
+  * `List.hd l` : renvoie la tête de la liste `l` (head) ;
+  * `List.tl l` : renvoie le reste de la liste `l` sans la tête (tail) ;
+  * `List.length l` : renvoie la taille de la liste `l` ;
+
+Il existe de nombreuses autres fonctions décrites sur [la documentation
+OCaml](https://v2.ocaml.org/api/List.html)
+
+**1)** Écrire une fonction récursive qui calcule la somme des éléments d'une
+liste.
+
+    
+    
+    # let rec sum = function
+    | [] -> 0
+    | l -> (List.hd l) + (sum (List.tl l));;
+
+## Pattern matching
+
+Il est possible d'utiliser le pattern matching pour simplifier l'écriture de
+telles fonctions. La syntaxe `x::r` permet d'isoler la tête de liste `x` et le
+reste de la liste `r`. On peut alors écrire la fonction précédente ainsi :
+
+    
+    
+    # let rec sum = function
+    | [] -> 0
+    | x::r -> x + sum r;;
+
+Cela rend l'écriture beaucoup plus simple. Le pattern matching est une des
+caractéristiques fondamentale d'OCaml et nous l'utiliserons beaucoup dans la
+suite. On peut également détecter une liste avec un seul élément avec le
+pattern `[x]`.
+
+## Exercices
+
+**2)** Que renvoient les instructions suivantes ?
+
+  1. `9::[2;3];;`
+  2. `[[3;5];2];;`
+  3. `[[6;2];[8]];;`
+
+**3)** Écrire une fonction récursive qui calcule la longueur d'une liste sans
+utiliser `List.length`.
+
+    
+    
+    let rec longueur = function
+    | [] -> 0
+    | x::r -> 1 + longueur r;;
+
+**4)** Écrire une fonction récursive qui calcule le produit des éléments d'une
+liste de réels.
+
+    
+    
+    let rec produit = function
+    | [] -> 1.
+    | x::r -> x *. produit r;;
+
+**5)** Écrire une fonction récursive qui prend une liste d'entiers en entrée
+et renvoie une nouvelle liste contenant uniquement les éléments pairs de la
+liste d'origine.
+
+    
+    
+    let rec pair l =
+    if l = [] then []
+    else if List.hd l mod 2 = 0 then List.hd l :: pair (List.tl l)
+    else pair (List.tl l);;
+    
+    (* deuxième méthode plus élégante *)
+    
+    let rec pair = function
+    | [] -> []
+    | x::r -> if x mod 2 = 0 then x::pair r else pair r;;
+
+**6)** Implémentez une fonction récursive en OCaml qui prend une liste
+d'entiers en entrée et renvoie une nouvelle liste contenant les carrés de
+chaque élément de la liste d'origine.
+
+    
+    
+    let rec carre = function
+    | [] -> []
+    | x::r -> x*x :: carre r;;
+
+**7)** Créez une fonction récursive en OCaml qui prend une liste de chaînes de
+caractères en entrée et renvoie une nouvelle liste contenant la longueur de
+chaque chaîne.
+
+    
+    
+    let rec taille = function
+    | [] -> []
+    | x::r -> String.length x :: taille r;;
+
+**8)** Créez une fonction récursive en OCaml qui prend une liste d'entiers en
+entrée et renvoie le minimum de cette liste. On pourra utiliser la fonction
+`min` qui renvoie le minimum de deux entiers.
+
+    
+    
+    let rec minlist = function
+    | [x] -> x
+    | x::r -> min x (minlist r);;
+
+**9)** Créez une fonction récursive en OCaml qui cherche un élément dans une
+liste.
+
+    
+    
+    let rec cherche l e =
+    if l = [] then false
+    else if List.hd l = e then true else cherche (List.tl l) e;;
+
+**10)** Créez une fonction récursive en OCaml qui enlève toutes les occurences
+d'un élément dans une liste.
+
+    
+    
+    let rec enleve l e =
+    if l = [] then []
+    else if List.hd l = e
+       then enleve (List.tl l) e
+       else List.hd l ::enleve (List.tl l) e;;
+    
+    (* Version recursive terminale *)
+    
+    let rec enleve l e acc =
+    if l = [] then acc
+    else if List.hd l = e
+       then enleve (List.tl l) e acc
+       else enleve (List.tl l) e (acc @ [List.hd l]);;
+
+**11)** Créez une fonction récursive en OCaml qui renvoie l'élément i d'une
+liste comme pour un tableau.
+
+    
+    
+    # let rec renvoie l i =
+    if i = 0 then List.hd l
+    else renvoie (List.tl l) (i-1);;
+
+**12)** Créez une fonction récursive en OCaml qui renvoie le nombre
+d'occurences d'un élément dans un liste. (Écrire une version non terminale et
+une version terminale)
+
+    
+    
+    let rec nbocc l e =
+    if l = [] then 0
+    else if List.hd l = e
+       then 1 + nbocc (List.tl l) e
+       else nbocc (List.tl l) e;;
+    
+    let rec nbocc_term l e n =
+    if l = [] then n
+    else if List.hd l = e
+       then nbocc_term (List.tl l) e (n+1)
+       else nbocc_term (List.tl l) e n;;
+
+## Sources
+
+[Exercices sur le tutoriel OCaml de Lucas
+Texier](http://lucas.texier.free.fr/OCAML_exercice.html)
+[Précédent](exercices-1)[Suivant](unit)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

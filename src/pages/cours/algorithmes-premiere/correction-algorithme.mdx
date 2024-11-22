@@ -1,0 +1,220 @@
+---
+title: "Correction d'un algorithme"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## Algorithmes
+
+  * [Introduction](.)
+  * [Algorithmes de tri](algorithmes-tri)
+  * [Correction d'un algorithme](correction-algorithme)
+  * [Recherche par dichotomie](recherche-dichotomique)
+  * [Algorithmes gloutons](algorithmes-gloutons)
+  * [K plus proches voisins](algorithme-k-plus-proches-voisins)
+  * [Choixpeau](choixpeau)
+
+# Correction d'un algorithme
+
+![](img/dominos.webp) cmdrkitten | [source](https://cmdrkitten.tumblr.com/post/126417067170)
+
+## Raisonnement par récurrence
+
+Pour comprendre le cours d'aujourd'hui il peut être intéressant de commencer
+par évoquer le raisonnement par récurrence.
+
+**1)** Imaginons que vous devez faire tomber une ligne de 10000 dominos mais
+que vous ne savez pas à quelle distance les placer les uns des autres. Comment
+aller-vous procéder pour trouver la bonne distance entre les dominos qui
+permet de tous les faire tomber ?
+
+On va essayer avec un nombre restreint de dominos (éventuellement seulement
+deux), on va faire tomber le premier et voir si le deuxième tombe. C'est ce
+qu'on appelle l'hérédité (si cela fonctionne au rang _n_ alors ça fonctionne
+au rang _n+1_)
+
+On va donc en déduire que si on fait tomber le premier (initialisation), tous
+les dominos vont tomber.
+
+C'est ainsi un raisonnement par récurrence qu'on va faire intuitivement.
+
+## Invariant de boucle
+
+On dit qu’un algorithme est correct s’il fonctionne quelque soient les
+éléments en entrée. Malheureusement un algorithme peut fonctionner sur de
+nombreux exemples et ne pas être correct. Voici par exmeple des fonctions qui
+de l'extérieur peuvent parraitre correctes mais ne le sont pas :
+
+    
+    
+    def carre(n):
+    	""" Fonction qui renvoie le carré de n """
+    	if n == 5423695421546975:
+    		return 1
+    	else:
+    		return n**2
+    
+    
+    def premier(n):
+    	""" Fonction qui renvoie des nombres premiers """
+    	return n**2 + n + 41
+
+On essaie alors de prouver la correction d’un algorithme par un raisonnement
+logique.
+
+Il est courant d’utiliser ce qu’on appelle un _invariant de boucle_ pour
+démontrer la correction d’un algorithme. Un invariant de boucle est une
+propriété logique qui est vraie au début et aussi à la fin de la boucle.
+
+La méthode est toujours la même :
+
+initialisation
+
+    on montre que l’invariant de boucle est vrai au début du programme ;
+  
+conservation
+
+    on montre que si l’invariant de boucle est vrai avant un passage dans la boucle, il reste vrai après le passage dans la boucle ;
+  
+terminaison
+
+    on montre que l’invariant de boucle en sortie de boucle entraîne la correction de l’algorithme.
+
+## Tri par insertion
+
+Nous allons montrer la correction du tri par insertion avec un invariant de
+boucle. Voici l’algorithme du tri par insertion :
+
+    
+    
+    VARIABLE
+    t : tableau d'entiers
+    i : nombre entier
+    j : nombre entier
+    k : nombre entier
+    DEBUT
+    i←2
+    tant que i<=longueur(t):   // boucle 1
+      j←i-1
+      k←t[i]
+      tant que j>0 et que t[j]>k:   // boucle 2
+        t[j+1]←t[j]
+        j←j-1
+      fin tant que
+      t[j+1]←k
+      i←i+1
+    fin tant que
+    FIN
+
+**2)** Trouvez un invariant de boucle qui permettrait de montrer la correction
+du tri par insertion.
+
+On choisit comme invariant de boucle la proposition suivante :
+
+le tableau t[1, … , i-1] est trié
+
+**3)** Montrez la correction du tri par insertion en utilisant un invariant de
+boucle.
+
+On choisit comme invariant de boucle la proposition suivante :
+
+le tableau t[1, … , i-1] est trié
+
+### Initialisation
+
+Pour i=2, t[1] est trié puisqu'il ne contient que un seul élément.
+
+### Conservation
+
+Nous allons montrer que si le tableau t[1, … , i-1] est trié an début de la
+boucle 1, il est joujours trié à la fin de la boucle lorsque i passe à i+1.
+
+Supposons donc que t[1, … , i-1] est trié. La boucle 2 ne change pas l'ordre
+des éléments, elle insère t[i] en t[j+1] de façon à ce que t[j] ≤ t[i] ≤
+t[j+2]. Ainsi le tableau t[1, … , i] est trié.
+
+Donc lorsque i←i+1, le tableau t[1, … , i-1] est trié. On a donc démontré la
+conservation de l'invariant de boucle.
+
+### Terminaison
+
+En sortie de boucle 1, i=n+1 donc t[1, … , n] est trié. CQFD !
+
+## Tri par sélection
+
+Voici l’algorithme du tri par sélection :
+
+    
+    
+    VARIABLE
+    t : tableau d'entiers
+    i : nombre entier
+    min : nombre entier
+    j : nombre entier
+    DEBUT
+    i←1
+    tant que i<longueur(t):   //boucle 1
+      j←i+1
+      min←i
+      tant que j<=longueur(t):   //boucle 2
+        si t[j]<t[min]:
+          min←j
+        fin si
+        j←j+1
+      fin tant que
+      si min≠i :
+        échanger t[i] et t[min]
+      fin si
+      i←i+1
+    fin tant que
+    FIN
+
+**4)** Trouvez un invariant de boucle pour montrer la correction de cet
+algorithme.
+
+On choisit comme invariant de boucle la proposition suivante :
+
+le tableau t[1, … , i-1] est trié et tous les éléments de t[i, … , n] sont
+plus grands que t[i-1].
+
+**5)** Prouvez alors la correction de cet algorithme.
+
+### Initialisation
+
+Pour i=2 (après la première boucle), t[1] est trié puisqu'il ne contient que
+un seul élément. Et t[1] contient le minimum du tableau donc tous les éléments
+de t[2, … , n] sont plus grands que t[1].
+
+### Conservation
+
+On suppose donc que le tableau t[1, … , i-1] est trié et que tous les éléments
+de t[i, … , n] sont plus grands que t[i-1].
+
+t[1, … , i-1] est trié et n'est pas changé dans la boucle 2. On met en t[i] le
+minimum de t[i, … , n] qui contient des élément tous plus grands que t[i-1].
+Donc t[1, … , i] est trié et tous les éléments de t[i+1, … , n] sont plus
+grands que t[i] (car c'était leur minimum).
+
+Donc quand i←i+1, le tableau t[1, … , i-1] est trié et tous les éléments de
+t[i, … , n] sont plus grands que t[i-1]. On a donc démontré la conservation de
+l'invariant de boucle.
+
+### Terminaison
+
+En sortie de la boucle 1, i=n. t[1, … , n-1] est trié et t[n] ≥ t[n-1] donc
+t[1, … , n] est trié. CQFD !
+
+[Précédent](algorithmes-tri)[Suivant](recherche-dichotomique)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

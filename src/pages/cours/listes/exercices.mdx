@@ -1,0 +1,136 @@
+---
+title: "Exercices sur les structures de données"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## Listes, piles, files et dictionnaires
+
+  * [Introduction](.)
+  * [Listes](listes)
+  * [Piles](piles)
+  * [Files](files)
+  * [Dictionnaires](dictionnaires)
+  * [Bilan](bilan)
+  * [Exercices](exercices)
+
+# Exercices
+
+## Exercice 1
+
+Pour chacune des situations suivantes, donnez la structure de données la plus
+adaptée.
+
+**1.** La gestion du flux de personnes arrivant dans une préfecture.  
+**2.** Les opérations effectuées dans un logiciel de dessin pour que l'on
+puisse les annuler.  
+**3.** Envoyer des fichiers à un serveur d'impression.  
+**4.** Un répertoire téléphonique ou l'on accède au téléphone en rentrant un
+nom.  
+**5.** Mémoriser tous les coups d'une partie d'échecs.  
+
+## Exercice 2
+
+### Énoncé
+
+Nous allons créer une fonction `check` permettant de vérifier le bon
+parenthésage d'une expression. Nous considérons les symboles (, ), [, ], { et
+}. Voici quelques exemples de bon parenthésage :
+
+    
+    
+    (abcd) {edftr [rtyh]}
+    er[rtko (ertg ( rttre) ertt {erttert})]
+
+Voici maintenant des exemples de mauvais parenthésage :
+
+    
+    
+    (zer{ert)}
+    er{erzerpo[rer]rtert
+    zeze(rerf)rertr}
+
+Pour faire cela, nous allons utiliser une pile. En parcourant la chaine de
+caractère à tester, il faut empiler les caractères ouvrant et dépiler
+lorsqu'on rencontre le même caractère fermant.
+
+  * Si lorsqu'on dépile ce n'est pas le même caractère, il y a un problème.
+  * Si lorsqu'on dépile la pile est vide, il y a un problème.
+  * Si à la fin du parcourt de la chaîne, la pile n'est pas vide il y a un problème.
+
+Développer les fonctionalités croissantes suivantes :
+
+  1. Détecter et annoncer les trois problèmes décrits ci-dessus (voir les tests).
+  2. Indiquer par une flèche la position du caractère qui pose problème (voir les tests)
+  3. Indiquer par une deuxième flèche lorsqu'il y a lieu le caractère correspondant au caractère à problème (voir les tests)
+
+### Tests
+
+Pour la question 1 :
+
+    
+    
+    # Caractère fermant en trop
+    >>> check("P{h(ra)se} [d{e te}]st}")
+    Caractère fermant en trop
+    
+    # Manque un caractère fermant
+    >>> check("P{h(ra)se [d{e te}]st")
+    Manque un caractère fermant
+    
+    # Mauvais caractère fermant
+    >>> check("P{h(ra)se} [d{e te})st")
+    Mauvais caractère fermant
+
+Pour la question 2 :
+
+    
+    
+    # Caractère fermant en trop
+    >>> check("P{h(ra)se} [d{e te}]st}")
+    P{h(ra)se} [d{e te}]st}
+                          ^
+    
+    # Manque un caractère fermant
+    >>> check("P{h(ra)se [d{e te}]st")
+    P{h(ra)se [d{e te}]st
+                         ^
+    
+    # Mauvais caractère fermant
+    >>> check("P{h(ra)se} [d{e te})st")
+    P{h(ra)se} [d{e te})st
+                       ^
+
+Pour la question 3 :
+
+    
+    
+    # Caractère fermant en trop
+    >>> check("P{h(ra)se} [d{e te}]st}")
+    P{h(ra)se} [d{e te}]st}
+                          ^
+    
+    # Manque un caractère fermant
+    >>> check("P{h(ra)se [d{e te}]st")
+    P{h(ra)se [d{e te}]st
+     ^                   ^
+    
+    # Mauvais caractère fermant
+    >>> check("P{h(ra)se} [d{e te})st")
+    P{h(ra)se} [d{e te})st
+               ^       ^
+
+[Précédent](bilan)[Suivant (page des cours)](..)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

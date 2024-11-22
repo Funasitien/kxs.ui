@@ -1,0 +1,116 @@
+---
+title: "C - printf"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## C
+
+  * [Matériel](.)
+  * [Hello world!](hello-world)
+  * [Printf](printf)
+  * [Nombres](nombres)
+  * [Structures de contrôle](structures-de-controle)
+  * [Fonctions](fonctions)
+  * [Commentaires](commentaires)
+  * [Portée des variables](portee-variables)
+  * [Pointeurs](pointeurs)
+  * [Tableaux](tableaux)
+  * [Bibliothèque stdbool](stdbool)
+  * [Projet puissance 4](projet-p4)
+  * [Chaînes de caractères](chaines-de-caracteres)
+  * [Structures](structures)
+  * [Exercices](exercices)
+  * [Headers](headers)
+
+# `printf`
+
+Avant de passer à la suite, nous prennons un petit temps pour découvrir la
+fonction (nous verrons les fonctions en détails plus tard) `printf`. C'est
+surement la fonction qui vous sera la plus utile tout au long de l'année. Elle
+appartient à la bibliothèque `stdio`.
+
+## Utilisation simple
+
+Comme nous l'avons vu dans notre premier programme `printf` permet d'afficher
+une chaîne de caractères dans la console :
+
+    
+    
+    printf("Hello world!\n");
+
+Mais elle permet de faire beaucoup plus.
+
+## Utilisation avancée
+
+Il est possible de fournir plusieurs paramètres à `printf`. On sépare les
+paramètres par des virgules. `printf` considère alors le premier paramètre
+comme une chaîne de caractères de formatage. Elle insère ensuite les
+paramètres suivants dans la chaîne de caractères en respectant l'ordre et en
+les plaçant à la place de marqueurs de formatage. Ces marqueurs sont
+constitués du signe `%` et sont suivis d'une ou deux lettres pour donner le
+type de donnée. Voici un tableau des marqueurs (nous verrons tous ces types
+dans la suite) :
+
+Type | Marqueur  
+---|---  
+char | %c  
+short | %hd ou %hi  
+short non signé | %hu  
+int | %d ou %i  
+entier non signé | %u  
+long | %ld ou %li  
+long non signé | %lu  
+float | %f  
+double | %lf  
+string | %s  
+pointeur | %p  
+entier hexadécimal | %x ou %X  
+entier octal | %o  
+notation scientifique | %e ou %E  
+  
+Pour afficher le signe `%` il faut le faire précéder du signe `%` !
+
+Un exemple serait le bienvenu :
+
+    
+    
+    printf("Voici une phrase avec un entier %i et un nombre à virgule : %f\n", 4521, 96.254);
+    
+    
+    Voici une phrase avec un entier 4521 et un nombre à virgule : 96.254000
+
+Comme on peut le voir, le nombre à virgule flottante (float) est affiché avec
+six chiffres après la virgule. On peut changer ce comportement en utilisant le
+marqueur `%.2f` et ainsi forcer à deux le nombre de chiffres après la virgule
+:
+
+    
+    
+    printf("Voici une phrase avec un entier %i et un nombre à virgule : %.2f\n", 4521, 96.254);
+    
+    
+    Voici une phrase avec un entier 4521 et un nombre à virgule : 96.25
+
+`printf` offre beaucoup plus de possibilités, il n'est pas possible de toutes
+les détailler ici. Pour les curieux : [référence
+printf](https://cplusplus.com/reference/cstdio/printf/)
+
+L'utilité des marqueurs peut sembler limitée car il suffirait d'écrire la
+valeur dans la chaîne de caractère. Nous verrons des utilisations plus
+intéréssantes avec l'utilisation de variables.
+
+[Précédent](hello-world)[Suivant](nombres)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

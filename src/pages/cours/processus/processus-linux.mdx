@@ -1,0 +1,176 @@
+---
+title: "Processus sur Linux"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## Processus
+
+  * [Introduction](.)
+  * [Processus sur Linux](processus-linux)
+  * [Processus avec Python](processus-python)
+  * [Ordonnancement](ordonnancement)
+  * [Interblocage](interblocage)
+
+# Processus sur Linux
+
+## Introduction
+
+Un processus est donc un programme en cours d'exécution Il est identifié par
+son _PID_ : Process IDentifiant. Un processus a généralement un processus père
+identifié par son _PPID_ : Parent PID. Découvrons tout ceci sur votre machine.
+
+## ps
+
+La commande Unix permettant de lister les processus est _`ps`_.
+
+**1)** Essayez en tapant `ps` dans un terminal (Tilix).
+
+Vous devez alors obtenir quelque-chose comme ce qui suit :
+
+    
+    
+    PID TTY          TIME CMD
+     172223 pts/1    00:00:00 bash
+     212663 pts/1    00:00:00 ps
+
+Ce n'est pas très intéressant car `ps` n'affiche par défaut que les processus
+de votre terminal. Il est possible de donner des options à `ps` pour changer
+son comportement. Par exemple l'option `-e` lui dit d'afficher tous les
+processus.
+
+**2)** Essayez la commande ci-dessous :
+
+    
+    
+    ps -e
+
+Il doit maintenant y avoir beaucoup plus de processus affichés ! Trop
+d'informations sont affichées, nous allons modifier l'affichage (avec l'option
+`-o`) pour avoir seulement les informations qui nous intéressent : le PID, le
+PPID, l'utilisateur et la commande.
+
+**3)** Essayez la commande ci-dessous :
+
+    
+    
+    ps -e -o pid,ppid,euser,comm
+
+Au démarrage de l'ordinateur, le noyau Linux est chargé et il lance deux
+processus : `systemd` et `kthreadd`. `kthreadd`, avec le PID = 2 s'occupe
+principalement de gérer le matériel alors que `systemd` avec le PID = 1 (aussi
+appelé `init`) gère tout le reste (réseau, serveur graphique, tâches de fond,
+logiciels…). C'est pour ça que ce sont les deux seuls processus à avoir un
+PPID de 0 : il n'ont pas vraiment de parent. `systemd` sera donc l'ancètre de
+tous les processus que vous créerez sur l'ordinateur.
+
+Vous avez maintenant toutes les informations nécessaires pour répondre aux
+questions suivantes.
+
+**4)** Quel est le parent du processus `firefox` (ou le navigateur que vous
+utilisez) ?
+
+**5)** Quel est la chaïne de processus entre `systemd` et `ps` que vous avez
+dû lancer pour répondre à cette question ?
+
+**6)** Quel est la chaîne de processus entre `systemd` et `Xorg` qui gère le
+serveur graphique ?
+
+Dans le but de connaître le nombre de processus nous allons simplement compter
+le nombre de lignes retournées par ps grâce à la commande suivante :
+
+    
+    
+    ps -e -o pid=,ppid=,comm= | wc -l
+
+**7)** Combien de processus sont actifs sur votre machine ?
+
+## Autres commandes
+
+### pstree
+
+Il existe la commande `pstree` qui permet d'afficher les processus sous forme
+d'arbre.
+
+**8)** Testez la commande suivante :
+
+    
+    
+    pstree
+
+Il est égalementy possible d'afficher le PID.
+
+**9)** Testez la commande suivante :
+
+    
+    
+    pstree -p -T
+
+### top et htop
+
+`top` et sa version plus esthétique `htop` permettent de voir (entre autre)
+les processus classés par leur utilisation du processeur.
+
+**10)** Lancez `htop` dans un terminal et notez les trois processus avec le
+plus d'utilisation du processeur.
+
+`htop` affiche également les _threads_ il peut donc être difficile de trouver
+un processus. Il est possible de filtrer les processus affichés en appuyant
+sur F4 et en saisissant un critère.
+
+**11)** Toujours dans `htop`, affichez seulement les processus `python` et
+donnez leur nombre.
+
+### kill et killall
+
+Il est possible de demander à un processus de se terminer grâce à la commande
+`kill`. Pour cela, il faut connaître son PID et lui envoyer la commande :
+
+    
+    
+    kill PID
+
+On dit alors qu'on a tué le processus. Cette commande demande gentiment au
+processus de se terminer. Il est possible de forcer l'arrêt d'un processus en
+lui envoyant un signal plus « radical ». Cela peut servir lorsqu'un processus
+est planté :
+
+    
+    
+    kill -9 PID
+
+**12)** Ouvrez dans le menu la calculatrice et déterminez son PID (le nom du
+processus est gnome-calculator)
+
+**13)** Tuez alors le processus de la calculatrice et remarquez la fermeture
+du programme.
+
+**14)** Essayez maintenant de tuer le processus Xorg. Que se passe-t-il ?
+Pourquoi ?
+
+La commande killall a le même fonctionement que kill sauf qu'elle demande le
+nom du processus en entrée. Ouvrez encore une fois la calculatrice et lancer
+la commande suivante pour la fermer :
+
+    
+    
+    killall gnome-calculator
+
+Cette commande permet de tuer un processus sans connaitre son PID mais surtout
+elle permet de tuer **tous** les processus ayant le même nom. Cela peut être
+très utile lorsqu'un logiciel a planté.
+
+[Précédent](.)[Suivant](processus-python)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

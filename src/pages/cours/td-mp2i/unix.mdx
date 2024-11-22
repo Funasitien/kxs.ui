@@ -1,0 +1,311 @@
+---
+title: "TD Unix"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## TD MP2I
+
+  * [intro](.)
+  * [Conversions](conversions)
+  * [Unix](unix)
+  * [Arbres](arbres)
+  * [ABR](arbres-binaires-recherche)
+  * [Graphes](graphes)
+  * [Bases de données](bases-de-donnees)
+  * [Jointures](jointures)
+  * [Agrégations](agregation)
+  * [Opérateurs ensemblistes](operateurs-ensemblistes)
+  * [Exercices bases de données](exercices-db)
+
+# Unix
+
+## Connection
+
+Connectez-vous au serveur en utilisant la commande donnée par le professeur.
+Vous devriez avoir une invite de commande comme celle-ci :
+
+    
+    
+    login@nom_de_machine:~$
+
+C'est ce qu'on appelle le **shell**
+
+## Arborescence
+
+`/home/login` est votre répertoire personnel. Chaque utilisateur en possède un
+à son nom, toujours dans le répertoire `/home`. Vous pouvez y faire ce que
+vous voulez. `~` est un alias (raccourci) pour votre répertoire personnel.
+
+Un chemin relatif est un chemin qui part du répertoire courant. On utilise
+`..` pour remonter au dossier parent. Le `.` correspond au dossier courant.
+
+**1)** On considère l’arborescence suivante :
+
+    
+    
+    /
+    ├── home
+    │	├── romain
+    │	│	└── fichier.txt
+    │	└── administrateur
+    ├── lost+found
+    ├── media
+    └── var
+    	└── www
+    		└── index.html
+
+  * Quel est le chemin absolu vers `fichier.txt` ?
+  * Quel est le chemin absolu vers `index.html` ?
+  * Quel est le chemin relatif depuis `administrateur` vers `fichier.txt` ?
+  * Quel est le chemin relatif depuis `romain` vers `index.html` ?
+
+  * `/home/romain/fichier.txt`
+  * `/var/www/index.html`
+  * `../romain/fichier.txt`
+  * `../../var/www/index.html`
+
+**2)** Utilisez la commande `pwd` pour vérifier que vous êtes bien dans votre
+dossier personnel.
+
+**3)** Utilisez la commande `cd` et un chemin relatif pour aller dans le
+dossier personnel d'un de vos camarades.
+
+    
+    
+    cd ../autre_prenom
+
+**4)** Utilisez la commande `cd` et un chemin absolu pour revenir dans votre
+dossier personnel.
+
+    
+    
+    cd /home/mon_prenom
+
+## Commandes
+
+### Découverte
+
+Nous venons d'utiliser la commande `cd` pais il existe des centaines de
+commandes Unix. Pour lancer une commande, il suffit donc de mettre son nom
+dans le shell et d’appuyer sur entrée.
+
+**5)** Essayez par exemple les commandes `who` (pour savoir qui est connecté
+au serveur) et `date` (pour connaitre la date).
+
+Il existe deux petites astuces pour gagner du temps dans le shell :
+
+  * `tab` (la touche tabulation) complète automatiquement le nom ou l’arborescence s’il est unique. `tab` `tab` affiche toutes les possibilités.
+  * il est possible de remonter dans l’historique des commandes avec ↑.
+
+Une commande peut avoir un ou plusieurs paramètres. Ils sont en général
+séparés par des espaces.
+
+**6)** Essayez la commande suivante et dire ce qu’il se passe :
+
+    
+    
+    $ echo "toto"
+
+Elle affiche `toto`.
+
+Une commande peut avoir des options. Bien souvent les options sont des lettres
+précédées un tiret ou des mots précédé de deux tirets. On peut éventuellement
+mettre plusieurs options derrière le même tiret.
+
+**7)** Essayer la commande suivante et expliquez ce qu’elle produit :
+
+    
+    
+    $ gcc -v
+
+Elle affiche la version de gcc.
+
+Enfin, il existe une commande qui permet de voir le manuel de n’importe quelle
+commande : `man`. On peut par exemple l'utiliser pour voir le manuel de `pwd`
+:
+
+    
+    
+    $ man pwd
+
+### Commandes de base
+
+Voici une liste de quelques commandes courantes du shell.
+
+#### man (manuel)
+
+Affiche la page de manuel d’une commande (q pour quitter)  
+`man ls` affiche la page de manuel de la commande ls
+
+#### pwd (print working directory)
+
+Renvoie le chemin absolu du répertoire courant.
+
+#### ls (list segment)
+
+Affiche le contenu d’un répertoire.  
+`ls -a` affiche les fichiers cachés  
+`ls -l` affiche les informations détaillées  
+`ls -il` affiche les informations détaillées avec l'inode  
+`ls -h` affiche la taille des fichiers de façon lisible  
+
+#### cd (change directory)
+
+Permet de naviguer dans les répertoires  
+`cd /usr/bin` se place dans le répertoire /usr/bin  
+`cd` ou `cd ~` se place dans le répertoire de l’utilisateur  
+`cd ..` remonte d’un répertoire  
+`cd -` revient au répertoire précédent  
+
+#### cp (copy)
+
+Permet de copier des fichiers ou des répertoires  
+Option : -r copie un répertoire et tout son contenu (récursif)  
+`cp fichier destination/` copie fichier dans le répertoire destination  
+`cp -r rep/ destination/` copie rep et tout son contenu dans le répertoire
+destination  
+`cp -r rep/* destination` copie le contenu de rep/ dans le répertoire
+destination  
+
+#### mv (move)
+
+Permet de déplacer ou renommer des fichiers  
+`mv fichier destination/` déplace fichier dans le répertoire destination  
+`mv fichier destination/fichier2` déplace et renomme fichier dans le
+répertoire destination  
+`mv rep1 rep2` renomme rep1 en rep2 (Attention, si rep2 existe, rep1 sera
+déplacé dans rep2)  
+`mv /var/www .` déplace le répertoire /var/www dans le répertoire courant.  
+
+#### rm (remove)
+
+Permet de supprimer des fichiers et des répertoires  
+Option :  
+-r supprime un dossier et tout ce qu’il contient  
+-f ne demande pas de confirmation avant d’effacer  
+`rm fichier` supprime fichier  
+`rm -rf rep/` supprime le répertoire rep et tout ce qu’il contient sans rien
+demander  
+`rm -rf /*` supprime tous les fichiers de l’ordinateur (ne pas tester,
+l’ordinateur serait inutilisable !)  
+
+#### mkdir (make directory)
+
+Créer un répertoire  
+`mkdir rep` crée le répertoire rep  
+
+#### rmdir (remove directory)
+
+Supprime un répertoire vide (moins risqué que rm -r)  
+`rmdir rep` supprime le répertoire rep s’il est vide  
+
+#### touch
+
+Créer un fichier vide  
+`touch fiche` crée le fichier fiche  
+
+#### cat (concatenate)
+
+Affiche le contenu d’un fichier (peut faire d’autres choses aussi)
+
+#### more
+
+Affiche le contenu d’un fichier page par page
+
+#### top
+
+Permet de voir la charge cpu et les processus actifs
+
+#### nano
+
+Éditeur de texte. `Ctrl + s` pour sauvegarder et `Ctrl + x` pour quitter.
+
+### Application
+
+**8)** Dans votre répertoire personnel (~), créer un dossier `MP2I`. Dans ce
+dossier créer un fichier `test1` et un fichier `test2`. Dans le fichier
+`test1` écrivez la phrase « Ceci est un fichier de test ». Afficher le contenu
+du ficher dans le shell.
+
+## Liens et inode
+
+**8)** Aller dans le dossier MP2I. Créer alors un lien physique `test3` vers
+`test1`. Constater alors que les deux fichiers ont le même inode et que le
+nombre de liens physiques vers `test1` a augmenté.
+
+**9)** Supprimer le fichier `test1`. Constater que le nombre de liens
+physiques vers `test3` est repassé à 1.
+
+**10)** Créer un lien symbolique de `test4` vers `test3`. Constater que le
+nombre de liens physiques vers `test3` ne change pas.
+
+**11)** Supprimer le fichier `test3` et essayer d'ouvrir `test4`.
+
+## Droits
+
+**12)** En utilisant la commande `ls -l` donner le propriétaire et le groupe
+propriétaire du fichier test2.
+
+**13)** Donner le propriétaire et le groupe propriétaires de `/var/mail` (on
+pourra utiliser l'option `-d` qui demande à `ls` de s'intéresser au dossier
+plutôt qu'à son contenu).
+
+    
+    
+    $ ls -ld /var/mail
+    drwxrwsr-x 2 root mail 4096 Jul 11  2022 /var/mail
+
+L'utilisateur propriétaire est `root` et le groupe prorpiétaire est `mail`.
+
+**14)** Que fait la commande suivante ?
+
+    
+    
+    chmod u-x,g+x,o-rwx fichier
+
+Elle enlève les droits d'exécution à l'utilisateur propriétaire sur le fichier
+`fichier`.  
+Elle donne les droits d'exécution au groupe propriétaire sur le fichier
+`fichier`.  
+Elle enlève les droits de lecture, d'écriture et d'exécution aux autres sur le
+fichier `fichier`.
+
+**15)** Quelle commande doit-on utiliser pour passer les droits de ce fichier
+à `rwxr-xr--` sans utiliser l'octal ?
+
+    
+    
+    -r-xrwxr-x 2 eleve eleve 85 oct. 25 02:36 mon_fichier
+    
+    
+    chmod u+w,g-w,o-x mon_fichier
+
+**16)** Comment peut-on faire la même chose en utilisant l'octal ?
+
+    
+    
+    chmod 754 mon_fichier
+
+**17)** Que fait la commande ci-dessous ?
+
+    
+    
+    chmod 544 fichier.txt
+
+Elle attribue les droits `r-xr--r--` au fichier `fichier.txt`.
+
+[Précédent](conversions)[Suivant (page des cours)](..)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

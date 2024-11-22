@@ -1,0 +1,367 @@
+---
+title: "Listes : interface et implémentation"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## Listes, piles, files et dictionnaires
+
+  * [Introduction](.)
+  * [Listes](listes)
+  * [Piles](piles)
+  * [Files](files)
+  * [Dictionnaires](dictionnaires)
+  * [Bilan](bilan)
+  * [Exercices](exercices)
+
+# Listes
+
+## Présentation
+
+Une liste est, en informatique, une structure de données linéaire contenant
+des éléments placés les uns à la suite des autres. Par exemple, une liste de
+noms, de numéros de téléphones… Une structure de données est définie par les
+éléments qu'elle peut stocker (nombres, chaînes de caractères, objets…) et
+surtout par son _interface_.
+
+Insere Retire
+
+## Interface
+
+### Définition
+
+L'interface d'une structure de données définit la façon dont on interagit avec
+cette structure. L'interface d'une liste n'est pas normalisée, néanmoins, il y
+a des méthodes qui sont inévitables (même si leurs noms peuvent changer) :
+
+insere(x)
+
+    insère un élément en fin de liste ;
+  
+estVide()
+
+    renvoie `True` si la liste est vide, `False` sinon ;
+  
+retire(i)
+
+    retire l'élément en position i de la liste (on commence à 0) ;
+  
+taille()
+
+    renvoie le nombre d'éléments de la liste ;
+  
+affiche()
+
+    affiche la liste dans le shell.
+  
+
+### Exemple
+
+**1)** Considérant la suite d'instructions suivante, donnez la valeur renvoyée
+ou le contenu de la liste à chaque ligne repérée par un numéro en commentaire.
+`ma_liste` est initialement une liste vide. On représentera une liste par des
+éléments entre crochets comme en Python.
+
+    
+    
+    ma_liste.affiche() #1
+    ma_liste.estVide() #2
+    ma_liste.insere(4)
+    ma_liste.insere(8) #3
+    ma_liste.estVide() #4
+    ma_liste.affiche() #5
+    ma_liste.insere(1)
+    ma_liste.insere(3) #6
+    ma_liste.affiche()
+    ma_liste.retire(2) #7
+    ma_liste.affiche()
+    ma_liste.taille() #8
+    
+    
+    #1 []
+    #2 True
+    #3 [4, 8]
+    #4 False
+    #5 [4, 8]
+    #6 [4, 8, 1, 3]
+    #7 [4, 8, 3]
+    #8 3
+
+## Implémentation
+
+### Définition
+
+Chaque langage de programmation possède une structure données qui s'apparente
+à une liste. Les méthodes et le formalisme pour utiliser ces listes peuvent
+changer. Mais surtout, ce qui change, c'est l'_implémentation_.
+L'implémentation est la façon concrète utilisée pour construire une structure
+de données. Par exemple, est-ce qu'on utilisera des éléments contigus en
+mémoire ? utilisera-t-on un index pour trouver plus rapidement une valeur ?
+Tous ces choix peuvent avoir des conséquences sur les performances d'un
+programme utilisant une structure de données. Une question primordiale pour un
+programmeur est de choisir la meilleure structure de données pour répondre à
+son besoin. Et donc de choisir la meilleure implémentation pour le problème
+qu'il doit résoudre.
+
+### Exemple
+
+En python, il existe déjà un type list qui possède toutes les méthodes
+nécessaires : [documentation sur les
+listes](https://docs.python.org/fr/3/tutorial/datastructures.html). Mais
+l'interface est en anglais et nous ne pouvons donc pas utiliser nos méthodes
+en français. Dans un but pédagogique nous allons donc définir une classe
+créant une interface en français au type list de Python.
+
+Voici une première définition de la classe listePerso() (et son instanciation)
+dont le constructeur crée une liste vide :
+
+    
+    
+    class ListePerso:
+        """Liste personalisée"""
+        def __init__(self):
+            self.liste = []
+    
+    ma_liste = ListePerso()
+
+**2)** Implémentez les méthodes faisant partie de l'interface définie
+précédemment (insere(x), estVide(), retire(i), taille()). Vous utiliserez la
+[documentation sur les
+listes](https://docs.python.org/fr/3/tutorial/datastructures.html) de Python.
+
+    
+    
+    class ListePerso:
+        """Liste personalisée"""
+        def __init__(self):
+            self.liste = []
+    
+        def insere(self, x):
+            self.liste.append(x)
+    
+        def affiche(self):
+            print(self.liste)
+    
+        def retire(self, i):
+            self.liste.pop(i)
+    
+        def estVide(self):
+            return not(self.liste)
+    
+        def taille(self):
+            return len(self.liste)
+
+**3)** Ajoutez les tests suivants et vérifiez que votre classe les passe.
+
+    
+    
+    class ListePerso:
+        """
+        Liste personalisée
+    
+        >>> ma_liste = ListePerso()
+        >>> ma_liste.insere(4)
+        >>> ma_liste.affiche()
+        [4]
+    
+        >>> ma_liste = ListePerso()
+        >>> ma_liste.insere(4)
+        >>> ma_liste.insere(8)
+        >>> ma_liste.insere(12)
+        >>> ma_liste.retire(1)
+        >>> ma_liste.affiche()
+        [4, 12]
+    
+        >>> ma_liste = ListePerso()
+        >>> ma_liste.estVide()
+        True
+    
+        >>> ma_liste = ListePerso()
+        >>> ma_liste.insere(8)
+        >>> ma_liste.estVide()
+        False
+    
+        >>> ma_liste = ListePerso()
+        >>> ma_liste.insere(4)
+        >>> ma_liste.insere(4)
+        >>> ma_liste.taille()
+        2
+    
+        """
+
+**4)** Implémentez les méthodes suivantes à votre classe listePerso
+
+fusionne(L)
+
+    concatène la liste L avec notre liste ;
+  
+efface()
+
+    retire tous les éléments de la liste ;
+  
+inverse()
+
+    mets les éléments de la liste en ordre inverse ;
+  
+premier()
+
+    renvoie le premier élément de la liste ;
+  
+dernier()
+
+    renvoie le dernier élément de la liste ;
+  
+suivant()
+
+    renvoie l'élément suivant celui qui a été précédement renvoyé. Pour le premier appel à cette méthode il faut renvoyer le premier élément ;
+  
+
+    
+    
+    class listePerso:
+        """
+        Liste personalisée
+    	"""
+    
+        def __init__(self):
+            self.liste = []
+            self.compteur = -1
+    
+        …
+    
+        def fusionne(self, L):
+            self.liste.extend(L)
+    
+        def efface(self):
+            self.liste.clear()
+    
+        def inverse(self):
+            self.liste.reverse()
+    
+        def premier(self):
+            return self.liste[0]
+    
+        def dernier(self):
+            return self.liste[-1]
+    
+        def suivant(self):
+            self.compteur = self.compteur + 1
+            return self.liste[self.compteur]
+
+**5)** La méthode `suivant()` pose un problème si on l'appelle un trop grand
+nombre de fois. Proposez une solution pour éviter d'avoir une erreur dans ce
+cas.
+
+    
+    
+    def suivant(self):
+        self.compteur = (self.compteur + 1) % len(self.liste)
+        return self.liste[self.compteur]
+
+## Bilan
+
+Nous avons créé notre structure de données `listePerso` qui est principalement
+(au moins pour les méthodes de base) une surcouche à la structure de données
+`list` de Python. L'utilité d'une telle construction est ici de traduire en
+français les méthodes mais aussi de limiter les possibilité d'erreurs faites
+par l'utilisateur de notre classe. En effet, notre interface limite les
+actions possibles (et donc les erreurs) sur notre liste Python à l'intérieur
+de notre classe.
+
+On peut par ailleur se demander comment Python lui-même implémente son type
+`list` ? Il utilise ce qu'on appelle un _tableau dynamique_. C'est à dire
+qu'il place les éléments de notre liste dans des emplacements mémoire contigus
+:
+
+5 22 13
+
+Le tableau étant dynamique, l'insertion d'un nouvel élément dans la liste est
+possible, il faut néanmoins décaler tous les éléments à droite pour « faire de
+la place » au nouvel élément. Cela prend beaucoup de temps :
+
+5 22 13
+
+5 42 22 13
+
+Pour avoir des insertions plus rapides, Python aurait pû utiliser ce qu'on
+appelle une _liste chainée_. Ici, les éléments ne sont pas les uns à la suite
+des autres en mémoire, mais chaque élément pointe vers l'élément suivant :
+
+5 22 13
+
+Ainsi pour ajouter un élément il suffit de changer deux « pointeurs » :
+
+5 22 13 42
+
+**6)** Complétez le code de la classe `liste_chainee` ci-dessous pour
+implémenter la méthode `insere()` qui ajoute un élément en fin de liste.
+Chaque nouvel élement est un nœud dont la classe est fournie. La classe
+`liste_chainee` connait uniquement son premier et son dernier élément.
+
+    
+    
+    class Noeud:
+        def __init__(self, valeur, suivant = None):
+            self.valeur = valeur
+            self.suivant = suivant
+    
+    class Liste_chainee:
+        def __init__(self):
+            self.premier = None
+            self.dernier = None
+    
+    
+    def insere(self, x):
+    	#self.nb = self.nb + 1
+    	nouveau_noeud = Noeud(x)
+    	if self.dernier is None: # La liste est vide
+    		self.premier = nouveau_noeud
+    	else: # La liste n'est pas vide
+    		self.dernier.suivant = nouveau_noeud
+    	self.dernier = nouveau_noeud
+
+**7)** Complétez le code de la classe `liste_chainee` ci-dessus pour
+implémenter la méthode `affiche()` qui affiche tous les éléments de la listes
+séparés par ` -> `.
+
+    
+    
+    def affiche(self):
+        noeud_actuel = self.premier
+        while noeud_actuel is not None:
+            print(noeud_actuel.valeur,end=" -> ")
+            noeud_actuel = noeud_actuel.suivant
+        print()
+
+**8)** Complétez le code de la classe `liste_chainee` ci-dessus pour
+implémenter la méthode `estVide()` qui indique si la liste est vide ou non.
+
+    
+    
+    def estVide(self):
+    	return self.dernier is None
+
+**9)** Complétez le code de la classe `liste_chainee` ci-dessus pour
+implémenter la méthode `taille()`. On pourra ajouter un attribut représentant
+la taille de la liste pour ne pas avoir à « calculer » la taille à chaque
+appel de la méthode.
+
+    
+    
+    def taille(self):
+    	return self.nb
+
+[Précédent](.)[Suivant](piles)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

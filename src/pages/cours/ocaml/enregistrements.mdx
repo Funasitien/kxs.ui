@@ -1,0 +1,139 @@
+---
+title: "Enregistrements en OCaml - Niveau MP2I"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## OCaml
+
+  * [Présentation](.)
+  * [Interaction et définitions](interaction-definition)
+  * [Fonctions](fonctions)
+  * [If … then … else …](if-then-else)
+  * [Fonctions récursives](fonctions-recursives)
+  * [Réels](reels)
+  * [Chaînes de caractères](string)
+  * [Execices 1](exercices-1)
+  * [Listes](listes)
+  * [Unit](unit)
+  * [Produits](produits)
+  * [Enregistrements](enregistrements)
+  * [Énumérations](enumerations)
+  * [Sommes](sommes)
+  * [Filtrage](filtrage)
+  * [Fonctions avancées](fonctions-avancees)
+  * [Aspects impértifs](aspects-imperatifs)
+
+# Enregistrements
+
+## Définitions
+
+Les enregistrements sont assimilables aux structures en C. Ils sont définis
+avec le mot-clé `type`. Ils possèdent donc des champs auquels ont associe des
+valeurs. Prenons l'exemple d'un enregistrement « étudiant » :
+
+    
+    
+    # type etudiant =
+    {
+       nom : string;
+       prenom : string;
+       age : int;
+       annee : int
+    };;
+    type etudiant = { nom : string; prenom : string; age : int; annee : int; }
+
+On peut ensuite créer un étudiant :
+
+    
+    
+    # let sarah = { nom="Croche"; prenom="Sarah"; age=20; annee=2};;
+    val sarah : etudiant = {nom = "Croche"; prenom = "Sarah"; age = 20; annee = 2}
+
+## Accès aux éléments
+
+On accède aux éléments avec la notation pointée comme en C :
+
+    
+    
+    # sarah.nom;;
+    - : string = "Croche"
+    # sarah.age;;
+    - : int = 20
+
+## Exercices
+
+**1)** Nous allons définir un type `complexe` et quelques opérations.
+
+  * **a)** Définir un type `complexe` composé de la partie réelle et de la partie imaginaire d'un commplexe ;
+  * **b)** Définir deux complexes z1 = 1 + i et z2 = 2 - 3i ;
+  * **c)** Définir la fonction `conjug` qui renvoie le conjugué d'un complexe ;
+  * **d)** Définir la fonction `add_c` qui ajoute deux complexes ;
+  * **e)** Définir la fonction `sub_c` qui soustrait deux complexes ;
+  * **f)** Définir la fonction `mult_c` qui multiplie deux complexes ;
+  * **g)** Définir la fonction `div_c` qui divise deux complexes (on pourra utiliser `conjug` et `mult_c`) ;
+
+On vérifiera que :
+
+  * z1 + z2 = 3 - 2i;
+  * z1 - z2 = -1 + 4i;
+  * z1 * z2 = 5 - i;
+  * z1 / z2 = -1/13 + 5/13i = -0.0769 + 0.385i;
+
+    
+    
+    # type complexe =
+    {
+       re : float;
+       im : float;
+    };;
+    type complexe = { re : float; im : float; }
+    
+    
+    # let z1 = {re=1.;im=1.} and z2 = {re=2.;im=(-3.)};;
+    val z1 : complexe = {re = 1.; im = 1.}
+    val z2 : complexe = {re = 2.; im = -3.}
+    
+    
+    # let conjug a =
+    {re=a.re;im=(-.a.im)};;
+    val conjug : complexe -> complexe = <fun>
+    
+    
+    # let add_c a b=
+    let cre = a.re +. b.re and cim = a.im +. b.im in
+    	{re=cre;im=cim};;
+    val add_c : complexe -> complexe -> complexe = <fun>
+    
+    
+    # let sub_c a b =
+    let cre = a.re -. b.re and cim = a.im -. b.im in
+    	{re=cre;im=cim};;
+    val sub_c : complexe -> complexe -> complexe = <fun>
+    
+    
+    # let mult_c a b =
+    let cre = a.re *. b.re -. a.im *. b.im and cim = a.re *. b.im +. b.re *. a.im in
+    	{re=cre;im=cim};;
+    val mult_c : complexe -> complexe -> complexe = <fun>
+    
+    
+    # let div_c a b =
+    let div = (mult_c b (conjug b)).re and num = mult_c a (conjug b) in
+    	{re=num.re /. div; im=num.im /. div};;
+    val div_c : complexe -> complexe -> complexe = <fun>
+
+[Précédent](produits)[Suivant](enumerations)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

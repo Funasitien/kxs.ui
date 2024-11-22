@@ -1,0 +1,116 @@
+---
+title: "C - Projet puissance 4"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## C
+
+  * [Matériel](.)
+  * [Hello world!](hello-world)
+  * [Printf](printf)
+  * [Nombres](nombres)
+  * [Structures de contrôle](structures-de-controle)
+  * [Fonctions](fonctions)
+  * [Commentaires](commentaires)
+  * [Portée des variables](portee-variables)
+  * [Pointeurs](pointeurs)
+  * [Tableaux](tableaux)
+  * [Bibliothèque stdbool](stdbool)
+  * [Projet puissance 4](projet-p4)
+  * [Chaînes de caractères](chaines-de-caracteres)
+  * [Structures](structures)
+  * [Exercices](exercices)
+  * [Headers](headers)
+
+# Puissance 4
+
+![](img/p4.jpg)
+
+## Introduction
+
+Ce projet consiste à recréer le jeu puissance 4 en ligne de commande (pas
+d'interface graphique).
+
+Le jeu de puissance 4 se joue à deux joueurs avec une grille de 7 colonnes et
+6 rangées. Un joueur possède des jetons rouges et l'autre des jetons jaunes.
+Les joueurs mettent chacun leur tour un jeton dans une colonne. Le but est
+d'être le premier à aligner 4 jetons verticalement, horizontalement ou en
+diagonale. Si personne n'arrive à aligner 4 jetons avant que la grille ne soit
+remplie il y a match nul.
+
+## Travail à effectuer
+
+C'est un projet complexe que l'on peut décomposer en différentes étapes
+correspondant à des fonctions réalisant chacune une action. Les fonctions à
+utiliser sont imposées il faut respecter ce cahier des charges.
+
+La grille du jeu sera représenté par un tableau à deux dimensions. Les 0
+correspondent à des cases vides, les 1 aux jetons du joueur 1 et les 2 aux
+jetons du joueur 2. On utilisera les deux bibliothèques `stdio` et `stdbool`.
+
+  * `int main();` : crée un tableau de 6 lignes et 7 colonnes remplies de zéros. Elle appelle la fonction `jouer` ;
+  * `void display(int tab[6][7]);` : fonction qui affiche la grille du jeu dans la console de la façon la plus esthétique possible (voir la suggestion ci-dessous à améliorer) ;
+
+    
+    
+    +---+---+---+---+---+---+---+
+    | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+    +---+---+---+---+---+---+---+
+    | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+    +---+---+---+---+---+---+---+
+    | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+    +---+---+---+---+---+---+---+
+    | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+    +---+---+---+---+---+---+---+
+    | 0 | 0 | 2 | 1 | 0 | 0 | 0 |
+    +---+---+---+---+---+---+---+
+    | 0 | 0 | 1 | 2 | 0 | 0 | 0 |
+    +---+---+---+---+---+---+---+
+
+  * `bool colonne_libre(int tab[6][7], int colonne);` : fonction qui renvoie un booléen indiquant s'il est possible de mettre un jeton dans la colonne (indique si la colonne n'est pas pleine) ;
+  * `void place_jeton(int tab[6][7], int colonne, int joueur);` : fonction qui place un jeton du joueur (1 ou 2) dans la colonne ;
+  * `bool horizontale(int tab[6][7], int joueur);` : fonction qui renvoie `True` si le joueur a au moins 4 jetons alignés dans une ligne ;
+  * `bool verticale(int tab[6][7], int joueur);` : fonction qui renvoie `True` si le joueur a au moins 4 jetons alignés dans une colonne ;
+  * `bool diagonale(int tab[6][7], int joueur);` : fonction qui renvoie `True` si le joueur a au moins 4 jetons alignés dans une diagonale ;
+  * `bool gagne(int tab[6][7], int joueur)` : fonction qui renvoie `True` si le joueur a gagné ;
+  * `void tour_joueur(int tab[6][7], int joueur)` : fonction qui permet au joueur de placer un jeton dans la colonne choisie. Elle indique si la colonne est pleine et permet alors au joueur de choisir une autre colonne ;
+  * `bool egalite(int tab[6][7])` : fonction qui renvoie `True` s'il y a égalité et `False` sinon ;
+  * `void jouer(int tab[6][7])` : fonction qui permet aux deux joueurs de jouer chacun leur tour. Elle vérifie que les joueurs n'ont pas gagné à la fin de leur tour. Si l'un des deux à gagné ou s'il y a égalité, elle donne le résultat ;
+
+## Tableau du barème
+
+Voilà le barème complet sur 20 pour ce projet.
+
+Tâche | Barème  
+---|---  
+initialisation de la grille | 1 point  
+display | 2 points  
+colonne_libre | 1 points  
+place_jeton | 2 points  
+horizontale | 2 points  
+verticale | 1 point  
+diagonale | 3 points  
+gagne | 1 point  
+tour_joueur | 1 point  
+egalite | 1 point  
+jouer | 1 point  
+code optimisé | 1.5 point  
+commentaires | 1 point  
+code propre | 1.5 point  
+Interface de jeu améliorée | 1 point bonus  
+Total | 20  
+[Précédent](stdbool)[Suivant](chaines-de-caracteres)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

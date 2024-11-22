@@ -1,0 +1,106 @@
+---
+title: "Synthèse sur les algorithmes de première"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+# Synthèse sur les algorithmes de première
+
+Cette page présente une synthèse de ce qu'il faut savoir sur les algorithmes
+de première. On rappelle que la complexité mesure le nombre d'opérations (et
+par approximation le temps d'éxécution) **dans le pire des cas**. Elle
+s'exprime en fonction du nombre n d'éléments du problème.
+
+Par exemple une complexité en O(n) signifie que le nombre d'opérations dépend
+linéairement de n. Cela veut dire que si on multiplie la taille des données
+par 2, le nombre d'opérations sera multiplié par 2.
+
+Deux algorithmes avec la même complexité n'ont a priori pas le même temps
+d'éxécution, même si on utilise des données de même taille. L'un peut être 100
+fois plus lent que l'autre.
+
+## Recherche dans un tableau
+
+On recherche ici un élément dans un tableau **non trié**.
+
+Comme on doit parcourir le tableau en entier la complexité est en O(n).
+
+## Tri par sélection
+
+On veut ici trier un tableau.
+
+On choisit le plus petit élément du tableau et on le range à gauche. On
+recommence avec les éléments restants en ne touchant pas au éléments déjà
+triés.
+
+Comme il est nécessaire de parcourir tout le tableau pour trouver le plus
+petit et qu'on doit faire ça n fois, on parcourt deux fois le tableau. La
+complexité est donc en O(n²).
+
+## Tri par insertion
+
+On veut ici trier un tableau.
+
+On tri le tableau de gauche à droite (mais cela peut se faire de droite à
+gauche)
+
+On considère chaque élément à partir du deuxième et on l'insère dans la partie
+déjà triée du tableau à gauche.
+
+Comme il est nécessaire de parcourir tout le tableau trié pour trouver la
+bonne place et qu'on doit faire ça n fois, on parcourt deux fois le tableau.
+La complexité est donc en O(n²).
+
+## Rechercher dichotomique
+
+On cherche ici un élément dans un tableau **trié**.
+
+On regarde le milieu du tableau, si l'élément qu'on cherche est plus grand
+alors on recommence avec la partie droite du tableau sinon on recommence avec
+la partie gauche.
+
+Comme on divise à chaque fois la taille du tableau par deux on arrive «
+rapidement » à un tableau de un élément, et l'algorithme s'arrête alors. Le
+nombre maximal d'opération est donc le nombre de fois ou on peut diviser la
+taille du tableau par deux. Ce nombre est log2(n). La complexité est donc en
+O(log2(n)).
+
+## Algorithme glouton
+
+L'algorithme glouton permet de résoudre rapidement un problème ou il serait
+nécessaire d'essayer de nombreuses combinaisons avant de trouver la solution.
+Les problèmes classiques pour un algorithme glouton : rendu de monnaie,
+problème du sac à dos.
+
+À chaque étape on choisit la possibilité qui semble la meilleure. Il est
+nécessaire que les choix puissent être ordonnés. L'algorithme glouton ne
+trouve pas nécessairement la meilleure solution mais il trouve une solution en
+un temps raisonnable.
+
+La complexité d'un algorithme naïf dans ces problèmes est exponentielle :
+O(an). L'algorithme glouton permet de trouver une solution avec une complexité
+de O(n).
+
+## Tri fusion
+
+On veut ici trier un tableau.
+
+Il utilise la méthode diviser pour régner.
+
+Sa complexité est en O(nlog2(n)) ce qui est meilleur que les deux algorithmes
+de tri précédents.
+
+[Précédent (page des cours)](..)[Suivant (page des cours)](..)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

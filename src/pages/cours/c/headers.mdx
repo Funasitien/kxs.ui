@@ -1,0 +1,101 @@
+---
+title: "C - Headers - Niveau MP2I"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## C
+
+  * [Matériel](.)
+  * [Hello world!](hello-world)
+  * [Printf](printf)
+  * [Nombres](nombres)
+  * [Structures de contrôle](structures-de-controle)
+  * [Fonctions](fonctions)
+  * [Commentaires](commentaires)
+  * [Portée des variables](portee-variables)
+  * [Pointeurs](pointeurs)
+  * [Tableaux](tableaux)
+  * [Bibliothèque stdbool](stdbool)
+  * [Projet puissance 4](projet-p4)
+  * [Chaînes de caractères](chaines-de-caracteres)
+  * [Structures](structures)
+  * [Exercices](exercices)
+  * [Headers](headers)
+
+# Headers
+
+Il est nécessaire d'utiliser des fichiers headers lorsqu'on a besoin
+d'utiliser du code de différents fichiers. Ils permettent de déclarer les
+structures et les signatures des fonctions.
+
+## Exemple de fichier header
+
+Voici un fichier `util.c` :
+
+    
+    
+    #include <stdio.h>
+    #include "util.h"
+    
+    int fonction(int a) {
+    	// Instructions de la fonction
+    }
+
+Et le fichier `util.h` correspondant :
+
+    
+    
+    #ifndef UTIL_H
+    #define UTIL_H
+    
+    int fonction(int a) ;
+    
+    #endif
+
+Le fichier `util.h` est inclu avec l'instruction `#include` et des guillemets
+car le fichier est dans le répertoire courant.
+
+L'instruction `ifndef… endif` permet de s'assurer que le fichier n'est pas
+inclu plusieurs fois.
+
+## Exemple d'utilisation d'un autre fichier
+
+Si nous avons besoin d'utiliser le code d'un autre fichier, nous n'avons pas
+besoin de recopier le code de ce fichier. Il faut d'abord inclure le fichier
+`.h` dans le fichier headers `prog.h` :
+
+    
+    
+    #include "util.h"
+    
+    // Reste du fichier headers
+
+Et bien sûr il faut inclure le header du programme dans le fichier `prog.c` :
+
+    
+    
+    #include "prog.h"
+    
+    // Reste du programme
+
+Enfin, il faut ajouter le fichier `.c` à la commande de compilation :
+
+    
+    
+    gcc -o prog prog.c util.c
+
+[Précédent](exercices)[Suivant (page des cours)](..)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

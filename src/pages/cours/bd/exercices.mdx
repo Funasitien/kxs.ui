@@ -1,0 +1,81 @@
+---
+title: "Bases de données - Exercices"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## Bases de données
+
+  * [Introduction](.)
+  * [Prise en main](prise-en-main)
+  * [Structure](structure)
+  * [Contenu](contenu)
+  * [Clés](cles)
+  * [Jointure](jointure)
+  * [Compléments](complements)
+  * [Agrégateurs](agregateurs)
+  * [Exercices](exercices)
+  * [IMDb](imdb)
+
+# Exercices sur les bases de données
+
+On se propose d'ajouter une table _realisateurs_ à notre base de données.
+Cette table contiendra les noms, prénoms et date de naissance des réalisateurs
+des films déja présents dans la base.
+
+**1)** Proposez une structure pour la table _realisateurs_ (n'oubliez pas la
+clé primaire qu'on pourra appeler _id_ralisateur_ ! On appellera _naissance_
+le champ de l'année de naissance).
+
+**2)** Sachant que la commande pour créer la table _films_ était la suivante,
+proposez une commande pour créer la table _realisateurs_. Demandez au
+professeur avant de la tester.
+
+    
+    
+    CREATE TABLE films
+    (
+        id_film INT PRIMARY KEY NOT NULL,
+        titre VARCHAR(100),
+        annee INT
+    );
+
+**3)** Ajoutez les réalisateurs avec leurs informations dans la table
+_realisateurs_.
+
+**4)** Proposez et testez une requête permettant d'afficher les noms, prénoms
+et date de naissance des réalisateur par ordre d'année de naissance.
+
+**5)** Que faut-il ajouter à la table _films_ pour la lier avec la table
+réalisateur ?
+
+**6)** La commande pour ajouter une colonne est donnée ci-dessous. Proposez
+une commande pour ajouter le champ nécessaire à la table _films_.
+
+    
+    
+    ALTER TABLE table
+    ADD champ type;
+
+Le type peut être `INT`, `VARCHAR` ou `TEXT`
+
+**7)** Proposez ue requête permettant d'afficher les champs suivants : texte,
+titre, annee, nom et prenom par ordre chronologique de sortie des films.
+
+**8)** Dessinez le schéma relationnel de la base de données avec les trois
+tables.
+
+[Précédent](agregateurs)[Suivant](imdb)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

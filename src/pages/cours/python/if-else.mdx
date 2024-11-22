@@ -1,0 +1,129 @@
+---
+title: "Structures de contrôle en Python"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## Python
+
+  * [Introduction](.)
+  * [Bases](bases)
+    * [Opérations mathématiques](operations)
+    * [Variables](variables)
+    * [Types de base](types-de-base)
+  * [Structures de contrôle](structures-de-controle)
+    * [If… else](if-else)
+    * [Interaction avec l'utilisateur](interaction)
+  * [Exercices bases et structures de contrôle](exercices-bases-structures)
+  * [Commentaires](commentaires)
+  * [Boucles](boucles)
+  * [Booléens](booleens)
+  * [Modules](modules)
+  * [Fonctions](fonctions)
+  * [Exercices boucles et fonctions](exercices-boucles-fonctions)
+  * [Tuples](tuples)
+  * [Exercices tuples](exercices-tuples)
+  * [Tableaux](tableaux)
+  * [Exercices tableaux](exercices-tableaux)
+  * [Dictionnaires](dictionnaires)
+  * [Chaînes de caractères](chaines-de-caracteres)
+  * [Docstring](docstring)
+  * [Doctest](doctest)
+  * [Assert](assert)
+
+# If… … else…
+
+## Description
+
+L'opérateur de comparaison `if` est un opérateur fondamental en programmation.
+Il permet de tester une valeur et choisir ce que l'on fait en fonction du
+résultat. Il est souvent accompagné d'un `else`. L'ensemble signifie « Si…
+(alors)… sinon… ».
+
+Voici un exemple à copier dans votre fichier et à exécuter :
+
+    
+    
+    a = 4
+    if (a > 0):
+    	print("a est positif")
+    else:
+    	print("a est négatif")
+
+Que fait cet exemple ? On affecte la valeur 4 à la variable a. Ensuite si a
+est positif on affiche « a est positif » sinon, on affiche « a est négatif ».
+
+Il y a trois choses à remarquer dans cet exemple :
+
+  * les deux points `:` après le `if` et le `else` sont obligatoires. Si vous les oubliez, il y aura une erreur ;
+  * l’indentation (tabulation ou espaces) devant les print permet de délimiter les blocs d’instruction à exécuter si la condition est vrai ou si la condition est fausse. C’est une particularité de Python d’utiliser la mise en page pour définir des blocs d’instructions ;
+  * le `else` n’est absolument pas obligatoire.
+
+**1)** Changez la valeur de `a` pour tester le fonctionnement du programme.
+
+**2)** Exécutez le code suivant et expliquer ce qu’il se passe :
+
+    
+    
+    a = 4
+    if (a > 0):
+        print("a est positif")
+        print("a est bien positif")
+    print("Le programme est terminé")
+    
+    
+    a est positif
+    a est bien positif
+    Le programme est terminé
+
+Les deux premières lignes s'affichent car a est positif. La troisième ligne
+s'affiche quelque soit la valeur de a.
+
+Pour introduire une condition supplémentaire après un `if` on utilisera
+l’instruction `elif` (pour else if) suivie d’une condition.
+
+**3)** Reprenez le programme initial avec le `else`. En utilisant
+l’instruction `elif`, modifiez-le pour afficher « a vaut zéro » lorsque a est
+égal à zéro.
+
+    
+    
+    a = 0
+    if (a > 0):
+        print("a est positif")
+    elif (a < 0):
+        print("a est négatif")
+    else:
+        print("a vaut zero")
+
+## Opérateurs de comparaison
+
+Dans la condition après l’instruction `if` on aura souvent besoin des
+opérateurs de comparaison suivants :
+
+    
+    
+    x == y		# x est égal à y
+    x != y		# x est différent de y
+    x > y		# x est plus grand que y
+    x < y		# x est plus petit que y
+    x >= y		# x est plus grand que, ou égal à y
+    x <= y		# x est plus petit que, ou égal à y
+
+**Atention !** Pour tester l'égalité, on utilise deux signes « = » pour qu'il
+n'y ait pas de confusion avec l'affectation d'une variable.
+
+[Précédent](structures-de-controle)[Suivant](interaction)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

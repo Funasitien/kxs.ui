@@ -1,0 +1,117 @@
+---
+title: "Chaînes de caractères - Python"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## Python
+
+  * [Introduction](.)
+  * [Bases](bases)
+    * [Opérations mathématiques](operations)
+    * [Variables](variables)
+    * [Types de base](types-de-base)
+  * [Structures de contrôle](structures-de-controle)
+    * [If… else](if-else)
+    * [Interaction avec l'utilisateur](interaction)
+  * [Exercices bases et structures de contrôle](exercices-bases-structures)
+  * [Commentaires](commentaires)
+  * [Boucles](boucles)
+  * [Booléens](booleens)
+  * [Modules](modules)
+  * [Fonctions](fonctions)
+  * [Exercices boucles et fonctions](exercices-boucles-fonctions)
+  * [Tuples](tuples)
+  * [Exercices tuples](exercices-tuples)
+  * [Tableaux](tableaux)
+  * [Exercices tableaux](exercices-tableaux)
+  * [Dictionnaires](dictionnaires)
+  * [Chaînes de caractères](chaines-de-caracteres)
+  * [Docstring](docstring)
+  * [Doctest](doctest)
+  * [Assert](assert)
+
+# Chaînes de caractères
+
+## Introduction
+
+Nous avons déjà évoqué les chaînes de caractères lors du chapitre sur les
+[types de base](/cours/python/types-de-base). Nous verrons donc ici quelques
+fonctionalités supplémentaires des chaînes de caractères.
+
+## Définition
+
+On peut définir des chaînes de caractère de quatre façons :
+
+  * avec des guillemets simples : `'une chaine'` ;
+  * avec des guillemets doubles : `"une chaine"` ;
+  * avec des triples guillemets simples : `'''une chaine'''` ;
+  * avec des triples guillemets doubles : `"""une chaine"""` ;
+
+La seule différence entre l'utilisation des guillemets simples et doubles est
+la possibilité d'avoir respectivement des guillemets doubles et simple à
+l'intérieur de la chaîne :
+
+  * `'Une chaîne avec une "citation"'`
+  * `"C'est une chaîne avec un guillemet simple"`
+
+Les triples guillemets sont équivalents et permettent d'écrire directement sur
+plusieurs lignes et également de saisir de guillemets simples et doubles :
+
+    
+    
+    """ Cette chaine est
+    sur
+    plusieures lignes
+    et comporte
+    des guillemets " '
+    sans problèmes
+    """
+
+## Concaténation
+
+Concaténer c'est mettre bout à bout. Pour concaténer deux chaînes de
+caractères on utilise l'opérateur `+` :
+
+    
+    
+    >>> "abc" + "def"
+    'abcdef'
+
+## Chercher dans une chaîne
+
+Pour trouver si un mot ou une lettre est dans une chaîne, on peut utiliser
+`in` :
+
+    
+    
+    >>> "b" in "abc"
+    True
+    >>> "d" in "abc"
+    False
+    >>> "mot" in "une phrase de mots"
+    True
+    >>> "hr" in "une phrase de mots"
+    True
+
+## Sources et compléments
+
+[Documentation
+Python](https://docs.python.org/fr/3.6/library/stdtypes.html#textseq)
+
+    documentation Python sur les chaînes de caractères
+  
+[Précédent](dictionnaires)[Suivant](docstring)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

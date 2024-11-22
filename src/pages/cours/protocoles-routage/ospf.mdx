@@ -1,0 +1,99 @@
+---
+title: "Protocole de routage OSPF"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## Routage
+
+  * [Introduction](.)
+  * [Protocole RIP](rip)
+  * [Protocole OSPF](ospf)
+  * [Exercices](exercices)
+
+# Protocole de routage OSPF
+
+## Introduction
+
+Le [protocole de routage
+OSPF](https://fr.wikipedia.org/wiki/Open_Shortest_Path_First) (Open Shortest
+Path First) est un protocole plus récent que RIP et destiné à corriger ses
+limitations. Sa dernière version datant de 2008 est massivement utilisée sur
+internet.
+
+## Fonctionnement
+
+OSPF est basé sur l'[algorithme de
+Dijkstra](https://fr.wikipedia.org/wiki/Algorithme_de_Dijkstra) pour
+déterminer le chemin le plus court. Le principe d'échange d'information entre
+les proches voisins reste le même que pour le protocole RIP. Néanmoins dans le
+cas de OSPF chaque routeur garde en mémoire ces informations avant de
+déterminer, avec l'algorithme de Dijkstra, la route la plus courte. Les
+routeurs ont donc une vision plus globale du réseau avec le protocole OSPF
+qu'avec le protocole RIP. La différence majeure avec RIP est la métrique
+choisie qui dépend ici du débit des connexions entre les routeurs. On appelle
+cette métrique _coût_ et on la définie par la formule suivante :
+
+coût = 108 / d
+
+où d représente la bande passante en bits/s entre les deux routeurs. Ainsi un
+lien avec une forte bande passante aura un coût très faible et sera donc
+privilégié par rapport à un lien avec une bande passante plus faible.
+
+**1)** Calculer le coût d'une liaison à 10Mbits/s.
+
+**2)** Calculer le coût d'une liaison à 1Gbits/s.
+
+**3)** Calculer le coût d'une liaison à 100kbits/s.
+
+**4)** Quel est la bande passante d'une liaison avec un coût de 1 ?
+
+## Comparaison avec RIP
+
+Nous allons illustrer à l'aide d'un cas très simple la principale différence
+entre RIP et OSPF. Voici donc notre réseau très simple composé de trois
+routeurs :
+
+![](img/reseau2.svg)
+
+Nous avons précisé cette fois les débits des liens entre routeurs pour pouvoir
+utiliser le protocole OSPF. Ces débits sont bien entendu inutiles pour le
+protocole RIP.
+
+**5)** Quel est le chemin emprunté par un paquet allant de A à B si le
+protocole RIP est utilisé ?
+
+**6)** Reproduisez le schéma du réseau en remplacant les débits par les coûts
+sur les liaisons entre routeurs.
+
+**7)** Donnez alors la route avec le moindre coût empruntée par un paquet
+allant de A à B.
+
+## Exemple
+
+Revenons sur le même exemple que celui du protocole RIP.
+
+![](img/reseau3.svg)
+
+Nous aovns ajouté ici les bandes passantes des liaisons entre routeurs.
+
+**8)** Reproduisez le schéma du réseau en remplacant les débits par les coûts
+sur les liaisons entre routeurs.
+
+**9)** Sans nécessairement utiliser un algorithme (le graphe étant simple),
+déterminez la table de routge finale de A, D et E.
+
+[Précédent](rip)[Suivant](exercices)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

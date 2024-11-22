@@ -1,0 +1,158 @@
+---
+title: "Chiffrement asymétrique"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## Sécurité des communications
+
+  * [Introduction](.)
+  * [Chiffrement symétrique](symetrique)
+  * [Chiffrement asymétrique](asymetrique)
+  * [HTTPS](https)
+
+# Chiffrement asymétrique
+
+## Présentation
+
+Le chiffrement asymétrique est basé sur l'utilisation de deux clés : une clé
+publique et une clé privée. La clé publique sert à chiffrer et la clé privée à
+déchiffrer.
+
+L'algorithme de chiffrement asymétrique le plus utilisé étant RSA, nous allons
+nous intéresser à celui-ci.
+
+## Présentation de RSA
+
+![Ronald Rivest](img/Rivest.jpg)![Adi Shamir](img/Shamir.jpg)![Leonard Adleman](img/Adleman.jpg) Auteur : Ronald L. Rivest | [source](https://commons.wikimedia.org/wiki/File:Ronald_L_Rivest_photo.jpg) | [Licence](https://creativecommons.org/licenses/by-sa/4.0/deed.fr) ; Auteur : Erik Tews | [source](https://commons.wikimedia.org/wiki/File:Adi_Shamir_at_TU_Darmstadt_\(2013\).jpg) | [Licence](https://creativecommons.org/licenses/by-sa/3.0/deed.fr) ; Auteur : len adlmen | [source](https://commons.wikimedia.org/wiki/File:Len-mankin-pic.jpg) | [Licence](https://creativecommons.org/licenses/by-sa/3.0/deed.fr)
+
+### Introduction
+
+RSA tient son nom des initiales de ses créateurs (Ronald Rivest, Adi Shamir et
+Leonard Adleman). Il repose sur la difficulté de factoriser un nombre en
+produit de nombres premiers alors qu'il est facile de créer un nombre grand à
+partir de deux nombres premiers.
+
+Par exemple, prenons les deux nombres premiers p = 18439 et q = 93077, on
+trouve facilement leur produit n = p * q = 1716246803. Alors que si on vous
+donne n = 1716246803, il est très difficile de retrouver p et q. C'est sur
+cette asymétrie que repose RSA.
+
+Intéressons-nous au fonctionnement général de cet algorithme sans évoquer
+l'aspect mathématique pour le moment.
+
+### Fonctionnement général
+
+Nous allons supposer que Alice souhaite recevoir des messages chiffrés de Bob.
+Dans un premier temps, Alice doit générer ses clés publique (la verte) et
+privée (la rouge). Elle doit ensuite envoyer sa clé publique à Bob. Cette clé
+n'est pas secrète, tout le monde peut la connaitre, c'est pour cela qu'on la
+dit publique. Par contre Alice ne doit surtout pas divulguer sa clé privée !
+Tout est résumé dans le schéma ci-dessous :
+
+![Répartition des clés avec le chiffrement RSA](img/rsa1.svg) Auteur : Tomasz "odder" Kozlowski | [source](https://upload.wikimedia.org/wikipedia/commons/0/01/Asymmetric_cryptography_-_step_1.svg) | [Attribution – Partage dans les Mêmes Conditions 3.0 (non transposée)](https://creativecommons.org/licenses/by-sa/3.0/deed.fr)
+
+Ensuite, Bob chiffre son message avec la clé publique d'Alice et l'envoi à
+Alice. Enfin, Alice déchiffre le message de Bob gràce à sa clé privée. Elle
+est donc la seule à pour voir déchiffre le message de Bob car sa clé privée
+est secrète. Voir le schéma ci-dessous :
+
+![Principe de fonctionnement du chiffrement RSA](img/rsa2.svg) Auteur : Tomasz "odder" Kozlowski | [source](https://upload.wikimedia.org/wikipedia/commons/1/11/Asymmetric_cryptography_-_step_2.svg) | [Attribution – Partage dans les Mêmes Conditions 3.0 (non transposée)](https://creativecommons.org/licenses/by-sa/3.0/deed.fr)
+
+### Expérimentation
+
+Il est bien trop complexe d'iplémenter RSA en classe de terminale. Il existe
+néanmoins un RAS simplifié (et beaucoup moins fiable) proposé par Neal Koblitz
+et présenté sur [cette
+page](https://www.cs.uri.edu/cryptography/publickeykidkrypto.htm). Cet
+algorithme s'appelle Kid-RSA et nous allons l'implémenter.
+
+#### Génération des clés
+
+Pour générer un couple de clé, Alice doit choisir quatre nombres a, b, a1, b1.
+Il faut ensuite effectuer les calculs suivants :
+
+  * M = a * b - 1
+  * e = a1 * M + a 
+  * d = b1 * M + b
+  * n = (e * d - 1) / M
+
+Sa clé publique est alors (n, e) et sa clé privée (n, d).
+
+#### Chiffrement et déchiffrement
+
+Il est maintenant possible de chiffrer un nombre P compris entre 0 et n-1.
+Ainsi si nous avons un texte, il faut le convertir en une suite de nombre
+compris entre 0 et n-1.
+
+Le chiffrement se fait avec le calcul suivant :
+
+C = e * P (mod n)
+
+Et le déchiffrement se fait avec le calcul suivant :
+
+P = C * d (mod n)
+
+#### Exemple
+
+Reprenons l'exemple de la page cité précdement :
+
+a = 9, b = 11, a1 = 5, b1 = 8
+
+Nous calculons alors
+
+  * M = (a * b) - 1 = (9 * 11) -1 = 98
+  * e = (a1 * M) + a = (5 * 98) + 9 = 499
+  * d = (b1 * M) + b = (8 * 98) + 11 = 795
+  * n = ((e * d) - 1)/M = ((499 * 795) -1) / 98 = 4048
+
+Nous voulons envoyer le nombre 538 comme message. Le chiffrement se fait alors
+:
+
+C = P * e ( mod n) = 538 * 499 (mod 4048 ) = 268462 (mod 4048 ) = 1294
+
+Le déchiffrement se fait alors :
+
+P = C * d ( mod n) = 1294 * 795 (mod 4048 ) = 1028730 (mod 4048 ) = 538
+
+#### Programmation
+
+Vous devez créer une classe qui permet de gérer le chiffrement Kid-RSA. Voici
+le fonctionnement global de cette classe :
+
+  * Le constructeur regarde si le fichier `key.rsa` existe déjà. S'il existe il ne fait rien, sinon, il génère aléatoirement les quatre nombres a, b, a1, b1, génère les clés et stocke n, e et d dans un fichier `key.rsa` ;
+  * la classe possède une méthode chiffrer(nombre, n, e) qui chiffre nombre avec la clé publique (n, e) ;
+  * la classe possède une autre méthode déchiffrer(nombre) qui déchiffre nombre avec la clé privée (n, d) ;
+
+Vous pouvez tester cette classe avec votre voisin en échangant vos clés
+publiques et en vous envoyant des nombres chiffrés.
+
+Pour les plus rapides, vous pourrez ajouter deux méthodes chiffrerm(message,
+n, e) déchiffrerm(message) qui s'occupent de chiffrer et déchiffrer un message
+texte. Il faudra donc convertir les caractères en nombre avant le chiffrement
+et faire l'inverse pour le déchiffrement.
+
+Ce chiffrement est-il plus sûr que le codage césar ? À quel type d'attaque
+est-il vulnérable ? Que faudrait-il faire pour le rendre plus sûr ?
+
+## Conclusion
+
+Le chiffrement asymétrique est très lent et consommateur de ressources. Mais
+il a l'avantage de pouvoir être mis en place sans échange préalable d'une clé
+secrète. Nous verrons donc dans le chapitre suivant le choix qui a été fait
+pour les échanges chiffrés sur le web.
+
+[Précédent](symetrique)[Suivant](https)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

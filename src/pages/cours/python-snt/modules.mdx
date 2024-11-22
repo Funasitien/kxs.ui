@@ -1,0 +1,69 @@
+---
+title: "Modules"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## Python en SNT
+
+  * [Introduction](.)
+  * [Python avec France-ioi](python-france-ioi)
+  * [Modules](modules)
+  * [If… else…](if-else)
+  * [Fonctions](fonctions)
+
+# Modules
+
+## Fonctions prédéfinies
+
+Nous avons déjà utilisé des fonctions prédéfinies de Python : `print()`,
+`input()`… elles font partie du module « standard » de Python et sont toujours
+disponibles. Actuellement Python 3.8 possède 69 fonctions de base, vous pouvez
+les trouver sur la [documentation
+officielle](https://docs.python.org/fr/3/library/functions.html).
+
+## Modules
+
+Il est possible d’utiliser d’autres fonctions qui ne sont pas accessibles par
+défaut. Pour cela il faut charger des modules. Il en existe des centaines.
+Vous avez peut-être déjà utilisé le module `math` qui contient la fonction
+racine carrée `sqrt()`. Voici la [liste des modules offciels de
+Python](https://docs.python.org/fr/3/py-modindex.html). Pour utiliser les
+fonctions d’un module il faut importer ce module. Pour importer, par exemple,
+le module math on écrira ceci au début de notre fichier :
+
+    
+    
+    import math
+
+Ensuite pour utiliser la fonction `sqrt()` du module `math` on écrira :
+
+    
+    
+    math.sqrt()
+
+Nous ne sommes pas limités aux fonctions proposées par Python, il est possible
+d'écrire ses propres fonctions. C'est ce que nous verrons par la suite.
+
+## Exercice
+
+**1)** Utilisez le module `random` pour afficher un nombre au hasard entre 1
+et 10 (`random.randint(1, 10)`).
+
+**2)** Utilisez le module `math` pour calculer la racine carrée de
+`726542727744111163209`.
+
+[Précédent](python-france-ioi)[Suivant](if-else)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+

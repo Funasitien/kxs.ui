@@ -1,0 +1,481 @@
+---
+title: "TD Arbres binaires de recherche"
+icon: "mdi:paper-remove"
+layout: "@root/layouts/Page.astro"
+---
+
+  * [cours](https://kxs.fr/cours/)
+  * [sujets](https://kxs.fr/sujets/)
+  * [fiches](https://kxs.fr/fiches/)
+
+[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
+le lycée et la prépa](https://kxs.fr/cours/)
+
+## TD MP2I
+
+  * [intro](.)
+  * [Conversions](conversions)
+  * [Unix](unix)
+  * [Arbres](arbres)
+  * [ABR](arbres-binaires-recherche)
+  * [Graphes](graphes)
+  * [Bases de données](bases-de-donnees)
+  * [Jointures](jointures)
+  * [Agrégations](agregation)
+  * [Opérateurs ensemblistes](operateurs-ensemblistes)
+  * [Exercices bases de données](exercices-db)
+
+# Arbres binaires de recherche
+
+## Implémentation
+
+### C
+
+Nous allons implémenter des arbres binaires de recherche en C. L'arbre
+contiendra uniquement des entiers, ce qu_i revient à implémenter un ensemble.
+Voici le code initial avec un arbre en exemple dont vous aurez besoin pour
+commencer :
+
+    
+    
+    #include <stdio.h>
+    #include <stdbool.h>
+    #include <stdlib.h>
+    
+    typedef struct Noeud {
+    	int etiquette;
+    	struct Noeud * gauche;
+    	struct Noeud * droit;
+    } noeud;
+    
+    typedef noeud * arbre;
+    
+    arbre arbre_vide() {
+    	return NULL;
+    }
+    
+    bool est_vide(arbre a) {
+    	return a == NULL;
+    }
+    
+    arbre enraciner (int n, arbre g, arbre d) {
+    	arbre racine = malloc(sizeof(noeud));
+    	racine->etiquette = n;
+    	racine->gauche = g;
+    	racine->droit = d;
+    	return racine;
+    }
+    
+    int taille(arbre a) {
+    	if (est_vide(a)) {
+    		return 0;
+    	} else {
+    		return 1 + taille(a->gauche) + taille(a->droit);
+    	}
+    }
+    
+    int max(int n, int m) {
+    	if (n >= m) {
+    		return n;
+    	} else {
+    		return m;
+    	}
+    }
+    
+    int hauteur(arbre a) {
+    	if (est_vide(a)) {
+    		return -1;
+    	} else {
+    		return 1 + max(hauteur(a->gauche),hauteur(a->droit));
+    	}
+    }
+    
+    void parcours_prefixe(arbre a) {
+    	if (a != NULL) {
+    		printf("%d ", a->etiquette);
+    		parcours_prefixe(a->gauche);
+    		parcours_prefixe(a->droit);
+    	}
+    }
+    
+    void parcours_infixe(arbre a) {
+    	if (a != NULL) {
+    		parcours_infixe(a->gauche);
+    		printf("%d ", a->etiquette);
+    		parcours_infixe(a->droit);
+    	}
+    }
+    
+    void parcours_suffixe(arbre a) {
+    	if (a != NULL) {
+    		parcours_suffixe(a->gauche);
+    		parcours_suffixe(a->droit);
+    		printf("%d ", a->etiquette);
+    	}
+    }
+    
+    
+    int main() {
+    
+    	arbre a = 	enraciner(22,
+    					enraciner(9,
+    						enraciner(3,
+    							NULL,
+    							enraciner(5,
+    								enraciner(4,
+    									NULL,
+    									NULL
+    								),
+    								enraciner(6,
+    									NULL,
+    									enraciner(7,
+    										NULL,
+    										NULL
+    									)
+    								)
+    							)
+    						),
+    						enraciner(13,
+    							enraciner(11,
+    								NULL,
+    								NULL
+    							),
+    							enraciner(18,
+    								enraciner(14,
+    									NULL,
+    									NULL
+    								),
+    								enraciner(20,
+    									NULL,
+    									NULL
+    								)
+    							)
+    						)
+    					),
+    					enraciner(53,
+    						enraciner(40,
+    							NULL,
+    							enraciner(45,
+    								NULL,
+    								NULL
+    							)
+    						),
+    						enraciner(60,
+    							enraciner(58,
+    								enraciner(57,
+    									NULL,
+    									NULL
+    								),
+    								enraciner(59,
+    									NULL,
+    									NULL
+    								)
+    							),
+    							enraciner(67,
+    								NULL,
+    								enraciner(69,
+    									enraciner(68,
+    										NULL,
+    										NULL
+    									),
+    									NULL
+    								)
+    							)
+    						)
+    					)
+    				);
+    	printf("Taille : %i\n", taille(a));
+    	printf("Hauteur : %i\n", hauteur(a));
+    	
+    	parcours_infixe(a);
+    	printf("\n");
+    }
+
+**1)** Dessiner l'arbre pris en exemple.
+
+**2)** Commencer par implémenter une fonction `affiche` pour afficher un arbre
+sous la forme : `(3, (2, NULL, NULL), NULL)`
+
+    
+    
+    void affiche(arbre a) {
+    	if (a == NULL) {
+    		printf("NULL");
+    	} else {
+    		printf("(%d, ", a->etiquette);
+    		affiche(a->gauche);
+    		printf(", ");
+    		affiche(a->droit);
+    		printf(")");
+    	}
+    }
+
+**3)** Implémenter la primitive `recherche` qui permet de savoir si un élément
+est dans l'arbre.
+
+    
+    
+    bool recherche(arbre a, int x) {
+    	if (a == NULL) {
+    		return false;
+    	} else if (x == a->etiquette) {
+    		return true;
+    	} else if (x < a->etiquette) {
+    		return recherche(a->gauche, x);
+    	} else {
+    		return recherche(a->droit, x);
+    	}
+    }
+
+**4)** Implémenter les fonctions `minimum` et `maximum`.
+
+    
+    
+    int minimum(arbre a) {
+    	if (a->gauche == NULL) {
+    		return a->etiquette;
+    	} else {
+    		return minimum(a->gauche);
+    	}
+    }
+    
+    int maximum(arbre a) {
+    	if (a->droit == NULL) {
+    		return a->etiquette;
+    	} else {
+    		return maximum(a->droit);
+    	}
+    }
+
+**5)** Implémenter la primitive `ajouter` qui ajoute un élément à un ABR.
+Ajouter 47 et voir si cela fonctionne.
+
+    
+    
+    arbre ajouter(arbre a, int x) {
+    	if (a == NULL) {
+    		return enraciner(x, NULL, NULL);
+    	} else {
+    		if (a->etiquette == x) {
+    			printf("Valeur déjà présente !");
+    		} else if (x < a->etiquette) {
+    			return enraciner(a->etiquette, ajouter(a->gauche, x), a->droit);
+    		} else {
+    			return enraciner(a->etiquette, a->gauche, ajouter(a->droit, x));
+    		}
+    	}
+    }
+
+**6)** Implémenter la fonction supprimer. Suupprimer 53 et voir si cela
+fonctionne.
+
+    
+    
+    arbre supprimer(arbre a, int x) {
+    	if (a == NULL) {
+    		return a;
+    	} else {
+    		if (x < a->etiquette) {
+    			return enraciner(a->etiquette, supprimer(a->gauche, x), a->droit);
+    		} else if (x > a->etiquette) {
+    			return enraciner(a->etiquette, a->gauche, supprimer(a->droit, x));
+    		} else {
+    			if (est_vide(a->gauche)) {
+    				return a->droit;
+    			} else if (est_vide(a->droit)) {
+    				return a->gauche;
+    			} else {
+    				int m = maximum(a->gauche);
+    				return enraciner(m, supprimer(a->gauche, m), a->droit);
+    			}
+    		}
+    	}
+    }
+
+### OCaml
+
+**7)** Reprendre les questions précédentes en OCaml. On commencera par
+instancier l'arbre en OCaml. Voici le code à réutiliser pour la structure
+d'arbre :
+
+    
+    
+    type arbre = Vide | Noeud of int * arbre * arbre;;
+    
+    let arbre_vide () = Vide;;
+    
+    let est_vide a = a = Vide;;
+    
+    let enraciner a g d = Noeud (a, g, d);;
+    
+    let racine a =
+    match a with
+    | Vide -> failwith "Arbre_vide"
+    | Noeud(e,g,d) -> e;;
+    
+    let sous_arbre_gauche a =
+    match a with
+    | Vide -> failwith "Arbre_vide"
+    | Noeud(e,g,d) -> g;;
+    
+    let sous_arbre_droit a =
+    match a with
+    | Vide -> failwith "Arbre_vide"
+    | Noeud(e,g,d) -> d;;
+    
+    let rec taille a =
+    match a with
+    | Vide -> 0
+    | Noeud(e,g,d) -> 1 + taille(g) + taille(d);;
+    
+    let rec hauteur a =
+    match a with
+    | Vide -> -1
+    | Noeud(e,g,d) -> 1 + max (hauteur g) (hauteur d);;
+    
+    let rec parcours_prefixe = function
+    | Vide -> ()
+    | Noeud(x,g,d) -> 	print_int x;
+    					parcours_prefixe g;
+    					parcours_prefixe d;;
+    
+    let rec parcours_infixe = function
+    | Vide -> ()
+    | Noeud(x,g,d) -> 	parcours_infixe g;
+    					print_int x;
+    					parcours_infixe d;;
+    
+    
+    let rec parcours_suffixe = function
+    | Vide -> ()
+    | Noeud(x,g,d) -> 	parcours_suffixe g;
+    					parcours_suffixe d;
+    					print_int x;;
+    
+    
+    let b = enraciner 7
+    			(enraciner 4
+    				(enraciner 2 Vide Vide)
+    				(enraciner 5 Vide Vide))
+    			(enraciner 10
+    				(enraciner 8 Vide Vide)
+    				(enraciner 12 Vide Vide));;
+    
+    let a = enraciner 22
+    			(enraciner 9
+    				(enraciner 3
+    					Vide
+    					(enraciner 5
+    						(enraciner 4
+    							Vide
+    							Vide
+    						)
+    						(enraciner 6
+    							Vide
+    							(enraciner 7
+    								Vide
+    								Vide
+    							)
+    						)
+    					)
+    				)
+    				(enraciner 13
+    					(enraciner 11
+    						Vide
+    						Vide
+    					)
+    					(enraciner 18
+    						(enraciner 14
+    							Vide
+    							Vide
+    						)
+    						(enraciner 20
+    							Vide
+    							Vide
+    						)
+    					)
+    				)
+    			)
+    			(enraciner 53
+    				(enraciner 40
+    					Vide
+    					(enraciner 45
+    						Vide
+    						Vide
+    					)
+    				)
+    				(enraciner 60
+    					(enraciner 58
+    						(enraciner 57
+    							Vide
+    							Vide
+    						)
+    						(enraciner 59
+    							Vide
+    							Vide
+    						)
+    					)
+    					(enraciner 67
+    						Vide
+    						(enraciner 69
+    							(enraciner 68
+    								Vide
+    								Vide
+    							)
+    							Vide
+    						)
+    					)
+    				)
+    			)
+    
+    let rec affiche = function
+    | Vide -> print_string "NULL"
+    | Noeud(x,g,d) ->   	print_string "(";
+    			print_int x;
+    			print_string ", ";
+    			affiche g;
+    			print_string ", ";
+    			affiche d;
+    			print_string ")" ;;
+    
+    let rec recherche a x =
+    match a with
+    | Vide -> false
+    | Noeud(e,g,d) when x = e -> true
+    | Noeud(e,g,d) when x < e -> recherche g x
+    | Noeud(e,g,d) -> recherche d x;;
+    
+    let rec minimum = function
+    | Vide -> failwith "Arbre vide"
+    | Noeud(e,g,d) when est_vide g -> e
+    | Noeud(e,g,d) -> minimum g;;
+    
+    
+    let rec maximum = function
+    | Vide -> failwith "Arbre vide"
+    | Noeud(e,g,d) when est_vide d -> e
+    | Noeud(e,g,d) -> maximum d;;
+    
+    let rec ajouter a x =
+    match a with
+    | Vide -> enraciner x Vide Vide
+    | Noeud(e,g,d) when x = e -> failwith "Valeur déjà présente !"
+    | Noeud(e,g,d) when x < e -> enraciner e (ajouter g x) d
+    | Noeud(e,g,d) -> enraciner e g (ajouter d x);;
+    
+    let rec supprimer a x =
+    match a with
+    | Vide -> Vide
+    | Noeud(e,g,d) when x < e -> enraciner e (supprimer g x) d
+    | Noeud(e,g,d) when x > e -> enraciner e g (supprimer d x)
+    | Noeud(e,g,d) when est_vide g -> d
+    | Noeud(e,g,d) when est_vide d -> g
+    | Noeud(e,g,d) -> let m = maximum g in enraciner m (supprimer g m) d;;
+
+[Précédent](arbres)[Suivant (page des cours)](..)
+
+[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
+licence [CC BY-SA 4.0
+![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+sa/4.0/deed.fr)
+
