@@ -1,6 +1,25 @@
 ---
-title: "Le Web"
+title: "Introduction"
 icon: "mdi:find-in-page"
 isIndexFile: true
 layout: "/src/layouts/Page.astro"
 ---
+
+Qu'est-ce qu'une base de données ?
+Une base de données est un système ou une structure permettant de stocker et d'organiser des données ou de l'information. Elles sont apparues avec les moyens de stockage informatique dans les années 1960 et ont petit à petit remplacé les stockages papier dans les administrations, entreprises et institutions. Elles permettent un gain de temps et de place évident par rapport au papier.
+
+Ces données peuvent être des nombres, du texte, des dates… Dès lors qu'on stocke des données, on peut parler de base de données. Ainsi vous avez probablement déjà créé une base de données sans vous en rendre compte si vous avez déjà stocké des informations dans un fichier avec un prgramme. C'était juste une base de données peu structurée.
+
+Système de gestion de base de données
+Ce qu'on entend en général par base de données est une base de donnée structurée avec un Système de Gestion de Base de Données (SGBD). Un tel système est un logiciel qui permet d'interagir avec la base de données : de la construire et de l'interroger. Il en existe des dizaines mais les plus importants sont Oracle DataBase et MySQL (peu à peu remplacé par MariaDB pour de raisons de droits). SQLite est également beaucoup utilisé grâce à sa simplicité. Il existe par ailleurs un module SQLite dans Python que nous utiliserons.
+
+Ficher récapitulative
+Voici une fiche récapitulative des commandes MySQL utilisées dans ce cours.
+
+Parties du programme abordées
+Contenus	Capacités attendues	Commentaires
+Modèle relationnel : relation, attribut, domaine, clef primaire, clef étrangère, schéma relationnel.	Identifier les concepts définissant le modèle relationnel.	Ces concepts permettent d’exprimer les contraintes d’intégrité (domaine, relation et référence).
+Base de données relationnelle.	Savoir distinguer la structure d’une base de données de son contenu. Repérer des anomalies dans le schéma d’une base de données.	La structure est un ensemble de schémas relationnels qui respecte les contraintes du modèle relationnel. Les anomalies peuvent être des redondances de données ou des anomalies d’insertion, de suppression, de mise à jour. On privilégie la manipulation de données nombreuses et réalistes.
+Système de gestion de bases de données relationnelles.	Identifier les services rendus par un système de gestion de bases de données relationnelles : persistance des données, gestion des accès concurrents, efficacité de traitement des requêtes, sécurisation des accès.	Il s’agit de comprendre le rôle et les enjeux des différents services sans en détailler le fonctionnement.
+Langage SQL : requêtes d’interrogation et de mise à jour d’une base de données.	Identifier les composants d’une requête. Construire des requêtes d’interrogation à l’aide des clauses du langage SQL : SELECT, FROM, WHERE, JOIN. Construire des requêtes d’insertion et de mise à jour à l’aide de : UPDATE, INSERT, DELETE.	On peut utiliser DISTINCT, ORDER BY ou les fonctions d’agrégation sans utiliser les clauses GROUP BY et HAVING.
+Modularité.	Utiliser des API (Application Programming Interface) ou des bibliothèques. Exploiter leur documentation. Créer des modules simples et les documenter.	
