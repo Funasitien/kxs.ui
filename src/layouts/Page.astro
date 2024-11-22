@@ -17,7 +17,7 @@ if (currentPath.endsWith("/")) {
   currentPath = currentPath.slice(0, -1);
 }
 const currentDir = currentPath.replace(/\/[^/]*$/, "/");
-const sidebarFilePath;
+const sidebarFilePath = ``;
 
 if (frontmatter.index == "1") {
   sidebarFilePath = `src/pages${currentPath}/.sidebar`;
