@@ -4,21 +4,6 @@ icon: "mdi:paper-remove"
 layout: "@root/layouts/Page.astro"
 ---
 
-  * [cours](https://kxs.fr/cours/)
-  * [sujets](https://kxs.fr/sujets/)
-  * [fiches](https://kxs.fr/fiches/)
-
-[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
-le lycée et la prépa](https://kxs.fr/cours/)
-
-## Données en tables
-
-  * [Introduction](.)
-  * [Big data](big-data)
-  * [Tri des tableaux](tri-tab)
-
-# Tri de tableaux
-
 ## Introduction
 
 Nous allons voir comment python tri des tableaux avec la méthode `sort()` et
@@ -26,16 +11,16 @@ la fonction `sorted()`. La méthode `sort()` tri le tableau sur lequel elle est
 appliquée et modifie ce tableau alors que la fonction `sorted()` renvoie un
 nouveau tableau trié :
 
-    
-    
+```py
     >>> tab = [5,65,2,1,63,4,8,420]
     >>> sorted(tab)
     [1, 2, 4, 5, 8, 63, 65, 420]
     >>> tab
-    [5, 65, 2, 1, 63, 4, 8, 420] // Ici tab n’a pas été modifié
+    [5, 65, 2, 1, 63, 4, 8, 420] # Ici tab n’a pas été modifié
     >>> tab.sort()
     >>> tab
-    [1, 2, 4, 5, 8, 63, 65, 420] // tab est maintenant trié
+    [1, 2, 4, 5, 8, 63, 65, 420] # tab est maintenant trié
+```
 
 `sort()` et `sorted()` ont à peu près le même fonctionnement. Nous utiliserons
 `sorted()` pour avoir une notation plus simple.
@@ -47,9 +32,9 @@ les entiers sont placés par ordre croissant.
 
 **1)** Donnez le résultat de l’instruction suivante :
 
-    
-    
+```py
     >>> sorted([7,-6,12,76,0])
+```
 
 Remarque : tout cela fonctionne également avec les flottants.
 
@@ -60,18 +45,18 @@ chaînes en minuscule, tout va bien :
 
 **2)** Donnez le résultat de l’instruction suivante :
 
-    
-    
+```py
     >>> sorted(['pomme', 'poire', 'banane', 'kiwi'])
+```
 
 Pour les chaînes avec des majuscules, ça se complique. L’ordre lexicographique
 utilisé par Python utilise le code unicode des caractères :
 
 **3)** Donnez le résultat de l’instruction suivante :
 
-    
-    
+```py
     >>> sorted(['Pomme', 'poire', 'banane', 'kiwi'])
+```
 
 « Pomme » se place en premier car le code unicode de 'P' (80) est plus petit
 que celui de 'b' (98). (rappel :la fonction ord() permet d’obtenir le code
@@ -79,18 +64,18 @@ unicode d’un caractère)
 
 Pour obtenir l’ordre alphabétique, il faut d’abord activer votre locale :
 
-    
-    
+```py
     >>> import locale
     >>> locale.setlocale(locale.LC_ALL, "")
+```
 
 Puis utiliser sorted() avec l’option key=locale.strxfrm.
 
 **4)** Donnez le résultat de l’instruction suivante :
 
-    
-    
+```py
     >>> sorted(['Pomme', 'poire', 'banane', 'kiwi'], key=locale.strxfrm)
+```
 
 ## Cas particulier des entiers dans les chaînes de caractères
 
@@ -99,9 +84,9 @@ chaîne de caractère.
 
 **5)** Donner le résultat de l’instruction suivante :
 
-    
-    
+```py
     >>> sorted(['12', '2', '0', '102'])
+```
 
 Ce comportement est normal car il respecte l’ordre lexicographique.
 
@@ -111,9 +96,9 @@ Une option permet d’inverser l’ordre de tri : reverse = True.
 
 **6)** Donnez le résultat de l’instruction suivante :
 
-    
-    
+```py
     >>> sorted([7,-6,12,76,0], reverse = True)
+```
 
 ## Questions (sans tester en Python si possible)
 
@@ -124,16 +109,7 @@ Une option permet d’inverser l’ordre de tri : reverse = True.
 ## Pour aller plus loin
 
 Si vous voulez approfondir le sujet, voici une page assez complète sur le
-sujet du tri des tableaux :
-<http://pascal.ortiz.free.fr/contents/python/tri/tri.html>
+sujet du tri des tableaux : http://pascal.ortiz.free.fr/contents/python/tri/tri.html
 
 Vous pouvez également faire les activités sur les données structurées de
 [France-ioi](http://www.france-ioi.org/confinement/)
-
-[Précédent](big-data)[Suivant (page des cours)](..)
-
-[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
-licence [CC BY-SA 4.0
-![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
-sa/4.0/deed.fr)
-

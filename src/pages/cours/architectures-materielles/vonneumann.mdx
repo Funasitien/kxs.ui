@@ -4,22 +4,6 @@ icon: "mdi:paper-remove"
 layout: "@root/layouts/Page.astro"
 ---
 
-  * [cours](https://kxs.fr/cours/)
-  * [sujets](https://kxs.fr/sujets/)
-  * [fiches](https://kxs.fr/fiches/)
-
-[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
-le lycée et la prépa](https://kxs.fr/cours/)
-
-## Architectures matérielles
-
-  * [Introduction](.)
-  * [Von Neumann et langage machine](vonneumann)
-  * [Réseau](reseau)
-  * [TCP/IP](tcpip)
-
-# Architecture de von Neumann et langage machine
-
 ## Composition d’un ordinateur
 
 **1)** En suivant le démontage d’un ordinateur, notez les principaux
@@ -87,15 +71,15 @@ par le processeur.
 
 Le code ci-dessous :
 
-    
-    
+```bash
     10110000 01100001
+```
 
 correspond en assembleur lisible par un humain à :
 
-    
-    
+```bash 
     movb $0x61, %al
+```
 
 qui signifie « écrire le nombre 97 dans le registre AL ».
 
@@ -106,8 +90,7 @@ qui signifie « écrire le nombre 97 dans le registre AL ».
 Voici un code ([de wikipédia](https://fr.wikipedia.org/wiki/Assembleur))
 permettant simplement d'afficher « Bonsoir » en assembleur :
 
-    
-    
+```asm
     section .data                                 ; Variables initialisées
             Buffer:         db 'Bonsoir', 10      ; En ascii, 10 = '\n'. La virgule sert à concaténer les chaines
             BufferSize:     equ $-Buffer          ; Taille de la chaine
@@ -126,15 +109,16 @@ permettant simplement d'afficher « Bonsoir » en assembleur :
             mov eax, 1                            ; Appel de sys_exit
             mov ebx, 0                            ; Code de retour
             int 80h                               ; Interruption du kernel
+```
 
 Vous pouvez tester ce code sur votre machine ! Copiez-le dans un fichier
 `test.asm` puis exécutez les commandes suivantes :
 
-    
-    
+```bash
     nasm -f elf test.asm
     ld -o test test.o -melf_i386
     ./test
+```
 
 Vous devriez voir « Bonsoir » s'afficher.
 
@@ -142,7 +126,7 @@ Vous devriez voir « Bonsoir » s'afficher.
 
 Pour bien comprendre la philosophie de l’assembleur nous allons utiliser un
 simulateur avec des instructions compréhensibles disponible à l’adresse :
-<https://lipn.univ-paris13.fr/~boudes/amilweb/>
+https://lipn.univ-paris13.fr/~boudes/amilweb/
 
 AMIL permet de simuler un processeur disposant de
 
@@ -182,7 +166,9 @@ l’exécutant pas à pas. Décrire en quelques phrases son fonctionnement.
 **4)** Écrire dans le simulateur un programme qui convertit des degrés Celsius
 en Fahrenheit. La formule est la suivante :
 
+```bash
 °F = °C x 9 / 5 + 32
+```
 
 ### Annexe : Instruction disponibles dans le simulateur
 
@@ -214,10 +200,3 @@ sautpos ri j | Si la valeur contenue dans le registre i est positive ou nulle, m
 sautnul ri j | Si la valeur contenue dans le registre i est nulle, met le compteur de programme à la valeur j  
 sautnonnul ri j | Si la valeur contenue dans le registre i est non nulle, met le compteur de programme à la valeur j  
 stop | Arrête l’exécution du programme  
-[Précédent](.)[Suivant](reseau)
-
-[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
-licence [CC BY-SA 4.0
-![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
-sa/4.0/deed.fr)
-

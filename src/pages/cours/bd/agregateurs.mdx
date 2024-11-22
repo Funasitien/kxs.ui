@@ -4,28 +4,6 @@ icon: "mdi:paper-remove"
 layout: "@root/layouts/Page.astro"
 ---
 
-  * [cours](https://kxs.fr/cours/)
-  * [sujets](https://kxs.fr/sujets/)
-  * [fiches](https://kxs.fr/fiches/)
-
-[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
-le lycée et la prépa](https://kxs.fr/cours/)
-
-## Bases de données
-
-  * [Introduction](.)
-  * [Prise en main](prise-en-main)
-  * [Structure](structure)
-  * [Contenu](contenu)
-  * [Clés](cles)
-  * [Jointure](jointure)
-  * [Compléments](complements)
-  * [Agrégateurs](agregateurs)
-  * [Exercices](exercices)
-  * [IMDb](imdb)
-
-# Agrégateurs
-
 Les agrégateurs permettent de faire un calcul sur l'ensemble de éléments d'une
 colonne. Nous verrons les plus simples et les plus courants.
 
@@ -34,36 +12,36 @@ colonne. Nous verrons les plus simples et les plus courants.
 `MAX()` permet de calculer le maximum d'une colonne. Par exemple, la plus
 grande année de la table films :
 
-    
-    
-    SELECT MAX(annee) FROM films;
+```sql
+SELECT MAX(annee) FROM films;
+```
 
 ## MIN()
 
 `MIN()` permet de calculer le minimum d'une colonne. Par exemple, la plus
 petite année de la table films :
 
-    
-    
-    SELECT MIN(annee) FROM films;
+```sql
+SELECT MIN(annee) FROM films;
+```
 
 ## AVG()
 
 `AVG()` permet de calculer la moyenne d'une colonne. Par exemple, la moyenne
 des années de la table films :
 
-    
-    
-    SELECT AVG(annee) FROM films;
+```sql
+SELECT AVG(annee) FROM films;
+```
 
 ## SUM()
 
 `SUM()` permet de calculer la somme d'une colonne. Par exemple, la somme des
 années de la table films :
 
-    
-    
-    SELECT SUM(annee) FROM films;
+```sql
+SELECT SUM(annee) FROM films;
+```
 
 Dans le cas des années, la somme n'a pas vraiement d'intérêt, mais cela peut
 être utile si on a des coûts par exemple.
@@ -73,21 +51,13 @@ Dans le cas des années, la somme n'a pas vraiement d'intérêt, mais cela peut
 `COUNT()` donne le nombre d'éléments non nuls d'une colonne. Par exemple, le
 nombre de lignes avec des années dans la table films :
 
-    
-    
-    SELECT COUNT(annee) FROM films;
+```sql
+SELECT COUNT(annee) FROM films;
+```
 
 Si on veut simplement compter le nombre de lignes, sans se soucier des champs
 nuls, on peut utiliser `COUNT(*)` :
 
-    
-    
-    SELECT COUNT(*) FROM films;
-
-[Précédent](complements)[Suivant](exercices)
-
-[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
-licence [CC BY-SA 4.0
-![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
-sa/4.0/deed.fr)
-
+```sql
+SELECT COUNT(*) FROM films;
+```
