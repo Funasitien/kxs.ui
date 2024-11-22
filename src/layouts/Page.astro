@@ -59,8 +59,7 @@ const posts = Object.entries(allMarkdownFiles)
           posts.map((post) => (
             <li>
               <a href={post.url}>
-                fadas - <Icon name={post.icon} />
-                {post.title}
+                <Icon name={post.icon} /> {post.title}
               </a>
             </li>
           ))
