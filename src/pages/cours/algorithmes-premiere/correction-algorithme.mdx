@@ -4,25 +4,6 @@ icon: "mdi:paper-remove"
 layout: "@root/layouts/Page.astro"
 ---
 
-  * [cours](https://kxs.fr/cours/)
-  * [sujets](https://kxs.fr/sujets/)
-  * [fiches](https://kxs.fr/fiches/)
-
-[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
-le lycée et la prépa](https://kxs.fr/cours/)
-
-## Algorithmes
-
-  * [Introduction](.)
-  * [Algorithmes de tri](algorithmes-tri)
-  * [Correction d'un algorithme](correction-algorithme)
-  * [Recherche par dichotomie](recherche-dichotomique)
-  * [Algorithmes gloutons](algorithmes-gloutons)
-  * [K plus proches voisins](algorithme-k-plus-proches-voisins)
-  * [Choixpeau](choixpeau)
-
-# Correction d'un algorithme
-
 ![](img/dominos.webp) cmdrkitten | [source](https://cmdrkitten.tumblr.com/post/126417067170)
 
 ## Raisonnement par récurrence
@@ -52,8 +33,7 @@ On dit qu’un algorithme est correct s’il fonctionne quelque soient les
 nombreux exemples et ne pas être correct. Voici par exmeple des fonctions qui
 de l'extérieur peuvent parraitre correctes mais ne le sont pas :
 
-    
-    
+```py
     def carre(n):
     	""" Fonction qui renvoie le carré de n """
     	if n == 5423695421546975:
@@ -65,6 +45,7 @@ de l'extérieur peuvent parraitre correctes mais ne le sont pas :
     def premier(n):
     	""" Fonction qui renvoie des nombres premiers """
     	return n**2 + n + 41
+```
 
 On essaie alors de prouver la correction d’un algorithme par un raisonnement
 logique.
@@ -92,8 +73,7 @@ terminaison
 Nous allons montrer la correction du tri par insertion avec un invariant de
 boucle. Voici l’algorithme du tri par insertion :
 
-    
-    
+```
     VARIABLE
     t : tableau d'entiers
     i : nombre entier
@@ -112,6 +92,7 @@ boucle. Voici l’algorithme du tri par insertion :
       i←i+1
     fin tant que
     FIN
+```
 
 **2)** Trouvez un invariant de boucle qui permettrait de montrer la correction
 du tri par insertion.
@@ -151,8 +132,7 @@ En sortie de boucle 1, i=n+1 donc t[1, … , n] est trié. CQFD !
 
 Voici l’algorithme du tri par sélection :
 
-    
-    
+```
     VARIABLE
     t : tableau d'entiers
     i : nombre entier
@@ -175,6 +155,7 @@ Voici l’algorithme du tri par sélection :
       i←i+1
     fin tant que
     FIN
+```
 
 **4)** Trouvez un invariant de boucle pour montrer la correction de cet
 algorithme.
@@ -210,11 +191,4 @@ l'invariant de boucle.
 
 En sortie de la boucle 1, i=n. t[1, … , n-1] est trié et t[n] ≥ t[n-1] donc
 t[1, … , n] est trié. CQFD !
-
-[Précédent](algorithmes-tri)[Suivant](recherche-dichotomique)
-
-[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
-licence [CC BY-SA 4.0
-![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
-sa/4.0/deed.fr)
 

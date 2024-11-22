@@ -4,24 +4,6 @@ icon: "mdi:paper-remove"
 layout: "@root/layouts/Page.astro"
 ---
 
-  * [cours](https://kxs.fr/cours/)
-  * [sujets](https://kxs.fr/sujets/)
-  * [fiches](https://kxs.fr/fiches/)
-
-[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
-le lycée et la prépa](https://kxs.fr/cours/)
-
-## Algorithmes
-
-  * [Introduction](.)
-  * [Algorithmes de tri](algorithmes-tri)
-  * [Correction d'un algorithme](correction-algorithme)
-  * [Recherche par dichotomie](recherche-dichotomique)
-  * [Algorithmes gloutons](algorithmes-gloutons)
-  * [K plus proches voisins](algorithme-k-plus-proches-voisins)
-  * [Choixpeau](choixpeau)
-
-# Recherche dichotomique
 
 ## Activité
 
@@ -41,8 +23,7 @@ au problème précédent. L’algorithme suivant s’utilise dans un **tableau t
 
 Voici l’algorithme :
 
-    
-    
+```py
     VARIABLE
     t : tableau d'entiers trié
     mil : nombre entier
@@ -68,14 +49,14 @@ Voici l’algorithme :
     fin tant que
     renvoyer la valeur de tr
     FIN
+```
 
 ### Fonctionnement
 
 **3)** Déroulons cet algorithme sur le tableau `t = [5, 7, 12, 14, 23, 27, 35,
 40, 41, 45]` avec la recherche de `x = 35`.
 
-    
-    
+```
     tr = faux
     deb = 1
     fin = 10
@@ -117,6 +98,7 @@ Voici l’algorithme :
     
     tr == vrai : on ne rentre pas dans la boucle
     renvoyer vrai
+```
 
 **4)** On peut également dérouler l’algorithme de deux autres façons avec des
 schémas utilisant le tableau :
@@ -140,11 +122,3 @@ variant de boucle.
 performance avec le mot clé `in`. Vous créerez un tableau trié de 10000
 éléments et calculerez le temps de recherche pour les deux méthodes sur le
 même tableau.
-
-[Précédent](correction-algorithme)[Suivant](algorithmes-gloutons)
-
-[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
-licence [CC BY-SA 4.0
-![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
-sa/4.0/deed.fr)
-

@@ -4,25 +4,6 @@ icon: "mdi:paper-remove"
 layout: "@root/layouts/Page.astro"
 ---
 
-  * [cours](https://kxs.fr/cours/)
-  * [sujets](https://kxs.fr/sujets/)
-  * [fiches](https://kxs.fr/fiches/)
-
-[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
-le lycée et la prépa](https://kxs.fr/cours/)
-
-## Algorithmes
-
-  * [Introduction](.)
-  * [Algorithmes de tri](algorithmes-tri)
-  * [Correction d'un algorithme](correction-algorithme)
-  * [Recherche par dichotomie](recherche-dichotomique)
-  * [Algorithmes gloutons](algorithmes-gloutons)
-  * [K plus proches voisins](algorithme-k-plus-proches-voisins)
-  * [Choixpeau](choixpeau)
-
-# Choixpeau
-
 ![](img/choixpeau.png)
 
 ## Introduction
@@ -39,8 +20,7 @@ leurs caractéristiques : [http://kxs.fr/cours/algorithmes-
 premiere/choixpeau.csv](/cours/algorithmes-premiere/choixpeau.csv). On donne
 le code pour importer les données sous forme de tuples :
 
-    
-    
+```py
     import pandas
     import matplotlib.pyplot as plt
     
@@ -58,6 +38,7 @@ le code pour importer les données sous forme de tuples :
     
     for i in range(len(nom)):
         tab.append((nom[i], courage[i], loyaute[i], sagesse[i], malice[i], maison[i]))
+```
 
 Et nous cherchons à attribuer une maison aux nouveaus élèves suivants :
 
@@ -73,9 +54,9 @@ Cédric  |  7  |  10  |  5  |  6
 **1)** Modifiez le code d'importation ci-dessus pour que les données importées
 soient sous forme de dictionnaire :
 
-    
-    
+```py
     {'Nom': 'Bellatrix', 'Courage': 10, 'Loyauté': 4, 'Sagesse': 9, 'Malice': 9, 'Maison': 'Serpentard'}
+```
 
 **2)** Créez une fonction `distance(eleve1, eleve2)` qui donne la distance
 euclidienne entre deux élèves.
@@ -92,11 +73,3 @@ Cette activité est librement inspirée de l'[activité sur le
 choixpeau](https://philippe-
 boddaert.github.io/premiere/bloc6/chapitre-04/choixpeau/) de Philippe
 Boddaert.
-
-[Précédent](algorithme-k-plus-proches-voisins)[Suivant (page des cours)](..)
-
-[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
-licence [CC BY-SA 4.0
-![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
-sa/4.0/deed.fr)
-

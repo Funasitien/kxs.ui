@@ -4,25 +4,6 @@ icon: "mdi:paper-remove"
 layout: "@root/layouts/Page.astro"
 ---
 
-  * [cours](https://kxs.fr/cours/)
-  * [sujets](https://kxs.fr/sujets/)
-  * [fiches](https://kxs.fr/fiches/)
-
-[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
-le lycée et la prépa](https://kxs.fr/cours/)
-
-## Algorithmes
-
-  * [Introduction](.)
-  * [Algorithmes de tri](algorithmes-tri)
-  * [Correction d'un algorithme](correction-algorithme)
-  * [Recherche par dichotomie](recherche-dichotomique)
-  * [Algorithmes gloutons](algorithmes-gloutons)
-  * [K plus proches voisins](algorithme-k-plus-proches-voisins)
-  * [Choixpeau](choixpeau)
-
-# Algorithme des k plus proches voisins
-
 ## Introduction
 
 L’algorithme des k plus proches voisins est un algorithme d’apprentissage.
@@ -62,8 +43,7 @@ Pour se faire une idée de la classification des iris, il est intéressant de
 dessiner ces données sur un graphique. Nous utiliserons une couleur par
 espèce. Voici le code Python que nous pouvons utiliser :
 
-    
-    
+```py
     import pandas
     import matplotlib.pyplot as plt
     
@@ -78,6 +58,7 @@ espèce. Voici le code Python que nous pouvons utiliser :
     
     plt.legend()
     plt.show()
+```
 
 Ce code utilise les bibliothèques Pandas pour extraire les données et
 Matplotlib pour tracer la graphe. Après avoir placé le fichier iris.csv dans
@@ -124,8 +105,7 @@ Nous allons tenter d'implémenter directement cet algorithme en Python. Pour
 cela, voici un code pour commencer qui permet d'extraire les données du
 fichier csv et de les transformer en un tableau de tuples :
 
-    
-    
+```py
     import pandas
     import matplotlib.pyplot as plt
     
@@ -144,6 +124,7 @@ fichier csv et de les transformer en un tableau de tuples :
     
     for i in range(len(longueur)):
         tab.append((longueur[i], largeur[i], espece[i]))
+```
 
 **1)** Commencez par créer une fonction `distance(fleur1, fleur2)` qui renvoie
 la distance entre deux fleurs chacune définie par un tableau contenant la
@@ -153,11 +134,3 @@ longueur et la largeur de ses pétales.
 testez-le sur les exemples précédents. Changez éventuellement la valeur de k.
 On pourra créer une liste de tuples (distance, espece), la trier avec `sorted`
 et trouver l'espece majoritaire parmi les k premières.
-
-[Précédent](algorithmes-gloutons)[Suivant](choixpeau)
-
-[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
-licence [CC BY-SA 4.0
-![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
-sa/4.0/deed.fr)
-
