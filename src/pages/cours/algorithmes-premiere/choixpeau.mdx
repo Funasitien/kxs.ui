@@ -4,7 +4,7 @@ icon: "mdi:paper-remove"
 layout: "/src/layouts/Page.astro"
 ---
 
-![](img/choixpeau.png)
+![](/public/choixpeau.png)
 
 ## Introduction
 
@@ -21,23 +21,23 @@ premiere/choixpeau.csv](/cours/algorithmes-premiere/choixpeau.csv). On donne
 le code pour importer les données sous forme de tuples :
 
 ```py
-    import pandas
-    import matplotlib.pyplot as plt
-    
-    eleve=pandas.read_csv("choixpeau.csv", sep=";")
-    nom=eleve.loc[:,"Nom"].to_list()
-    courage=eleve.loc[:,"Courage"].to_list()
-    loyaute=eleve.loc[:,"Loyauté"].to_list()
-    sagesse=eleve.loc[:,"Sagesse"].to_list()
-    malice=eleve.loc[:,"Malice"].to_list()
-    maison=eleve.loc[:,"Maison"].to_list()
-    
-    # tab contient tous des tuples de
-    # la forme (nom, courage, loyaute, sagesse, malice, maison)
-    tab = []
-    
-    for i in range(len(nom)):
-        tab.append((nom[i], courage[i], loyaute[i], sagesse[i], malice[i], maison[i]))
+import pandas
+import matplotlib.pyplot as plt
+
+eleve=pandas.read_csv("choixpeau.csv", sep=";")
+nom=eleve.loc[:,"Nom"].to_list()
+courage=eleve.loc[:,"Courage"].to_list()
+loyaute=eleve.loc[:,"Loyauté"].to_list()
+sagesse=eleve.loc[:,"Sagesse"].to_list()
+malice=eleve.loc[:,"Malice"].to_list()
+maison=eleve.loc[:,"Maison"].to_list()
+
+# tab contient tous des tuples de
+# la forme (nom, courage, loyaute, sagesse, malice, maison)
+tab = []
+
+for i in range(len(nom)):
+    tab.append((nom[i], courage[i], loyaute[i], sagesse[i], malice[i], maison[i]))
 ```
 
 Et nous cherchons à attribuer une maison aux nouveaus élèves suivants :
@@ -69,7 +69,4 @@ nouveaux élèves.
 
 ## Source
 
-Cette activité est librement inspirée de l'[activité sur le
-choixpeau](https://philippe-
-boddaert.github.io/premiere/bloc6/chapitre-04/choixpeau/) de Philippe
-Boddaert.
+Cette activité est librement inspirée de l'[activité sur le choixpeau](https://philippe-boddaert.github.io/premiere/bloc6/chapitre-04/choixpeau/) de Philippe Boddaert.
