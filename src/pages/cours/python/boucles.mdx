@@ -4,41 +4,7 @@ icon: "mdi:paper-remove"
 layout: "@root/layouts/Page.astro"
 ---
 
-  * [cours](https://kxs.fr/cours/)
-  * [sujets](https://kxs.fr/sujets/)
-  * [fiches](https://kxs.fr/fiches/)
-
-[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
-le lycée et la prépa](https://kxs.fr/cours/)
-
-## Python
-
-  * [Introduction](.)
-  * [Bases](bases)
-    * [Opérations mathématiques](operations)
-    * [Variables](variables)
-    * [Types de base](types-de-base)
-  * [Structures de contrôle](structures-de-controle)
-    * [If… else](if-else)
-    * [Interaction avec l'utilisateur](interaction)
-  * [Exercices bases et structures de contrôle](exercices-bases-structures)
-  * [Commentaires](commentaires)
-  * [Boucles](boucles)
-  * [Booléens](booleens)
-  * [Modules](modules)
-  * [Fonctions](fonctions)
-  * [Exercices boucles et fonctions](exercices-boucles-fonctions)
-  * [Tuples](tuples)
-  * [Exercices tuples](exercices-tuples)
-  * [Tableaux](tableaux)
-  * [Exercices tableaux](exercices-tableaux)
-  * [Dictionnaires](dictionnaires)
-  * [Chaînes de caractères](chaines-de-caracteres)
-  * [Docstring](docstring)
-  * [Doctest](doctest)
-  * [Assert](assert)
-
-# Boucles
+## Boucles
 
 Les boucles permettent d’effectuer des opérations répétitives. Il en existe
 deux types.
@@ -48,35 +14,33 @@ deux types.
 Lorsqu’on veut répéter une opération un nombre de fois connu à l’avance on
 utilisera la boucle for. Par exemple, l’algorithme suivant :
 
-    
-    
-    Pour i allant de 0 à 5
-        écrire i
+```
+Pour i allant de 0 à 5
+    écrire i
+```
 
 se traduira en Python en :
-
     
-    
-    for i in range(6):
-        print(i)
+```
+for i in range(6):
+    print(i)
+```
 
 Vous noterez les « : » et l’indentation pour que l’instruction soit valide.
 
 La fonction `range()` permet beaucoup de souplesse :
-
-  * range(n) : tous les élément de 0 à n-1 (range(6) : [0, 1, 2, 3, 4, 5]) ;
-  * range(n, m) : tous les éléments de n à m-1 (range(2, 6) : [2, 3, 4, 5]) ;
-  * range(n, m, k) : tous les éléments de n à m-1 en allant de k en k (range(2, 6, 2) : [2, 4])
+- range(n) : tous les élément de 0 à n-1 (range(6) : [0, 1, 2, 3, 4, 5]) ;
+- range(n, m) : tous les éléments de n à m-1 (range(2, 6) : [2, 3, 4, 5]) ;
+- range(n, m, k) : tous les éléments de n à m-1 en allant de k en k (range(2, 6, 2) : [2, 4])
 
 **1)** Que fait la fonction suivante ?
 
-    
-    
-    s = 0
-    for i in range(101):
-        s = s + i
-    print(s)
-
+```
+s = 0
+for i in range(101):
+    s = s + i
+print(s)
+```
 Elle effectue la somme des entiers de 1 à 100.
 
 **2)** On souhaite placer une somme sur un compte bancaire. Celui-ci est
