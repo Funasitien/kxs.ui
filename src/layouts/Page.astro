@@ -17,7 +17,7 @@ if (currentPath.endsWith("/")) {
   currentPath = currentPath.slice(0, -1);
 }
 
-const sidebarContent = fs.readFileSync(sidebarFilePath, "utf-8");
+const sidebarContent = fs.readFileSync("src/pages${currentPath}.sidebar", "utf-8");
 sidebarPaths = sidebarContent
     .split("\n")
     .map(line => line.trim())
