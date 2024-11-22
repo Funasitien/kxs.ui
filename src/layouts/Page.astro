@@ -20,16 +20,11 @@ const currentDir = currentPath.replace(/\/[^/]*$/, "/");
 const sidebarFilePath = `src/pages${currentDir}.sidebar`;
 
 // Read the .sidebar file
-let sidebarPaths = [];
-try {
-  const sidebarContent = fs.readFileSync(sidebarFilePath, "utf-8");
-  sidebarPaths = sidebarContent
-    .split("\n")
-    .map(line => line.trim())
-    .filter(line => line !== ""); // Clean up lines
-} catch (err) {
-  console.warn(`Failed to read .sidebar file: ${err.message}`);
-}
+const sidebarContent = fs.readFileSync(sidebarFilePath, "utf-8");
+sidebarPaths = sidebarContent
+  .split("\n")
+  .map(line => line.trim())
+  .filter(line => line !== ""); // Clean up lines
 
 // Generate posts from sidebar paths
 const posts = sidebarPaths
