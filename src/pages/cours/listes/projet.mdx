@@ -4,34 +4,17 @@ icon: "mdi:paper-remove"
 layout: "@root/layouts/Page.astro"
 ---
 
-  * [cours](https://kxs.fr/cours/)
-  * [sujets](https://kxs.fr/sujets/)
-  * [fiches](https://kxs.fr/fiches/)
+# MOE MOE MOE ? C'est normal ça ?
 
-[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
-le lycée et la prépa](https://kxs.fr/cours/)
+## Projet 2 : contacts
 
-## Listes, piles, files et dictionnaires
-
-  * [Introduction](.)
-  * [Listes](listes)
-  * [Piles](piles)
-  * [Files](files)
-  * [Dictionnaires](dictionnaires)
-  * [Bilan](bilan)
-  * [Exercices](exercices)
-
-# Projet 2 : contacts
-
-## Présentation
+### Présentation
 
 L'objectif de ce projet est de créer un répertoire contenant les noms, prénoms
 et numéros de téléphone de personnes. Pour ne pas complexifier, le programme
 fonctionnera sans interface graphique avec un menu permettant de choisir des
 actions comme celui-ci :
 
-    
-    
     Que voulez-vous faire ?
     1 - Ajouter un contact
     2 - Supprimmer un contact
@@ -61,7 +44,7 @@ Un programme
   5. doit être documenté ;
   6. doit être testé.
 
-## Cahier des charges
+### Cahier des charges
 
 Voici les fonctionalités que votre projet doit implémenter :
 
@@ -80,7 +63,7 @@ Pour commencer, vous pouvez créer la classe `Contact` avec une méthode
 `affiche()`. Puis vous pouvez vous attaquer à la classe `Repertoire` qui devra
 stocker une liste de contacts.
 
-## Tableau du barème
+### Tableau du barème
 
 Tâche | Barème  
 ---|---  
@@ -95,24 +78,24 @@ Quitter l'application | 1 point
 Sauvegarde dans un fichier / chargement depuis un fichier | 2 points  
 Totals | 14  
   
-## Aides
+### Aides
 
-### Lire et écrire dans un fichier
+#### Lire et écrire dans un fichier
 
 Pour la dernière partie du projet vous aurez besoin de lire et écrire dans un
 fichier, voici donc comment procéder :
 
     
     
-    # Écriture
-    f = open("fichier.txt", "a") # Ouvre un fichier ou le crée et se place à la fin
-    f.write("Une ligne\n") # Écrit dans le fichier et va à la ligne (avec le « \n »)
-    f.close() # Ferme le fichier (important pour ne pas perdre des infos)
+    ## Écriture
+    f = open("fichier.txt", "a") ## Ouvre un fichier ou le crée et se place à la fin
+    f.write("Une ligne\n") ## Écrit dans le fichier et va à la ligne (avec le « \n »)
+    f.close() ## Ferme le fichier (important pour ne pas perdre des infos)
     
-    # Lecture
-    f = open("fichier.txt", "r") # Ouvre en lecture le fichier
-    for line in f: # Parcourt toute les lignes
-        print(line,end="") # Affiche chaque ligne
+    ## Lecture
+    f = open("fichier.txt", "r") ## Ouvre en lecture le fichier
+    for line in f: ## Parcourt toute les lignes
+        print(line,end="") ## Affiche chaque ligne
 
 [Précédent](exercices)[Suivant (page des cours)](..)
 
