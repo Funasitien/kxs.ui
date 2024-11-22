@@ -16,31 +16,39 @@ let currentPath = Astro.url.pathname;
 if (currentPath.endsWith("/")) {
   currentPath = currentPath.slice(0, -1);
 }
-
-// Filter the files to only include those in the same directory
-const currentDir = currentPath.replace(/\/[^/]*$/, "/"); // Get the directory path
+const currentDir = currentPath.replace(/\/[^/]*$/, "/");
 const sidebarFilePath = `src/pages${currentDir}.sidebar`;
-const sidebarContent = fs.readFileSync(sidebarFilePath, "utf-8");
-const sidebarPaths = sidebarContent
+
+// Read the .sidebar file
+let sidebarPaths = [];
+try {
+  const sidebarContent = fs.readFileSync(sidebarFilePath, "utf-8");
+  sidebarPaths = sidebarContent
     .split("\n")
     .map(line => line.trim())
-    .filter(line => line !== "");
+    .filter(line => line !== ""); // Clean up lines
+} catch (err) {
+  console.warn(`Failed to read .sidebar file: ${err.message}`);
+}
 
-const posts = sidebarFiles.map((filename) => {
-  const filePath = `${targetDir}${filename}`;
-  const module = allMarkdownFiles[filePath];
+// Generate posts from sidebar paths
+const posts = sidebarPaths
+  .map((filename) => {
+    const filePath = `/src/pages${currentDir}${filename}`;
+    const module = allMarkdownFiles[filePath];
 
-  return {
-    title: module.frontmatter?.title || "Untitled",
-    icon: module.frontmatter?.icon || "default-icon",
-    url: module.url || "#",
-  };
-}).filter(Boolean)
-  .map(([, module]) => ({
-    title: (module as any).frontmatter.title,
-    icon: (module as any).frontmatter.icon,
-    url: (module as any).url,
-  }));
+    if (!module) {
+      console.warn(`File not found in allMarkdownFiles: ${filePath}`);
+      return null; // Skip missing files
+    }
+
+    return {
+      title: module.frontmatter?.title || "Untitled",
+      icon: module.frontmatter?.icon || "default-icon",
+      url: module.url || "#",
+    };
+  })
+  .filter(Boolean); // Remove null entries
 
 console.log(sidebarPaths, posts);
 ---
