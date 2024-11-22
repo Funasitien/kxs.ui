@@ -21,7 +21,7 @@ const sidebarContent = fs.readFileSync(sidebarFilePath, "utf-8");
 sidebarPaths = sidebarContent
     .split("\n")
     .map(line => line.trim())
-    .filter(line => line !== "");
+    .filter(line => line !== "")
     .map(([, module]) => ({
     title: (module as any).frontmatter.title,
     icon: (module as any).frontmatter.icon,
