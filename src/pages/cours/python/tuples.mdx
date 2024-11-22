@@ -4,115 +4,80 @@ icon: "mdi:paper-remove"
 layout: "@root/layouts/Page.astro"
 ---
 
-  * [cours](https://kxs.fr/cours/)
-  * [sujets](https://kxs.fr/sujets/)
-  * [fiches](https://kxs.fr/fiches/)
-
-[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
-le lycée et la prépa](https://kxs.fr/cours/)
-
-## Python
-
-  * [Introduction](.)
-  * [Bases](bases)
-    * [Opérations mathématiques](operations)
-    * [Variables](variables)
-    * [Types de base](types-de-base)
-  * [Structures de contrôle](structures-de-controle)
-    * [If… else](if-else)
-    * [Interaction avec l'utilisateur](interaction)
-  * [Exercices bases et structures de contrôle](exercices-bases-structures)
-  * [Commentaires](commentaires)
-  * [Boucles](boucles)
-  * [Booléens](booleens)
-  * [Modules](modules)
-  * [Fonctions](fonctions)
-  * [Exercices boucles et fonctions](exercices-boucles-fonctions)
-  * [Tuples](tuples)
-  * [Exercices tuples](exercices-tuples)
-  * [Tableaux](tableaux)
-  * [Exercices tableaux](exercices-tableaux)
-  * [Dictionnaires](dictionnaires)
-  * [Chaînes de caractères](chaines-de-caracteres)
-  * [Docstring](docstring)
-  * [Doctest](doctest)
-  * [Assert](assert)
-
-# Tuples
+## Tuples
 
 Jusqu’à présent nous avons utilisé des éléments de type basique comme les
 entiers, le chaînes de caractère ou les flottants. Il existe dans la plupart
 des langages de programmation des éléments de type _construits_ (ou
 composites). Nous commençons ici par ce qu’on appelle les tuples en Python.
 
-## Définition
+### Définition
 
 Un tuple est une _séquence_ non modifiable d’éléments. Un tuple est représenté
 en Python par une suite d’éléments séparés par des virgules. On met
 généralement des parenthèses autour des tuples (pour la lisibilité) mais ce
 n’est pas indispensable. Les instructions suivantes créent des tuples :
 
-    
-    
-    >>> (1, 9, 5, 3, 7)
-    >>> 5, 8, 6, 36
-    >>> ("a", "g", "toto")
-    >>> (58, "a", 3.56, "hoho")
+```py
+>>> (1, 9, 5, 3, 7)
+>>> 5, 8, 6, 36
+>>> ("a", "g", "toto")
+>>> (58, "a", 3.56, "hoho")
+```
 
 Comme on peut le voir, un tuple peut contenir des éléments de types
 différents. Il est possible de créer un tuple vide :
 
-    
-    
-    >>> un_tuple_vide = ()
+```
+>>> un_tuple_vide = ()
+```
 
-On peut également créer un tuple avec un seul élément (cela pourra être utile)
-:
+On peut également créer un tuple avec un seul élément (cela pourra être utile) :
+ 
+```
+>>> un_tuple_simple = (3,)
+```
 
-    
-    
-    >>> un_tuple_simple = (3,)
+### Manipulation
 
-## Manipulation
-
-### Accéder à un éléments
+#### Accéder à un éléments
 
 On utilise la notation entre crochets pour accéder à un élément d’un tuple. Le
 premier élément possède l’indice 0, le deuxième l’indice 1…
 
 **1)** Tester et noter le résultat des instructions suivantes dans le shell :
 
-    
-    
-    >>> un_tuple = ("a", "g", "toto", "tu")
-    >>> un_tuple[2]
+```py
+>>> un_tuple = ("a", "g", "toto", "tu")
+>>> un_tuple[2]
+```
 
 **2)** Que faut-il mettre dans les pointillés pour obtenir ‘a’ ?
 
-    
-    
-    >>> un_tuple = ("a", "g", "toto", "tu")
-    >>> un_tuple[…]
+```py
+>>> un_tuple = ("a", "g", "toto", "tu")
+>>> un_tuple[…]
+```
 
 Attention ! On ne peut pas modifier un tuple !
 
 **3)** Que renvoient les instructions ci-dessous ?
-
     
-    
-    >>> un_tuple = ("a", "g", "toto", "tu")
-    >>> un_tuple[1] = "b"
+```py
+>>> un_tuple = ("a", "g", "toto", "tu")
+>>> un_tuple[1] = "b"
+```
 
 Il pourra être intéressant d’accéder aux éléments d’un tuple à partir de la
 fin. Pour cela, on utilisera des indices négatifs : -1 pour le dernier
 élément, -2 pour l’avant dernier…
 
 **4)** Que renvoient les instructions suivantes ?
-
-    
-    
-    >>> un_tuple = ("a", "g", "toto", "tu")
-    >>> un_tuple[-3]
+ 
+```py
+>>> un_tuple = ("a", "g", "toto", "tu")
+>>> un_tuple[-3]
+```
 
 Il est possible de créer des tuples de tuples. Pour accéder aux éléments, on
 utilise alors deux crochets. Le premier crochet pour choisir le tuple puis le
@@ -120,38 +85,37 @@ second pour choisir l'élément dans ce tuple.
 
 **5)** Essayer les instructions suivantes :
 
-    
-    
-    >>> tuple_de_tuple = ((3, 6, 7), ("mimi", "momo", "mumu", "mama"), "tata", 95)
-    >>> tuple_de_tuple[0][1]
+```py
+>>> tuple_de_tuple = ((3, 6, 7), ("mimi", "momo", "mumu", "mama"), "tata", 95)
+>>> tuple_de_tuple[0][1]
+```
 
 **6)** Que faut-il écrire pour obtenir l’élément "mumu" à partir du
 tuple_de_tuple précédent ?
 
-Si on essaie d'accéder à un élément qui n'existe pas, cela générera une erreur
-:
+Si on essaie d'accéder à un élément qui n'existe pas, cela générera une erreur:
 
 **7)** Essayer les instructions suivantes :
 
-    
-    
-    >>> un_tuple = ("a", "g", "toto", "tu")
-    >>> un_tuple[4]
-    >>> un_tuple[-5]
+```py
+>>> un_tuple = ("a", "g", "toto", "tu")
+>>> un_tuple[4]
+>>> un_tuple[-5]
+```
 
-### Nombre d’éléments
+#### Nombre d’éléments
 
 Pour avoir le nombre d’éléments d’un tuple, on utilise toujours la fonction
 `len()`.
 
 **8)** Que renvoient les instructions suivantes ?
 
-    
-    
-    >>> un_tuple = ("a", "g", "toto", "tu")
-    >>> len(un_tuple)
+```py
+>>> un_tuple = ("a", "g", "toto", "tu")
+>>> len(un_tuple)
+```
 
-### Fragment de tuple (slice, pas au programme mais très utile !)
+#### Fragment de tuple (slice, pas au programme mais très utile !)
 
 Pour extraire une partie d’un tuple, on met entre crochets l’indice du début
 et l’indice de fin de la tranche que l’on souhaite extraire. On les sépare par
@@ -159,66 +123,57 @@ et l’indice de fin de la tranche que l’on souhaite extraire. On les sépare 
 
 **9)** Que renvoient les instructions suivantes ?
 
-    
-    
-    >>> un_tuple = ("a", "g", "toto", "tu")
-    >>> un_tuple[1:3]
+```py
+>>> un_tuple = ("a", "g", "toto", "tu")
+>>> un_tuple[1:3]
+```
 
-### Opérations
+#### Opérations
 
 Il est possible de concaténer des tuples avec l’opérateur « + ». Concaténer
 signifie mettre bout à bout.
 
 **10)** Quel est le résultat des instructions ci-dessous ?
 
-    
-    
-    >>> tuple1 = ("a", "b", "c")
-    >>> tuple2 = ("d", "e", "f")
-    >>> tuple1 + tuple2
+```py
+>>> tuple1 = ("a", "b", "c")
+>>> tuple2 = ("d", "e", "f")
+>>> tuple1 + tuple2
+```
 
 On peut répéter un tuple en le multipliant par un entier.
 
 **11)** Noter le résultat des opérations suivantes :
 
-    
-    
-    >>> tuple1 = ("a", "b", "c")
-    >>> tuple1 * 3
+```py
+>>> tuple1 = ("a", "b", "c")
+>>> tuple1 * 3
+```
 
-### Appartenance
+#### Appartenance
 
 On teste l’appartenance à un tuple avec l’instruction `in`.
 
 **12)** Noter les résultats des instructions ci-dessous :
 
-    
-    
-    >>> un_tuple = ("a", "g", "toto", "tu")
-    >>> "a" in un_tuple
-    
-    
-    >>> un_tuple = ("a", "g", "toto", "tu")
-    >>> 5 in un_tuple
+```py
+>>> un_tuple = ("a", "g", "toto", "tu")
+>>> "a" in un_tuple
+```
+```py
+>>> un_tuple = ("a", "g", "toto", "tu")
+>>> 5 in un_tuple
+```
 
-### Parcours
+#### Parcours
 
 Pour parcourir un tuple, on peut utiliser l’instruction `for … in … : …`.
 
 **13)** Tester et donner la sortie du script suivant :
-
-    
-    
-    mon_tuple = ("souris", "chat", "chien", "tortue")
-    for animal in mon_tuple:
-        print(animal)
+```py
+mon_tuple = ("souris", "chat", "chien", "tortue")
+for animal in mon_tuple:
+    print(animal)
+```
 
 **14)** Reprenez le tuple précédent et parcourez-le avec une boucle while.
-
-[Précédent](exercices-boucles-fonctions)[Suivant](exercices-tuples)
-
-[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
-licence [CC BY-SA 4.0
-![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
-sa/4.0/deed.fr)
-
