@@ -28,16 +28,16 @@ parenthésage d'une expression. Nous considérons les symboles (, ), [, ], { et 
 Voici quelques exemples de bon parenthésage :
 
 ```
-    (abcd) {edftr [rtyh]}
-    er[rtko (ertg ( rttre) ertt {erttert})]
+(abcd) {edftr [rtyh]}
+er[rtko (ertg ( rttre) ertt {erttert})]
 ```
 
 Voici maintenant des exemples de mauvais parenthésage :
 
 ```
-    (zer{ert)}
-    er{erzerpo[rer]rtert
-    zeze(rerf)rertr}
+(zer{ert)}
+er{erzerpo[rer]rtert
+zeze(rerf)rertr}
 ```
 
 Pour faire cela, nous allons utiliser une pile. En parcourant la chaine de
@@ -72,37 +72,38 @@ Pour la question 1 :
 Pour la question 2 :
 
 ```
-    ## Caractère fermant en trop
-    >>> check("P{h(ra)se} [d{e te}]st}")
-    P{h(ra)se} [d{e te}]st}
-                          ^
-    
-    ## Manque un caractère fermant
-    >>> check("P{h(ra)se [d{e te}]st")
-    P{h(ra)se [d{e te}]st
-                         ^
-    
-    ## Mauvais caractère fermant
-    >>> check("P{h(ra)se} [d{e te})st")
-    P{h(ra)se} [d{e te})st
-```                  ^
+## Caractère fermant en trop
+>>> check("P{h(ra)se} [d{e te}]st}")
+P{h(ra)se} [d{e te}]st}
+                      ^
+
+## Manque un caractère fermant
+>>> check("P{h(ra)se [d{e te}]st")
+P{h(ra)se [d{e te}]st
+                     ^
+
+## Mauvais caractère fermant
+>>> check("P{h(ra)se} [d{e te})st")
+P{h(ra)se} [d{e te})st
+                  ^
+```
 
 Pour la question 3 :
 
 ```
-    ## Caractère fermant en trop
-    >>> check("P{h(ra)se} [d{e te}]st}")
-    P{h(ra)se} [d{e te}]st}
-                          ^
-    
-    ## Manque un caractère fermant
-    >>> check("P{h(ra)se [d{e te}]st")
-    P{h(ra)se [d{e te}]st
-     ^                   ^
-    
-    ## Mauvais caractère fermant
-    >>> check("P{h(ra)se} [d{e te})st")
-    P{h(ra)se} [d{e te})st
-               ^       ^
+## Caractère fermant en trop
+>>> check("P{h(ra)se} [d{e te}]st}")
+P{h(ra)se} [d{e te}]st}
+                      ^
+
+## Manque un caractère fermant
+>>> check("P{h(ra)se [d{e te}]st")
+P{h(ra)se [d{e te}]st
+ ^                   ^
+
+## Mauvais caractère fermant
+>>> check("P{h(ra)se} [d{e te})st")
+P{h(ra)se} [d{e te})st
+           ^       ^
 ```
 
