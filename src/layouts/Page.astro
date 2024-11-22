@@ -24,14 +24,7 @@ const sidebarContent = fs.readFileSync(sidebarFilePath, "utf-8");
 const sidebarPaths = sidebarContent
     .split("\n")
     .map(line => line.trim())
-    .filter(line => line !== "")
-    .map(([, module]) => ({
-    title: (module as any).frontmatter.title,
-    icon: (module as any).frontmatter.icon,
-    url: (module as any).url,
-  }));
-
-console.log(sidebarPaths);
+    .filter(line => line !== "");
 
 const posts = Object.entries(allMarkdownFiles)
   .filter(([path]) => {
@@ -43,6 +36,8 @@ const posts = Object.entries(allMarkdownFiles)
     icon: (module as any).frontmatter.icon,
     url: (module as any).url,
   }));
+
+console.log(sidebarPaths, posts);
 ---
 
 <Head title={frontmatter.title} description={frontmatter.description}>
