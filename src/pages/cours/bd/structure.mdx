@@ -1,5 +1,5 @@
 ---
-title: "Bases de données - Structure d'une table"
+title: "Structure d'une table"
 icon: "mdi:paper-remove"
 layout: "/src/layouts/Page.astro"
 ---
@@ -16,19 +16,19 @@ remplir pour les données de la table. Regardons tout de suite la _structure_
 de la table _citations_ pour voir ses attributs :
 
 ```sql
-    DESCRIBE citations;
+DESCRIBE citations;
 ```
 
 ```sql
-    +-------------+------+------+-----+---------+----------------+
-    | Field       | Type | Null | Key | Default | Extra          |
-    +-------------+------+------+-----+---------+----------------+
-    | id_citation | int  | NO   | PRI | NULL    | auto_increment |
-    | texte       | text | YES  |     | NULL    |                |
-    | id_film     | int  | YES  |     | NULL    |                |
-    +-------------+------+------+-----+---------+----------------+
-    
-    3 rows in set (0.00 sec)
++-------------+------+------+-----+---------+----------------+
+| Field       | Type | Null | Key | Default | Extra          |
++-------------+------+------+-----+---------+----------------+
+| id_citation | int  | NO   | PRI | NULL    | auto_increment |
+| texte       | text | YES  |     | NULL    |                |
+| id_film     | int  | YES  |     | NULL    |                |
++-------------+------+------+-----+---------+----------------+
+
+3 rows in set (0.00 sec)
 ```
 
 **1)** Quels sont les attributs (Field) de la table _citations_ (il y en a

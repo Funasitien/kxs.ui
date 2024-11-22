@@ -1,5 +1,5 @@
 ---
-title: "Bases de données - Prise en main"
+title: "Prise en main"
 icon: "mdi:paper-remove"
 layout: "/src/layouts/Page.astro"
 ---
@@ -42,20 +42,20 @@ Lancer ensuite Windows PowerShell. Vous devez alors avoir une invite de
 commande comme ceci :
 
 ```bash
-    PS H:>
+PS H:>
 ```
 
 Saisissez alors la commande suivante :
 
 ```bash
-    c:\xampp\mysql\bin\mysql -u root
+C:\xampp\mysql\bin\mysql -u root
 ```
 
 Cela devrait ouvrir une fenêtre affichant quelques lignes, mais la dernière
 doit être :
 
 ```bash
-    MariaDB [(none)]>
+MariaDB [(none)]>
 ```
 
 C'est l'invite de commande mySQL, vous êtes prêt à travailler.
@@ -79,12 +79,12 @@ La suite va encore différée en fonction de votre système d'exploitation.
 Vous devriez alors obtenir le résultat suivant :
 
 ```sql
-    +--------------------+
-    | Database           |
-    +--------------------+
-    | information_schema |
-    | travail            |
-    +--------------------+
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| travail            |
++--------------------+
 ```
 
 Ce sont les bases de données présentes sur votre ordinateur. Nous utiliserons
@@ -112,15 +112,15 @@ personnel puis passez au dernier paragraphe.
 Vous devriez alors obtenir le résultat suivant :
 
 ```sql
-    +--------------------+
-    | Database           |
-    +--------------------+
-    | information_schema |
-    | mysql              |
-    | performance_schema |
-    | phpmyadmin         |
-    | test               |
-    +--------------------+
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| test               |
++--------------------+
 ```
 
 Ce sont les bases de données présentes sur votre ordinateur. Nous allons créer
@@ -140,15 +140,15 @@ SHOW DATABASES;
 Vous devez alors avoir le résultat suiavant :
 
 ```sql    
-    +--------------------+
-    | Database           |
-    +--------------------+
-    | information_schema |
-    | mysql              |
-    | performance_schema |
-    | phpmyadmin         |
-    | travail            |
-    +--------------------+
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| travail            |
++--------------------+
 ```
 
 Pour se « mettre » dans la base travail, pour l'utiliser il faut alors saisir
@@ -182,15 +182,15 @@ SOURCE citations_films.sql;
 Si tout va bien, vous devriez obtenir une réponse comme celle-ci :
 
 ```sql
-    Query OK, 0 rows affected (0.02 sec)
-    
-    Query OK, 0 rows affected (0.03 sec)
-    
-    Query OK, 15 rows affected (0.01 sec)
-    Records: 15  Duplicates: 0  Warnings: 0
-    
-    Query OK, 11 rows affected (0.00 sec)
-    Records: 11  Duplicates: 0  Warnings: 0
+Query OK, 0 rows affected (0.02 sec)
+
+Query OK, 0 rows affected (0.03 sec)
+
+Query OK, 15 rows affected (0.01 sec)
+Records: 15  Duplicates: 0  Warnings: 0
+
+Query OK, 11 rows affected (0.00 sec)
+Records: 11  Duplicates: 0  Warnings: 0
 ```
 
 On vérifie que les tables _citations_ et _films_ sont bien présentes :
@@ -202,13 +202,13 @@ SHOW tables;
 Si la sortie ressemble à ceci :
 
 ```sql    
-    +-------------------+
-    | Tables_in_travail |
-    +-------------------+
-    | citations         |
-    | films             |
-    +-------------------+
-    2 rows in set (0.00 sec)
++-------------------+
+| Tables_in_travail |
++-------------------+
+| citations         |
+| films             |
++-------------------+
+2 rows in set (0.00 sec)
 ```
 
 vous êtes alors prêt à passer à la suite.

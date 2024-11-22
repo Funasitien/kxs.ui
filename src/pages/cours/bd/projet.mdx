@@ -1,5 +1,5 @@
 ---
-title: "Bases de données - Projet"
+title: "Projet"
 icon: "mdi:paper-remove"
 layout: "/src/layouts/Page.astro"
 ---
@@ -41,27 +41,27 @@ Totals | 10
 Voici une liste de commandes de SQLite3 qui vous seront utiles.
 
 ```py
-    import sqlite3
-    
-    # Connection à la base de données
-    conn = sqlite3.connect('data.db')
-    
-    # Création du curseur qui permet d'interagir avec la base
-    cur = conn.cursor()
-    
-    # Envoi d'une requête SQL
-    cur.execute(string_commande_mysql)
-    
-    # Pour récupérer une ligne de la requête (peut être utilisée plusieurs fois)
-    # La ligne est un tuple
-    ligne = cur.fetchone()
-    
-    # Pour récupérer toutes les lignes de la requête
-    # C'est une liste de tuples
-    lignes = cur.fetchall()
-    
-    # Pour appliquer les modifications (après un INSERT ou UPDATE)
-    conn.commit()
+import sqlite3
+
+# Connection à la base de données
+conn = sqlite3.connect('data.db')
+
+# Création du curseur qui permet d'interagir avec la base
+cur = conn.cursor()
+
+# Envoi d'une requête SQL
+cur.execute(string_commande_mysql)
+
+# Pour récupérer une ligne de la requête (peut être utilisée plusieurs fois)
+# La ligne est un tuple
+ligne = cur.fetchone()
+
+# Pour récupérer toutes les lignes de la requête
+# C'est une liste de tuples
+lignes = cur.fetchall()
+
+# Pour appliquer les modifications (après un INSERT ou UPDATE)
+conn.commit()
 ```
 
 **Attention !** il y a de légères différences entre SQLite3 et MySQL.

@@ -1,5 +1,5 @@
 ---
-title: "Bases de données - Jointure"
+title: "Jointure"
 icon: "mdi:paper-remove"
 layout: "/src/layouts/Page.astro"
 ---
@@ -24,27 +24,27 @@ SELECT texte, titre FROM citations JOIN films ON citations.id_film = films.id_fi
 Cette requête renvoie alors la table suivante (avec votre citation en plus) :
 
 ```sql
-    +--------------------------------------------------------------------------------------------------+-------------------------------------------+
-    | texte                                                                                            | titre                                     |
-    +--------------------------------------------------------------------------------------------------+-------------------------------------------+
-    | Vers l'infini et au-delà !                                                                       | Toy Story                                 |
-    | Allez bonne nuit, et tâche de dormir sinon je vends tout tes jouets !                            | Avengers : Endgame                        |
-    | Avengers rassemblement !                                                                         | Avengers : Endgame                        |
-    | La fin fait partie du voyage.                                                                    | Avengers : Endgame                        |
-    | C'est dans ses rêves que l'homme trouve la liberté, cela fut, est, et restera la vérité.         | Le cercle des poètes disparus             |
-    | C'est seulement quand on a tout perdu qu'on est libre de faire tout ce qu'on veut.               | Fight Club                                |
-    | On a frôlé la vie !                                                                              | Fight Club                                |
-    | Monsieur, quand le doigt montre le ciel, l'imbécile regarde le doigt.                            | Le fabuleux destin d'Amélie Poulain       |
-    | Ou tu sors ou je te sors, mais faudra prendre une décision.                                      | Dikkenek                                  |
-    | Ce n'est pas parce que tu as une personnalité que tu as de la personnalité.                      | Pulp Fiction                              |
-    | C'est à une demi-heure d'ici. J'y suis dans dix minutes.                                         | Pulp Fiction                              |
-    | Je préfère partir plutôt que d'entendre ça plutôt que d'être sourd !                             | La classe américaine                      |
-    | Raté, vous nous avez raté ! Eh les romains, vous êtes des romaines !                             | Astérix et Obélix : mission Cléopâtre     |
-    | À mon signal, déchaine les enfers.                                                               | Gladiator                                 |
-    | Cours Forrest, cours !                                                                           | Forrest Gump                              |
-    +--------------------------------------------------------------------------------------------------+-------------------------------------------+
++--------------------------------------------------------------------------------------------------+-------------------------------------------+
+| texte                                                                                            | titre                                     |
++--------------------------------------------------------------------------------------------------+-------------------------------------------+
+| Vers l'infini et au-delà !                                                                       | Toy Story                                 |
+| Allez bonne nuit, et tâche de dormir sinon je vends tout tes jouets !                            | Avengers : Endgame                        |
+| Avengers rassemblement !                                                                         | Avengers : Endgame                        |
+| La fin fait partie du voyage.                                                                    | Avengers : Endgame                        |
+| C'est dans ses rêves que l'homme trouve la liberté, cela fut, est, et restera la vérité.         | Le cercle des poètes disparus             |
+| C'est seulement quand on a tout perdu qu'on est libre de faire tout ce qu'on veut.               | Fight Club                                |
+| On a frôlé la vie !                                                                              | Fight Club                                |
+| Monsieur, quand le doigt montre le ciel, l'imbécile regarde le doigt.                            | Le fabuleux destin d'Amélie Poulain       |
+| Ou tu sors ou je te sors, mais faudra prendre une décision.                                      | Dikkenek                                  |
+| Ce n'est pas parce que tu as une personnalité que tu as de la personnalité.                      | Pulp Fiction                              |
+| C'est à une demi-heure d'ici. J'y suis dans dix minutes.                                         | Pulp Fiction                              |
+| Je préfère partir plutôt que d'entendre ça plutôt que d'être sourd !                             | La classe américaine                      |
+| Raté, vous nous avez raté ! Eh les romains, vous êtes des romaines !                             | Astérix et Obélix : mission Cléopâtre     |
+| À mon signal, déchaine les enfers.                                                               | Gladiator                                 |
+| Cours Forrest, cours !                                                                           | Forrest Gump                              |
++--------------------------------------------------------------------------------------------------+-------------------------------------------+
 
-    15 rows in set (0.00 sec)
+15 rows in set (0.00 sec)
 ```
 
 Elle se décompose comme ceci :
@@ -60,5 +60,4 @@ même _id_film_.
 **1)** Proposez et testez une requête affichant les citations, films et années
 pour les films avant les années 2000.
 
-Il est possible d'effectuer plusieurs jointures en rajoutant des clauses `JOIN
-… ON …`.
+Il est possible d'effectuer plusieurs jointures en rajoutant des clauses `JOIN… ON …`.

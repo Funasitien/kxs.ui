@@ -1,5 +1,5 @@
 ---
-title: "Bases de données - Contenu"
+title: "Contenu"
 icon: "mdi:paper-remove"
 layout: "/src/layouts/Page.astro"
 ---
@@ -20,27 +20,27 @@ SELECT * FROM citations;
 On obtient le résultat suivant :
 
 ```sql
-    +-------------+--------------------------------------------------------------------------------------------------+---------+
-    | id_citation | texte                                                                                            | id_film |
-    +-------------+--------------------------------------------------------------------------------------------------+---------+
-    |           1 | Vers l'infini et au-delà !                                                                       |       1 |
-    |           2 | Allez bonne nuit, et tâche de dormir sinon je vends tout tes jouets !                            |       2 |
-    |           3 | Avengers rassemblement !                                                                         |       2 |
-    |           4 | La fin fait partie du voyage.                                                                    |       2 |
-    |           5 | C'est dans ses rêves que l'homme trouve la liberté, cela fut, est, et restera la vérité.         |       3 |
-    |           6 | C'est seulement quand on a tout perdu qu'on est libre de faire tout ce qu'on veut.               |       4 |
-    |           7 | On a frôlé la vie !                                                                              |       4 |
-    |           8 | Monsieur, quand le doigt montre le ciel, l'imbécile regarde le doigt.                            |       5 |
-    |           9 | Ou tu sors ou je te sors, mais faudra prendre une décision.                                      |       6 |
-    |          10 | Ce n'est pas parce que tu as une personnalité que tu as de la personnalité.                      |       7 |
-    |          11 | C'est à une demi-heure d'ici. J'y suis dans dix minutes.                                         |       7 |
-    |          12 | Je préfère partir plutôt que d'entendre ça plutôt que d'être sourd !                             |       8 |
-    |          13 | Raté, vous nous avez raté ! Eh les romains, vous êtes des romaines !                             |       9 |
-    |          14 | À mon signal, déchaine les enfers.                                                               |      10 |
-    |          15 | Cours Forrest, cours !                                                                           |      11 |
-    +-------------+--------------------------------------------------------------------------------------------------+---------+
++-------------+--------------------------------------------------------------------------------------------------+---------+
+| id_citation | texte                                                                                            | id_film |
++-------------+--------------------------------------------------------------------------------------------------+---------+
+|           1 | Vers l'infini et au-delà !                                                                       |       1 |
+|           2 | Allez bonne nuit, et tâche de dormir sinon je vends tout tes jouets !                            |       2 |
+|           3 | Avengers rassemblement !                                                                         |       2 |
+|           4 | La fin fait partie du voyage.                                                                    |       2 |
+|           5 | C'est dans ses rêves que l'homme trouve la liberté, cela fut, est, et restera la vérité.         |       3 |
+|           6 | C'est seulement quand on a tout perdu qu'on est libre de faire tout ce qu'on veut.               |       4 |
+|           7 | On a frôlé la vie !                                                                              |       4 |
+|           8 | Monsieur, quand le doigt montre le ciel, l'imbécile regarde le doigt.                            |       5 |
+|           9 | Ou tu sors ou je te sors, mais faudra prendre une décision.                                      |       6 |
+|          10 | Ce n'est pas parce que tu as une personnalité que tu as de la personnalité.                      |       7 |
+|          11 | C'est à une demi-heure d'ici. J'y suis dans dix minutes.                                         |       7 |
+|          12 | Je préfère partir plutôt que d'entendre ça plutôt que d'être sourd !                             |       8 |
+|          13 | Raté, vous nous avez raté ! Eh les romains, vous êtes des romaines !                             |       9 |
+|          14 | À mon signal, déchaine les enfers.                                                               |      10 |
+|          15 | Cours Forrest, cours !                                                                           |      11 |
++-------------+--------------------------------------------------------------------------------------------------+---------+
 
-    15 rows in set (0.00 sec)
+15 rows in set (0.00 sec)
 ```
 
 Le contenu d'une table est donc un tableau dont les **colonnes sont ses
@@ -80,13 +80,13 @@ SELECT * FROM citations WHERE id_citation = 1;
 Résultat :
 
 ```sql
-    +-------------+-------------------------------+---------+
-    | id_citation | texte                         | id_film |
-    +-------------+-------------------------------+---------+
-    |           1 | Vers l'infini et au-delà !    |       1 |
-    +-------------+-------------------------------+---------+
++-------------+-------------------------------+---------+
+| id_citation | texte                         | id_film |
++-------------+-------------------------------+---------+
+|           1 | Vers l'infini et au-delà !    |       1 |
++-------------+-------------------------------+---------+
 
-    1 row in set (0.00 sec)
+1 row in set (0.00 sec)
 ```
 
 Vous avez dû remarquer que MySQL vous donne le nombre de lignes et le temps
@@ -115,19 +115,19 @@ SELECT * FROM citations WHERE texte LIKE '%!';
 Le résultat :
 
 ```sql
-    +-------------+--------------------------------------------------------------------------------+---------+
-    | id_citation | texte                                                                          | id_film |
-    +-------------+--------------------------------------------------------------------------------+---------+
-    |           1 | Vers l'infini et au-delà !                                                     |       1 |
-    |           2 | Allez bonne nuit, et tâche de dormir sinon je vends tout tes jouets !          |       2 |
-    |           3 | Avengers rassemblement !                                                       |       2 |
-    |           7 | On a frôlé la vie !                                                            |       4 |
-    |          12 | Je préfère partir plutôt que d'entendre ça plutôt que d'être sourd !           |       8 |
-    |          13 | Raté, vous nous avez raté ! Eh les romains, vous êtes des romaines !           |       9 |
-    |          15 | Cours Forrest, cours !                                                         |      11 |
-    +-------------+--------------------------------------------------------------------------------+---------+
-    
-    7 rows in set (0.00 sec)
++-------------+--------------------------------------------------------------------------------+---------+
+| id_citation | texte                                                                          | id_film |
++-------------+--------------------------------------------------------------------------------+---------+
+|           1 | Vers l'infini et au-delà !                                                     |       1 |
+|           2 | Allez bonne nuit, et tâche de dormir sinon je vends tout tes jouets !          |       2 |
+|           3 | Avengers rassemblement !                                                       |       2 |
+|           7 | On a frôlé la vie !                                                            |       4 |
+|          12 | Je préfère partir plutôt que d'entendre ça plutôt que d'être sourd !           |       8 |
+|          13 | Raté, vous nous avez raté ! Eh les romains, vous êtes des romaines !           |       9 |
+|          15 | Cours Forrest, cours !                                                         |      11 |
++-------------+--------------------------------------------------------------------------------+---------+
+
+7 rows in set (0.00 sec)
 ```
 
 **6)** Proposez et testez une requête pour afficher les lignes de la table
