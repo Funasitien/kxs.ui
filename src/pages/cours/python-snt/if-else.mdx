@@ -1,25 +1,8 @@
 ---
 title: "If-else"
 icon: "mdi:paper-remove"
-layout: "@root/layouts/Page.astro"
+layout: "/src/layouts/Page.astro"
 ---
-
-  * [cours](https://kxs.fr/cours/)
-  * [sujets](https://kxs.fr/sujets/)
-  * [fiches](https://kxs.fr/fiches/)
-
-[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
-le lycée et la prépa](https://kxs.fr/cours/)
-
-## Python en SNT
-
-  * [Introduction](.)
-  * [Python avec France-ioi](python-france-ioi)
-  * [Modules](modules)
-  * [If… else…](if-else)
-  * [Fonctions](fonctions)
-
-# If… … else…
 
 ## Description
 
@@ -30,12 +13,12 @@ résultat. Il est parfois accompagné d'un `else`. L'ensemble signifie « Si…
 
 Voici un premier exemple à copier dans votre fichier et à exécuter :
 
-    
-    
+```python
     a = 4
     if (a > 0):
     	print("a est positif")
     print("On a testé la valeur de a")
+```
 
 Que fait cet exemple ? On affecte la valeur 4 à la variable a. Ensuite si a
 est positif on affiche « a est positif ». Puis quelque soit la valeur de a, on
@@ -51,13 +34,13 @@ lorsque a est négatif.
 
 Voici un deuxième exemple à copier dans votre fichier et à exécuter :
 
-    
-    
+```python
     a = 4
     if (a > 0):
     	print("a est positif")
     else:
     	print("a est négatif")
+```
 
 Que fait cet exemple ? On affecte la valeur 4 à la variable a. Ensuite si a
 est positif on affiche « a est positif » sinon (else), on affiche « a est
@@ -70,14 +53,14 @@ négatif ».
 Dans la condition après l’instruction `if` on aura souvent besoin des
 opérateurs de comparaison suivants :
 
-    
-    
+```python
     x == y		# x est égal à y
     x != y		# x est différent de y
     x > y		# x est plus grand que y
     x < y		# x est plus petit que y
     x >= y		# x est plus grand que, ou égal à y
     x <= y		# x est plus petit que, ou égal à y
+```
 
 **Atention !** Pour tester l'égalité, on utilise deux signes « = » pour qu'il
 n'y ait pas de confusion avec l'affectation d'une variable.
@@ -87,11 +70,3 @@ n'y ait pas de confusion avec l'affectation d'une variable.
 **3)** Écrivez un programme qui tire un nombre aléatoire entre 1 et 6 puis le
 stocke dans une variable. Il affiche ensuite « gagné » si le nombre vaut 6 et
 « perdu » sinon.
-
-[Précédent](modules)[Suivant](fonctions)
-
-[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
-licence [CC BY-SA 4.0
-![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
-sa/4.0/deed.fr)
-

@@ -1,25 +1,8 @@
 ---
 title: "Fonctions"
 icon: "mdi:paper-remove"
-layout: "@root/layouts/Page.astro"
+layout: "/src/layouts/Page.astro"
 ---
-
-  * [cours](https://kxs.fr/cours/)
-  * [sujets](https://kxs.fr/sujets/)
-  * [fiches](https://kxs.fr/fiches/)
-
-[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
-le lycée et la prépa](https://kxs.fr/cours/)
-
-## Python en SNT
-
-  * [Introduction](.)
-  * [Python avec France-ioi](python-france-ioi)
-  * [Modules](modules)
-  * [If… else…](if-else)
-  * [Fonctions](fonctions)
-
-# Fonctions
 
 Il est possible d’écrire ses propres fonctions en Python. Cela permet de
 simplifier un programme et d’éviter de répéter du code.
@@ -28,10 +11,10 @@ simplifier un programme et d’éviter de répéter du code.
 
 Voici la définition d'une fonction simple qui affiche juste « coucou » :
 
-    
-    
+```python
     def coucou():
         print("Coucou")
+```
 
 Il faut donc utiliser le mot clé `def` suivi du nom de la fonction avec deux
 parenthèses et deux points. Ensuite les instructions de la fonction sont
@@ -39,13 +22,13 @@ indentées. Si vous exécutez ce programme rien ne se passe car c'est jsute la
 définition de la fonction. Pour exécuter le code d’une fonction, il faut
 appeler cette fonction :
 
-    
-    
+```python
     def coucou():
         print("Coucou")
     
     coucou()
     coucou()
+```
 
 Ici, on appelle deux fois la fonction `coucou` (il ne faut pas oublier les
 parenthèses). Le programme affichera donc deux fois « Coucou ».
@@ -60,12 +43,12 @@ arguments pour fonctionner. Ils faut les faire figurer entre les parenthèses
 de la fonction, séparés par des virgules. Voici par exemple une fonction qui
 calcule le périmètre d’un cercle :
 
-    
-    
+```python
     import math
     
     def perimetreCercle(r):
         print(2 * math.pi * r)
+```
 
 **2)** Créez et testez une fonction qui calcule la surface d’un disque.
 
@@ -80,8 +63,7 @@ d'utiliser `print()`. Pour cela, il faut dire à notre fonction de « retourner
 
 Par exemple voici une fonction qui retourne le volume d’une boule :
 
-    
-    
+```python
     import math
     
     def volumeBoule(r):
@@ -91,6 +73,7 @@ Par exemple voici une fonction qui retourne le volume d’une boule :
     # Utilisation de la fonction
     v = volumeBoule(3)
     print("Le volume est", v)
+```
 
 **4)** Créez et testez une fonction volBoite() qui calcule et renvoie le
 volume d’une boite parallélépipédique.
@@ -100,11 +83,3 @@ volume d’une boite parallélépipédique.
 **5)** Écrivez une fonction qui tire un nombre aléatoire entre 1 et n (n étant
 un paramètre de la fonction) et qui écrit « gagné » si le nombre est 1 et «
 perdu » sinon. Exécutez la fonction 20 fois avec `n = 10`.
-
-[Précédent](if-else)[Suivant (page des cours)](..)
-
-[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
-licence [CC BY-SA 4.0
-![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
-sa/4.0/deed.fr)
-
