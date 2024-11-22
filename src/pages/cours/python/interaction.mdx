@@ -4,80 +4,35 @@ icon: "mdi:paper-remove"
 layout: "@root/layouts/Page.astro"
 ---
 
-  * [cours](https://kxs.fr/cours/)
-  * [sujets](https://kxs.fr/sujets/)
-  * [fiches](https://kxs.fr/fiches/)
+## Interaction avec l’utilisateur
 
-[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
-le lycée et la prépa](https://kxs.fr/cours/)
-
-## Python
-
-  * [Introduction](.)
-  * [Bases](bases)
-    * [Opérations mathématiques](operations)
-    * [Variables](variables)
-    * [Types de base](types-de-base)
-  * [Structures de contrôle](structures-de-controle)
-    * [If… else](if-else)
-    * [Interaction avec l'utilisateur](interaction)
-  * [Exercices bases et structures de contrôle](exercices-bases-structures)
-  * [Commentaires](commentaires)
-  * [Boucles](boucles)
-  * [Booléens](booleens)
-  * [Modules](modules)
-  * [Fonctions](fonctions)
-  * [Exercices boucles et fonctions](exercices-boucles-fonctions)
-  * [Tuples](tuples)
-  * [Exercices tuples](exercices-tuples)
-  * [Tableaux](tableaux)
-  * [Exercices tableaux](exercices-tableaux)
-  * [Dictionnaires](dictionnaires)
-  * [Chaînes de caractères](chaines-de-caracteres)
-  * [Docstring](docstring)
-  * [Doctest](doctest)
-  * [Assert](assert)
-
-# Interaction avec l’utilisateur
-
-## Input
+### Input
 
 Pour avoir un programme plus interactif, nous pouvons utiliser la fonction
 `input()` qui permet de demander à l’utilisateur de saisir une donnée. Testez
 le programme suivant qui va vous demander de saisir une valeur pour `a` :
-
     
-    
-    a = input("Saisir une valeur pour a : ")
-    print(a)
+```py
+a = input("Saisir une valeur pour a : ")
+print(a)
+```
 
 Ce qui est saisi par l’utilisateur est toujours considéré comme une chaîne de
 caractère. Si on veut l’utiliser comme un nombre il faut le transformer en
 entier avec `int()` comme dans l’exemple ci-dessous :
 
-    
-    
-    a = int(input("a ? "))
-    print(a + 2)
+```py
+a = int(input("a ? "))
+print(a + 2)
+```
 
 **1)** Essayez le programme ci-dessus sans le `int()`. Expliquez ce qui ne va
 pas.
 
-On obtient l'erreur suivante :
-
-    
-    
-    print(a + 2)
-    TypeError: can only concatenate str (not "int") to str
-
-a est alors une chaîne de caractères, python n'arrive donc pas à faire
-l'addition entre un entier et une chaîne de caractère. Le message d'erreur
-parle de concaténation, nous verrons cela plus tard.
-
 Si on avait voulu le transformer en float, on aurait utilisé la fonction
 `float()`.
 
-### Print
+#### Print
 
 Nous avons déjà utilisé la fonction `print()` pour afficher le contenu de
 variables : `print(a)`. Nous pouvons également afficher une chaîne de
@@ -88,19 +43,7 @@ espaces.
 
 **2)** Essayez le programme ci-dessous pour voir ce qu'il se passe :
 
-    
-    
-    a = input("Saisir une valeur pour a : ")
-    print("La valeur de a est", a)
-    
-    
-    Saisir une valeur pour a : 2
-    La valeur de a est 2
-
-[Précédent](if-else)[Suivant](exercices-bases-structures)
-
-[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
-licence [CC BY-SA 4.0
-![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
-sa/4.0/deed.fr)
-
+```py
+a = input("Saisir une valeur pour a : ")
+print("La valeur de a est", a)
+```
