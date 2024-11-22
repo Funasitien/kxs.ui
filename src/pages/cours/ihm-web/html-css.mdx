@@ -4,23 +4,6 @@ icon: "mdi:paper-remove"
 layout: "@root/layouts/Page.astro"
 ---
 
-  * [cours](https://kxs.fr/cours/)
-  * [sujets](https://kxs.fr/sujets/)
-  * [fiches](https://kxs.fr/fiches/)
-
-[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
-le lycée et la prépa](https://kxs.fr/cours/)
-
-## Interaction entre l’homme et la machine sur le web
-
-  * [Introduction](.)
-  * [Bases de l'informatique et du web](bases-info-web)
-  * [HTML et CSS](html-css)
-  * [Javascript](javascript)
-  * [Client, serveur, requête](client-serveur-requete)
-  * [Formulaires](formulaire)
-
-# HTML et CSS
 
 ## Introduction
 
@@ -36,20 +19,20 @@ construire une page web.
 le code source de la page : c’est du HTML.
 
 Nous allons construire des page simples pour comprendre le HTML. Pour cela,
-nous utiliserons le site <https://jsfiddle.net/>.
+nous utiliserons le site https://jsfiddle.net/.
 
 ### Bases
 
 **2)** Saisissez ou copiez le code suivant dans la fenêtre HTML puis appuyez
 sur run pour voir le résultat :
 
-    
-    
+```html
     <h1>Mon titre</h1>
     
     <p>
         Ceci est un paragraphe. Et un élément <strong>important</strong>.
     </p>
+```
 
 Vous venez de créer une page web ! Essayons de voir comment cela fonctionne :
 
@@ -69,9 +52,9 @@ cible du lien.
 
 **4)** Ajoutez le lien suivant à votre page :
 
-    
-    
+```html
     <a href="https://www.google.fr">Lien vers Google</a>
+```
 
 Pour l’ouvrir dans un nouvel onglet, cliquez dessus avec la molette.
 
@@ -85,9 +68,8 @@ Les listes se font grâce aux balises `<ul>` ou `<ol>`. Les éléments d’une
 liste sont défini par la balise `<li>`.
 
 **6)** Saisissez le code suivant dans votre page :
-
     
-    
+```html
     <ul>
         <li>un élément</li>
         <li>un deuxième élément</li>
@@ -99,6 +81,7 @@ liste sont défini par la balise `<li>`.
         <li>un deuxième élément</li>
         <li>un autre élément</li>
     </ol>
+```
 
 **7)** Quelle est la différence entre `<ul>` et `<ol>` ?
 
@@ -111,9 +94,9 @@ ou sur internet.
 **8)** Après avoir cherché une image sur internet et copié son url, ajouter le
 code ci-dessous à votre page :
 
-    
-    
+```html
     <img src="url_de_l_image">
+```
 
 **Appelez le professeur.**
 
@@ -147,8 +130,7 @@ fenêtre CSS à droite.
 **10)** Ajoutez le code suivant dans la fenêtre CSS et décrire ce qu’il se
 passe :
 
-    
-    
+```css
     h1 {
         text-align: center;
         color: red;
@@ -157,6 +139,7 @@ passe :
     strong {
         background-color: green;
     }
+```
 
 ### Classes
 
@@ -166,11 +149,11 @@ attribut class.
 **11)** Remplacez une balise `<p>` par `<p class="toto">` dans votre page puis
 ajoutez le code suivant dans la fenêtre CSS :
 
-    
-    
+```css
     .toto {
         color: yellow;
     }
+```
 
 Seul le paragraphe avec l’attribut `class="toto"` devient jaune.
 
@@ -181,11 +164,11 @@ Si on veut cibler un seul élément, on peut utiliser l’attribut `id`.
 **12)** Remplacez l'autre balise `<p>` par `<p id="titi">` dans votre page
 puis ajoutez le code suivant dans la fenêtre CSS :
 
-    
-    
+```css
     #titi {
         color: pink;
     }
+```
 
 Seul le paragraphe avec l’attribut id titi devient rose.
 
@@ -198,11 +181,3 @@ Vous ajouterez également une liste avec des liens vers vos pages préférées
 d’un de ces sites.
 
 **Appelez le professeur.**
-
-[Précédent](bases-info-web)[Suivant](javascript)
-
-[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
-licence [CC BY-SA 4.0
-![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
-sa/4.0/deed.fr)
-

@@ -4,24 +4,6 @@ icon: "mdi:paper-remove"
 layout: "@root/layouts/Page.astro"
 ---
 
-  * [cours](https://kxs.fr/cours/)
-  * [sujets](https://kxs.fr/sujets/)
-  * [fiches](https://kxs.fr/fiches/)
-
-[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
-le lycée et la prépa](https://kxs.fr/cours/)
-
-## Interaction entre l’homme et la machine sur le web
-
-  * [Introduction](.)
-  * [Bases de l'informatique et du web](bases-info-web)
-  * [HTML et CSS](html-css)
-  * [Javascript](javascript)
-  * [Client, serveur, requête](client-serveur-requete)
-  * [Formulaires](formulaire)
-
-# Client, serveur, requête
-
 ## Introduction
 
 Nous avons déjà vu rapidement le fonctionnement en client/serveur du web avec
@@ -39,16 +21,16 @@ qui envoie une requête. Nous nous intéressons ici seulement au protocole http.
 Quand vous saisissez une URL dans un navigateur, il convertit cette URL en une
 requête et l’envoie vers le bon serveur.
 
-Par exemple cette URL <https://www.debian.org/intro/about> sera transformée en
+Par exemple cette URL https://www.debian.org/intro/about sera transformée en
 cette requête :
 
-    
-    
+```http
     GET /intro/about HTTP/1.0
     Host : www.debian.org
     Accept : text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
     User-Agent : Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:70.0) Gecko/20100101 Firefox/70.0
     …
+```
 
 Détaillons cette requête :
 
@@ -93,7 +75,7 @@ entreprises.
 
 **2)** Allez sur le site d’OVH (leader européen situé à Roubaix) et relevez
 les caractéristiques (nombre de cœurs, RAM et disques) du plus cher serveur :
-<https://www.ovh.com/fr/serveurs_dedies/tarifs/>
+https://www.ovh.com/fr/serveurs_dedies/tarifs/
 
 Comment faire pour qu’un ordinateur devienne un serveur web ? Il suffit d’y
 installer un logiciel qui répond aux requêtes http ! Il existe des dizaines de
@@ -105,8 +87,7 @@ tels logiciels, les plus répandus sont les logiciels libres
 Une fois que le serveur a reçu une requête il renvoie une réponse. Si on
 continue avec la même requête, voici un extrait de la réponse :
 
-    
-    
+```http
     HTTP/2 200 OK
     date: Tue, 04 May 2021 14:40:31 GMT
     server: Apache
@@ -116,6 +97,7 @@ continue avec la même requête, voici un extrait de la réponse :
     <html lang="fr">
     <head>
     …
+```
 
 Détaillons cette réponse :
 
@@ -152,7 +134,7 @@ simple d’utilisation.
 ### Test du serveur
 
 **6)** Votre serveur local (sur votre machine) est accessible à l’adresse
-<http://localhost/>. Allez à cette adresse et vérifiez que cela fonctionne.
+http://localhost/. Allez à cette adresse et vérifiez que cela fonctionne.
 
 ### Premier script PHP
 
@@ -162,12 +144,12 @@ Par défaut le serveur affiche le fichier `index.html` situé dans le dossier
 **7)** Créez un fichier nommé `test.php` dans ce dossier et mettez-y le code
 suivant :
 
-    
-    
+```php
     <h1>Page générée avec php</h1>
     <p>Il est <?php echo date("H:i:s"); ?></p>
+```
 
-**8)** Allez ensuite à l’adresse <http://localhost/test.php> et regardez ce
+**8)** Allez ensuite à l’adresse http://localhost/test.php et regardez ce
 qu’il s’affiche. Rechargez éventuellement la page.
 
 L’interpréteur php est assez souple, il n’exécute que ce qui est entre les
@@ -188,19 +170,11 @@ variable php `$_GET` qui ressemble à un dictionnaire de Python. Cela permet de
 récupérer les variables sur le serveur. Testez le script suivant dans
 `test.php` pour comprendre :
 
-    
-    
+```php
     <h1>Page générée avec php</h1>
     <p>Voici var1 : <?php echo $_GET['var1']; ?></p>
     <p>Voici var2 : <?php echo $_GET['var2']; ?></p>
+```
 
 **9)** Écrire un script qui, à partir d’un prénom passé dans l’URL, affiche «
 Bonjour, `prénom`, il est `heure` ».
-
-[Précédent](javascript)[Suivant](formulaire)
-
-[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
-licence [CC BY-SA 4.0
-![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
-sa/4.0/deed.fr)
-
