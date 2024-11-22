@@ -4,22 +4,6 @@ icon: "mdi:paper-remove"
 layout: "@root/layouts/Page.astro"
 ---
 
-  * [cours](https://kxs.fr/cours/)
-  * [sujets](https://kxs.fr/sujets/)
-  * [fiches](https://kxs.fr/fiches/)
-
-[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
-le lycée et la prépa](https://kxs.fr/cours/)
-
-## Algorithmes
-
-  * [Introduction](.)
-  * [Diviser pour régner](diviser-pour-regner)
-  * [Programmation dynamique](programmation-dynamique)
-  * [Boyer Moore](boyer-moore)
-
-# Diviser pour régner
-
 ## Description
 
 _Diviser pour régner_ est une technique algorithmique qui se déroule en trois
@@ -35,8 +19,7 @@ Le _tri fusion_ est encore un algorithme de tri. Celui-ci est récursif et
 utilise, bien sur, la méthode _diviser pour régner_. Voici un algorithme
 décrivant le tri fusion :
 
-    
-    
+```py
     triFusion(liste):
         si la liste contient un élément ou moins:
     		retourner liste
@@ -58,6 +41,7 @@ décrivant le tri fusion :
     			on ajoute listedroite[indicelistedroite] à listeretour
     			indicelistedroite = indicelistedroite + 1
     	renvoyer listeretour + la fin de la liste non totalement explorée
+```
 
 Voici un schéma montrant le déroulement de cet algorithme sur la liste `[4, 3,
 8, 2, 7, 1, 5]` :
@@ -89,8 +73,7 @@ python/pillow/index.html) déjà utilisé l'année dernière. L'image à faire
 tourner sera [la joconde](img/joconde.png). Elle est carrée avec une taille
 égale à une puissance de 2. Voici la structure que vous pourrez utiliser :
 
-    
-    
+```py
     from PIL import Image
     
     img = Image.open("joconde.png")
@@ -144,6 +127,7 @@ tourner sera [la joconde](img/joconde.png). Elle est carrée avec une taille
     tourne(img)
     # Affiche l'image
     img.show()
+```
 
 Vous chercherez vous-même sur la [documentation de PIL](https://he-
 arc.github.io/livre-python/pillow/index.html) les méthodes à utiliser pour
@@ -158,8 +142,7 @@ Un algorithme du type « diviser pour régner » permet de déterminer ce couple
 en exploitant le fait qu’une seule comparaison suffit pour obtenir à la fois
 le minimum et le maximum d'un tableau de taille 2. Voici cet algorithme :
 
-    
-    
+```
     VARIABLES
     T : tableau
     
@@ -175,6 +158,7 @@ le minimum et le maximum d'un tableau de taille 2. Voici cet algorithme :
     	fusionner les résultats précédents
     	retourner le couple (minimum, maximum)
     FIN
+```
 
 **5)** Écrire la fonction `min_et_max(T)` en Python.
 
@@ -189,11 +173,4 @@ de 4 éléments ?
 
 **9)** Répondez aux deux questions précédentes pour des tableaux de 8, 16 et
 32 éléments. Que pouvez-vous conclure sur la complexité de cet algorithme ?
-
-[Précédent](.)[Suivant](programmation-dynamique)
-
-[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
-licence [CC BY-SA 4.0
-![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
-sa/4.0/deed.fr)
 

@@ -4,22 +4,6 @@ icon: "mdi:paper-remove"
 layout: "@root/layouts/Page.astro"
 ---
 
-  * [cours](https://kxs.fr/cours/)
-  * [sujets](https://kxs.fr/sujets/)
-  * [fiches](https://kxs.fr/fiches/)
-
-[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
-le lycée et la prépa](https://kxs.fr/cours/)
-
-## Algorithmes
-
-  * [Introduction](.)
-  * [Diviser pour régner](diviser-pour-regner)
-  * [Programmation dynamique](programmation-dynamique)
-  * [Boyer Moore](boyer-moore)
-
-# Programmation dynamique
-
 ## Présentation
 
 La _programmation dynamique_ est le fait de décomposer un problème en sous-
@@ -33,12 +17,13 @@ aujourd'hui.
 
 Nous avons déjà évoqué la suite de Fibonacci qui est définie comme suit :
 
+```py
 F(0) = 0 ; F(1) = 1 ; F(n) = F(n-1) + F(n-2) pour n > 2
+```
 
 Il est possible de la programmer par récurrence assez simplement :
 
-    
-    
+```py
     def fibo(n):
         if n == 0:
             return 0
@@ -46,6 +31,7 @@ Il est possible de la programmer par récurrence assez simplement :
             return 1
         else:
             return fibo(n-1) + fibo(n-2)
+```
 
 **1)** Lancez ce programme pour n = 10, n = 20 et n = 30. Que constatez-vous ?
 
@@ -62,8 +48,7 @@ résultats dans une mémoire `mem` pour pouvoir les réutiliser.
 
 **5)** Complétez le programme suivant qui permet de faire cela :
 
-    
-    
+```py
     def fibodyn(n):
         mem = [0]*(n+1)
         return fibomem(n, mem)
@@ -76,6 +61,7 @@ résultats dans une mémoire `mem` pour pouvoir les réutiliser.
         else: # S'il faut faire le calcul
             mem[n] = fibomem(n-1, mem) + fibomem(n-2, mem)
             …
+```
 
 **6)** Lancez ce programme pour n = 10, n = 20, n = 30, n = 100 et n = 1000.
 Que constatez-vous ?
@@ -104,8 +90,7 @@ somme V, la solution optimale contiendra une pièce de plus que la solution
 optimale parmi les solutions pour rendre V - pi. La solution à ce problème en
 Python est donnée ci-dessous :
 
-    
-    
+```py
     def monnaie(p, x):
         if x == 0:
             return 0
@@ -119,6 +104,7 @@ Python est donnée ci-dessous :
             return mini
     
     pieces = (1,2,5,10,20,50,100,200,500)
+```
 
 **10)** Essayez cette fonction avec la somme 11 puis 55. Que se passe-t-il ?
 
@@ -136,11 +122,3 @@ dynamique ne permet pas de suffisement limiter les appels récursifs.
 monnaie pour les grands nombres.
 
 **15)** Testez alors avec 12525 et 59665412256854.
-
-[Précédent](diviser-pour-regner)[Suivant](boyer-moore)
-
-[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
-licence [CC BY-SA 4.0
-![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
-sa/4.0/deed.fr)
-

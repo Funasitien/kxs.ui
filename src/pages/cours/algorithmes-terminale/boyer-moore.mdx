@@ -4,22 +4,6 @@ icon: "mdi:paper-remove"
 layout: "@root/layouts/Page.astro"
 ---
 
-  * [cours](https://kxs.fr/cours/)
-  * [sujets](https://kxs.fr/sujets/)
-  * [fiches](https://kxs.fr/fiches/)
-
-[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
-le lycée et la prépa](https://kxs.fr/cours/)
-
-## Algorithmes
-
-  * [Introduction](.)
-  * [Diviser pour régner](diviser-pour-regner)
-  * [Programmation dynamique](programmation-dynamique)
-  * [Boyer Moore](boyer-moore)
-
-# Recherche textuelle
-
 ## Présentation
 
 Ce qu'on appelle la recherche textuelle est la recherche d'un motif dans un
@@ -49,41 +33,41 @@ exemple pour comprendre.
 
 Nous cherchons la correspondance en position i = 0 :
 
-    
-    
+```
     i:0123456789…
       NBCSNINSID
       NSI
     j:012
+```
 
 Le caractère en j = 0 correspond (N = N), on regarde celui en j = 1, il ne
 correspond pas (B ≠ S). On décale alors la position de recherche en i = 1 :
 
-    
-    
+```
     i:0123456789…
       NBCSNINSID
        NSI
     j: 012
+```
 
 Le caractère en j = 0 ne correspond pas (B ≠ N). On décale alors la position
 de recherche en i = 2 :
 
-    
-    
+```    
     i:0123456789…
       NBCSNINSID
         NSI
     j:  012
+```
 
 On continue ainsi jusqu'à la position i = 6 :
 
-    
-    
+```
     i:0123456789…
       NBCSNINSID
             NSI
     j:      012
+```
 
 Le caractère en j = 0 correspond (N = N), en j = 1 correspond (S = S) et celui
 en j = 2 correspond (I = I). On a trouvé le motif, on renvoie alors la
@@ -118,45 +102,45 @@ plus avantage du décalage variable. Regardons cela sur notre exemple.
 
 Nous cherchons la correspondance en position i = 0 :
 
-    
-    
+```
     i:0123456789…
       NBCSNINSID
       NSI
     j:012
+```
 
 On commence par regarder le motif en j = 2. Il n'y a pas de correspondance car
 C ≠ I. On décale alors le motif de 3 caractères vers la droite car la lettre C
 n'est pas dans le motif. Les positions intermédiaires ne peuvent donc pas
 réussir. On est alors en position i = 3 :
 
-    
-    
+```
     i:0123456789…
       NBCSNINSID
          NSI
     j:   012
+```
 
 En j = 2 il y a correspondance (I = I), on regarde en j = 1, il n'y a pas
 correspondance (N ≠ S). Comme le N est dans le motif, on décale d'une lettre
 vers la droite pour faire correspondre les N. On est alors en position i = 4 :
 
-    
-    
+```
     i:0123456789…
       NBCSNINSID
           NSI
     j:    012
+```
 
 En j = 2 N et I ne correspondent pas, on décale cette fois de 2 lettres pour
 faire correspondre les N. On se trouve en position i = 6 :
 
-    
-    
+```
     i:0123456789…
       NBCSNINSID
             NSI
     j:      012
+```
 
 En j = 2 il y a correspondance (I = I) mais aussi en j = 1 (S = S) puis en j =
 0 (N = N). Le motif est trouvé, on renvoie 6.
@@ -169,9 +153,9 @@ effectué une seule fois au début de la recherche. Il doit créer un
 dictionnaire contenant la position la plus à droite de chaque lettre composant
 le motif. Par exemple pour le motif `NSI` le doctionnaire serait :
 
-    
-    
+```py
     aDroite = {"N": 0, "S": 1, "I": 2}
+```
 
 **4)** Écrivez une fonction `calculADroite(motif)` qui crée le dictionnaire
 `aDroite` pour un motif.
@@ -207,8 +191,7 @@ plus grand. Nous utiliserons donc le texte du [Rouge et le
 noir](le_rouge_et_le_noir.txt) de Stendhal. Pour commencer, nous pouvons
 tester l'algorithme de python avec `find` :
 
-    
-    
+```py
     import time
     
     fichier =open('le rouge et le noir.txt', 'r')
@@ -221,6 +204,7 @@ tester l'algorithme de python avec `find` :
     print(time.time() - t)
     
     fichier.close()
+```
 
 **9)** Complétez le code ci-dessus pour calculer le temps de recherche de nos
 deux algorithmes. Lequel est le plus efficace ?
@@ -228,11 +212,3 @@ deux algorithmes. Lequel est le plus efficace ?
 **10)** En utilisant les implémentations verbeuses comparez le nombre de
 comparaisons de l'algorithme naïf et celui de Boyer-Moore-Horspool pour cette
 recherche.
-
-[Précédent](programmation-dynamique)[Suivant (page des cours)](..)
-
-[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
-licence [CC BY-SA 4.0
-![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
-sa/4.0/deed.fr)
-
