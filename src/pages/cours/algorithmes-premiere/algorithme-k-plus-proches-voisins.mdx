@@ -44,20 +44,20 @@ dessiner ces données sur un graphique. Nous utiliserons une couleur par
 espèce. Voici le code Python que nous pouvons utiliser :
 
 ```py
-    import pandas
-    import matplotlib.pyplot as plt
-    
-    iris=pandas.read_csv("iris.csv")
-    x=iris.loc[:,"petal_length"]
-    y=iris.loc[:,"petal_width"]
-    lab=iris.loc[:,"species"]
-    
-    plt.scatter(x[lab == 0], y[lab == 0], color='g', label='setosa')
-    plt.scatter(x[lab == 1], y[lab == 1], color='r', label='virginica')
-    plt.scatter(x[lab == 2], y[lab == 2], color='b', label='versicolor')
-    
-    plt.legend()
-    plt.show()
+import pandas
+import matplotlib.pyplot as plt
+
+iris=pandas.read_csv("iris.csv")
+x=iris.loc[:,"petal_length"]
+y=iris.loc[:,"petal_width"]
+lab=iris.loc[:,"species"]
+
+plt.scatter(x[lab == 0], y[lab == 0], color='g', label='setosa')
+plt.scatter(x[lab == 1], y[lab == 1], color='r', label='virginica')
+plt.scatter(x[lab == 2], y[lab == 2], color='b', label='versicolor')
+
+plt.legend()
+plt.show()
 ```
 
 Ce code utilise les bibliothèques Pandas pour extraire les données et
@@ -106,24 +106,24 @@ cela, voici un code pour commencer qui permet d'extraire les données du
 fichier csv et de les transformer en un tableau de tuples :
 
 ```py
-    import pandas
-    import matplotlib.pyplot as plt
-    
-    iris=pandas.read_csv("iris.csv")
-    x=iris.loc[:,"petal_length"]
-    y=iris.loc[:,"petal_width"]
-    lab=iris.loc[:,"species"]
-    
-    longueur = x.to_list()
-    largeur = y.to_list()
-    espece = lab.to_list()
-    
-    # tab contient tous des tuples de
-    # la forme (longueur, largeur, espece)
-    tab = []
-    
-    for i in range(len(longueur)):
-        tab.append((longueur[i], largeur[i], espece[i]))
+import pandas
+import matplotlib.pyplot as plt
+
+iris=pandas.read_csv("iris.csv")
+x=iris.loc[:,"petal_length"]
+y=iris.loc[:,"petal_width"]
+lab=iris.loc[:,"species"]
+
+longueur = x.to_list()
+largeur = y.to_list()
+espece = lab.to_list()
+
+# tab contient tous des tuples de
+# la forme (longueur, largeur, espece)
+tab = []
+
+for i in range(len(longueur)):
+    tab.append((longueur[i], largeur[i], espece[i]))
 ```
 
 **1)** Commencez par créer une fonction `distance(fleur1, fleur2)` qui renvoie
