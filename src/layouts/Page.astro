@@ -19,7 +19,7 @@ if (currentPath.endsWith("/")) {
 
 // Filter the files to only include those in the same directory
 const currentDir = currentPath.replace(/\/[^/]*$/, "/"); // Get the directory path
-const sidebarFilePath = `${currentDir}.sidebar`;
+const sidebarFilePath = `src/pages/${currentDir}.sidebar`;
 const posts = fs.readFileSync(sidebarFilePath, 'utf-8')
                 .split('\n')
                 .filter(line => line.trim() !== "")
