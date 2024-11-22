@@ -4,41 +4,7 @@ icon: "mdi:paper-remove"
 layout: "@root/layouts/Page.astro"
 ---
 
-  * [cours](https://kxs.fr/cours/)
-  * [sujets](https://kxs.fr/sujets/)
-  * [fiches](https://kxs.fr/fiches/)
-
-[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
-le lycée et la prépa](https://kxs.fr/cours/)
-
-## Python
-
-  * [Introduction](.)
-  * [Bases](bases)
-    * [Opérations mathématiques](operations)
-    * [Variables](variables)
-    * [Types de base](types-de-base)
-  * [Structures de contrôle](structures-de-controle)
-    * [If… else](if-else)
-    * [Interaction avec l'utilisateur](interaction)
-  * [Exercices bases et structures de contrôle](exercices-bases-structures)
-  * [Commentaires](commentaires)
-  * [Boucles](boucles)
-  * [Booléens](booleens)
-  * [Modules](modules)
-  * [Fonctions](fonctions)
-  * [Exercices boucles et fonctions](exercices-boucles-fonctions)
-  * [Tuples](tuples)
-  * [Exercices tuples](exercices-tuples)
-  * [Tableaux](tableaux)
-  * [Exercices tableaux](exercices-tableaux)
-  * [Dictionnaires](dictionnaires)
-  * [Chaînes de caractères](chaines-de-caracteres)
-  * [Docstring](docstring)
-  * [Doctest](doctest)
-  * [Assert](assert)
-
-# Opérations mathématiques
+## Opérations mathématiques
 
 On peut se servir de Python comme d'une calculatrice. Il suffit de saisir des
 commandes dans le shell.
@@ -46,8 +12,7 @@ commandes dans le shell.
 **1)** Effectuer dans le shell les opérations suivantes et noter leurs
 résultats :
 
-    
-    
+```py
     >>> 3 + 8
     >>> 5 - 9
     >>> 20 / 3
@@ -55,40 +20,16 @@ résultats :
     >>> (6 – 3) * 7
     >>> 20 % 3
     >>> 4**3
-    
-    
-    >>> 3+8
-    11
-    >>> 5-9
-    -4
-    >>> 20/3
-    6.666666666666667
-    >>> 20//3
-    6
-    >>> (6-3)*7
-    21
-    >>> 20%3
-    2
-    >>> 4**3
-    64
+```
 
 **2)** Donner alors les opérateurs pour chacune des opérations suivantes :
-
-  * puissance ;
-  * addition ;
-  * multiplication ;
-  * division entière ;
-  * soustraction ;
-  * modulo (reste de la division entière) ;
-  * division.
-
-  * puissance : **
-  * addition : +
-  * multiplication : *
-  * division entière : //
-  * soustraction : -
-  * modulo (reste de la division entière) : %
-  * division : /
+- puissance ;
+- addition ;
+- multiplication ;
+- division entière ;
+- soustraction ;
+- modulo (reste de la division entière) ;
+- division.
 
 La priorité des opérateurs est la même qu’en mathématiques : d’abord la
 multiplication et la division puis l’addition et la soustraction. On peut bien
@@ -97,23 +38,9 @@ sûr changer ces priorités avec des parenthèses.
 **3)** Essayez de deviner le résultat des instructions suivantes et vérifiez
 ensuite en saisissant l’instruction :
 
-    
-    
+```py
     >>> 3 + 2 * 5 - 15 / 5
-    
-    
+```
+```py
     >>> (3 + 2) * (5 - 15) / 5
-    
-    
-    >>> 3 + 2 * 5 - 15 / 5
-    10.0
-    >>> (3 + 2) * (5 - 15) / 5
-    -10.0
-
-[Précédent](.)[Suivant](variables)
-
-[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
-licence [CC BY-SA 4.0
-![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
-sa/4.0/deed.fr)
-
+```
