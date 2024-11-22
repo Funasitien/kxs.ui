@@ -13,6 +13,7 @@ const allMarkdownFiles = import.meta.glob("/src/pages/**/*.mdx", {
 
 // Get the current page's route
 let currentPath = Astro.url.pathname;
+console.log("MACHIN TRUC:", currentPath);
 if (currentPath.endsWith("/")) {
   currentPath = currentPath.slice(0, -1);
 }
