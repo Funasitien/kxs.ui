@@ -20,6 +20,7 @@ const currentDir = currentPath.replace(/\/[^/]*$/, "/");
 const sidebarFilePath = `src/pages${currentDir}.sidebar`;
 
 // Read the .sidebar file
+let sidebarPaths = [];
 const sidebarContent = fs.readFileSync(sidebarFilePath, "utf-8");
 sidebarPaths = sidebarContent
   .split("\n")
