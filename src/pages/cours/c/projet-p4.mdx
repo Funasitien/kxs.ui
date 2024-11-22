@@ -33,8 +33,7 @@ jetons du joueur 2. On utilisera les deux bibliothèques `stdio` et `stdbool`.
   * `int main();` : crée un tableau de 6 lignes et 7 colonnes remplies de zéros. Elle appelle la fonction `jouer` ;
   * `void display(int tab[6][7]);` : fonction qui affiche la grille du jeu dans la console de la façon la plus esthétique possible (voir la suggestion ci-dessous à améliorer) ;
 
-    
-    
+```
     +---+---+---+---+---+---+---+
     | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
     +---+---+---+---+---+---+---+
@@ -48,6 +47,7 @@ jetons du joueur 2. On utilisera les deux bibliothèques `stdio` et `stdbool`.
     +---+---+---+---+---+---+---+
     | 0 | 0 | 1 | 2 | 0 | 0 | 0 |
     +---+---+---+---+---+---+---+
+```
 
   * `bool colonne_libre(int tab[6][7], int colonne);` : fonction qui renvoie un booléen indiquant s'il est possible de mettre un jeton dans la colonne (indique si la colonne n'est pas pleine) ;
   * `void place_jeton(int tab[6][7], int colonne, int joueur);` : fonction qui place un jeton du joueur (1 ou 2) dans la colonne ;
