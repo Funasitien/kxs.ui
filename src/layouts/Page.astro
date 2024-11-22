@@ -24,12 +24,10 @@ const sidebarContent = fs.readFileSync(sidebarFilePath, "utf-8");
 sidebarPaths = sidebarContent
     .split("\n")
     .map(line => line.trim())
-    .filter(line => line !== "")
-    .map(([, module]) => ({
-    title: (module as any).frontmatter.title,
-    icon: (module as any).frontmatter.icon,
-    url: (module as any).url,
-}));
+    .filter(line => line !== "");
+
+console.log(sidebarPaths);
+
 const posts = Object.entries(allMarkdownFiles)
   .filter(([path]) => {
       const targetDir = `/src/pages${currentDir}`;
