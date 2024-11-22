@@ -13,11 +13,11 @@ const allMarkdownFiles = import.meta.glob("/src/pages/**/*.mdx", {
 
 // Get the current page's route
 let currentPath = Astro.url.pathname;
-console.log("MACHIN TRUC:", currentPath);
 if (currentPath.endsWith("/")) {
   currentPath = currentPath.slice(0, -1);
 }
 const currentDir = currentPath.replace(/\/[^/]*$/, "/");
+console.log("MACHIN TRUC: ", currentPath, "ET LE DIR", currentDir);
 const sidebarFilePath = `src/pages${currentDir}.sidebar`;
 
 // Read the .sidebar file
