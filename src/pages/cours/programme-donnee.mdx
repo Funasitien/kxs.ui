@@ -4,15 +4,6 @@ icon: "mdi:paper-remove"
 layout: "@root/layouts/Page.astro"
 ---
 
-  * [cours](https://kxs.fr/cours/)
-  * [sujets](https://kxs.fr/sujets/)
-  * [fiches](https://kxs.fr/fiches/)
-
-[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
-le lycée et la prépa](https://kxs.fr/cours/)
-
-# Programme en tant que donnée
-
 ##  Parties du programme abordées
 
 Contenus | Capacités attendues | Commentaires  
@@ -68,8 +59,7 @@ un langage compilé, nous choisirons le plus emblématique : le C.
 Un compilateur C est déja installé sur Linux : _gcc_. Il vous faut donc créer
 votre premier fichier C avec `nano` que vous nommerez `hello.c` :
 
-    
-    
+```c
     #include <stdio.h>
     
     int main() {
@@ -77,18 +67,20 @@ votre premier fichier C avec `nano` que vous nommerez `hello.c` :
        return 0;
     }
 
+```
+
 Ensuite, exécutez la commande suivante pour compiler votre code :
 
-    
-    
+```bash
     gcc -o hello hello.c
+```
 
 Un fichier `hello` est alors créé. C'est un fichier exécutable, vous pouvez
 donc l'exécuter directement dans la console avec la commande :
 
-    
-    
+```bash  
     ./hello
+```
 
 Il est nécessaire de mettre `./` devant le nom du ficher pour que le système
 ne cherche pas un programme qui s'appelle `hello` mais regarde dans le
@@ -114,9 +106,7 @@ nombres entre 0 et 19.
 **3)** Juste pout voir ce que certains s'amusent à faire en C, essayez ce
 programme avec la commande de compilation `gcc -o hello hello.c -lm` :
 
-    
-    
-    /**/
+```bash
                  k;double sin()
              ,cos();main(){float A=
            0,B=0,i,j,z[1760];char b[
@@ -138,6 +128,7 @@ programme avec la commande de compilation `gcc -o hello hello.c -lm` :
            ~::==!!!**********!!!==::-
              .,~~;;;========;;;:~-.
                  ..,--------,*/
+```
 
 ## Calculabilité et décidabilité
 
@@ -162,7 +153,9 @@ capable de faire.
 Il est donc équivalent de dire qu'il existe un programme pour résoudre un
 problème ou qu'il existe une machine de Turing pour résoudre ce problème ou
 même qu'il existe un algorithme permettant de résoudre ce problème.
-
+    
+    
+    /**/
 ### Calculabilité et décidabilité
 
 On dira alors qu'un problème est calculable ou décidable **s'il existe une
@@ -230,15 +223,8 @@ ioi.org/algo/course.php?idChapter=561&idCourse=2368)
 
     le cours de France-ioi sur les langages interprétés et compilés.
   
-[Langage compilé vs interprété](https://leblogducodeur.fr/langage-compile-vs-
+[Langage compilé vs interprété](https://leblogducodeur.broken/langage-compile-vs-
 interprete/)
 
     article de blog expliquant simplement les différences entre les deux types de langage.
-  
-[Précédent (page des cours)](..)[Suivant (page des cours)](..)
-
-[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
-licence [CC BY-SA 4.0
-![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
-sa/4.0/deed.fr)
 
