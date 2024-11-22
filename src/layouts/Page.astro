@@ -17,11 +17,10 @@ if (currentPath.endsWith("/")) {
   currentPath = currentPath.slice(0, -1);
 }
 const currentDir = currentPath.replace(/\/[^/]*$/, "/");
+let sidebarFilePath = `src/pages${currentDir}.sidebar`;
 
 if (frontmatter.index == "1") {
-  const sidebarFilePath = `src/pages${currentPath}/.sidebar`;
-} else {
-  const sidebarFilePath = `src/pages${currentDir}.sidebar`;
+  sidebarFilePath = `src/pages${currentPath}/.sidebar`;
 }
 
 // Read the .sidebar file
