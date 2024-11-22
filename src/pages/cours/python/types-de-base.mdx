@@ -4,124 +4,71 @@ icon: "mdi:paper-remove"
 layout: "@root/layouts/Page.astro"
 ---
 
-  * [cours](https://kxs.fr/cours/)
-  * [sujets](https://kxs.fr/sujets/)
-  * [fiches](https://kxs.fr/fiches/)
+## Types de base
 
-[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
-le lycée et la prépa](https://kxs.fr/cours/)
-
-## Python
-
-  * [Introduction](.)
-  * [Bases](bases)
-    * [Opérations mathématiques](operations)
-    * [Variables](variables)
-    * [Types de base](types-de-base)
-  * [Structures de contrôle](structures-de-controle)
-    * [If… else](if-else)
-    * [Interaction avec l'utilisateur](interaction)
-  * [Exercices bases et structures de contrôle](exercices-bases-structures)
-  * [Commentaires](commentaires)
-  * [Boucles](boucles)
-  * [Booléens](booleens)
-  * [Modules](modules)
-  * [Fonctions](fonctions)
-  * [Exercices boucles et fonctions](exercices-boucles-fonctions)
-  * [Tuples](tuples)
-  * [Exercices tuples](exercices-tuples)
-  * [Tableaux](tableaux)
-  * [Exercices tableaux](exercices-tableaux)
-  * [Dictionnaires](dictionnaires)
-  * [Chaînes de caractères](chaines-de-caracteres)
-  * [Docstring](docstring)
-  * [Doctest](doctest)
-  * [Assert](assert)
-
-# Types de base
-
-## Définition
+### Définition
 
 Il est possible d'affecter presque n'importe quoi à une variable en Python.
 Nous verrons dans un premier temps les trois types de variables les plus
 simples, on les appelle les _types de base_.
 
 Il existe 3 types de base en Python :
-
-  * les entiers (integer) : `5`, `9654`, `0`, `-4984` ;
-  * les nombres à virgule flottante (float, avec un point à la place de la virgule, c'est la norme anglo-saxonne) : `35.45`, `-4.2`, `0.000475` ;
-  * les chaînes de caractère (string, délimitée par des simples quotes `'` ou des doubles quotes `"`) : `'toto'`, `"Salut ?"`.
+- les entiers (integer) : `5`, `9654`, `0`, `-4984` ;
+- les nombres à virgule flottante (float, avec un point à la place de la virgule, c'est la norme anglo-saxonne) : `35.45`, `-4.2`, `0.000475` ;
+- les chaînes de caractère (string, délimitée par des simples quotes `'` ou des doubles quotes `"`) : `'toto'`, `"Salut ?"`.
 
 Attention ! un entier ou un nombre à virgule flottante entre quotes est une
 chaine de caractère !
 
-## Trouver le type d'une valeur
+### Trouver le type d'une valeur
 
 Il existe une fonction (nous verrons plus tard ce qu'est vraiment une
 fonction) qui donne le type d’une valeur en Python, elle s’appelle `type()`.
 
 **1)** Noter le résultat des instructions suivantes :
 
-    
-    
-    >>> type(856)
-    >>> type("Message")
-    >>> type(621.48)
-    
-    
-    >>> type(856)
-    <class 'int'>
-    >>> type("Message")
-    <class 'str'>
-    >>> type(621.48)
-    <class 'float'>
+```py
+>>> type(856)
+>>> type("Message")
+>>> type(621.48)
+```
 
 **2)** À l’aide de la question précédente, donner la forme sous laquelle
 Python appelle les trois types de base (après le « class »).
 
-  * entier : `int`
-  * chaine de caractères : `str` (pour string)
-  * nombre à virgule : `float`
-
 **3)** Donner le type des valeurs suivantes (il y a un piège) :
+- `15.0` ;
+- `'596'` ;
+- `monique`.
 
-  * `15.0` ;
-  * `'596'` ;
-  * `monique`.
-
-  * `15.0` : float
-  * `'596'` : string
-  * `monique` : aucun, c'est une variable non définie.
-
-## Conversions entre types
+### Conversions entre types
 
 Il est parfois nécessaire de convertir une valeur d'un type à un autre. Nous
 allons voir toutes les conversions possibles.
 
-### Conversion en `float`
+#### Conversion en `float`
 
 La fonction qui permet de faire une conversion vers le type float est
 `float()`. Elle peut convertir un entier mais aussi une chaîne de caractères
 quand cela est possible :
 
-    
-    
-    >>> float(4)
-    4.0
-    >>> float("45.8")
-    45.8
-    >>> float("45cd")
-    	ValueError: could not convert string to float: '45cd'
+```py
+>>> float(4)
+4.0
+>>> float("45.8")
+45.8
+>>> float("45cd")
+ ValueError: could not convert string to float: '45cd'
+```
 
-### Conversion en `int`
+#### Conversion en `int`
 
 Ici on utilisera la fonction`int()`. Si on lui donne un float, elle arrondi à
 la valeure absolue inférieure. Avec une chaine de caractère elle fait la
 conversion si la chaine est un entier valide. Voyons les exemples suivants
 pour comprendre :
 
-    
-    
+```py
     >>> int(4.98)
     4
     >>> int(-4.98)
@@ -132,46 +79,24 @@ pour comprendre :
     	ValueError: invalid literal for int() with base 10: '912.4'
     >>> int("lulu")
     	ValueError: invalid literal for int() with base 10: 'lulu'
+```
 
-### Convertion en `string`
+#### Convertion en `string`
 
 La conversion en chaîne de caractère se fait avec la fonction `str()`. Elle
 transforme n'importe quel entier ou nombre à virgule flotante en chaîne de
 caractère :
 
-    
-    
+```py
     >>> str(65)
     '65'
     >>> str(-42.67)
     '-42.67'
+```
 
 **4)** Que retournent les instructions suivantes ?
-
-  * `int(9.9999999)` ;
-  * `float(-200)` ;
-  * `str("michel")`.
-
-    
-    
-    >>> int(9.9999999)
-    9
-    >>> float(-200)
-    -200.0
-    >>> str("michel")
-    'michel'
+- `int(9.9999999)` ;
+- `float(-200)` ;
+- `str("michel")`.
 
 **5)** Quelle serait la solution pour convertir `"912.4"` en un entier ?
-
-    
-    
-    >>> int(float("912.4"))
-    912
-
-[Précédent](variables)[Suivant](structures-de-controle)
-
-[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
-licence [CC BY-SA 4.0
-![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
-sa/4.0/deed.fr)
-
