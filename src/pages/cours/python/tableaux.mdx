@@ -142,17 +142,17 @@ t_max ci-dessous :
 Les compréhensions sont des outils très puissants pour générer des tableaux en
 python. Pour les comprendre il est plus simple de voir quelques exemples :
 ```py
-    # Le tableau de départ
-    tab = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    
-    # Crée un tableau des carrés des éléments du tableau initial
-    print([x ** 2 for x in tab])
-    
-    # Crée un tableau des nombres pairs
-    print([x for x in tab if x % 2 == 0])
-    
-    # Crée un tableau des carrés des nombres pairs (combinaison des deux)
-    print([x ** 2 for x in tab if x % 2 == 0])
+# Le tableau de départ
+tab = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+# Crée un tableau des carrés des éléments du tableau initial
+print([x ** 2 for x in tab])
+
+# Crée un tableau des nombres pairs
+print([x for x in tab if x % 2 == 0])
+
+# Crée un tableau des carrés des nombres pairs (combinaison des deux)
+print([x ** 2 for x in tab if x % 2 == 0])
 ```
 
 **14)** En utilisant les compréhensions, écrivez un programme qui ne garde que
