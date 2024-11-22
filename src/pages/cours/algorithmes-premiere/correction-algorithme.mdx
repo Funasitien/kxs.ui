@@ -4,7 +4,7 @@ icon: "mdi:paper-remove"
 layout: "/src/layouts/Page.astro"
 ---
 
-![](img/dominos.webp) cmdrkitten | [source](https://cmdrkitten.tumblr.com/post/126417067170)
+![](/public/dominos.webp) cmdrkitten | [source](https://cmdrkitten.tumblr.com/post/126417067170)
 
 ## Raisonnement par récurrence
 
@@ -34,17 +34,17 @@ nombreux exemples et ne pas être correct. Voici par exmeple des fonctions qui
 de l'extérieur peuvent parraitre correctes mais ne le sont pas :
 
 ```py
-    def carre(n):
-    	""" Fonction qui renvoie le carré de n """
-    	if n == 5423695421546975:
-    		return 1
-    	else:
-    		return n**2
-    
-    
-    def premier(n):
-    	""" Fonction qui renvoie des nombres premiers """
-    	return n**2 + n + 41
+def carre(n):
+    """ Fonction qui renvoie le carré de n """
+    if n == 5423695421546975:
+        return 1
+    else:
+        return n**2
+
+
+def premier(n):
+    """ Fonction qui renvoie des nombres premiers """
+    return n**2 + n + 41
 ```
 
 On essaie alors de prouver la correction d’un algorithme par un raisonnement
@@ -74,24 +74,24 @@ Nous allons montrer la correction du tri par insertion avec un invariant de
 boucle. Voici l’algorithme du tri par insertion :
 
 ```
-    VARIABLE
-    t : tableau d'entiers
-    i : nombre entier
-    j : nombre entier
-    k : nombre entier
-    DEBUT
-    i←2
-    tant que i<=longueur(t):   // boucle 1
-      j←i-1
-      k←t[i]
-      tant que j>0 et que t[j]>k:   // boucle 2
-        t[j+1]←t[j]
-        j←j-1
-      fin tant que
-      t[j+1]←k
-      i←i+1
-    fin tant que
-    FIN
+VARIABLE
+t : tableau d'entiers
+i : nombre entier
+j : nombre entier
+k : nombre entier
+DEBUT
+i←2
+tant que i<=longueur(t):   // boucle 1
+  j←i-1
+  k←t[i]
+  tant que j>0 et que t[j]>k:   // boucle 2
+    t[j+1]←t[j]
+    j←j-1
+  fin tant que
+  t[j+1]←k
+  i←i+1
+fin tant que
+FIN
 ```
 
 **2)** Trouvez un invariant de boucle qui permettrait de montrer la correction
@@ -133,28 +133,28 @@ En sortie de boucle 1, i=n+1 donc t[1, … , n] est trié. CQFD !
 Voici l’algorithme du tri par sélection :
 
 ```
-    VARIABLE
-    t : tableau d'entiers
-    i : nombre entier
-    min : nombre entier
-    j : nombre entier
-    DEBUT
-    i←1
-    tant que i<longueur(t):   //boucle 1
-      j←i+1
-      min←i
-      tant que j<=longueur(t):   //boucle 2
-        si t[j]<t[min]:
-          min←j
-        fin si
-        j←j+1
-      fin tant que
-      si min≠i :
-        échanger t[i] et t[min]
-      fin si
-      i←i+1
-    fin tant que
-    FIN
+VARIABLE
+t : tableau d'entiers
+i : nombre entier
+min : nombre entier
+j : nombre entier
+DEBUT
+i←1
+tant que i<longueur(t):   //boucle 1
+  j←i+1
+  min←i
+  tant que j<=longueur(t):   //boucle 2
+    si t[j]<t[min]:
+      min←j
+    fin si
+    j←j+1
+  fin tant que
+  si min≠i :
+    échanger t[i] et t[min]
+  fin si
+  i←i+1
+fin tant que
+FIN
 ```
 
 **4)** Trouvez un invariant de boucle pour montrer la correction de cet
