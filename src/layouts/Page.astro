@@ -83,16 +83,29 @@ const posts = sidebarPaths
             </li>
           ))
         }
-        <li class="absolute bottom-20 pr-10">
-          <a href="../">Retour (..)</a>
+        <li
+          class="absolute bottom-20 pr-2 hidden lg:flex"
+          style="width: -webkit-fill-available;">
+          <a class="btn btn-neutral justify-start" href="../">
+            <Icon name="mdi:keyboard-return" />
+            Retour
+          </a>
         </li>
         <li
-          class="absolute bottom-5 pr-2"
+          class="absolute bottom-5 pr-2 hidden lg:flex"
           style="width: -webkit-fill-available;">
           <select data-choose-theme class="select select-bordered">
             <option value="light">💡 Light</option>
             <option value="dark">🌙 Dark</option>
           </select>
+        </li>
+        <li
+          class="absolute bottom-5 pr-2 lg:hidden"
+          style="width: -webkit-fill-available;">
+          <a class="btn btn-neutral justify-start" href="../">
+            <Icon name="mdi:keyboard-return" />
+            Retour
+          </a>
         </li>
       </ul>
     </div>

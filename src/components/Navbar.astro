@@ -1,7 +1,13 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
 <div class="navbar bg-base-300 z-20 fixed top-0">
   <div class="navbar-start">
-    <label for="my-drawer-2" class="btn btn-primary drawer-button lg:hidden">
-      🗺
+    <label
+      for="my-drawer-2"
+      class="btn btn-primary drawer-button px-2 lg:hidden">
+      <Icon name="mdi:book-open-blank-variant" class="text-3xl"/>
     </label>
   </div>
   <div class="navbar-center">
@@ -67,8 +73,10 @@
     </a>
   </div>
   <div class="navbar-end">
-    <label for="my-drawer-2" class="btn btn-primary drawer-button lg:hidden">
-      🎨
+    <label
+      for="my-drawer-2"
+      class="btn btn-primary drawer-button lg:hidden px-2">
+      <Icon name="mdi:palette" class="text-3xl" />
     </label>
     <div class="mr-1 hidden lg:block">
       <a class="link link-hover" href="/cours">cours</a>

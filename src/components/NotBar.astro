@@ -1,6 +1,6 @@
 <div class="navbar bg-base-300 z-20 fixed top-0">
   <div class="navbar-start">
-    <select data-choose-theme class="select select-bordered">
+    <select data-choose-theme class="select select-bordered hidden lg:block">
       <option value="light">💡 Light</option>
       <option value="dark">🌙 Dark</option>
       <option value="cupcake">🧁 Cupcake</option>
@@ -36,7 +36,9 @@
     </select>
   </div>
   <div class="navbar-center">
-    <a class="btn btn-ghost text-xl font-black jetbrains" href="/">
+    <a
+      class="btn bg-base-300 border-0 shadow-none text-xl font-black jetbrains transition-all hover:translate-y-2 hover:scale-110"
+      href="/">
       <svg
         class="h-7 w-7"
         version="1.1"
