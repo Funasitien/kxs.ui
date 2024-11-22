@@ -4,26 +4,6 @@ icon: "mdi:paper-remove"
 layout: "@root/layouts/Page.astro"
 ---
 
-  * [cours](https://kxs.fr/cours/)
-  * [sujets](https://kxs.fr/sujets/)
-  * [fiches](https://kxs.fr/fiches/)
-
-[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
-le lycée et la prépa](https://kxs.fr/cours/)
-
-## Bases de données
-
-  * [Introduction](.)
-  * [Prise en main](prise-en-main)
-  * [Structure](structure)
-  * [Contenu](contenu)
-  * [Clés](cles)
-  * [Jointure](jointure)
-  * [Compléments](complements)
-  * [Agrégateurs](agregateurs)
-  * [Exercices](exercices)
-  * [IMDb](imdb)
-
 # IMDb
 
 ![Logo de l'IMDb](img/imdb.svg)
@@ -64,23 +44,23 @@ la base en un temps raisonnable.
 
 Dans un terminal, saisissez la comande suivante :
 
-    
-    
-    mysql
+```bash
+mysql
+```
 
 Vous devez alors avoir l'invite de commande mysql comme ceci :
 
-    
-    
+```bash
     mysql>
+```
 
 ## Découverte et nouvelles instructions
 
 Une fois dans MySQL, placez-vous dans la base « imdb » :
 
-    
-    
+```sql
     use imdb;
+```
 
 La table principale qui contient entre autre le nom des œuvres, leur date de
 sortie et leur durrée est `work_basics`. Nous allons nous intéresser à cette
@@ -95,9 +75,9 @@ lignes d'une requête sans que toutes les lignes s'affichent.
 **1)** Exécutez la requête suivante pour connaitre le nombre d'œuvres dans la
 base :
 
-    
-    
-    SELECT count(*) FROM work_basics;
+```sql
+SELECT count(*) FROM work_basics;
+```
 
 **2)** Avec la commande `DESCRIBE` donnez les champs composant de la table
 `work_basics`.
@@ -150,9 +130,9 @@ dont il est issu.
 Il est possible d'utiliser des alias pour les tables lorsqu'elles apparaissent
 dans plusieurs jointures :
 
-    
-    
-    SELECT a.champA, b.champA FROM table1 a JOIN table2 … JOIN table1 b …;
+```sql
+SELECT a.champA, b.champA FROM table1 a JOIN table2 … JOIN table1 b …;
+```
 
 Ici `a` et `b` sont des alias.
 
@@ -169,11 +149,3 @@ la table `name_basics`
 Nolan par ordre chronologique avec leur année de sortie.
 
 **15)** Inventez une requête pour impressionner le prof.
-
-[Précédent](projet)[Suivant (page des cours)](..)
-
-[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
-licence [CC BY-SA 4.0
-![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
-sa/4.0/deed.fr)
-

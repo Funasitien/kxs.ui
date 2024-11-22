@@ -4,27 +4,6 @@ icon: "mdi:paper-remove"
 layout: "@root/layouts/Page.astro"
 ---
 
-  * [cours](https://kxs.fr/cours/)
-  * [sujets](https://kxs.fr/sujets/)
-  * [fiches](https://kxs.fr/fiches/)
-
-[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
-le lycée et la prépa](https://kxs.fr/cours/)
-
-## Bases de données
-
-  * [Introduction](.)
-  * [Prise en main](prise-en-main)
-  * [Structure](structure)
-  * [Contenu](contenu)
-  * [Clés](cles)
-  * [Jointure](jointure)
-  * [Compléments](complements)
-  * [Agrégateurs](agregateurs)
-  * [Exercices](exercices)
-  * [IMDb](imdb)
-
-# Contenu d'une table
 
 Nous allons maintenant nous intéresser au contenu de la table citation. Nous
 reviendrons sur sa structure par la suite.
@@ -34,14 +13,13 @@ reviendrons sur sa structure par la suite.
 Pour afficher simplement le contenu d'une table, il faut saisir la commande
 suivante :
 
-    
-    
-    SELECT * FROM citations;
+```sql
+SELECT * FROM citations;
+```
 
 On obtient le résultat suivant :
 
-    
-    
+```sql
     +-------------+--------------------------------------------------------------------------------------------------+---------+
     | id_citation | texte                                                                                            | id_film |
     +-------------+--------------------------------------------------------------------------------------------------+---------+
@@ -61,7 +39,9 @@ On obtient le résultat suivant :
     |          14 | À mon signal, déchaine les enfers.                                                               |      10 |
     |          15 | Cours Forrest, cours !                                                                           |      11 |
     +-------------+--------------------------------------------------------------------------------------------------+---------+
+
     15 rows in set (0.00 sec)
+```
 
 Le contenu d'une table est donc un tableau dont les **colonnes sont ses
 champs** et les **ligne ses enregistrements**.
@@ -93,20 +73,21 @@ allons donc ajouter une _clause_ `WHERE`. La clause `WHERE` permet de
 Par exemple, pour obtenir uniquement la première citation on utilisera la
 requête :
 
-    
-    
-    SELECT * FROM citations WHERE id_citation = 1;
+```sql
+SELECT * FROM citations WHERE id_citation = 1;
+```
 
 Résultat :
 
-    
-    
+```sql
     +-------------+-------------------------------+---------+
     | id_citation | texte                         | id_film |
     +-------------+-------------------------------+---------+
     |           1 | Vers l'infini et au-delà !    |       1 |
     +-------------+-------------------------------+---------+
+
     1 row in set (0.00 sec)
+```
 
 Vous avez dû remarquer que MySQL vous donne le nombre de lignes et le temps
 mis pour effectuer la requête. Celà peut être utile lorsqu'on effectue des
@@ -127,14 +108,13 @@ enchainement de caractères. Voici des exemples avec leur signification :
 Par exemple, pour avoir toutes les citations finissant par un point
 d'exclamation :
 
-    
-    
-    SELECT * FROM citations WHERE texte LIKE '%!';
+```sql
+SELECT * FROM citations WHERE texte LIKE '%!';
+```
 
 Le résultat :
 
-    
-    
+```sql
     +-------------+--------------------------------------------------------------------------------+---------+
     | id_citation | texte                                                                          | id_film |
     +-------------+--------------------------------------------------------------------------------+---------+
@@ -146,7 +126,9 @@ Le résultat :
     |          13 | Raté, vous nous avez raté ! Eh les romains, vous êtes des romaines !           |       9 |
     |          15 | Cours Forrest, cours !                                                         |      11 |
     +-------------+--------------------------------------------------------------------------------+---------+
+    
     7 rows in set (0.00 sec)
+```
 
 **6)** Proposez et testez une requête pour afficher les lignes de la table
 _citations_ contenant « je ».
@@ -168,13 +150,13 @@ les lignes d'une table.
 
 Voici la syntaxe générale de cette commande :
 
-    
-    
-    UPDATE table
-    SET champ1 = 'nouvelle_valeur',
-    	champ2 = 'autre_nouvelle_valeur',
-    	…
-    WHERE condition
+```sql
+UPDATE table
+SET champ1 = 'nouvelle_valeur',
+    champ2 = 'autre_nouvelle_valeur',
+    …
+WHERE condition
+```
 
 Elle se décompose comme ceci :
 
@@ -187,9 +169,9 @@ une citation ! Dans la première citation, on a écrit « au-dela » au lieu de 
 au-delà ». Il faut absolument rectifier cela ! Voici donc la commande pour
 effectuer cette action :
 
-    
-    
-    UPDATE citations SET texte = "Vers l'infini et au-delà !" WHERE id_citation = 1;
+```sql
+UPDATE citations SET texte = "Vers l'infini et au-delà !" WHERE id_citation = 1;
+```
 
 Nous utilisons ici la clé _id_citation_ pour identifier de manière certaine la
 ligne à modifier.
@@ -203,9 +185,9 @@ conserver les simples quotes `'` comme délimiteur, il est possible
 _d'échapper_ les simples quotes à l'intérieur du texte avec un antislash `\'`.
 La commande serait alors :
 
-    
-    
-    UPDATE citations SET texte = 'Vers l\'infini et au-delà !' WHERE id_citation = 1;
+```sql
+UPDATE citations SET texte = 'Vers l\'infini et au-delà !' WHERE id_citation = 1;
+```
 
 **10)** Une autre erreur s'est glissée dans la citation 5. « fût » est écrit
 avec un accent alors qu'il ne devrait pas y en avoir. Proposez et testez une
@@ -221,10 +203,10 @@ lignes dans une table.
 
 Voici la syntaxe générale de cette commande :
 
-    
-    
-    INSERT INTO table
-    VALUES ('valeur champ 1', 'valeur champ 2', …);
+```sql
+INSERT INTO table
+VALUES ('valeur champ 1', 'valeur champ 2', …);
+```
 
 Elle se décompose comme ceci :
 
@@ -244,10 +226,10 @@ enregistrement. Cela peut être utile lorsque des valeurs par défaut sont
 définies pour certaines colonnes. On spécifie alors la liste des champs puis
 la liste des valeurs comme ci-dessous :
 
-    
-    
-    INSERT INTO table (champ1, champ2, …)
-    VALUES ('valeur champ 1', 'valeur champ 2', …);
+```sql
+INSERT INTO table (champ1, champ2, …)
+VALUES ('valeur champ 1', 'valeur champ 2', …);
+```
 
 Nous n'aurons pas beaucoup à utiliser cette méthode.
 
@@ -259,10 +241,10 @@ commande est également à manipuler avec attention car elle peut supprimer
 
 Voici la syntaxe générale de cette commande :
 
-    
-    
-    DELETE FROM table
-    WHERE condition;
+```sql
+DELETE FROM table
+WHERE condition;
+```
 
 Elle se décompose comme ceci :
 
@@ -271,9 +253,9 @@ Elle se décompose comme ceci :
 
 Nous allons maintenant ajouter une ligne pour la supprimer ensuite :
 
-    
-    
-    INSERT INTO citations VALUES (20, 'Citation à supprimer', 20);
+```sql
+INSERT INTO citations VALUES (20, 'Citation à supprimer', 20);
+```
 
 **13)** Supprimez la ligne que nous venons d'ajouter et donnez la requête
 utilisée.
@@ -286,14 +268,6 @@ données.
 Il est possible, si cela vous amuse, de sélectionner une citation aléatoire
 avec la requête suivante :
 
-    
-    
-    SELECT * FROM citations ORDER BY RAND() LIMIT 1;
-
-[Précédent](structure)[Suivant](cles)
-
-[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
-licence [CC BY-SA 4.0
-![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
-sa/4.0/deed.fr)
-
+```sql
+SELECT * FROM citations ORDER BY RAND() LIMIT 1;
+```
