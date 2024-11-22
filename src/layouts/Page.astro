@@ -59,7 +59,7 @@ const posts = Object.entries(allMarkdownFiles)
           posts.map((post) => (
             <li>
               <a href={post.url}>
-                <Icon name={post.icon} />
+                fadas - <Icon name={post.icon} />
                 {post.title}
               </a>
             </li>
@@ -69,7 +69,7 @@ const posts = Object.entries(allMarkdownFiles)
           <a href="../">Retour (..)</a>
         </li>
         <li
-          class="absolute bottom-10 pr-2"
+          class="absolute bottom-5 pr-2"
           style="width: -webkit-fill-available;">
           <select data-choose-theme class="select select-bordered">
             <option value="light">💡 Light</option>
