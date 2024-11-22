@@ -4,7 +4,6 @@ icon: "mdi:paper-remove"
 layout: "/src/layouts/Page.astro"
 ---
 
-
 ## Introduction
 
 Nous avons vu comment représenter des booléens, des entiers et des nombres à
@@ -176,18 +175,18 @@ d’unicode sont les mêmes que pour l’ISO-8859-1 (`hex()` convertit en
 hexadécimal et `chr()` affiche un caractère à partir de son unicode **en
 décimal**) :
 
-    
-    
+```python
     for c in range(256):
         print(c,hex(c),chr(c))
+```
 
 **6)** Tester maintenant le script ci-dessous pour voir les 5000 premiers
 caractères unicode (cela prend du temps) :
 
-    
-    
+```python
     for c in range(5000):
         print(c,hex(c),chr(c))
+```
 
 ### UTF-8
 
@@ -298,11 +297,3 @@ On utilise ici la fonction `hex()`
     # Décimal vers exadécimal
     >>> hex(1234)
     '0x4d2'
-
-[Précédent](booleens-exercices)[Suivant](chaines-caracteres-exercices)
-
-[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
-licence [CC BY-SA 4.0
-![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
-sa/4.0/deed.fr)
-

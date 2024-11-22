@@ -1,0 +1,54 @@
+---
+title: "Représentation des données - Exercices sur les booléens"
+icon: "mdi:paper-remove"
+layout: "/src/layouts/Page.astro"
+---
+
+## Exercice 1
+
+Dans chacun des cas ci-dessous, donner la valeur du booléen rep :
+
+**1.**
+
+```python
+    >>> x = 3
+    >>> rep = x**2 == -9
+```
+
+**2.**
+
+```python
+    >>> x,y,z = 3,4,5
+    >>> rep = x**2 + y**2 == z**2
+```
+
+**3.**
+
+```python
+    >>> a,b = 3,-7
+    >>> rep = a**3 > 50 and b**2 < 50
+```
+
+**4.**
+
+```python
+    >>> a,b = 3,-7
+    >>> rep = (a**3 > 50 and b**2 < 50) or (a**2 < 100 and b**2 > 10)
+```
+
+### Exercice 2
+
+Simplifiez les expressions suivantes :
+
+  1. a + a.b
+  2. a.(a + b)
+  3. a + (a.b)
+  4. (a + b).(a + b)
+
+### Exercice 3
+
+Montrez que a.b + a.c = a.b + a.c + b.c
+
+### Exercice 4
+
+Réaliser la fonction **xor** avec des circuits **and** , **or** et **not**.
