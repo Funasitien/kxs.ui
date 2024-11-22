@@ -17,8 +17,13 @@ if (currentPath.endsWith("/")) {
   currentPath = currentPath.slice(0, -1);
 }
 const currentDir = currentPath.replace(/\/[^/]*$/, "/");
-console.log("MACHIN TRUC: ", currentPath, "ET LE DIR", currentDir, "URL SIMPLE:", Astro.url);
-const sidebarFilePath = `src/pages${currentDir}.sidebar`;
+const sidebarFilePath;
+
+if (frontmatter.index == "1") {
+  sidebarFilePath = `src/pages${currentPath}/.sidebar`;
+} else {
+  sidebarFilePath = `src/pages${currentDir}.sidebar`;
+}
 
 // Read the .sidebar file
 let sidebarPaths = [];
