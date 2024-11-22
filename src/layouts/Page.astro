@@ -30,7 +30,6 @@ sidebarPaths = sidebarContent
 // Generate posts from sidebar paths
 const posts = sidebarPaths
   .map((filePath) => {
-    console.log(filePath);
     const module = allMarkdownFiles[filePath];
 
     if (!module) {
@@ -45,8 +44,6 @@ const posts = sidebarPaths
     };
   })
   .filter(Boolean); // Remove null entries
-
-console.log(sidebarPaths, posts);
 ---
 
 <Head title={frontmatter.title} description={frontmatter.description}>
