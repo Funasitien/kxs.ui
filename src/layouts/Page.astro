@@ -35,7 +35,12 @@ const posts = sidebarFiles.map((filename) => {
     icon: module.frontmatter?.icon || "default-icon",
     url: module.url || "#",
   };
-}).filter(Boolean);
+}).filter(Boolean)
+  .map(([, module]) => ({
+    title: (module as any).frontmatter.title,
+    icon: (module as any).frontmatter.icon,
+    url: (module as any).url,
+  }));
 
 console.log(sidebarPaths, posts);
 ---
