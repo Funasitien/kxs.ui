@@ -4,26 +4,9 @@ icon: "mdi:paper-remove"
 layout: "@root/layouts/Page.astro"
 ---
 
-  * [cours](https://kxs.fr/cours/)
-  * [sujets](https://kxs.fr/sujets/)
-  * [fiches](https://kxs.fr/fiches/)
+## Files
 
-[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
-le lycée et la prépa](https://kxs.fr/cours/)
-
-## Listes, piles, files et dictionnaires
-
-  * [Introduction](.)
-  * [Listes](listes)
-  * [Piles](piles)
-  * [Files](files)
-  * [Dictionnaires](dictionnaires)
-  * [Bilan](bilan)
-  * [Exercices](exercices)
-
-# Files
-
-## Présentation
+### Présentation
 
 En informatique, une _file_ est une liste avec des restrictions. Cette fois-ci
 l'analogie est celle de la file d'attente. La première personne entrée est la
@@ -33,102 +16,59 @@ dans l'ordre dans lequel ils sont entrés.
 Ici, on peut insérer un nouvel élément seulement à l'entrée de la file et on
 peut retirer un élément uniquement à la sortie
 
-Insere Retire
+# MISSING GRAPHIC
 
-## Interface
+### Interface
 
-### Définition
+#### Définition
 
 Voici donc les éléments les plus courants de l'interface d'un pile :
 
-enfile(x)
+- enfile(x) : insère un élément à l'entrée de la file ;
+- defile() : enlève l'élément en bout de file ;
+- sortie() : renvoie l'élément en sortie de file ;
+- taille() : renvoie le nombre d'éléments de la file ;
+- estVide() : renvoie `True` si la file est vide, `False` sinon ;
 
-    insère un élément à l'entrée de la file ;
-  
-defile()
-
-    enlève l'élément en bout de file ;
-  
-sortie()
-
-    renvoie l'élément en sortie de file ;
-  
-taille()
-
-    renvoie le nombre d'éléments de la file ;
-  
-estVide()
-
-    renvoie `True` si la file est vide, `False` sinon ;
-  
-
-### Exemple
+#### Exemple
 
 **1)** Considérant la suite d'instructions suivante, donnez le contenu de la
 file à chaque ligne repérée par un numéro en commentaire. `ma_file` est
 initialement une file vide. On représentera une file par des éléments entre
 crochets comme en Python.
 
-    
-    
-    ma_file.enfile(2)
-    ma_file.enfile(3) #1
-    ma_file.enfile(5)
-    ma_file.enfile(7) #2
-    ma_file.defile()  #3
-    ma_file.sortie()  #4
-    ma_file.enfile(9)
-    ma_file.defile()  #5
-    
-    
-    #1 [2, 3]
-    #2 [2, 3, 5, 7]
-    #3 [3, 5, 7]
-    #4 3
-    #5 [5, 7, 9]
+```py
+ma_file.enfile(2)
+ma_file.enfile(3) #1
+ma_file.enfile(5)
+ma_file.enfile(7) #2
+ma_file.defile()  #3
+ma_file.sortie()  #4
+ma_file.enfile(9)
+ma_file.defile()  #5
+```
 
-## Implémentation
+### Implémentation
 
 Comme avec les piles, il existe plusieurs façons d'implémenter une même
 interface. Vous allez créer deux implémentations de l'interface définie ci-
 dessus.
 
-### `list` Python
+#### `list` Python
 
 **2)** Complétez la classe `FilePerso` ci-dessous pour implémenter l'interface
 d'une file (enfile(x), defile(), sortie(), taille(), estVide())
 
-    
-    
-    class FilePerso:
-        """File personalisée"""
-        def __init__(self):
-            self.liste = []
-    
-    ma_file = FilePerso()
-    
-    
-    class FilePerso:
-        """File personalisée"""
-        def __init__(self):
-            self.liste = []
-    
-        def enfile(self, x):
-            self.liste.append(x)
-    
-        def defile(self):
-            self.liste.pop(0)
-    
-        def sortie(self):
-            return self.liste[0]
-    
-        def taille(self):
-            return len(self.liste)
-    
-        def estVide(self):
-            return self.liste == []
+```
+class FilePerso:
+    """File personalisée"""
+    def __init__(self):
+        self.liste = []
 
-### Deux piles
+ma_file = FilePerso()
+```
+
+#### Deux piles
 
 Il existe une façon particulière d'implémenter une file avec deux piles.
 
@@ -139,36 +79,10 @@ défiler un élément, on le dépile de `piledroite`. Mais si `piledroite` est
 vide, on dépile intégralement `pilegauche` dans `piledroite` avant de dépiler
 un élément de `piledroite`.
 
-    
-    
-    class File:
-        def __init__(self):
-            self.pilegauche = Pile()
-            self.piledroite = Pile()
-    
-        def enfile(self, x):
-            self.pilegauche.empile(x)
-    
-        def defile(self):
-            if self.piledroite.estVide():
-                while not self.pilegauche.estVide():
-                    e = self.pilegauche.sommet()
-                    self.pilegauche.depile()
-                    self.piledroite.empile(e)
-            self.piledroite.depile()
-
-## Bilan
+### Bilan
 
 Les files sont basées sur le principe _FIFO_ pour _First In First Out_ , ce
 qui signifie « premier entré, premier sorti ». Comme pour les piles, quand on
 sera dans une telle situation, il faudra alors utiliser cette structure de
 données. Elle est utilisée par exemple pour envoyer des instructions à un
 processus. Les instruction sont traitées dans leur ordre d'arrivée.
-
-[Précédent](piles)[Suivant](dictionnaires)
-
-[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
-licence [CC BY-SA 4.0
-![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
-sa/4.0/deed.fr)
-
