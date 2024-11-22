@@ -4,26 +4,9 @@ icon: "mdi:paper-remove"
 layout: "@root/layouts/Page.astro"
 ---
 
-  * [cours](https://kxs.fr/cours/)
-  * [sujets](https://kxs.fr/sujets/)
-  * [fiches](https://kxs.fr/fiches/)
+## Dictionnaires
 
-[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
-le lycée et la prépa](https://kxs.fr/cours/)
-
-## Listes, piles, files et dictionnaires
-
-  * [Introduction](.)
-  * [Listes](listes)
-  * [Piles](piles)
-  * [Files](files)
-  * [Dictionnaires](dictionnaires)
-  * [Bilan](bilan)
-  * [Exercices](exercices)
-
-# Dictionnaires
-
-## Présentation
+### Présentation
 
 Le nom générique pour un _dictionnaire_ en informatique est _tableau
 associatif_. Un dictionnaire est composé d'un ensemble de couples clé:valeur.
@@ -31,35 +14,22 @@ On peut accéder à une valeur en utilisant sa clé. Par exemple pour stocker le
 coordonnées d'une personne il sera possible d'utiliser un dictionnaire. Si on
 utilise un dictionnaire Python :
 
-    
-    
+```py
     individu = {"nom": "McFly", "prenom": "Marty", "date": "09/06/1968"}
+```
 
-## Interface
+### Interface
 
-### Définition
+#### Définition
 
 L'interface d'un tableua associatif possède habituellemnt les méthodes
 suivantes :
+- ajoute(cle, valeur) : ajoute un couple clé:valeur ;
+- modifie(cle, valeur) : modifie la valeur correspondant à cle ;
+- supprime(cle) : supprime le couple correspondant à cle ;
+- recherche(cle) : renvoie la valeur associé à cle ;
 
-ajoute(cle, valeur)
-
-    ajoute un couple clé:valeur ;
-  
-modifie(cle, valeur)
-
-    modifie la valeur correspondant à cle ;
-  
-supprime(cle)
-
-    supprime le couple correspondant à cle ;
-  
-recherche(cle)
-
-    renvoie la valeur associé à cle ;
-  
-
-### Exemple
+#### Exemple
 
 **1)** Considérant la suite d'instructions suivante, donnez ce que renvoie
 l'instruction ou le contenu du dictionnaire à chaque ligne repérée par un
@@ -67,8 +37,7 @@ numéro en commentaire. `mon_dico` est initialement un dictionnaire vide. On
 représentera le dictionnaire par des couples clé:valeur séparés par de
 virgules entre acolades comme en Python.
 
-    
-    
+```py
     mon_dico.ajoute("Maurice", "051245")
     mon_dico.ajoute("Ginette", "250168")
     mon_dico.ajoute("Emile", "140842") #1
@@ -76,26 +45,21 @@ virgules entre acolades comme en Python.
     mon_dico.recherche("Ginette") #3
     mon_dico.supprime("Emile")
     mon_dico.ajoute("Marcel", "280136") #4
+```
 
-## Implémentation
+### Implémentation
 
 **2)** Pour ne pas, encore un fois, créer une classe en Python, décrivez
 simplement comment Python permet d'effectuer les quatre opérations ci-dessus.
 
-## Bilan
+### Bilan
 
 Un avantage des dictionaires en Python est qu'ils permettent d'accéder
 rapidement à un élément grâce à sa clé. Pour cela Python utilise une table de
 hashage. Pour comprendre le fonctionnement d'une table de hashage, regardez la
 vidéo ci-dessous :
 
+![VideoHashage](https://youtu.be/CkLctGYWFPA)
+
 **3)** Implémentez la fonction de hashage proposée dans la vidéo et testez-la
 sur plusieurs chaînes de caractère.
-
-[Précédent](files)[Suivant](bilan)
-
-[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
-licence [CC BY-SA 4.0
-![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
-sa/4.0/deed.fr)
-
