@@ -31,11 +31,6 @@ const posts = Object.entries(allMarkdownFiles)
       const targetDir = `/src/pages${currentDir}`;
       return path.startsWith(targetDir) && path.replace(targetDir, "").split("/").length === 1;
   })
-  .map(([, module]) => ({
-    title: (module as any).frontmatter.title,
-    icon: (module as any).frontmatter.icon,
-    url: (module as any).url,
-  }));
 
 console.log(sidebarPaths, posts);
 ---
