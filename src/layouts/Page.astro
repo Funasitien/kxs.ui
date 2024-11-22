@@ -65,7 +65,7 @@ const posts = Object.entries(allMarkdownFiles)
       <ul
         class="menu bg-base-200 text-base-content min-h-full w-80 p-4 relative">
         {
-          sidebarPaths.map((post) => (
+          posts.map((post) => (
             <li>
               <a href={post.url}>
                 <Icon name={post.icon} /> {post.title}
