@@ -26,11 +26,16 @@ const sidebarPaths = sidebarContent
     .map(line => line.trim())
     .filter(line => line !== "");
 
-const posts = Object.entries(allMarkdownFiles)
-  .filter(([path]) => {
-      const targetDir = `/src/pages${currentDir}`;
-      return path.startsWith(targetDir) && path.replace(targetDir, "").split("/").length === 1;
-  })
+const posts = sidebarFiles.map((filename) => {
+  const filePath = `${targetDir}${filename}`;
+  const module = allMarkdownFiles[filePath];
+
+  return {
+    title: module.frontmatter?.title || "Untitled",
+    icon: module.frontmatter?.icon || "default-icon",
+    url: module.url || "#",
+  };
+}).filter(Boolean);
 
 console.log(sidebarPaths, posts);
 ---
