@@ -20,7 +20,10 @@ if (currentPath.endsWith("/")) {
 // Filter the files to only include those in the same directory
 const currentDir = currentPath.replace(/\/[^/]*$/, "/"); // Get the directory path
 const posts = Object.entries(allMarkdownFiles)
-  .filter(([path]) => path.startsWith(`/src/pages${currentDir}`))
+  .filter(([path]) => {
+    const targetDir = `/src/pages${currentDir}`;
+    return path.startsWith(targetDir) && path.slice(targetDir.length).indexOf("/") === -1;
+  })
   .map(([, module]) => ({
     title: (module as any).frontmatter.title,
     icon: (module as any).frontmatter.icon,
