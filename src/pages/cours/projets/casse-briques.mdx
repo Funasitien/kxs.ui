@@ -5,12 +5,11 @@ layout: "/src/layouts/Page.astro"
 ---
 
 ## Prérequis
-
-  * structures de contrôle ;
-  * boucles ;
-  * tableaux ;
-  * fonctions ;
-  * modules.
+- structures de contrôle ;
+- boucles ;
+- tableaux ;
+- fonctions ;
+- modules.
 
 ## Présentation
 
@@ -29,30 +28,30 @@ Voici une architecture de départ pour le jeu. Comme c'est un projet de fin
 d'année, il n'y a que l'architecture de base de Pyxel.
 
 ```python
-  import pyxel
-  
-  # Création de la fenêtre
-  pyxel.init(???, ???)
-  # À vous de décider de la taille
-  
-  def update():
-      """
-          Mise à jour des positions et des états.
-          Pas d'affichage ici !
-      """
-  
-  
-  
-  def draw():
-      """
-          Affichage des éléments.
-      """
-      # On remplit l'écran de noir
-      pyxel.cls(0)
-  
-  
-  # On lance le moteur de Pyxel
-  pyxel.run(update, draw)
+import pyxel
+
+# Création de la fenêtre
+pyxel.init(???, ???)
+# À vous de décider de la taille
+
+def update():
+    """
+        Mise à jour des positions et des états.
+        Pas d'affichage ici !
+    """
+
+
+
+def draw():
+    """
+        Affichage des éléments.
+    """
+    # On remplit l'écran de noir
+    pyxel.cls(0)
+
+
+# On lance le moteur de Pyxel
+pyxel.run(update, draw)
 ```
 
 ## Aide pour commencer
@@ -60,15 +59,14 @@ d'année, il n'y a que l'architecture de base de Pyxel.
 Vous trouverez toutes les informations nécessaires sur la [page Github de
 Pyxel](https://github.com/kitao/pyxel).
 
-Voici des pistes our commencer :
-
-  * définissez les dimensions de la surface de jeu et dessinez les contours ;
-  * Commencez par créer la « raquette » qui se déplace en bas de l'écran (prenez une raquette avec des dimensions impaires en pixels et positionnez-la par rapport à son centre) ;
-  * empêchez la raquette de sortir de la surface de jeu ;
-  * créez une balle carrée (3x3 pixels) qui rebondit sur les parois mais qui disparait en bas (elle est définie par sa position et sa vitesse) ;
-  * faites rebondir la balle sur la raquette (seulement sur le dessus) ;
-  * affichez une brique et faites rebondir la balle dessus ;
-  * faite disparaitre la brique lorsque la balle a rebondi dessus ;
-  * ajouter plusieures briques ;
-  * faire rebondir différement la balle sur les cotés de la raquette ;
-  * afficher un score ;
+Voici des pistes pour commencer :
+- définissez les dimensions de la surface de jeu et dessinez les contours ;
+- Commencez par créer la « raquette » qui se déplace en bas de l'écran (prenez une raquette avec des dimensions impaires en pixels et positionnez-la par rapport à son centre) ;
+- empêchez la raquette de sortir de la surface de jeu ;
+- créez une balle carrée (3x3 pixels) qui rebondit sur les parois mais qui disparait en bas (elle est définie par sa position et sa vitesse) ;
+- faites rebondir la balle sur la raquette (seulement sur le dessus) ;
+- affichez une brique et faites rebondir la balle dessus ;
+- faite disparaitre la brique lorsque la balle a rebondi dessus ;
+- ajouter plusieures briques ;
+- faire rebondir différement la balle sur les cotés de la raquette ;
+- afficher un score ;
