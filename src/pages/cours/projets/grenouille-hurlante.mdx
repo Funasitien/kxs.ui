@@ -1,38 +1,8 @@
 ---
-title: "Projet : Grenouille hurlante - Niveau terminale"
+title: "Grenouille hurlante - Terminale"
 icon: "mdi:paper-remove"
-layout: "@root/layouts/Page.astro"
+layout: "/src/layouts/Page.astro"
 ---
-
-  * [cours](https://kxs.fr/cours/)
-  * [sujets](https://kxs.fr/sujets/)
-  * [fiches](https://kxs.fr/fiches/)
-
-[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
-le lycée et la prépa](https://kxs.fr/cours/)
-
-## Projets
-
-  * [Notation](.)
-  * [Dé aléatoire](de)
-  * [Filtres photo](filtres-photo)
-  * [Puissance 4](puissance-4)
-  * [Jeu de la vie](jeu-de-la-vie)
-  * [Pandémie](pandemie)
-  * [Contacts](contacts)
-  * [Labyrinthe](labyrinthe)
-  * [Grenouille hurlante](grenouille-hurlante)
-  * [Contacts Plus](contacts-plus)
-  * [PyNFO](pynfo)
-  * [Machine de vote](machine-vote)
-  * [IMDb](imdb)
-  * [Envahisseurs](envahisseurs)
-  * [Chronos](chronos)
-  * [Icq](icq)
-  * [Tetris](tetris)
-  * [Casse briques](casse-briques)
-
-# Grenouille hurlante
 
 ## Prérequis
 
@@ -53,7 +23,7 @@ de détecter d'éventuelles anomalies. Le logiciel Screaming Frog est très rich
 et complet, nous allons donc faire une version **très** simplifiée d'un tel
 logiciel.
 
-![](img/screaming-frog.png)
+![](/cours/screaming-frog.png)
 
 Les pages d'un site web constituent les nœuds d'un graphe et les liens ses
 arrêtes. Notre programme va donc effectuer un parcours en largeur du site web
@@ -67,11 +37,11 @@ Nous allons voir les différents éléments nécessaires pour réaliser le proje
 
 Nous allons avoir besoin de trois modules dans ce projet :
 
-    
-    
-    import requests
-    from bs4 import BeautifulSoup
-    from urllib.parse import urlparse, urljoin
+```python
+import requests
+from bs4 import BeautifulSoup
+from urllib.parse import urlparse, urljoin
+```
 
 Le module `requests` permet de faire une requête http et de récupérer le
 contenu de la réponse.
@@ -87,27 +57,27 @@ Enfin le module `urllib.parse` permet de manipuler facilement les urls.
 Voici un code permettant de comprendre comment décomposer et recomposer une
 url :
 
-    
-    
-    from urllib.parse import urlparse, urljoin
-    
-    depart = "https://kxs.fr/"
-    print("Url de depart : " + depart)
-    
-    # On détermine le domaine
-    domaine = urlparse(depart).hostname
-    # On détermine le protocole
-    protocole = urlparse(depart).scheme
-    # On détermine le chemin
-    chemin = urlparse(depart).path
-    # On écrit tout ça
-    print("Domaine : " + domaine)
-    print("Protocle : " + protocole)
-    print("Chemin : " + chemin)
-    
-    # Recomposition d'une url
-    url = protocole + "://" + domaine + chemin
-    print("Url recomposée : " + url)
+```python
+from urllib.parse import urlparse, urljoin
+
+depart = "https://kxs.fr/"
+print("Url de depart : " + depart)
+
+# On détermine le domaine
+domaine = urlparse(depart).hostname
+# On détermine le protocole
+protocole = urlparse(depart).scheme
+# On détermine le chemin
+chemin = urlparse(depart).path
+# On écrit tout ça
+print("Domaine : " + domaine)
+print("Protocle : " + protocole)
+print("Chemin : " + chemin)
+
+# Recomposition d'une url
+url = protocole + "://" + domaine + chemin
+print("Url recomposée : " + url)
+```
 
 Testez ce code et essayez éventuellement avec d'autres url pour bien
 comprendre ce qu'il se passe.
@@ -120,35 +90,35 @@ le même domaine) ou externes (vers un autre domaine).
 
 Voici un code permettant d'extraire des informations d'une url :
 
-    
-    
-    import requests
-    from bs4 import BeautifulSoup
-    
-    proxyDict = {
-                  "http"  : "http://demander_au_prof:demander_au_prof@172.16.0.253:3128",
-                  "https" : "https://demander_au_prof:demander_au_prof@172.16.0.253:3128"
-                }
-    
-    url = "https://kxs.fr/"
-    requete = requests.get(url)
-    # On récupère le contenu de la page
-    page = requete.content
-    # On crée la soupe
-    soup = BeautifulSoup(page, "lxml")
-    # On affiche le titre
-    print(soup.title.string)
-    # On affiche le statut
-    print(requete.status_code)
-    
-    # On récupère les liens
-    liens = soup.find_all('a')
-    
-    # On affiche les liens et leur cible
-    for lien in liens:
-        print(lien, end=" : ")
-        cible = lien.get('href')
-        print(cible)
+```python
+import requests
+from bs4 import BeautifulSoup
+
+proxyDict = {
+  "http"  : "http://demander_au_prof:demander_au_prof@172.16.0.253:3128",
+  "https" : "https://demander_au_prof:demander_au_prof@172.16.0.253:3128"
+}
+
+url = "https://kxs.fr/"
+requete = requests.get(url)
+# On récupère le contenu de la page
+page = requete.content
+# On crée la soupe
+soup = BeautifulSoup(page, "lxml")
+# On affiche le titre
+print(soup.title.string)
+# On affiche le statut
+print(requete.status_code)
+
+# On récupère les liens
+liens = soup.find_all('a')
+
+# On affiche les liens et leur cible
+for lien in liens:
+    print(lien, end=" : ")
+    cible = lien.get('href')
+    print(cible)
+```
 
 Testez ce code en changeant éventuellement l'url pour voir ce qu'il se passe.
 
@@ -158,47 +128,47 @@ Bien souvent, les cibles des liens (href) sur les page ne contiennent pas des
 url (commencant par https) mais des chemins. On peut voir ça sur l'exemple
 précédent :
 
-    
-    
-    href : cours/
-    url induite : https://kxs.fr/cours/
+```
+href : cours/
+url induite : https://kxs.fr/cours/
+```
 
 Il n'est pas vraiment simple de reconstituer l'url à partir de la cible. C'est
 pour cela que nous allons utiliser le module `urllib.parse` pour faire ce
 travail. On utilisera ainsi la méthode `urljoin` en lui fournissant la page
 actuelle et la cible du lien :
 
-    
-    
-    from urllib.parse import urlparse, urljoin
-    # Url de la page
-    url = "https://kxs.fr/"
-    # Cible du lien
-    cible = "cours/"
-    # Url pointée par le lien
-    url_lien = urljoin(url, cible)
-    
-    print("Url :", url)
-    print("Cible :", cible)
-    print("Url du lien :", url_lien)
+```python
+from urllib.parse import urlparse, urljoin
+# Url de la page
+url = "https://kxs.fr/"
+# Cible du lien
+cible = "cours/"
+# Url pointée par le lien
+url_lien = urljoin(url, cible)
+
+print("Url :", url)
+print("Cible :", cible)
+print("Url du lien :", url_lien)
+```
 
 L'exemple étant simpliste, cela peut sembler être une simple concaténation. Ça
 n'est pas toujours aussi simple car les cibles des liens peuvent être absolues
 :
 
-    
-    
-    from urllib.parse import urlparse, urljoin
-    # Url de la page
-    url = "https://kxs.fr/cours/unepage"
-    # Cible du lien
-    cible = "/cours/uneautrepage"
-    # Url pointée par le lien
-    url_lien = urljoin(url, cible)
-    
-    print("Url :", url)
-    print("Cible :", cible)
-    print("Url du lien :", url_lien)
+```python
+from urllib.parse import urlparse, urljoin
+# Url de la page
+url = "https://kxs.fr/cours/unepage"
+# Cible du lien
+cible = "/cours/uneautrepage"
+# Url pointée par le lien
+url_lien = urljoin(url, cible)
+
+print("Url :", url)
+print("Cible :", cible)
+print("Url du lien :", url_lien)
+```
 
 ## Cahier des charges
 
@@ -206,8 +176,7 @@ Dans un premier temps, nous allons chercher à simplement afficher la liste des
 pages du site avec la liste de leurs liens comme ci-dessous. Pour chaque page
 on affiche le chemin de la page, son titre et son statut :
 
-    
-    
+```
     cheminpage1 titre1 statut1
      - url lien 1
      - url lien 2
@@ -215,17 +184,13 @@ on affiche le chemin de la page, son titre et son statut :
      - url lien 1
      - url lien 2
     …
+```
 
 Vous aurez besoin d'un file pour stocker les chemins à explorer. Je vous
 suggère de faire au moins deux fonctions :
 
-`exploreChemin(chemin)`
-
-    Cette fonction explore l'url associée au chemin. Elle doit donc afficher les informations de la page et ses liens. Il faut également ajouter les chemins des liens dans la file. Pour cela on utilisera une autre fonction `ajouteLien(url)`
-  
-`ajouteLien(url)`
-
-    À partir d'une url, cette fonction détermine si le lien est interne. Si c'est le cas, elle ajoute son chemin à la file.
+- `exploreChemin(chemin)` Cette fonction explore l'url associée au chemin. Elle doit donc afficher les informations de la page et ses liens. Il faut également ajouter les chemins des liens dans la file. Pour cela on utilisera une autre fonction `ajouteLien(url)`
+- `ajouteLien(url)` À partir d'une url, cette fonction détermine si le lien est interne. Si c'est le cas, elle ajoute son chemin à la file.
 
 Attention, il faut prendre garde à plusieurs dangers plus ou moins fatals dans
 ce programme :
@@ -279,9 +244,3 @@ Commentaires | 1.5 points
 Export SQL | 0.5 point bonus  
 liens nofollow | 0.5 points bonus  
 Total | 20  
-  
-[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
-licence [CC BY-SA 4.0
-![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
-sa/4.0/deed.fr)
-

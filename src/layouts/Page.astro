@@ -74,39 +74,33 @@ const posts = sidebarPaths
       ></label>
       <ul
         class="menu bg-base-200 text-base-content min-h-full w-80 p-4 relative pt-16">
-        {
-          posts.map((post) => (
-            <li>
-              <a href={post.url}>
-                <Icon name={post.icon} /> {post.title}
-              </a>
-            </li>
-          ))
-        }
-        <li
-          class="absolute bottom-20 pr-2 hidden lg:flex"
-          style="width: -webkit-fill-available;">
-          <a class="btn btn-neutral justify-start" href="../">
-            <Icon name="mdi:keyboard-return" />
-            Retour
-          </a>
-        </li>
-        <li
-          class="absolute bottom-5 pr-2 hidden lg:flex"
-          style="width: -webkit-fill-available;">
-          <select data-choose-theme class="select select-bordered">
-            <option value="light">💡 Light</option>
-            <option value="dark">🌙 Dark</option>
-          </select>
-        </li>
-        <li
-          class="absolute bottom-5 pr-2 lg:hidden"
-          style="width: -webkit-fill-available;">
-          <a class="btn btn-neutral justify-start" href="../">
-            <Icon name="mdi:keyboard-return" />
-            Retour
-          </a>
-        </li>
+        <div class="mt-5">
+          {
+            posts.map((post) => (
+              <li class="m-1">
+                <a href={post.url}>
+                  <Icon name={post.icon} /> {post.title}
+                </a>
+              </li>
+            ))
+          }
+        </div>
+        <div class="mt-5 gap-2">
+          <li class="hidden lg:flex" style="width: -webkit-fill-available;">
+            <a class="btn btn-neutral justify-start" href="../">
+              <Icon name="mdi:keyboard-return" />
+              Retour
+            </a>
+          </li>
+          <li
+            class="hidden lg:flex mt-2"
+            style="width: -webkit-fill-available;">
+            <select data-choose-theme class="select select-bordered">
+              <option value="light">💡 Light</option>
+              <option value="dark">🌙 Dark</option>
+            </select>
+          </li>
+        </div>
       </ul>
     </div>
   </div>

@@ -3,10 +3,12 @@
         "astrojs",
         "iconify",
         "jetbrains",
-        "nuitducode"
+        "nuitducode",
+        "Tetris"
     ],
     "cSpell.enabledFileTypes": {
         "mdx": true,
         "xml": false
-    }
+    },
+    "editor.wordBasedSuggestions": "off"
 }

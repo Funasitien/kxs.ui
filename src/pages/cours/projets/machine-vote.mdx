@@ -1,40 +1,10 @@
 ---
-title: "Projet : Machine de vote"
+title: "Machine de vote - Première"
 icon: "mdi:paper-remove"
-layout: "@root/layouts/Page.astro"
+layout: "/src/layouts/Page.astro"
 ---
 
-  * [cours](https://kxs.fr/cours/)
-  * [sujets](https://kxs.fr/sujets/)
-  * [fiches](https://kxs.fr/fiches/)
-
-[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
-le lycée et la prépa](https://kxs.fr/cours/)
-
-## Projets
-
-  * [Notation](.)
-  * [Dé aléatoire](de)
-  * [Filtres photo](filtres-photo)
-  * [Puissance 4](puissance-4)
-  * [Jeu de la vie](jeu-de-la-vie)
-  * [Pandémie](pandemie)
-  * [Contacts](contacts)
-  * [Labyrinthe](labyrinthe)
-  * [Grenouille hurlante](grenouille-hurlante)
-  * [Contacts Plus](contacts-plus)
-  * [PyNFO](pynfo)
-  * [Machine de vote](machine-vote)
-  * [IMDb](imdb)
-  * [Envahisseurs](envahisseurs)
-  * [Chronos](chronos)
-  * [Icq](icq)
-  * [Tetris](tetris)
-  * [Casse briques](casse-briques)
-
-# Machine de vote (truquée)
-
-![](img/machine-vote.jpg) Auteur : kafka4prez | [source](https://www.flickr.com/photos/kafka4prez/298119881)| [Licence](https://creativecommons.org/licenses/by-sa/2.0/)
+![](/cours/machine-vote.jpg) Auteur : kafka4prez | [source](https://www.flickr.com/photos/kafka4prez/298119881)| [Licence](https://creativecommons.org/licenses/by-sa/2.0/)
 
 ## Prérequis
 
@@ -94,7 +64,9 @@ accéder au menu (elle correspond par exemple à un bouton avec une clé qui ne
 peut pas être activé par les votants). Voici l'ensemble des touches sur la
 machine :
 
+```
 1 2 3 4 5 6 7 8 9 m entrée
+```
 
 L'appui sur un bouton est donc équivalent à la saisie d'un chiffre ou de « m »
 au clavier et de l'appui sur la touche entrée.
@@ -113,27 +85,26 @@ La machine dispose de deux modes de fonctionnement :
 
 Le menu d'administration pourra ressembler à ceci :
 
-    
-    
-    ### Administration ###
-    
-     1 - Chargement des choix
-     2 - Voir les résultats
-     3 - Mise à zéro
-     4 - Passer en mode vote
+```python
+### Administration ###
 
+  1 - Chargement des choix
+  2 - Voir les résultats
+  3 - Mise à zéro
+  4 - Passer en mode vote
+```
 Et le mode vote :
 
-    
-    
-    ### Vote ###
-    
-     1 - Squeezie
-     2 - Cyprien
-     3 - Natoo
-     4 - Michou
-     5 - Norman
-     6 - Amixem
+```python
+### Vote ###
+
+  1 - Squeezie
+  2 - Cyprien
+  3 - Natoo
+  4 - Michou
+  5 - Norman
+  6 - Amixem
+```
 
 Voici quelques précisions sur le fonctionnement :
 
@@ -173,24 +144,18 @@ Total | 20
 Pour stocker et lire les votes vous aurez besoin d'écrire et lire dans un
 fichier :
 
-    
-    
-    # Écriture
-    f = open("fichier.txt", "w") # Ouvre un fichier ou le crée et efface le contenu du fichier
-    f.write("Une ligne\n") # Écrit dans le fichier et va à la ligne (avec le « \n »)
-    f.close() # Ferme le fichier (important pour ne pas perdre des infos)
-    
-    f = open("fichier.txt", "a") # Ouvre un fichier ou le crée et se place à la fin
-    f.write("Une ligne\n") # Écrit dans le fichier et va à la ligne (avec le « \n »)
-    f.close() # Ferme le fichier (important pour ne pas perdre des infos)
-    
-    # Lecture
-    f = open("fichier.txt", "r") # Ouvre en lecture le fichier
-    for line in f: # Parcourt toute les lignes
-        print(line,end="") # Affiche chaque ligne
+```python
+# Écriture
+f = open("fichier.txt", "w") # Ouvre un fichier ou le crée et efface le contenu du fichier
+f.write("Une ligne\n") # Écrit dans le fichier et va à la ligne (avec le « \n »)
+f.close() # Ferme le fichier (important pour ne pas perdre des infos)
 
-[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
-licence [CC BY-SA 4.0
-![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
-sa/4.0/deed.fr)
+f = open("fichier.txt", "a") # Ouvre un fichier ou le crée et se place à la fin
+f.write("Une ligne\n") # Écrit dans le fichier et va à la ligne (avec le « \n »)
+f.close() # Ferme le fichier (important pour ne pas perdre des infos)
 
+# Lecture
+f = open("fichier.txt", "r") # Ouvre en lecture le fichier
+for line in f: # Parcourt toute les lignes
+    print(line,end="") # Affiche chaque ligne
+```

@@ -1,0 +1,363 @@
+---
+title: "ICQ  - Terminale"
+icon: "mdi:paper-remove"
+layout: "/src/layouts/Page.astro"
+---
+
+# Projet ICQ
+
+![](/cours/icq.png)
+
+## Prérequis
+
+  * structures de contrôle ;
+  * boucles ;
+  * fonctions ;
+  * modules ;
+  * programmation orientée objet ;
+  * **cours** : ordonnancement.
+
+**Ce projet fonctionne mais il doit être possible de le simplifier !**
+
+## Présentation
+
+[ICQ](https://fr.wikipedia.org/wiki/ICQ) est l'un des premiers logiciel de
+messagerie apparu en 1996. Après un immense succès au début des années 2000 et
+même s'il existe toujours aujourd'hui, il n'a pas résisté à la progression de
+[MSN Messenger](https://fr.wikipedia.org/wiki/Windows_Live_Messenger) et
+Skype.
+
+ICQ permettait d'avoir des discussions intantanées avec les autres
+utilisateurs. Voici à quoi ressemblait son interface :
+
+![](/cours/icq-screen.png)
+
+Nous allons donc essayer de créer un programme de discussion instantanée en
+Python.
+
+## Première communication
+
+Pour établir une communication entre deux ordinateurs, il faut généralement
+utiliser des _sokets_. Un socket est un lien entre deux ordinateurs, un server
+qui attend des connections entrantes et un client qui demande à établir une
+connection. La plupart des programme qui échangent des informations sur
+internet (appli, navigateur…) utilisennt des sockets.
+
+Voici donc deux scripts pouvant s'échanger des messages. Éxécutez-les tous les
+deux sur votre machine dans un premier temps pour en comprendre le
+fonctionnement :
+
+```python
+"""
+Script du serveur
+"""
+
+import socket
+
+def main():
+    # On récupère le nom de la machine locale
+    host = socket.gethostname()
+    # On choisi un port entre 1024 et 65535
+    port = 4000
+
+    # On crée le socket utilisant IPv4 et TCP
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    # On attche le socket au serveur avec le port pour attendre les messages
+    s.bind((host, port))
+
+    print("Server démarré")
+    while True:
+        # On attend un message, quand il arrive on récupère aussi l'adresse de l'expéditeur
+        data, addr = s.recvfrom(1024)
+        # On décode le message
+        data = data.decode('utf-8')
+        # Affochage du message
+        print("Message de " + str(addr), end=' : ')
+        print(data)
+        # On confirme la réception
+        retour = "Bien reçu"
+        s.sendto(retour.encode('utf-8'), addr)
+    c.close()
+
+if __name__ == '__main__':
+    main()
+
+
+"""
+Script du client
+"""
+
+import socket
+
+def main():
+    # On récupère le nom de la machine locale (à remplacer par l'adresse du serveur distant plus tard)
+    host = socket.gethostname()
+    # On choisit le même port que le serveur
+    port = 4000
+
+    # On crée le socket utilisant IPv4 et TCP
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    # On demande le message à envoyer
+    message = input("-> ")
+    while message != 'q':
+        # On envoie le message
+        s.sendto(message.encode('utf-8'), (host, port))
+        # On attend la réponse du serveur
+        data, addr = s.recvfrom(1024)
+        data = data.decode('utf-8')
+        # On affiche la réponse
+        print("Reçu du serveur : " + data)
+        # On attend un nouveau message
+        message = input("-> ")
+    s.close()
+
+
+if __name__ == '__main__':
+    main()
+```
+
+Une fois que vous avez réussi à échanger des messages vous pouvez tester ou
+proposer les améliorations suivantes :
+
+  * Communiquer avec plusieurs clients ;
+  * Faire en sorte qu'on puisse quitter le serveur et le client en saisissant la commande "/exit" ;
+  * Lorsqu'un client quitte le serveur, il envoie un message spécial au serveur pour se faire désinscrire de la liste des clients ;
+  * Permettre de choisir le serveur avec le nom de l'utilisateur ;
+  * Afficher les messages de tous les clients à tous les clients ;
+  * Afficher l'heure du message devant chaque message ;
+  * Bien afficher ne nom de l'expéditeur de chaque message sur tous les clients
+  * Permettre au serveur d'envoyer des messages à tout le monde (pas seulement des "Bien reçu") ;
+  * Émettre un petit son quand un message arrive ;
+  * Empêcher le flood (pas plus de deux messages par seconde) ;
+  * Afficher la liste des clients connectés avec la commande "/list" sur le serveur ;
+  * Gérer une liste d'IP bannies dans un fichier rempli à la main ;
+  * Permettre au propriétaire du serveur de bannir une ip avec la commande "/ban IP" (elle est alors ajoutée au fichier d'IP bannies)
+  * Toute amélioration qui vous semble utile !
+
+Pour les plus rapide, si vous aimez les défis, essayez de refaire le même
+programme décentralisé. C'est à dire sans serveur, avec des clients identiques
+qui s'envoient des messages entre eux.
+
+## Utilisation des threads
+
+Il est possible que vous ayez besoin d'utiliser des threads (ça n'est pas
+certain). Voici donc un code minimal pour pouvoir créer des threads :
+
+```python
+class myThread (Thread):
+
+def __init__(self, …):
+    Thread.__init__(self)
+    …
+
+def run(self):
+    # Méthode exécutée lorsqu'on appelle start()
+
+
+thread = myThread(…)
+thread.start()
+```
+
+## Code d'aide pour avoir les messages sur tous les clients
+
+Voici un code basique permettant d'afficher les messages envoyés par tous les
+clients à tous les clients. Si on utilise une seul machine, il faut un port
+différent en réception pour chaque client. Il devrait être possible de mettre
+le même port si les clients sont sur des machines différentes. La seule
+différence entre client et clientbis est le port de réception.
+
+```python
+"""
+Script du serveur
+"""
+
+import socket
+
+def send_all(socket, data, liste_clients):
+    for addr in liste_clients:
+        socket.sendto(data, addr)
+
+
+def main():
+    # On récupère le nom de la machine locale
+    host = socket.gethostname()
+    # On choisi un port entre 1024 et 65535
+    port_recept = 4000
+    #port_envoi = 4001
+
+    # On crée le socket utilisant IPv4 et TCP
+    s_recept = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    # On attche le socket au serveur avec le port pour attendre les messages
+    s_recept.bind((host, port_recept))
+
+    liste_clients = set()
+
+    print("Server démarré")
+    while True:
+        # On attend un message, quand il arrive on récupère aussi l'adresse de l'expéditeur
+        data, addr = s_recept.recvfrom(1024)
+        # On ajoute le client à la liste
+        liste_clients.add(addr)
+        print("liste_client", liste_clients)
+        # On décode le message
+        message = data.decode('utf-8')
+        # Affichage du message
+        print("Message de " + str(addr), end=' : ')
+        print(message)
+
+        #s_recept.sendto(data, addr)
+        send_all(s_recept, data, liste_clients)
+    c.close()
+
+if __name__ == '__main__':
+    main()
+
+"""
+Script du client
+"""
+
+import socket
+from threading import Thread
+
+class myThread (Thread):
+
+    def __init__(self, socket, addr):
+        Thread.__init__(self)
+        self.socket = socket
+        self.addr = addr
+
+    def run(self):
+        self.socket.bind(self.addr)
+        while True:
+            # On attend un message, quand il arrive on récupère aussi l'adresse de l'expéditeur
+            data, addr = self.socket.recvfrom(1024)
+
+            # On décode le message
+            message = data.decode('utf-8')
+            # Affichage du message
+            print("Message de " + str(addr), end=' : ')
+            print(message)
+        c.close()
+
+
+
+def main():
+    # On récupère le nom de la machine locale (à remplacer par l'IP locale plus tard)
+    host = socket.gethostname()
+    # On donne l'IP du serveur (à remplacer par l'IP du serveur distant plus tard)
+    host_serveur = socket.gethostname()
+    # On choisit le même port que le serveur
+    port_serveur = 4000
+    # On crée l'adresse
+    addr_serveur = (host_serveur, port_serveur)
+    # On crée le socket utilisant IPv4 et TCP
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+
+    # On choisit un port différent car on est sur la même machine (rien n'empêche de choisir le même que le serveur plus tard)
+    port_recept = 4001
+    addr_recept = (host, port_recept)
+    # On lance un thread pour gérer les messages entrant
+    thread = myThread(s, addr_recept)
+    thread.start()
+
+    # On demande le message à envoyer
+    message = input("-> ")
+    while message != 'q':
+        # On envoie le message
+        s.sendto(message.encode('utf-8'), addr_serveur)
+        # On attend un nouveau message
+        message = input("-> ")
+    s.close()
+
+
+if __name__ == '__main__':
+    main()
+
+
+"""
+Script du clientbis
+"""
+
+import socket
+from threading import Thread
+
+class myThread (Thread):
+
+    def __init__(self, socket, addr):
+        Thread.__init__(self)
+        self.socket = socket
+        self.addr = addr
+
+    def run(self):
+        self.socket.bind(self.addr)
+        while True:
+            # On attend un message, quand il arrive on récupère aussi l'adresse de l'expéditeur
+            data, addr = self.socket.recvfrom(1024)
+
+            # On décode le message
+            message = data.decode('utf-8')
+            # Affichage du message
+            print("Message de " + str(addr), end=' : ')
+            print(message)
+        c.close()
+
+
+
+def main():
+    # On récupère le nom de la machine locale (à remplacer par l'IP locale plus tard)
+    host = socket.gethostname()
+    # On donne l'IP du serveur (à remplacer par l'IP du serveur distant plus tard)
+    host_serveur = socket.gethostname()
+    # On choisit le même port que le serveur
+    port_serveur = 4000
+    # On crée l'adresse
+    addr_serveur = (host_serveur, port_serveur)
+    # On crée le socket utilisant IPv4 et TCP
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+
+    # On choisit un port différent car on est sur la même machine (rien n'empêche de choisir le même que le serveur plus tard)
+    port_recept = 4002
+    addr_recept = (host, port_recept)
+    # On lance un thread pour gérer les messages entrant
+    thread = myThread(s, addr_recept)
+    thread.start()
+
+    # On demande le message à envoyer
+    message = input("-> ")
+    while message != 'q':
+        # On envoie le message
+        s.sendto(message.encode('utf-8'), addr_serveur)
+        # On attend un nouveau message
+        message = input("-> ")
+    s.close()
+
+
+if __name__ == '__main__':
+    main()
+```
+
+## Tableau du barème
+
+Voilà le barème complet sur 20 pour ce projet.
+
+Tâche | Barème  
+---|---  
+Comunication avec plusieurs clients | 1 points  
+/exit sur le client | 1 points  
+/exit enlève le client de la liste des clients | 1 points  
+Choix du serveur avec le nom | 1 point  
+Affichage des messages à tout le monde | 2 point  
+Affichage de l'heure de chaque message | 1 points  
+Afficher le nom de l'expéditeur chez tous les clients | 1 point  
+Permettre au serveur d'envoyer des messages à tout le monde | 2 points  
+Émettre un son quand un message arrive | 1 points  
+Empêcher le flood | 1 points  
+Afficher la liste des clients connectés sur le serveur avec la commande /list | 1 points  
+Gérer une liste d'IP bannies avec un fichier rempli à la main | 1 points  
+Ajouter des IP bannies avec la commande /ban (elles doivent alors être ajoutées au fichier) | 1 points  
+/exit sur le serveur | 1 points  
+Code propre | 1.5 points  
+Code optimisé | 1 point  
+Commentaires | 1.5 points  
+Toute autre amélioration | 0.5 point bonus  
+Total | 20 

@@ -1,0 +1,71 @@
+---
+title: "Tetris - Première"
+icon: "mdi:paper-remove"
+layout: "/src/layouts/Page.astro"
+---
+
+## Prérequis
+
+  * structures de contrôle ;
+  * boucles ;
+  * tableaux ;
+  * fonctions ;
+  * modules.
+
+## Présentation
+
+[Tetris](https://fr.wikipedia.org/wiki/Tetris) est un jeu datant de 1984
+popularisé suite à sa sortie sur la Gameboy. Nous allons donc tenter de faire
+un jeu s'inspirant de Tetris.
+
+Pour cela nous allons utiliser la bibliothèque
+[Pyxel](https://github.com/kitao/pyxel) qui permet de créer des jeux rétro.
+
+## Architecture
+
+Voici une architecture de départ pour le jeu. Comme c'est un projet de fin
+d'année, il n'y a que l'architecture de base de Pyxel.
+
+```python
+import pyxel
+
+# Création de la fenêtre
+pyxel.init(???, ???)
+# À vous de décider de la taille (il y a 10x18 block sur l'écran)
+
+def update():
+    """
+        Mise à jour des positions et des états.
+        Pas d'affichage ici !
+    """
+
+
+
+def draw():
+    """
+        Affichage des éléments.
+    """
+    # On remplit l'écran de noir
+    pyxel.cls(0)
+
+
+# On lance le moteur de Pyxel
+pyxel.run(update, draw)
+```
+
+## Aide pour commencer
+
+Vous trouverez toutes les informations nécessaires sur la [page Github de
+Pyxel](https://github.com/kitao/pyxel).
+
+Voici des pistes our commencer :
+
+  * créer un tableau de 10x18 pour les blocks immobiles (le fond) ;
+  * afficher un block quand il y a un 1 et rien sinon ;
+  * chaque pièce sera un tableau de tableau représentant la pièce dans toutes ces orientations ;
+  * avoir des variables pour la position de la piece et son orientation ;
+  * afficher la pièce en fonction de sa position et de son orientation ;
+  * faire se déplacer la pièce à droite et à gauche ;
+  * faire tourner la pièce ;
+  * faire descendre automatiquement la pièce ;
+  * détecter quand la pièce doit s'arrêter et l'intégrer au fond ;

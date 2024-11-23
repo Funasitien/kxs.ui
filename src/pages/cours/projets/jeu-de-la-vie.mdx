@@ -1,11 +1,11 @@
 ---
-title: "Projet : Jeu de la vie - Terminale NSI"
+title: "Jeu de la vie - Terminale"
 icon: "mdi:language-html5"
-layout: "../../../layouts/Page.astro"
+layout: "/src/layouts/Page.astro"
 ---
 
 ## Jeu de la vie
-![IllustrationJDV](/public/Gospers_glider_gun.gif)
+![IllustrationJDV](/cours/Gospers_glider_gun.gif)
 
 ### Prérequis
 - structures de contrôle ;
@@ -45,13 +45,13 @@ class JeuDeLaVie:
 #### Constructeur
 Le constructeur prendra en argument un tableau à deux dimensions de taille quelconque rempli de 0 et de 1 représentant les cellules. Un 0 pour une cellule morte et un 1 pour une cellule vivante. Voici les caractéristiques attendues du constructeur :
 
-```
+```python
 def __init__(self, tableau):
-        """
-        Affecte un tableau à deux dimensions à l’attribut tableau
+"""
+Affecte un tableau à deux dimensions à l’attribut tableau
 
-        :param tableau: tableau à deux dimensions
-        """
+:param tableau: tableau à deux dimensions
+"""
 ```
 
 #### Méthode affiche()
@@ -64,69 +64,69 @@ Voici la liste des autres méthodes de la classe JeuDeLaVie avec leurs docstring
 
 ```py
 def run(self, nombre_tours, delai):
-        """
-        Méthode principale du jeu.
+"""
+Méthode principale du jeu.
 
-        Fait tourner le jeu de la vie pendant nombre_tours.
-        Elle rafraichit l’affichage à chaque tour
-        et attend delai entre chaque tour.
+Fait tourner le jeu de la vie pendant nombre_tours.
+Elle rafraichit l’affichage à chaque tour
+et attend delai entre chaque tour.
 
-        :param nombre_tours: nombre de tours à effectuer
-        :param delai: temps d’attente en secondes entre chaque tour
-        """
+:param nombre_tours: nombre de tours à effectuer
+:param delai: temps d’attente en secondes entre chaque tour
+"""
 ```
 
 ```py
 def tour(self):
-        """
-        Met à jour toute les cellules du tableau en respectant les règles
-        du jeu de la vie.
-        """
+"""
+Met à jour toute les cellules du tableau en respectant les règles
+du jeu de la vie.
+"""
 ```
 
 ```py
 def valeur_case(self, i, j):
-        """
-            Renvoie la valeur de la case [i][j] ou 0 si la case n’existe pas.
-        """
+"""
+        Renvoie la valeur de la case [i][j] ou 0 si la case n’existe pas.
+"""
 ```
 
 ```py
 def total_voisins(self, i, j):
-        """Renvoie la somme des valeurs des voisins de la case [i][j]."""
+"""Renvoie la somme des valeurs des voisins de la case [i][j]."""
 ```
 
 ```py
 def resultat(self, valeur_case, total_voisins):
-        """
-        Renvoie la valeur suivante d’une la cellule.
+"""
+Renvoie la valeur suivante d’une la cellule.
 
-        :param valeur_case: la valeur de la cellule (0 ou 1)
-        :param total_voisins: la somme des valeurs des voisins
-        :return: la valeur de la cellule au tour suivant
+:param valeur_case: la valeur de la cellule (0 ou 1)
+:param total_voisins: la somme des valeurs des voisins
+:return: la valeur de la cellule au tour suivant
 
-        >>> a = JeuDeLaVie([])
-        >>> a.resultat(0, 3)
-        1
-        >>> a = JeuDeLaVie([])
-        >>> a.resultat(0, 1)
-        0
-        >>> a = JeuDeLaVie([])
-        >>> a.resultat(0, 4)
-        0
-        >>> a = JeuDeLaVie([])
-        >>> a.resultat(1, 2)
-        1
-        >>> a = JeuDeLaVie([])
-        >>> a.resultat(1, 3)
-        1
-        >>> a = JeuDeLaVie([])
-        >>> a.resultat(1, 1)
-        0
-        >>> a = JeuDeLaVie([])
-        >>> a.resultat(1, 4)
-        0
-        """
+>>> a = JeuDeLaVie([])
+>>> a.resultat(0, 3)
+1
+>>> a = JeuDeLaVie([])
+>>> a.resultat(0, 1)
+0
+>>> a = JeuDeLaVie([])
+>>> a.resultat(0, 4)
+0
+>>> a = JeuDeLaVie([])
+>>> a.resultat(1, 2)
+1
+>>> a = JeuDeLaVie([])
+>>> a.resultat(1, 3)
+1
+>>> a = JeuDeLaVie([])
+>>> a.resultat(1, 1)
+0
+>>> a = JeuDeLaVie([])
+>>> a.resultat(1, 4)
+0
+"""
 ```
 
 ### Utilisation du programme

@@ -1,0 +1,78 @@
+---
+title: "Contacts Plus - Terminale"
+icon: "mdi:paper-remove"
+layout: "/src/layouts/Page.astro"
+---
+
+## Prérequis
+
+  * projet : [Contacts](contacts) ;
+  * bases de données.
+
+## Présentation
+
+Nous allons reprendre le [projet précédent](/cours/listes/projet) et améliorer
+le stockage des contacts en utilisant une base de données SQLite3.
+
+Nous allons garder la classe `Repertoire` mais par contre nous n'aurons plus
+besoin de la classe `Contact`. Il faudra changer la plupart des méthodes de la
+classe `Repertoire` pour stocker les contacts dans la base. Nous n'avons donc
+**plus besoin de liste** pour le stockage des contacts.
+
+## Cahier des charges
+
+L'objectif est de garder les mêmes fonctionalités en utilisant une base de
+données.
+
+## Tableau du barème
+
+Voilà le barème complet sur 10 pour ce projet.
+
+Tâche | Barème  
+---|---  
+Ajout d'un contact dans la base | 2 points  
+Ajout de plusieurs contacts | 1 point  
+Affichage des contacts | 1 point  
+Affichage des contacts par ordre alphabétique | 1 points  
+Suppression d'un contact | 1 point  
+Recherche d'un contact | 1 point  
+Code propre | 1 points  
+Code optimisé | 1 point  
+Commentaires | 1 points  
+Totals | 10  
+  
+## Aides
+
+Voici une liste de commandes de SQLite3 qui vous seront utiles.
+
+```python
+import sqlite3
+
+# Connection à la base de données
+conn = sqlite3.connect('data.db')
+
+# Création du curseur qui permet d'interagir avec la base
+cur = conn.cursor()
+
+# Envoi d'une requête SQL
+cur.execute(string_commande_mysql)
+
+# Pour récupérer une ligne de la requête (peut être utilisée plusieurs fois)
+# La ligne est un tuple
+ligne = cur.fetchone()
+
+# Pour récupérer toutes les lignes de la requête
+# C'est une liste de tuples
+lignes = cur.fetchall()
+
+# Pour appliquer les modifications (après un INSERT ou UPDATE)
+conn.commit()
+```
+
+**Attention !** il y a de légères différences entre SQLite3 et MySQL.
+Particulièrement pour les structures des tables. Voici donc une requête qui
+fonctionne pour créer une table pour les contacts :
+
+```sql
+CREATE TABLE IF NOT EXISTS contacts (id INTEGER PRIMARY KEY AUTOINCREMENT, nom TEXT, prenom TEXT, telephone INTEGER)
+```
