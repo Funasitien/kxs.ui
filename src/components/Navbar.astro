@@ -1,5 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
+import ThemeCard from "./ThemeCard.astro";
 ---
 
 <div class="navbar bg-base-300 z-20 fixed top-0">
@@ -7,7 +8,7 @@ import { Icon } from "astro-icon/components";
     <label
       for="my-drawer-2"
       class="btn btn-primary drawer-button px-2 lg:hidden">
-      <Icon name="mdi:book-open-blank-variant" class="text-3xl"/>
+      <Icon name="mdi:book-open-blank-variant" class="text-3xl" />
     </label>
   </div>
   <div class="navbar-center">
@@ -73,7 +74,11 @@ import { Icon } from "astro-icon/components";
     </a>
   </div>
   <div class="navbar-end">
-    <button class="btn btn-primary lg:hidden px-2" onclick="my_modal_1.showModal()"><Icon name="mdi:palette" class="text-3xl" /></button>
+    <button
+      class="btn btn-primary lg:hidden px-2"
+      onclick="my_modal_1.showModal()"
+      ><Icon name="mdi:palette" class="text-3xl" /></button
+    >
     <div class="mr-1 hidden lg:block">
       <a class="link link-hover" href="/cours">cours</a>
       <span class="mx-2">|</span>
@@ -85,18 +90,16 @@ import { Icon } from "astro-icon/components";
     </div>
   </div>
 </div>
-<dialog id="my_modal_1" class="modal">
-  <div class="modal-box">
-    <h3 class="text-lg font-bold">Hello!</h3>
-    <p class="py-4">Press ESC key or click the button below to close</p>
-    <div class="modal-action">
-      <form method="dialog">
-        <!-- if there is a button in form, it will close the modal -->
-        <button class="btn">Close</button>
-      </form>
-      <form method="dialog" class="modal-backdrop">
-        <button>close</button>
-      </form>
-    </div>
+<dialog id="my_modal_1" class="modal bg-primary-content">
+  <div class="modal-box bg-transparent shadow-none w-11/12">
+    <form method="dialog" class="grid grid-cols-2 gap-6">
+      <!-- if there is a button in form, it will close the modal -->
+      <ThemeCard name="☀️ Clair" value="light" />
+      <ThemeCard name="🌚 Sombre" value="dark" />
+      <ThemeCard name="Soon" value="dark" />
+      <ThemeCard name="Soon" value="dark" />
+      <ThemeCard name="Soon" value="dark" />
+      <ThemeCard name="Soon" value="dark" />
+    </form>
   </div>
 </dialog>
