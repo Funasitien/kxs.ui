@@ -13,5 +13,9 @@ export default defineConfig({
       return config;
     }
   },
+  public: {
+    input: './public',
+    output: './dist/public'
+  },
   integrations: [tailwind(), icon(), mdx()]
 });
