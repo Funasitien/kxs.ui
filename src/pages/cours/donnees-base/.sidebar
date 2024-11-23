@@ -1,1 +1,11 @@
-/src/pages/cours/donees-base/
+/src/pages/cours/donees-base/index.mdx
+/src/pages/cours/donees-base/entiers-positifs.mdx
+/src/pages/cours/donees-base/entiers-relatifs.mdx
+/src/pages/cours/donees-base/entiers-exercices.mdx
+/src/pages/cours/donees-base/reels.mdx
+/src/pages/cours/donees-base/reels-exercices.mdx
+/src/pages/cours/donees-base/booleens.mdx
+/src/pages/cours/donees-base/booleens-exercices.mdx
+/src/pages/cours/donees-base/chaines-caracteres.mdx
+/src/pages/cours/donees-base/chaines-caracteres-exercices.mdx
+/src/pages/cours/donees-base/revisions-exercices.mdx
