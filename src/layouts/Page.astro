@@ -3,6 +3,7 @@ import Head from "./Head.astro";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import { Icon } from "astro-icon/components";
+import fs from "fs";
 
 const { frontmatter } = Astro.props;
 
@@ -72,9 +73,8 @@ const posts = sidebarPaths
     <div class="drawer-side">
       <label for="my-drawer-2" aria-label="close sidebar" class="drawer-overlay"
       ></label>
-      <ul
-        class="menu bg-base-200 text-base-content min-h-full w-80 p-4 relative pt-16">
-        <div class="mt-5">
+      <ul class="menu bg-base-200 text-base-content min-h-full w-80 p-4 pt-16">
+        <div class="mt-5 mb-32">
           {
             posts.map((post) => (
               <li class="m-1">
@@ -85,23 +85,23 @@ const posts = sidebarPaths
             ))
           }
         </div>
-        <div class="mt-5 gap-2">
-          <li class="hidden lg:flex" style="width: -webkit-fill-available;">
-            <a class="btn btn-neutral justify-start" href="../">
-              <Icon name="mdi:keyboard-return" />
-              Retour
-            </a>
-          </li>
-          <li
-            class="hidden lg:flex mt-2"
-            style="width: -webkit-fill-available;">
-            <select data-choose-theme class="select select-bordered">
-              <option value="light">💡 Light</option>
-              <option value="dark">🌙 Dark</option>
-            </select>
-          </li>
-        </div>
       </ul>
+      <div class="fixed bg-base-300 rounded-xl bottom-4 left-4 p-2 w-72">
+        <a
+          class="btn btn-neutral justify-start"
+          style="width: -webkit-fill-available;"
+          href="../">
+          <Icon name="mdi:keyboard-return" />
+          Retour
+        </a>
+        <select
+          data-choose-theme
+          class="select select-bordered hidden lg:flex mt-2"
+          style="width: -webkit-fill-available;">
+          <option value="light">💡 Light</option>
+          <option value="dark">🌙 Dark</option>
+        </select>
+      </div>
     </div>
   </div>
 </Head>
