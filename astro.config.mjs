@@ -13,9 +13,10 @@ export default defineConfig({
       return config;
     }
   },
-  public: {
-    input: './public',
-    output: './dist/public'
+  vite: {
+    ssr: {
+      noExternal: ['@astrojs/image']
+    }
   },
   integrations: [tailwind(), icon(), mdx()]
 });
