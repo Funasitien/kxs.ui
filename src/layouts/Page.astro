@@ -58,12 +58,12 @@ const posts = sidebarPaths
     <div class="drawer-content max-w-screen mt-16">
       <div style="min-height: 80dvh;">
         <h1
-          class="text-3xl lg:text-5xl font-bold m-2 my-4 lg:m-4 p-2 bg-primary rounded-lg flex flex-row max-w-fit text-base-100">
+          class="text-3xl lg:text-5xl font-bold m-2 my-4 lg:m-4 p-2 bg-primary rounded-lg flex flex-row max-w-fit text-base-100 poppins">
           <Icon name={frontmatter.icon} class="translate-y-0.5" />
           <span class="ml-1">{frontmatter.title}</span>
         </h1>
         <article
-          class="prose lg:prose-xl mx-2 lg:mx-4"
+          class="mx-2 lg:mx-4 pt-4 prose lg:prose-xl prose-table:mx-auto prose-table:w-auto prose-table:border-2 prose-td:px-2 prose-th:pt-2.5 prose-thead:bg-base-200"
           style="max-width: none;">
           <slot />
         </article>
@@ -116,7 +116,8 @@ const posts = sidebarPaths
 <script is:inline>
   const copyButtonLabel =
     '<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="white" d="M19 21H8V7h11m0-2H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2m-3-4H4a2 2 0 0 0-2 2v14h2V3h12z" /></svg>';
-  const pasteButtonLabel = '<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="white" d="M22 16a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2h12a2 2 0 0 1 2 2zm-6 4v2H4a2 2 0 0 1-2-2V7h2v13zm-3-6l7-7l-1.41-1.41L13 11.17L9.91 8.09L8.5 9.5z" /></svg>';
+  const pasteButtonLabel =
+    '<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="white" d="M22 16a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2h12a2 2 0 0 1 2 2zm-6 4v2H4a2 2 0 0 1-2-2V7h2v13zm-3-6l7-7l-1.41-1.41L13 11.17L9.91 8.09L8.5 9.5z" /></svg>';
   let codeBlocks = Array.from(document.querySelectorAll("pre"));
 
   for (let codeBlock of codeBlocks) {
@@ -124,8 +125,7 @@ const posts = sidebarPaths
     wrapper.style.position = "relative";
 
     let copyButton = document.createElement("button");
-    copyButton.className =
-      "top-1 right-1 absolute p-1 rounded-md text-2xl";
+    copyButton.className = "top-1 right-1 absolute p-1 rounded-md text-2xl";
     copyButton.innerHTML = copyButtonLabel;
 
     codeBlock.setAttribute("tabindex", "0");
