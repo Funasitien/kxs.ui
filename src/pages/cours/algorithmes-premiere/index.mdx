@@ -1,6 +1,88 @@
 ---
-title: "Le Web"
+title: "Introduction à l’algorithmique"
 icon: "mdi:find-in-page"
 isIndexFile: true
 layout: "/src/layouts/Page.astro"
 ---
+
+## Introduction
+L’algorithmique est une vaste discipline étudiant les moyens de trouver une suite d’opérations permettant de résoudre un problème ou de répondre à une question. On appelle ces suites d’instructions des algorithmes. Il existe de nombreux algorithmes comme une recette de cuisine ou des instructions pour construire un modèle en Lego. Nous nous intéresserons ici aux algorithmes du monde informatique qui peuvent néanmoins avoir des répercutions dans d’autres disciplines.
+
+Nous verrons qu’il existe plusieurs familles de problèmes et donc d’algorithmes.
+
+## Recherche d’occurrence
+Nous allons étudier notre premier algorithme sur le problème de recherche d’occurrence, c’est à dire trouver si un élément est dans une liste (ou un tableau). Nous voulons donc savoir si un élément x est dans le tableau t. Voici donc un algorithme permettant de répondre à cette question :
+
+```
+VARIABLES
+t : tableau d'entiers
+x : nombre entier
+present : booléen (VRAI ou FAUX)
+i : nombre entier
+
+DEBUT
+present ← FAUX
+i ← 1
+tant que i<=longueur(t) et que present==FAUX:
+	si t[i]==x:
+	    present ← VRAI
+	fin si
+	i ← i+1
+fin tant que
+renvoyer la valeur de present
+FIN
+```
+
+Deux remarques :
+- un algorithme s’écrit en langage naturel avec quelques notations informatiques. Mais il doit pouvoir être implémenté dans n’importe quel langage.
+- on fait commencer la numérotation des tableaux à 1 (vraisemblablement car l’algorithmique est née avant l’informatique).
+
+Pour comprendre un algorithme, il faut le faire tourner à la main sur un exemple simple.
+
+1. Prenons par exemple t=[2,4,8,12,45] et x=8 et faisons tourner l'algorithme.
+2. Faites tourner l’algorithme à la main avec t=[4,9,12] et x=23
+
+## Complexité
+### Nombre d'opérations
+La complexité d’un algorithme permet de mesurer son efficacité et ainsi de le comparer aux autres algorithmes. Nous nous intéresserons au temps d’exécution pour mesurer la complexité (il est possible d’utiliser la mémoire utilisée). Pour estimer le temps d’exécution on comptera les opérations dans l’algorithme dans le pire des cas, c’est à dire dans le cas qui prend le plus de temps.
+
+Par exemple pour l’algorithme précédent, le pire des cas est lorsqu’il ne trouve pas l’élément à chercher.
+
+3) Reprenons donc l’algorithme précédent et comptons le nombre d’opérations pour qu’il se termine. Nous supposerons que le tableau en entrée contient n éléments.
+
+VARIABLES
+t : tableau d'entiers
+x : nombre entier
+present : booléen (VRAI ou FAUX)
+i : nombre entier
+```
+DEBUT
+present ← FAUX
+i ← 1
+tant que i<=longueur(t) et que present==FAUX:
+	si t[i]==x:
+	    present ← VRAI
+	fin si
+	i ← i+1
+fin tant que
+renvoyer la valeur de present
+FIN
+```
+
+### Ordre de grandeur asymptotique
+Pour comparer les algorithmes il faut exprimer la complexité de manière plus simple qu’avec le nombre exact d’opérations. Pour cela, on ne va garder que l’ordre de grandeur asymptotique. C’est à dire qu’on s’intéresse uniquement à la plus grande puissance de n dans l’expression de la complexité. Et on notera le résultat avec un O majuscule (on dira « grand O »)
+
+Par exemple 6n² + 5n + 45 = O(n²), on dira que la complexité est en « grand O de n² ».
+
+4. Quelle est alors la complexité de notre algorithme ?
+5. Écrire un algorithme qui permet de déterminer le maximum dans un tableau d’entiers. Faire tourner l’algorithme sur le tableau [2,6,4,1,9] puis déterminer la complexité de l’algorithme.
+6. Écrire un algorithme qui permet de calculer la moyenne des entiers d’un tableau. Faire tourner l’algorithme sur le tableau [2,6,4,1,9] puis déterminer la complexité de l’algorithme.
+7. Écrire un programme en Python qui va permettre de mesurer le temps d’exécution de l'algorithme de recherche d’occurrence (On appelle cela un benchmark). Le programme doit faire les choses suivantes :
+
+- implémenter l'algorithme de recherche dans une fonction recherche(t, k) ;
+- générer un tableau de longueur n rempli avec des entiers aléatoires ;
+- enregistrer l’heure de début (voir le module time et la méthode time()) ;
+- exécuter l’algorithme de recherche avec un nombre qui n’est pas dans le tableau ;
+- avec l’heure de fin, afficher le temps d’exécution.
+
+Essayer avec n = 10, 100, 1000… et voir si le temps d’exécution correspond bien à la complexité.
