@@ -19,9 +19,11 @@ if (currentPath.endsWith("/")) {
 }
 const currentDir = currentPath.replace(/\/[^/]*$/, "/");
 let sidebarFilePath = `src/pages${currentDir}.sidebar`;
+let mdxFilePath = `/src/pages${currentPath}.mdx`;
 
 if (frontmatter.isIndexFile) {
   sidebarFilePath = `src/pages${currentPath}/.sidebar`;
+  mdxFilePath = `/src/pages${currentPath}/index.mdx`;
 }
 
 // Read the .sidebar file
@@ -33,7 +35,7 @@ sidebarPaths = sidebarContent
   .filter((line) => line !== ""); // Clean up lines
 
 const currentPostIndex = sidebarPaths.findIndex(
-  (element) => element === `/src/pages${currentPath}.mdx`
+  (element) => element === mdxFilePath
 );
 let nextPostUrl;
 
@@ -80,8 +82,11 @@ const posts = sidebarPaths
           style="max-width: none;">
           <slot />
         </article>
-        <div class="mt-4 flex justify-between text-lg lg:text-xl text-primary mx-3 lg:mx-6">
-          <button class="text-start link link-hover" onclick="history.back()">Précédent</button>
+        <div
+          class="mt-4 flex justify-between text-lg lg:text-xl text-primary mx-3 lg:mx-6">
+          <button class="text-start link link-hover" onclick="history.back()"
+            >Précédent</button
+          >
           <a href={nextPostUrl} class="text-end link link-hover"> Suivant </a>
         </div>
       </div>
