@@ -1,6 +1,6 @@
 ---
 title: "If-else"
-icon: "mdi:paper-remove"
+icon: "mdi:console"
 layout: "/src/layouts/Page.astro"
 ---
 
@@ -14,10 +14,11 @@ résultat. Il est parfois accompagné d'un `else`. L'ensemble signifie « Si…
 Voici un premier exemple à copier dans votre fichier et à exécuter :
 
 ```python
-    a = 4
-    if (a > 0):
-    	print("a est positif")
-    print("On a testé la valeur de a")
+a = 4
+if (a > 0):
+    print("a est positif")
+
+print("On a testé la valeur de a")
 ```
 
 Que fait cet exemple ? On affecte la valeur 4 à la variable a. Ensuite si a
@@ -35,11 +36,11 @@ lorsque a est négatif.
 Voici un deuxième exemple à copier dans votre fichier et à exécuter :
 
 ```python
-    a = 4
-    if (a > 0):
-    	print("a est positif")
-    else:
-    	print("a est négatif")
+a = 4
+if (a > 0):
+    print("a est positif")
+else:
+    print("a est négatif")
 ```
 
 Que fait cet exemple ? On affecte la valeur 4 à la variable a. Ensuite si a
@@ -54,12 +55,12 @@ Dans la condition après l’instruction `if` on aura souvent besoin des
 opérateurs de comparaison suivants :
 
 ```python
-    x == y		# x est égal à y
-    x != y		# x est différent de y
-    x > y		# x est plus grand que y
-    x < y		# x est plus petit que y
-    x >= y		# x est plus grand que, ou égal à y
-    x <= y		# x est plus petit que, ou égal à y
+x == y		# x est égal à y
+x != y		# x est différent de y
+x > y		# x est plus grand que y
+x < y		# x est plus petit que y
+x >= y		# x est plus grand que, ou égal à y
+x <= y		# x est plus petit que, ou égal à y
 ```
 
 **Atention !** Pour tester l'égalité, on utilise deux signes « = » pour qu'il
