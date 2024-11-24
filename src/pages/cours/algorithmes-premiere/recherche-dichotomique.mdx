@@ -24,31 +24,31 @@ au problème précédent. L’algorithme suivant s’utilise dans un **tableau t
 Voici l’algorithme :
 
 ```py
-    VARIABLE
-    t : tableau d'entiers trié
-    mil : nombre entier
-    fin : nombre entier
-    deb : nombre entier
-    x : nombre entier // x : l'entier recherché
-    tr : booléen
-    DEBUT
-    tr ← FAUX
-    deb ← 1
-    fin ← longueur(t)
-    tant que tr == FAUX et que deb ⩽ fin :
-        mil ← partie_entière((deb+fin)/2)
-        si t[mil] == x :
-            tr = vrai
+VARIABLE
+t : tableau d'entiers trié
+mil : nombre entier
+fin : nombre entier
+deb : nombre entier
+x : nombre entier // x : l'entier recherché
+tr : booléen
+DEBUT
+tr ← FAUX
+deb ← 1
+fin ← longueur(t)
+tant que tr == FAUX et que deb ⩽ fin :
+    mil ← partie_entière((deb+fin)/2)
+    si t[mil] == x :
+        tr = vrai
+    sinon :
+        si x > t[mil] :
+            deb ← mil+1
         sinon :
-            si x > t[mil] :
-                deb ← mil+1
-            sinon :
-                fin ← mil-1
-            fin si
+            fin ← mil-1
         fin si
-    fin tant que
-    renvoyer la valeur de tr
-    FIN
+    fin si
+fin tant que
+renvoyer la valeur de tr
+FIN
 ```
 
 ### Fonctionnement
@@ -57,47 +57,47 @@ Voici l’algorithme :
 40, 41, 45]` avec la recherche de `x = 35`.
 
 ```
-    tr = faux
-    deb = 1
-    fin = 10
-    tr == faux et deb ≤ fin : on rentre dans la boucle
-    mil = 5
-    t[5] = 23 ≠ 35 : on ne rentre pas dans le si
-    35 > t[5] : on entre dans le si
-    deb = 6
-    retour au début de la boucle
-    
-    tr = faux
-    deb = 6
-    fin = 10
-    tr == faux et deb ≤ fin : on rentre dans la boucle
-    mil = 8
-    t[8] = 40 ≠ 35 : on ne rentre pas dans le si
-    35 < t[8] : on n’entre pas dans le si
-    fin = 7
-    retour au début de la boucle
-    
-    tr = faux
-    deb = 6
-    fin = 7
-    tr == faux et deb ≤ fin : on rentre dans la boucle
-    mil = 6
-    t[6] = 27 ≠ 35 : on ne rentre pas dans le si
-    35 > t[6] : on entre dans le si
-    deb = 7
-    retour au début de la boucle
-    
-    tr = faux
-    deb = 7
-    fin = 7
-    tr == faux et deb ≤ fin : on rentre dans la boucle
-    mil = 7
-    t[7] == 35 : on rentre dans le si
-    tr = vrai
-    retour au début de la boucle
-    
-    tr == vrai : on ne rentre pas dans la boucle
-    renvoyer vrai
+tr = faux
+deb = 1
+fin = 10
+tr == faux et deb ≤ fin : on rentre dans la boucle
+mil = 5
+t[5] = 23 ≠ 35 : on ne rentre pas dans le si
+35 > t[5] : on entre dans le si
+deb = 6
+retour au début de la boucle
+
+tr = faux
+deb = 6
+fin = 10
+tr == faux et deb ≤ fin : on rentre dans la boucle
+mil = 8
+t[8] = 40 ≠ 35 : on ne rentre pas dans le si
+35 < t[8] : on n’entre pas dans le si
+fin = 7
+retour au début de la boucle
+
+tr = faux
+deb = 6
+fin = 7
+tr == faux et deb ≤ fin : on rentre dans la boucle
+mil = 6
+t[6] = 27 ≠ 35 : on ne rentre pas dans le si
+35 > t[6] : on entre dans le si
+deb = 7
+retour au début de la boucle
+
+tr = faux
+deb = 7
+fin = 7
+tr == faux et deb ≤ fin : on rentre dans la boucle
+mil = 7
+t[7] == 35 : on rentre dans le si
+tr = vrai
+retour au début de la boucle
+
+tr == vrai : on ne rentre pas dans la boucle
+renvoyer vrai
 ```
 
 4. On peut également dérouler l’algorithme de deux autres façons avec des
