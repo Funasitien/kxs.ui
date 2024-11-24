@@ -1,5 +1,5 @@
 ---
-title: "C - printf"
+title: "Printf"
 icon: "mdi:paper-remove"
 layout: "/src/layouts/Page.astro"
 ---
@@ -15,7 +15,7 @@ Comme nous l'avons vu dans notre premier programme `printf` permet d'afficher
 une chaîne de caractères dans la console :
 
 ```c
-    printf("Hello world!\n");
+printf("Hello world!\n");
 ```
 
 Mais elle permet de faire beaucoup plus.
@@ -53,10 +53,10 @@ Pour afficher le signe `%` il faut le faire précéder du signe `%` !
 Un exemple serait le bienvenu :
 
 ```c
-    printf("Voici une phrase avec un entier %i et un nombre à virgule : %f\n", 4521, 96.254);
-    
-    
-    Voici une phrase avec un entier 4521 et un nombre à virgule : 96.254000
+printf("Voici une phrase avec un entier %i et un nombre à virgule : %f\n", 4521, 96.254);
+```
+```
+Voici une phrase avec un entier 4521 et un nombre à virgule : 96.254000
 ```
 
 Comme on peut le voir, le nombre à virgule flottante (float) est affiché avec
@@ -65,15 +65,15 @@ marqueur `%.2f` et ainsi forcer à deux le nombre de chiffres après la virgule
 :
 
 ```c
-    printf("Voici une phrase avec un entier %i et un nombre à virgule : %.2f\n", 4521, 96.254);
-    
-    
-    Voici une phrase avec un entier 4521 et un nombre à virgule : 96.25
+printf("Voici une phrase avec un entier %i et un nombre à virgule : %.2f\n", 4521, 96.254);
+```
+```
+Voici une phrase avec un entier 4521 et un nombre à virgule : 96.25
 ```
 
 `printf` offre beaucoup plus de possibilités, il n'est pas possible de toutes
-les détailler ici. Pour les curieux : [référence
-printf](https://cplusplus.com/reference/cstdio/printf/)
+les détailler ici. Pour les curieux : 
+[référence printf](https://cplusplus.com/reference/cstdio/printf/)
 
 L'utilité des marqueurs peut sembler limitée car il suffirait d'écrire la
 valeur dans la chaîne de caractère. Nous verrons des utilisations plus
