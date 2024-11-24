@@ -25,15 +25,14 @@ Par exemple cette URL https://www.debian.org/intro/about sera transformée en
 cette requête :
 
 ```http
-    GET /intro/about HTTP/1.0
-    Host : www.debian.org
-    Accept : text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-    User-Agent : Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:70.0) Gecko/20100101 Firefox/70.0
-    …
+GET /intro/about HTTP/1.0
+Host : www.debian.org
+Accept : text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+User-Agent : Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:70.0) Gecko/20100101 Firefox/70.0
+…
 ```
 
 Détaillons cette requête :
-
   - la première ligne contient la commande (ici GET), l’URL et le protocole ;
   - Les lignes suivantes sont les entêtes (headers) qui contiennent différentes informations ;
   - Host : précise le site web concerné par la requête ;
@@ -88,15 +87,15 @@ Une fois que le serveur a reçu une requête il renvoie une réponse. Si on
 continue avec la même requête, voici un extrait de la réponse :
 
 ```http
-    HTTP/2 200 OK
-    date: Tue, 04 May 2021 14:40:31 GMT
-    server: Apache
-    content-location: about.fr.html
-    …
-    <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-    <html lang="fr">
-    <head>
-    …
+HTTP/2 200 OK
+date: Tue, 04 May 2021 14:40:31 GMT
+server: Apache
+content-location: about.fr.html
+…
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="fr">
+<head>
+…
 ```
 
 Détaillons cette réponse :
@@ -117,7 +116,6 @@ utilisés en regardant les entêtes dans Firefox.
 complet.
 
 5. Cherchez la signification des codes de réponse suivants :
-
   - 200
   - 404
   - 410
@@ -145,8 +143,8 @@ Par défaut le serveur affiche le fichier `index.html` situé dans le dossier
 suivant :
 
 ```php
-    <h1>Page générée avec php</h1>
-    <p>Il est <?php echo date("H:i:s"); ?></p>
+<h1>Page générée avec php</h1>
+<p>Il est <?php echo date("H:i:s"); ?></p>
 ```
 
 8. Allez ensuite à l’adresse http://localhost/test.php et regardez ce
@@ -171,9 +169,9 @@ récupérer les variables sur le serveur. Testez le script suivant dans
 `test.php` pour comprendre :
 
 ```php
-    <h1>Page générée avec php</h1>
-    <p>Voici var1 : <?php echo $_GET['var1']; ?></p>
-    <p>Voici var2 : <?php echo $_GET['var2']; ?></p>
+<h1>Page générée avec php</h1>
+<p>Voici var1 : <?php echo $_GET['var1']; ?></p>
+<p>Voici var2 : <?php echo $_GET['var2']; ?></p>
 ```
 
 9. Écrire un script qui, à partir d’un prénom passé dans l’URL, affiche «
