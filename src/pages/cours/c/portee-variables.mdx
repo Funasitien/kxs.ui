@@ -1,5 +1,5 @@
 ---
-title: "C - Portée des variables"
+title: "Portée des variables"
 icon: "mdi:paper-remove"
 layout: "/src/layouts/Page.astro"
 ---
@@ -14,18 +14,18 @@ structure de contrôle mais ce n'est pas nécessaire. Les blocs peuvent être
 imbriqués.
 
 ```c
-    {
-    	// un bloc
-    	
-    	{
-    		// un bloc imbriqué
-    	}
-    }
+{
+    // un bloc
     
-    if (i==0) {
-    	// un autre bloc
-    	
+    {
+        // un bloc imbriqué
     }
+}
+
+if (i==0) {
+    // un autre bloc
+    
+}
 ```
 
 ## Variable locale
@@ -36,13 +36,13 @@ une variable **locale**.
 **1)** Compiler le programme ci-dessous et expliquer le problème.
 
 ```c
-    int main() {
-    	{
-    		int a = 25;
-    	}
-    	a = 2;
-    	return 0;
+int main() {
+    {
+        int a = 25;
     }
+    a = 2;
+    return 0;
+}
 ```
 
 Les arguments d'une fonction sont considérés comme des variables locales à
@@ -51,19 +51,19 @@ l'intérieur de la fonction.
 **2)** Quelle sera la sortie du programme suivant ? Justifier.
 
 ```c
-    #include <stdio.h>
-    
-    void incr(int a) {
-    	a = a + 1;
-    }
-    
-    int main() {
-    
-    	int a = 6;
-    	incr(a);
-    	printf("%d\n", a);
-    	return 0;
-    }
+#include <stdio.h>
+
+void incr(int a) {
+    a = a + 1;
+}
+
+int main() {
+
+    int a = 6;
+    incr(a);
+    printf("%d\n", a);
+    return 0;
+}
 ```
 
 **3)** Comment transformer le programme précédent pour pouvoir effectivement
@@ -76,34 +76,34 @@ est alors accessible partout dans le code et peut être modifiée par n'importe
 quelle fonction.
 
 ```c
-    #include <stdio.h>
-    
-    int c = 1; // varaible globale
-    
-    int main() {
-    
-    	printf("%d\n", c); // 1
-    	c = c + 1; // On modifie la variable globale
-    	printf("%d\n", c); // 2
-    	return 0;
-    }
+#include <stdio.h>
+
+int c = 1; // varaible globale
+
+int main() {
+
+    printf("%d\n", c); // 1
+    c = c + 1; // On modifie la variable globale
+    printf("%d\n", c); // 2
+    return 0;
+}
 ```
 
 Si une variable locale a le même nom qu'une variable globale, elle "cache" la
 variable globale dans la fonction.
 
 ```c
-    #include <stdio.h>
-    
-    int c = 1; // varaible globale
-    
-    int main() {
-    	int c = 10; // la variable locale "cache" la variable globale
-    	printf("%d\n", c); // 10
-    	c = c + 1; // On modifie la variable locale
-    	printf("%d\n", c); // 11
-    	return 0;
-    }
+#include <stdio.h>
+
+int c = 1; // varaible globale
+
+int main() {
+    int c = 10; // la variable locale "cache" la variable globale
+    printf("%d\n", c); // 10
+    c = c + 1; // On modifie la variable locale
+    printf("%d\n", c); // 11
+    return 0;
+}
 ```
 
 Il est **fortement déconseillé d'utiliser des variables globales** car il est
