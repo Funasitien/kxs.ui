@@ -6,23 +6,23 @@ layout: "/src/layouts/Page.astro"
  
 ## OCaml
 
-  * [Présentation](.)
-  * [Interaction et définitions](interaction-definition)
-  * [Fonctions](fonctions)
-  * [If … then … else …](if-then-else)
-  * [Fonctions récursives](fonctions-recursives)
-  * [Réels](reels)
-  * [Chaînes de caractères](string)
-  * [Execices 1](exercices-1)
-  * [Listes](listes)
-  * [Unit](unit)
-  * [Produits](produits)
-  * [Enregistrements](enregistrements)
-  * [Énumérations](enumerations)
-  * [Sommes](sommes)
-  * [Filtrage](filtrage)
-  * [Fonctions avancées](fonctions-avancees)
-  * [Aspects impértifs](aspects-imperatifs)
+  - [Présentation](.)
+  - [Interaction et définitions](interaction-definition)
+  - [Fonctions](fonctions)
+  - [If … then … else …](if-then-else)
+  - [Fonctions récursives](fonctions-recursives)
+  - [Réels](reels)
+  - [Chaînes de caractères](string)
+  - [Execices 1](exercices-1)
+  - [Listes](listes)
+  - [Unit](unit)
+  - [Produits](produits)
+  - [Enregistrements](enregistrements)
+  - [Énumérations](enumerations)
+  - [Sommes](sommes)
+  - [Filtrage](filtrage)
+  - [Fonctions avancées](fonctions-avancees)
+  - [Aspects impértifs](aspects-imperatifs)
 
 # Unit
 
@@ -108,26 +108,26 @@ est équivalent à :
 
 Voici une liste de primitives (procédures de base) avec effet de bord :
 
-  * `print_string` : affiche une chaîne de caractères
-  * `print_endline` : affiche une chaîne de caractères et passe à la ligne
-  * `print_int` : affiche un entier
-  * `print_char` : affiche un caractère
-  * `print_float` : affiche un float
-  * `print_newline` : effectue un saut de ligne (attend un paramêtre vide)
-  * `Printf.printf` : fonctionne de la même manière qu'en C ! (%s : string, %c : caractère, %d : int)
+  - `print_string` : affiche une chaîne de caractères
+  - `print_endline` : affiche une chaîne de caractères et passe à la ligne
+  - `print_int` : affiche un entier
+  - `print_char` : affiche un caractère
+  - `print_float` : affiche un float
+  - `print_newline` : effectue un saut de ligne (attend un paramêtre vide)
+  - `Printf.printf` : fonctionne de la même manière qu'en C ! (%s : string, %c : caractère, %d : int)
 
 ## Exercices
 
 1. Pour les fonctions suivantes, dire si elles sont des procédures et si
 elles sont à effet de bord :
 
-  * `let first s = print_char s.[0];;`
-  * `let first s = s.[0];;`
-  * `let foo () = 2+6;print_string "";;`
+  - `let first s = print_char s.[0];;`
+  - `let first s = s.[0];;`
+  - `let foo () = 2+6;print_string "";;`
 
-  * `let first s = print_char s.[0];;` : procedure avec effet de bord
-  * `let first s = s.[0];;` : fonction sans effet de bord
-  * `let foo () = 2+6;print_string "";;` : procedure sans effet de bord -> inutile
+  - `let first s = print_char s.[0];;` : procedure avec effet de bord
+  - `let first s = s.[0];;` : fonction sans effet de bord
+  - `let foo () = 2+6;print_string "";;` : procedure sans effet de bord -> inutile
 
 2. Écrire une fonction qui affiche un compte à rebours du temps qu'il
 reste avant la fin du cours. On lui donnera comme paramètre le nombre de

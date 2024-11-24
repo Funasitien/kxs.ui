@@ -6,13 +6,13 @@ layout: "/src/layouts/Page.astro"
 
 ## Prérequis
 
-  * projet : [jeu de la vie](jeu-de-la-vie) ;
-  * structures de contrôle ;
-  * boucles ;
-  * tableaux à deux dimensions ;
-  * fonctions ;
-  * modules ;
-  * Programmation orientée objet.
+  - projet : [jeu de la vie](jeu-de-la-vie) ;
+  - structures de contrôle ;
+  - boucles ;
+  - tableaux à deux dimensions ;
+  - fonctions ;
+  - modules ;
+  - Programmation orientée objet.
 
 ## Présentation
 
@@ -72,15 +72,15 @@ les attributs `vaccine` et `contamine`
 
 Les règles d'évolution sont les suivantes:
 
-  * chaque individu rencontre ses huit voisins à chaque tour ;
-  * pour chaque voisin, si l'individu est sain et le voisin contaminé, alors il peut y avoir contamination (voir les règles ci-dessous), sinon l'individu reste sain ou devient sain.
+  - chaque individu rencontre ses huit voisins à chaque tour ;
+  - pour chaque voisin, si l'individu est sain et le voisin contaminé, alors il peut y avoir contamination (voir les règles ci-dessous), sinon l'individu reste sain ou devient sain.
 
 Les règles de contamination sont les suivantes :
 
-  * un voisin à 1 chance sur 4 de contaminer un individu ;
-  * si le voisin est vacciné, cette chance est divisée par deux :
-  * si l'individu n'est pas vacciné cette chance n'est pas modifiée ;
-  * si l'individu est vacciné, on divise cette chance encore une fois par deux ;
+  - un voisin à 1 chance sur 4 de contaminer un individu ;
+  - si le voisin est vacciné, cette chance est divisée par deux :
+  - si l'individu n'est pas vacciné cette chance n'est pas modifiée ;
+  - si l'individu est vacciné, on divise cette chance encore une fois par deux ;
 
 Dans l'affichage, on fera apparaitre les individus contaminés. Vous pourrez
 ajouter des statistiques sur la population comme ci-dessous :

@@ -170,9 +170,9 @@ Enfin le décalge à appliquer pourra se calculer avec les règles ci-dessous. o
 appelle c le caratère du texte qui ne correspond pas à la lettre du motif en
 position j.
 
-  * Si c n'apparait pas dans le motif, il faut alors décaler le motif de façon à arriver à droite de c. Le décalage est donc `d = j + 1` ;
-  * Si c apparait dans le motif à la position la plus à droite r, il faut effectuer un décalage `d = j - r` si d est positif ;
-  * Si `d ≤ 0` on effectue simplement un décalage `d = 1`.
+  - Si c n'apparait pas dans le motif, il faut alors décaler le motif de façon à arriver à droite de c. Le décalage est donc `d = j + 1` ;
+  - Si c apparait dans le motif à la position la plus à droite r, il faut effectuer un décalage `d = j - r` si d est positif ;
+  - Si `d ≤ 0` on effectue simplement un décalage `d = 1`.
 
 6. Implémentez une fonction `decalage(j, c)` qui applique les règles
 précédentes.

@@ -6,15 +6,15 @@ layout: "/src/layouts/Page.astro"
  
 ## Graphes et algorithmes
 
-  * [Introduction](.)
-  * [Graphes](graphes)
-  * [Arbres](arbres)
-  * [Arbres binaires](arbres-binaires)
-  * [Algo arbres binaires (1)](algo-arbres-binaires-1)
-  * [Implémentation arbres](implementation-arbres)
-  * [Algo arbres binaires (2)](algo-arbres-binaires-2)
-  * [Algo graphes](algo-graphes)
-  * [Implémentation graphes](implementation-graphes)
+  - [Introduction](.)
+  - [Graphes](graphes)
+  - [Arbres](arbres)
+  - [Arbres binaires](arbres-binaires)
+  - [Algo arbres binaires (1)](algo-arbres-binaires-1)
+  - [Implémentation arbres](implementation-arbres)
+  - [Algo arbres binaires (2)](algo-arbres-binaires-2)
+  - [Algo graphes](algo-graphes)
+  - [Implémentation graphes](implementation-graphes)
 
 # Graphes
 
@@ -56,10 +56,10 @@ arêtes](/cours/graphe_pondere.svg)
 
 Les propriété les plus communes pour parler d'un graphe sont les suivantes :
 
-  * une _chaîne_ (ou _chemin_) est une suite d'arêtes consécutives ;
-  * la longueur d'un chaîne est le nombre d'arêtes qui la compose ;
-  * la _distance_ entre deux sommets est la longueur de la chaîne la plus courte entre ces deux sommets ;
-  * un _cycle_ est une chaîne fermée composée d'arêtes distinctes. C'est à dire qui commence et termine par le même sommet et qui n'empreinte pas deux fois la même arête.
+  - une _chaîne_ (ou _chemin_) est une suite d'arêtes consécutives ;
+  - la longueur d'un chaîne est le nombre d'arêtes qui la compose ;
+  - la _distance_ entre deux sommets est la longueur de la chaîne la plus courte entre ces deux sommets ;
+  - un _cycle_ est une chaîne fermée composée d'arêtes distinctes. C'est à dire qui commence et termine par le même sommet et qui n'empreinte pas deux fois la même arête.
 
 3. Pour le graphe ci-dessous, trouvez deux cycles. Donnez également la
 distance entre A et D.
@@ -75,30 +75,30 @@ Nous avons utilisé intuituvement une représentation visuelle d'un graphe. Mais
 nous aurions pû utiliser une description textuelle d'un graphe. Par exemple
 pour celui de la question 2 :
 
-  * A est relié à E ;
-  * B est relié à C, D et E ;
-  * C est relié à B, D et E ;
-  * D est relié à C et B ;
-  * E est relié à A, B et C.
+  - A est relié à E ;
+  - B est relié à C, D et E ;
+  - C est relié à B, D et E ;
+  - D est relié à C et B ;
+  - E est relié à A, B et C.
 
 4. Dessinez le graphe correspondant à la description ci-dessous :
 
 Kevin Mattéo Tom Emma Claire David
 
-  * Tom est ami avec Emma, Claire et Mattéo ;
-  * Claire est amie avec Tom, Emma et David ;
-  * Mattéo est ami avec Tom et Kevin ;
-  * Emma est amie avec Tom et Claire ;
-  * David est ami avec Claire ;
-  * Kevin est ami avec Mattéo.
+  - Tom est ami avec Emma, Claire et Mattéo ;
+  - Claire est amie avec Tom, Emma et David ;
+  - Mattéo est ami avec Tom et Kevin ;
+  - Emma est amie avec Tom et Claire ;
+  - David est ami avec Claire ;
+  - Kevin est ami avec Mattéo.
 
 5. Dessinez le graphe correspondant à la description ci-dessous :
 
-  * A est à 12 km de B ;
-  * B est à 12 km de A, 9 km de C et 25 km de D ;
-  * C est à 9 km de B ;
-  * D est à 25 km de B et 6 km de E ;
-  * E est à 6 km de D.
+  - A est à 12 km de B ;
+  - B est à 12 km de A, 9 km de C et 25 km de D ;
+  - C est à 9 km de B ;
+  - D est à 25 km de B et 6 km de E ;
+  - E est à 6 km de D.
 
 ## Implémentations
 
@@ -147,11 +147,11 @@ liste de ses voisins. Par exemple, pour le graphe ci-dessous
 
 La liste d'adjacence serait :
 
-  * A → [B, C, E] ;
-  * B → [A] ;
-  * C → [A, D] ;
-  * D → [C, E] ;
-  * E → [A, D].
+  - A → [B, C, E] ;
+  - B → [A] ;
+  - C → [A, D] ;
+  - D → [C, E] ;
+  - E → [A, D].
 
 Pour un graphe orienté, une liste d'adjacence associe à chaque sommet la liste
 de ses successeurs. C'est à dire les sommets vers lesquels il pointe. Il est

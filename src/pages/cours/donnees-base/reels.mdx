@@ -39,13 +39,13 @@ fini de bits certains réels. Et il y en a plus qu’en base 10.
 Pour convertir un nombre à virgule en base 2, il faut suivre la procédure
 suivante :
 
-  * séparer la partie entière de la partie fractionnaire ;
-  * convertir la partie entière comme un entier ;
-  * pour la partie fractionnaire :
-    * multiplier le nombre par deux ;
-    * tant que la partie fractionnaire du nombre n’est pas nulle :
-      * noter la partie entière ;
-      * multiplier la partie fractionnaire par 2.
+  - séparer la partie entière de la partie fractionnaire ;
+  - convertir la partie entière comme un entier ;
+  - pour la partie fractionnaire :
+    - multiplier le nombre par deux ;
+    - tant que la partie fractionnaire du nombre n’est pas nulle :
+      - noter la partie entière ;
+      - multiplier la partie fractionnaire par 2.
 
 3. Prenons l’exemple de 6.3437510.
 
@@ -74,18 +74,18 @@ Un nombre binaire peut s’écrire sous la forme suivante (un peu comme en
 
 (-1)s x m x 2(e-d)
 
-  * s est le signe (0 pour positif et 1 pour négatif) ;
-  * m est la mantisse comprise entre 1 et 2 ;
-  * e est l’exposant biaisé (ou décalé) d’une valeur d.
+  - s est le signe (0 pour positif et 1 pour négatif) ;
+  - m est la mantisse comprise entre 1 et 2 ;
+  - e est l’exposant biaisé (ou décalé) d’une valeur d.
 
 Dans une représentation sur 32 bits, voici la répartition :
 
 [Répartition des bits dans une représentation 32 bits d'un
 réel](/cours/float.svg)
 
-  * le premier bit est le signe ;
-  * les 8 suivants sont l’exposant. Le décalage sera alors de 127 pour pouvoir avoir des exposants négatifs ;
-  * les 23 suivants sont la mantisse. Comme la mantisse commence nécessairement par un 1 : 1.xxxxx2, on ne représente pas ce 1 mais juste les nombres après la virgule.
+  - le premier bit est le signe ;
+  - les 8 suivants sont l’exposant. Le décalage sera alors de 127 pour pouvoir avoir des exposants négatifs ;
+  - les 23 suivants sont la mantisse. Comme la mantisse commence nécessairement par un 1 : 1.xxxxx2, on ne représente pas ce 1 mais juste les nombres après la virgule.
 
 7. Prenons l’exemple suivant pour comprendre : 1 10000110
 10101101100000000000000

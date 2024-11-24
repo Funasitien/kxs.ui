@@ -57,14 +57,14 @@ Il existe de nombreuses façons d'utiliser des entiers en C. L'idée générale
 est d'utiliser le type qui utilise le moins de mémoire possible pour avoir un
 programme optimisé. Voici une liste des différents types d'entiers :
 
-  * char
-  * unsigned char
-  * short
-  * unsigned short
-  * int
-  * unsigned int
-  * long
-  * usigned long
+  - char
+  - unsigned char
+  - short
+  - unsigned short
+  - int
+  - unsigned int
+  - long
+  - usigned long
 
 `unsigned` signifie que se sont des entiers naturels.
 
@@ -113,14 +113,14 @@ unsigned long : 8
 3. Grâce aux résultats de la question précédente, calculez la valeur
 minimale et maximale que l'on peut stocker dans chaque type d'entier.
 
-  * char : 1 octet -> 8 bits -> -27 à 27-1 = -128 à 127
-  * unsigned char : 1 octet -> 8 bits -> 0 à 28-1 = 0 à 255
-  * short : 2 octets -> 16 bits -> -215 à 215-1 = -32768 à 32767
-  * unsigned short : 2 octets -> 16 bits -> 0 à 216-1 = 0 à 65535
-  * int : 4 octets -> 32 bits -> -231 à 231-1 = -2147483648 à 2147483647
-  * unsigned int : 4 octet -> 32 bits -> 0 à 232-1 = 0 à 4294967295
-  * long : 8 octets -> 64 bits -> -263 à 263-1 = -9223372036854775808 à 9223372036854775807
-  * unsigned long : 8 octets -> 64 bits -> 0 à 264-1 = 0 à 18446744073709551615
+  - char : 1 octet -> 8 bits -> -27 à 27-1 = -128 à 127
+  - unsigned char : 1 octet -> 8 bits -> 0 à 28-1 = 0 à 255
+  - short : 2 octets -> 16 bits -> -215 à 215-1 = -32768 à 32767
+  - unsigned short : 2 octets -> 16 bits -> 0 à 216-1 = 0 à 65535
+  - int : 4 octets -> 32 bits -> -231 à 231-1 = -2147483648 à 2147483647
+  - unsigned int : 4 octet -> 32 bits -> 0 à 232-1 = 0 à 4294967295
+  - long : 8 octets -> 64 bits -> -263 à 263-1 = -9223372036854775808 à 9223372036854775807
+  - unsigned long : 8 octets -> 64 bits -> 0 à 264-1 = 0 à 18446744073709551615
 
 4. Vérifier alors vos calculs en affichant les valeurs minimales et
 maximales de chaque type contenues dans la bibliothèque `limits`. Voici la
@@ -193,9 +193,9 @@ valeur minimale d'un `short` : -32768.
 
 Il existe trois types de flottant :
 
-  * float
-  * double
-  * long double
+  - float
+  - double
+  - long double
 
 6. De la même manière que pour les entiers, en utilisant la fonction
 `sizeof()` écrire un programme qui liste la taille en mémoire des types de
@@ -243,11 +243,11 @@ On remarque que 0.2 est bien représenté en mémoire par une approximation.
 Les opérateurs sont les mêmes que pour la plupart des langages avec pour
 exception la division :
 
-  * \+ : addition ;
-  * \- : soustraction ;
-  * * : multiplication ;
-  * / : divsion entière pour les entiers et divsion flottante pour les flottants ;
-  * % : modulo.
+  - \+ : addition ;
+  - \- : soustraction ;
+  - * : multiplication ;
+  - / : divsion entière pour les entiers et divsion flottante pour les flottants ;
+  - % : modulo.
 
 La fonction `pow()` de la bibliothèque `math` permet de réaliser l'opération
 puissance avec des doubles :
@@ -302,11 +302,11 @@ Il existe 5 opérateurs qui travaillent sur la représentation binaire des
 données. Leut avantage est qu'ils sont traités nativement par le processeur,
 ils sont donc extrèmement rapides :
 
-  * & : et logique ;
-  * | : ou logique ;
-  * ^ : ou exclusif ;
-  * ~ : négation (inverse les bits) ;
-  * 
+  - & : et logique ;
+  - | : ou logique ;
+  - ^ : ou exclusif ;
+  - ~ : négation (inverse les bits) ;
+  - 
 
 8. Sachant que 1210 = 11002 et 2110 = 101012, expliquez les résultats
 suivants sachant que x et y sont des entiers non signés sur un octet (unsigned

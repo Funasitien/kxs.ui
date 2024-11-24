@@ -6,11 +6,11 @@ layout: "/src/layouts/Page.astro"
  
 ## Photo Numérique
 
-  * [Codage d'une image](codage-image)
-  * [Modification d'une image](modification-image)
-  * [Données d'une image](donnees-format-image)
-  * [Format d'une image](format-image)
-  * [Fabrication d'une image](fabrication-image)
+  - [Codage d'une image](codage-image)
+  - [Modification d'une image](modification-image)
+  - [Données d'une image](donnees-format-image)
+  - [Format d'une image](format-image)
+  - [Fabrication d'une image](fabrication-image)
 
 # Codage d'une image
 
@@ -51,9 +51,9 @@ partir d’un fichier texte. Prenons l’exemple d’image PBM suivant :
 
 Détaillons la composition de ce fichier :
 
-  * ligne 1 : `P1` indique le format PBM ;
-  * ligne 2 : `7 9` indique le nombre de colonnes et de lignes (séparés par un espace) ;
-  * lignes suivantes : décrivent les pixels de l’image, 1 pour un pixel noir et 0 pour un pixel blanc.
+  - ligne 1 : `P1` indique le format PBM ;
+  - ligne 2 : `7 9` indique le nombre de colonnes et de lignes (séparés par un espace) ;
+  - lignes suivantes : décrivent les pixels de l’image, 1 pour un pixel noir et 0 pour un pixel blanc.
 
 1. Ouvrez un éditeur de texte (par exemple Geany ou Éditeur de texte),
 recopiez le code précédant et sauvegardez-le avec le nom « question1.pbm ».
@@ -109,10 +109,10 @@ PBM. Voici un exemple :
 
 Détaillons la composition de ce fichier :
 
-  * ligne 1 : `P2` indique le format PGM ;
-  * ligne 2 : `10 12` indique le nombre de colonnes et de lignes (séparés par un espace) ;
-  * ligne 3 : `90` indique la valeur maximale qui va correspondre au blanc ;
-  * lignes suivantes : décrivent les pixels de l’image, 0 pour un pixel noir et la valeur maximale pour un pixel blanc. Les valeurs intermédiaires vont faire du gris.
+  - ligne 1 : `P2` indique le format PGM ;
+  - ligne 2 : `10 12` indique le nombre de colonnes et de lignes (séparés par un espace) ;
+  - ligne 3 : `90` indique la valeur maximale qui va correspondre au blanc ;
+  - lignes suivantes : décrivent les pixels de l’image, 0 pour un pixel noir et la valeur maximale pour un pixel blanc. Les valeurs intermédiaires vont faire du gris.
 
 5. Ouvrez un éditeur de texte, recopiez le code précédant et sauvegardez-
 le avec le nom « question5.pgm ». Ensuite ouvrez le fichier avec Gimp et
@@ -147,15 +147,15 @@ couleur](https://www.w3schools.com/colors/colors_picker.asp) (il suffit de
 saisir le nom de la couleur dans le champ) : déterminez le code RGB des
 couleurs suivantes :
 
-  * red
-  * green
-  * blue
-  * yellow
-  * orange
-  * pink
-  * violet
-  * grey
-  * agenta
+  - red
+  - green
+  - blue
+  - yellow
+  - orange
+  - pink
+  - violet
+  - grey
+  - agenta
 
 Il existe un format d’image, proche des deux précédents qui permet de créer
 simplement des images colorées : le format PPM (Portable PixMap). Voyons
@@ -171,10 +171,10 @@ encore une fois un exemple :
 
 Détaillons la composition de ce fichier :
 
-  * ligne 1 : `P3` indique le format PPM ;
-  * ligne 2 : `3 2` indique le nombre de colonnes et de lignes (séparés par un espace) ;
-  * ligne 3 : `255` indique la valeur maximale pour une couleur ;
-  * lignes suivantes : décrivent les pixels de l’image par groupe de trois valeurs « R, G, B ». Le nombre d’espaces n’a aucune importance.
+  - ligne 1 : `P3` indique le format PPM ;
+  - ligne 2 : `3 2` indique le nombre de colonnes et de lignes (séparés par un espace) ;
+  - ligne 3 : `255` indique la valeur maximale pour une couleur ;
+  - lignes suivantes : décrivent les pixels de l’image par groupe de trois valeurs « R, G, B ». Le nombre d’espaces n’a aucune importance.
 
 9. Ouvrez un éditeur de texte, recopiez le code précédant et sauvegardez-
 le avec le nom « question9.ppm ». Ensuite ouvrez le fichier avec Gimp et

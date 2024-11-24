@@ -6,11 +6,11 @@ layout: "/src/layouts/Page.astro"
  
 ## POO
 
-  * [Introduction](.)
-  * [Programmation impérative](programmation-imperative)
-  * [Programmation orientée objet](programmation-orientee-objet)
-  * [Exercices sur la POO](exercices)
-  * [Notions de POO hors programme](poo-hors-programme)
+  - [Introduction](.)
+  - [Programmation impérative](programmation-imperative)
+  - [Programmation orientée objet](programmation-orientee-objet)
+  - [Exercices sur la POO](exercices)
+  - [Notions de POO hors programme](poo-hors-programme)
 
 # Programmation orientée objet
 
@@ -32,11 +32,11 @@ Voici le code permettant de déclarer une classe Personnage :
 
 Quelques explications :
 
-  * le nom d’une classe doit toujours commencer par une majuscule ;
-  * les fonctions définies à l’intérieur d’une classe sont appelées méthodes ;
-  * une méthode possède nécessairement un paramètre appelé `self` en premier. C’est une référence d’instance, nous verrons cela plus bas. Ce paramètre n’apparaît pas lors de l’appel de la méthode ;
-  * une classe possède des attributs ou variables d’instance qui doivent être appelé avec le préfixe self. La classe Personnage ci-dessus possède donc deux attributs `nom` et `force` ;
-  * une classe possède une méthode spéciale `__init__()` nommée constructeur qui est appelée lorsqu’on créer une instance de cette classe.
+  - le nom d’une classe doit toujours commencer par une majuscule ;
+  - les fonctions définies à l’intérieur d’une classe sont appelées méthodes ;
+  - une méthode possède nécessairement un paramètre appelé `self` en premier. C’est une référence d’instance, nous verrons cela plus bas. Ce paramètre n’apparaît pas lors de l’appel de la méthode ;
+  - une classe possède des attributs ou variables d’instance qui doivent être appelé avec le préfixe self. La classe Personnage ci-dessus possède donc deux attributs `nom` et `force` ;
+  - une classe possède une méthode spéciale `__init__()` nommée constructeur qui est appelée lorsqu’on créer une instance de cette classe.
 
 Comment utiliser cette classe ? Il faut l’instancier ! Ce n’est pas très
 compliqué :
@@ -60,8 +60,8 @@ déconseillé de faire ainsi) :
 
 Qu’avons-nous amélioré ici ?
 
-  * Le code est plus sûr : tous les personnages auront les mêmes caractéristiques par construction ;
-  * Le code est plus sûr : comme il est très déconseillé de modifier les attributs d’une classe, il y a peu de chance que le nom et la force soient modifiés par erreur.
+  - Le code est plus sûr : tous les personnages auront les mêmes caractéristiques par construction ;
+  - Le code est plus sûr : comme il est très déconseillé de modifier les attributs d’une classe, il y a peu de chance que le nom et la force soient modifiés par erreur.
 
 ## Ajout d’une méthode
 
@@ -79,7 +79,7 @@ On fera appel à cette méthode avec la commande `p1.affiche()`.
 
 Qu’avons-nous amélioré ici ?
 
-  * le code est mieux structuré : la méthode d’affichage est dans la classe Personnage. Il sera plus facile de la retrouver.
+  - le code est mieux structuré : la méthode d’affichage est dans la classe Personnage. Il sera plus facile de la retrouver.
 
 ## Ajout d’un docstring
 
@@ -102,7 +102,7 @@ l’aide.
 
 Qu’avons-nous amélioré ici ?
 
-  * le code est plus facilement maintenable.
+  - le code est plus facilement maintenable.
 
 ## Ajout d’une méthode de combat
 
@@ -122,7 +122,7 @@ Grunak.
 
 Qu’avons-nous amélioré ici ?
 
-  * le code est mieux structuré : la méthode de combat est dans la classe Personnage. Il sera plus facile de la retrouver.
+  - le code est mieux structuré : la méthode de combat est dans la classe Personnage. Il sera plus facile de la retrouver.
 
 ## Amélioration de la méthode de combat
 

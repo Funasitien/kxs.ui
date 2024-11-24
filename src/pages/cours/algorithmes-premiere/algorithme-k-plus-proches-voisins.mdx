@@ -32,9 +32,9 @@ pétales. Les données sont disponibles à cette adresse :
 premiere/iris.csv). Ce tableau contient les deux caractéristiques et bien sûr
 l’espèce de chaque fleur :
 
-  * 0 pour « iris setosa » ;
-  * 1 pour « iris virginica » ;
-  * 2 pour « iris versicolor ».
+  - 0 pour « iris setosa » ;
+  - 1 pour « iris virginica » ;
+  - 2 pour « iris versicolor ».
 
 ### Graphique
 
@@ -86,9 +86,9 @@ encore une nouvelle fleur](/cours/plot2bis.png)
 
 C’est ici que nous avons besoin de l’algorithme des k plus proches voisins :
 
-  * on calcule la distance entre notre point (largeur du pétale = 0,75 cm ; longueur du pétale = 2,5 cm) et chaque point issu du jeu de données « iris » (à chaque fois c'est un calcul de distance entre 2 points tout ce qu'il y a de plus classique) ;
-  * on sélectionne uniquement les k distances les plus petites (les k plus proches voisins) ;
-  * parmi les k plus proches voisins, on détermine quelle est l'espèce majoritaire. On associe à notre « iris mystère » cette « espèce majoritaire parmi les k plus proches voisins ».
+  - on calcule la distance entre notre point (largeur du pétale = 0,75 cm ; longueur du pétale = 2,5 cm) et chaque point issu du jeu de données « iris » (à chaque fois c'est un calcul de distance entre 2 points tout ce qu'il y a de plus classique) ;
+  - on sélectionne uniquement les k distances les plus petites (les k plus proches voisins) ;
+  - parmi les k plus proches voisins, on détermine quelle est l'espèce majoritaire. On associe à notre « iris mystère » cette « espèce majoritaire parmi les k plus proches voisins ».
 
 Ainsi dans cet exemple, pour k = 3 :
 

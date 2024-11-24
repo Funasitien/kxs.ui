@@ -30,8 +30,8 @@ La grille du jeu sera représenté par un tableau à deux dimensions. Les 0
 correspondent à des cases vides, les 1 aux jetons du joueur 1 et les 2 aux
 jetons du joueur 2. On utilisera les deux bibliothèques `stdio` et `stdbool`.
 
-  * `int main();` : crée un tableau de 6 lignes et 7 colonnes remplies de zéros. Elle appelle la fonction `jouer` ;
-  * `void display(int tab[6][7]);` : fonction qui affiche la grille du jeu dans la console de la façon la plus esthétique possible (voir la suggestion ci-dessous à améliorer) ;
+  - `int main();` : crée un tableau de 6 lignes et 7 colonnes remplies de zéros. Elle appelle la fonction `jouer` ;
+  - `void display(int tab[6][7]);` : fonction qui affiche la grille du jeu dans la console de la façon la plus esthétique possible (voir la suggestion ci-dessous à améliorer) ;
 
 ```
 +---+---+---+---+---+---+---+
@@ -49,15 +49,15 @@ jetons du joueur 2. On utilisera les deux bibliothèques `stdio` et `stdbool`.
 +---+---+---+---+---+---+---+
 ```
 
-  * `bool colonne_libre(int tab[6][7], int colonne);` : fonction qui renvoie un booléen indiquant s'il est possible de mettre un jeton dans la colonne (indique si la colonne n'est pas pleine) ;
-  * `void place_jeton(int tab[6][7], int colonne, int joueur);` : fonction qui place un jeton du joueur (1 ou 2) dans la colonne ;
-  * `bool horizontale(int tab[6][7], int joueur);` : fonction qui renvoie `True` si le joueur a au moins 4 jetons alignés dans une ligne ;
-  * `bool verticale(int tab[6][7], int joueur);` : fonction qui renvoie `True` si le joueur a au moins 4 jetons alignés dans une colonne ;
-  * `bool diagonale(int tab[6][7], int joueur);` : fonction qui renvoie `True` si le joueur a au moins 4 jetons alignés dans une diagonale ;
-  * `bool gagne(int tab[6][7], int joueur)` : fonction qui renvoie `True` si le joueur a gagné ;
-  * `void tour_joueur(int tab[6][7], int joueur)` : fonction qui permet au joueur de placer un jeton dans la colonne choisie. Elle indique si la colonne est pleine et permet alors au joueur de choisir une autre colonne ;
-  * `bool egalite(int tab[6][7])` : fonction qui renvoie `True` s'il y a égalité et `False` sinon ;
-  * `void jouer(int tab[6][7])` : fonction qui permet aux deux joueurs de jouer chacun leur tour. Elle vérifie que les joueurs n'ont pas gagné à la fin de leur tour. Si l'un des deux à gagné ou s'il y a égalité, elle donne le résultat ;
+  - `bool colonne_libre(int tab[6][7], int colonne);` : fonction qui renvoie un booléen indiquant s'il est possible de mettre un jeton dans la colonne (indique si la colonne n'est pas pleine) ;
+  - `void place_jeton(int tab[6][7], int colonne, int joueur);` : fonction qui place un jeton du joueur (1 ou 2) dans la colonne ;
+  - `bool horizontale(int tab[6][7], int joueur);` : fonction qui renvoie `True` si le joueur a au moins 4 jetons alignés dans une ligne ;
+  - `bool verticale(int tab[6][7], int joueur);` : fonction qui renvoie `True` si le joueur a au moins 4 jetons alignés dans une colonne ;
+  - `bool diagonale(int tab[6][7], int joueur);` : fonction qui renvoie `True` si le joueur a au moins 4 jetons alignés dans une diagonale ;
+  - `bool gagne(int tab[6][7], int joueur)` : fonction qui renvoie `True` si le joueur a gagné ;
+  - `void tour_joueur(int tab[6][7], int joueur)` : fonction qui permet au joueur de placer un jeton dans la colonne choisie. Elle indique si la colonne est pleine et permet alors au joueur de choisir une autre colonne ;
+  - `bool egalite(int tab[6][7])` : fonction qui renvoie `True` s'il y a égalité et `False` sinon ;
+  - `void jouer(int tab[6][7])` : fonction qui permet aux deux joueurs de jouer chacun leur tour. Elle vérifie que les joueurs n'ont pas gagné à la fin de leur tour. Si l'un des deux à gagné ou s'il y a égalité, elle donne le résultat ;
 
 ## Tableau du barème
 

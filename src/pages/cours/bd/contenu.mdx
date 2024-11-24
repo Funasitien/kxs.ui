@@ -100,10 +100,10 @@ Il est possible de chercher dans un texte avec l'opérateur `LIKE`. `LIKE`
 s'utilise généralement avec le caractère joker `%` qui signifie n'importe quel
 enchainement de caractères. Voici des exemples avec leur signification :
 
-  * `texte LIKE 'toto'` : les champs texte qui sont identiques à 'toto' ;
-  * `texte LIKE '%toto'` : les champs texte qui finissent par 'toto' ;
-  * `texte LIKE 'toto%'` : les champs texte qui commencent par 'toto' ;
-  * `texte LIKE '%toto%'` : les champs texte qui contiennent 'toto' ;
+  - `texte LIKE 'toto'` : les champs texte qui sont identiques à 'toto' ;
+  - `texte LIKE '%toto'` : les champs texte qui finissent par 'toto' ;
+  - `texte LIKE 'toto%'` : les champs texte qui commencent par 'toto' ;
+  - `texte LIKE '%toto%'` : les champs texte qui contiennent 'toto' ;
 
 Par exemple, pour avoir toutes les citations finissant par un point
 d'exclamation :
@@ -160,9 +160,9 @@ WHERE condition
 
 Elle se décompose comme ceci :
 
-  * `UPDATE` : désigne la table à modifier ;
-  * `SET` : donne les nouvelles valeurs aux champs à modifer ;
-  * `WHERE` : permet de sélectionner les lignes à modifier. On utilisera généralement un identifiant unique (une _clé_ on verra ça plus tard) pour éviter de faire des bêtises.
+  - `UPDATE` : désigne la table à modifier ;
+  - `SET` : donne les nouvelles valeurs aux champs à modifer ;
+  - `WHERE` : permet de sélectionner les lignes à modifier. On utilisera généralement un identifiant unique (une _clé_ on verra ça plus tard) pour éviter de faire des bêtises.
 
 Comme vous avez surement déjà remarqué, il y a une faute impardonnable dans
 une citation ! Dans la première citation, on a écrit « au-dela » au lieu de «
@@ -210,8 +210,8 @@ VALUES ('valeur champ 1', 'valeur champ 2', …);
 
 Elle se décompose comme ceci :
 
-  * `INSERT INTO` : désigne la table ou insérer des lignes ;
-  * `VALUES` : l'ensemble des valeurs à ajouter entre parenthèses et **respectant l'ordre des colonnes**. S'il y a plusieurs valeurs à ajouter il faut séparer les ensembles par des virgules ;
+  - `INSERT INTO` : désigne la table ou insérer des lignes ;
+  - `VALUES` : l'ensemble des valeurs à ajouter entre parenthèses et **respectant l'ordre des colonnes**. S'il y a plusieurs valeurs à ajouter il faut séparer les ensembles par des virgules ;
 
 Il faut obligatoirement mettre les champs text ou varchar entre guillemets
 simples, ce n'est pas nécessaire pour les champs numériques.
@@ -248,8 +248,8 @@ WHERE condition;
 
 Elle se décompose comme ceci :
 
-  * `DELETE FROM` : désigne la table ou il faut supprimer des lignes ;
-  * `WHERE` permet de sélectionner les lignes à modifier. Comme pour `UPDATE`, on utilisera généralement un identifiant unique pour éviter de faire des bêtises.
+  - `DELETE FROM` : désigne la table ou il faut supprimer des lignes ;
+  - `WHERE` permet de sélectionner les lignes à modifier. Comme pour `UPDATE`, on utilisera généralement un identifiant unique pour éviter de faire des bêtises.
 
 Nous allons maintenant ajouter une ligne pour la supprimer ensuite :
 

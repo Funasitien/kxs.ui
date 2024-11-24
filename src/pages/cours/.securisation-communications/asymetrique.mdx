@@ -6,10 +6,10 @@ layout: "/src/layouts/Page.astro"
  
 ## Sécurité des communications
 
-  * [Introduction](.)
-  * [Chiffrement symétrique](symetrique)
-  * [Chiffrement asymétrique](asymetrique)
-  * [HTTPS](https)
+  - [Introduction](.)
+  - [Chiffrement symétrique](symetrique)
+  - [Chiffrement asymétrique](asymetrique)
+  - [HTTPS](https)
 
 # Chiffrement asymétrique
 
@@ -72,10 +72,10 @@ algorithme s'appelle Kid-RSA et nous allons l'implémenter.
 Pour générer un couple de clé, Alice doit choisir quatre nombres a, b, a1, b1.
 Il faut ensuite effectuer les calculs suivants :
 
-  * M = a * b - 1
-  * e = a1 * M + a 
-  * d = b1 * M + b
-  * n = (e * d - 1) / M
+  - M = a * b - 1
+  - e = a1 * M + a 
+  - d = b1 * M + b
+  - n = (e * d - 1) / M
 
 Sa clé publique est alors (n, e) et sa clé privée (n, d).
 
@@ -101,10 +101,10 @@ a = 9, b = 11, a1 = 5, b1 = 8
 
 Nous calculons alors
 
-  * M = (a * b) - 1 = (9 * 11) -1 = 98
-  * e = (a1 * M) + a = (5 * 98) + 9 = 499
-  * d = (b1 * M) + b = (8 * 98) + 11 = 795
-  * n = ((e * d) - 1)/M = ((499 * 795) -1) / 98 = 4048
+  - M = (a * b) - 1 = (9 * 11) -1 = 98
+  - e = (a1 * M) + a = (5 * 98) + 9 = 499
+  - d = (b1 * M) + b = (8 * 98) + 11 = 795
+  - n = ((e * d) - 1)/M = ((499 * 795) -1) / 98 = 4048
 
 Nous voulons envoyer le nombre 538 comme message. Le chiffrement se fait alors
 :
@@ -120,9 +120,9 @@ P = C * d ( mod n) = 1294 * 795 (mod 4048 ) = 1028730 (mod 4048 ) = 538
 Vous devez créer une classe qui permet de gérer le chiffrement Kid-RSA. Voici
 le fonctionnement global de cette classe :
 
-  * Le constructeur regarde si le fichier `key.rsa` existe déjà. S'il existe il ne fait rien, sinon, il génère aléatoirement les quatre nombres a, b, a1, b1, génère les clés et stocke n, e et d dans un fichier `key.rsa` ;
-  * la classe possède une méthode chiffrer(nombre, n, e) qui chiffre nombre avec la clé publique (n, e) ;
-  * la classe possède une autre méthode déchiffrer(nombre) qui déchiffre nombre avec la clé privée (n, d) ;
+  - Le constructeur regarde si le fichier `key.rsa` existe déjà. S'il existe il ne fait rien, sinon, il génère aléatoirement les quatre nombres a, b, a1, b1, génère les clés et stocke n, e et d dans un fichier `key.rsa` ;
+  - la classe possède une méthode chiffrer(nombre, n, e) qui chiffre nombre avec la clé publique (n, e) ;
+  - la classe possède une autre méthode déchiffrer(nombre) qui déchiffre nombre avec la clé privée (n, d) ;
 
 Vous pouvez tester cette classe avec votre voisin en échangant vos clés
 publiques et en vous envoyant des nombres chiffrés.

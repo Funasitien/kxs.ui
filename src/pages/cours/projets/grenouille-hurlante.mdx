@@ -6,13 +6,13 @@ layout: "/src/layouts/Page.astro"
 
 ## Prérequis
 
-  * structures de contrôle ;
-  * boucles ;
-  * manipulation de chaînes de caractère ;
-  * fonctions ;
-  * modules ;
-  * programmation orientée objet ;
-  * **cours** : files, graphes.
+  - structures de contrôle ;
+  - boucles ;
+  - manipulation de chaînes de caractère ;
+  - fonctions ;
+  - modules ;
+  - programmation orientée objet ;
+  - **cours** : files, graphes.
 
 ## Présentation
 
@@ -195,28 +195,28 @@ suggère de faire au moins deux fonctions :
 Attention, il faut prendre garde à plusieurs dangers plus ou moins fatals dans
 ce programme :
 
-  * chaque page ne doit être explorée qu'une seule fois (attention aux boucles infinies) ;
-  * **il ne faut absolument pas explorer les liens externes** sinon votre programme va explorer tout le web !
-  * il est déconseillé de lancer le programme sur un autre site que celui du prof car un tel programme peut ralentir un site si on ne prend pas de précautions. Et surtout certains sites possèdent des millions de pages, l'exploration prendrait des jours avec un programme comme celui-ci.
-  * enfin si votre programme explore trop rapidement certains sites, vous risquez de faire bannir l'IP du lycée et le site ne serait plus accessible pour tous les ordinateurs du lycée pendant un certain temps ! Nous verrons dans les améliorations comme éviter ceci.
+  - chaque page ne doit être explorée qu'une seule fois (attention aux boucles infinies) ;
+  - **il ne faut absolument pas explorer les liens externes** sinon votre programme va explorer tout le web !
+  - il est déconseillé de lancer le programme sur un autre site que celui du prof car un tel programme peut ralentir un site si on ne prend pas de précautions. Et surtout certains sites possèdent des millions de pages, l'exploration prendrait des jours avec un programme comme celui-ci.
+  - enfin si votre programme explore trop rapidement certains sites, vous risquez de faire bannir l'IP du lycée et le site ne serait plus accessible pour tous les ordinateurs du lycée pendant un certain temps ! Nous verrons dans les améliorations comme éviter ceci.
 
 Lorsque vous avez réussi à coder les fonctionalités de base, vous pouvez vous
 attaquer aux améliorations suivantes :
 
-  * afficher le nombre total de pages du site ;
-  * pour chaque page, afficher le nombre de liens internes et le nombre de liens externes ;
-  * faire une liste de tous les liens externes ;
-  * faire une liste de tous les liens « morts » (c'est à dire avec un statut 404) ;
-  * exporter le rapport complet dans un fichier texte ;
-  * exporter la liste des pages avec leurs informations (sans la liste des liens) dans un fichier csv ;
-  * ajouter un temps aléatoire de moins d'une seconde entre chaque page explorée pour ne pas être détecté et éviter de surcharger le serveur ;
-  * ne pas explorer les fichiers image, sql et pdf ;
-  * [difficile] pour chaque page, afficher sa profondeur (c'est à dire, le nombre minimum de liens la reliant à la page d'acceuil).
+  - afficher le nombre total de pages du site ;
+  - pour chaque page, afficher le nombre de liens internes et le nombre de liens externes ;
+  - faire une liste de tous les liens externes ;
+  - faire une liste de tous les liens « morts » (c'est à dire avec un statut 404) ;
+  - exporter le rapport complet dans un fichier texte ;
+  - exporter la liste des pages avec leurs informations (sans la liste des liens) dans un fichier csv ;
+  - ajouter un temps aléatoire de moins d'une seconde entre chaque page explorée pour ne pas être détecté et éviter de surcharger le serveur ;
+  - ne pas explorer les fichiers image, sql et pdf ;
+  - [difficile] pour chaque page, afficher sa profondeur (c'est à dire, le nombre minimum de liens la reliant à la page d'acceuil).
 
 Pour les plus rapides, avec des recherches à faire, en bonus :
 
-  * Exporter en SQL la liste des pages avec leurs info (chemin, titre, statut, nombre de liens internes, nombre de liens externes, nombre de liens mort)
-  * Lister les liens nofollow du site (liens avec l'attribut rel="nofollow")
+  - Exporter en SQL la liste des pages avec leurs info (chemin, titre, statut, nombre de liens internes, nombre de liens externes, nombre de liens mort)
+  - Lister les liens nofollow du site (liens avec l'attribut rel="nofollow")
 
 ## Tableau du barème
 
