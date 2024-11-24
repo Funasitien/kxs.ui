@@ -11,21 +11,21 @@ layout: "/src/layouts/Page.astro"
 Pour chacune des situations suivantes, donnez la structure de données la plus
 adaptée.
 
-**1.** La gestion du flux de personnes arrivant dans une préfecture.  
-**2.** Les opérations effectuées dans un logiciel de dessin pour que l'on
+1. La gestion du flux de personnes arrivant dans une préfecture.  
+2. Les opérations effectuées dans un logiciel de dessin pour que l'on
 puisse les annuler.  
-**3.** Envoyer des fichiers à un serveur d'impression.  
-**4.** Un répertoire téléphonique ou l'on accède au téléphone en rentrant un
+3. Envoyer des fichiers à un serveur d'impression.  
+4. Un répertoire téléphonique ou l'on accède au téléphone en rentrant un
 nom.  
-**5.** Mémoriser tous les coups d'une partie d'échecs.  
+5. Mémoriser tous les coups d'une partie d'échecs.  
 
 ### Exercice 2
 
 #### Énoncé
 
 Nous allons créer une fonction `check` permettant de vérifier le bon
-parenthésage d'une expression. Nous considérons les symboles (, ), [, ], { et 
-}. 
+parenthésage d'une expression. Nous considérons les symboles `(`, `)`, `[`, `]`, `{` et 
+`}`. 
 Voici quelques exemples de bon parenthésage :
 
 ```
@@ -56,23 +56,23 @@ Développer les fonctionalités croissantes suivantes :
 #### Tests
 
 Pour la question 1 :
-```
-    ## Caractère fermant en trop
-    >>> check("P{h(ra)se} [d{e te}]st}")
-    Caractère fermant en trop
-    
-    ## Manque un caractère fermant
-    >>> check("P{h(ra)se [d{e te}]st")
-    Manque un caractère fermant
-    
-    ## Mauvais caractère fermant
-    >>> check("P{h(ra)se} [d{e te})st")
-    Mauvais caractère fermant
+```py
+## Caractère fermant en trop
+>>> check("P{h(ra)se} [d{e te}]st}")
+Caractère fermant en trop
+
+## Manque un caractère fermant
+>>> check("P{h(ra)se [d{e te}]st")
+Manque un caractère fermant
+
+## Mauvais caractère fermant
+>>> check("P{h(ra)se} [d{e te})st")
+Mauvais caractère fermant
 ```
 
 Pour la question 2 :
 
-```
+```py
 ## Caractère fermant en trop
 >>> check("P{h(ra)se} [d{e te}]st}")
 P{h(ra)se} [d{e te}]st}
@@ -107,4 +107,3 @@ P{h(ra)se [d{e te}]st
 P{h(ra)se} [d{e te})st
            ^       ^
 ```
-
