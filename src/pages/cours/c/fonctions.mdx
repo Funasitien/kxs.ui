@@ -1,5 +1,5 @@
 ---
-title: "C - Fonctions"
+title: "Fonctions"
 icon: "mdi:paper-remove"
 layout: "/src/layouts/Page.astro"
 ---
@@ -14,43 +14,29 @@ fonctions.
 Voici comment définir une fonction :
 
 ```c
-    type_de_retour nom_fonction(liste_arguments) {
-    	…
-    	instructions
-    	…
-    	return eventuelle_valeur_de_retour;
-    }
+type_de_retour nom_fonction(liste_arguments) {
+    …
+    instructions
+    …
+    return eventuelle_valeur_de_retour;
+}
 ```
 
 Voici à quoi correpondent les élèments de la définition :
+- type_de_retour : Type de la valeur renvoyée par la fonction (`int`, `char`…). Si la fonction de renvoie rien, il faut utiliser `void`. 
+- nom_fonction : Nom que l'on donne à la fonction. Le nom doit refléter ce que fait la fonction.
+- liste_arguments : Liste de variables internes (on parlera de variables locales) à la fonction qui prendront les valeurs fournies en paramètre à la fonction.
+- eventuelle_valeur_de_retour : Si la fonction renvoie une valeur il faut explicitement lui dire quoi renvoyer avec le mot-clé `return`.
 
-type_de_retour
-
-    type de la valeur renvoyée par la fonction (`int`, `char`…). Si la fonction de renvoie rien, il faut utiliser `void`.
-  
-nom_fonction
-
-    Nom que l'on donne à la fonction. Le nom doit refléter ce que fait la fonction.
-  
-liste_arguments
-
-    Liste de variables internes (on parlera de variables locales) à la fonction qui prendront les valeurs fournies en paramètre à la fonction.
-  
-eventuelle_valeur_de_retour
-
-    Si la fonction renvoie une valeur il faut explicitement lui dire quoi renvoyer avec le mot-clé `return`.
-
-Prenons l'exemple d'une fonction `max` qui calcule le maximum de deux entiers
-:
-
+Prenons l'exemple d'une fonction `max` qui calcule le maximum de deux entiers :
 ```c    
-    int max(int a, int b) {
-    	if (a > b) {
-    		return a;
-    	} else {
-    		return b;
-    	}
+int max(int a, int b) {
+    if (a > b) {
+        return a;
+    } else {
+        return b;
     }
+}
 ```
 
 ## Appel d'une fonction
@@ -60,20 +46,20 @@ donner des paramètres correspondant à ses arguments. Reprenons l'exemple de la
 fonction `max` :
 
 ```c
-    #include <stdio.h>
-    
-    int max(int a, int b) {
-    	if (a > b) {
-    		return a;
-    	} else {
-    		return b;
-    	}
+#include <stdio.h>
+
+int max(int a, int b) {
+    if (a > b) {
+        return a;
+    } else {
+        return b;
     }
-    
-    int main() {
-    	int c = max(8, 3);
-    	printf("%d\n",c);
-    }
+}
+
+int main() {
+    int c = max(8, 3);
+    printf("%d\n",c);
+}
 ```
 
 Ici la variable `c` prend la valeur renvoyée par la fonction.
@@ -86,17 +72,17 @@ impossible de modifier (dans l'état de nos connaissances) une variable externe
 à une fonction :
 
 ```c
-    #include <stdio.h>
-    
-    void test(int b) {
-    	b = b + 1;
-    }
-    
-    int main() {
-    	int a = 2;
-    	test(a);
-    	printf("%d\n", a);
-    }
+#include <stdio.h>
+
+void test(int b) {
+    b = b + 1;
+}
+
+int main() {
+    int a = 2;
+    test(a);
+    printf("%d\n", a);
+}
 ```
 
 La fonction `test` reçoit donc la valeur `2` et n'a pas « connaissance » de
@@ -107,9 +93,9 @@ l'existence de `a`. Le programme affiche alors `2`.
 On peut avoir besoin de simplment déclarer une fonction sans la définir
 complètement. Dans ce cas, on donne ce qu'on appelle son prototype :
 
-    
-    
-    type_de_retour nom_fonction(liste_arguments);
+```c
+type_de_retour nom_fonction(liste_arguments);
+```
 
 Il faut ensuite définr la fonction plus loin dans le code si on veut pouvoir
 l'utiliser.
@@ -117,7 +103,7 @@ l'utiliser.
 Pour notre exemple cela donnerait :
 
 ```c
-    int max(int a, int b);
+int max(int a, int b);
 ```
 
 ## Exercices
