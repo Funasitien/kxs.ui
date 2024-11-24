@@ -35,7 +35,7 @@ sidebarPaths = sidebarContent
   .filter((line) => line !== ""); // Clean up lines
 
 const currentPostIndex = sidebarPaths.findIndex(
-  (element) => element === mdxFilePath
+  (element) => element === currentPath
 );
 
 let nextPostUrl;
