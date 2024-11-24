@@ -22,7 +22,9 @@ REPLACEMENTS = {
     "**13)** ": "13. ",
     "**14)** ": "14. ",
     "**15)** ": "15. ",
-    "/public/": "/cours/"
+    "/public/": "/cours/",
+    "\n\n[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la\nlicence [CC BY-SA 4.0\n![ccbysa](//cours/ccbysa.svg)](https://creativecommons.org/licenses/by-\nsa/4.0/deed.fr)\n\n\n": " ",
+    "![]": "![Image sans description]",
     # Add more key-value pairs as needed
 }
 

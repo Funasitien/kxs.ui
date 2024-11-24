@@ -30,7 +30,7 @@ nouveau tableau trié :
 Lorsqu’on trie un tableau d’entiers, le fonctionnement est assez classique :
 les entiers sont placés par ordre croissant.
 
-**1)** Donnez le résultat de l’instruction suivante :
+1. Donnez le résultat de l’instruction suivante :
 
 ```py
 >>> sorted([7,-6,12,76,0])
@@ -43,7 +43,7 @@ Remarque : tout cela fonctionne également avec les flottants.
 Python trie les chaînes de caractère par ordre lexicographique. Pour les
 chaînes en minuscule, tout va bien :
 
-**2)** Donnez le résultat de l’instruction suivante :
+2. Donnez le résultat de l’instruction suivante :
 
 ```py
 >>> sorted(['pomme', 'poire', 'banane', 'kiwi'])
@@ -52,7 +52,7 @@ chaînes en minuscule, tout va bien :
 Pour les chaînes avec des majuscules, ça se complique. L’ordre lexicographique
 utilisé par Python utilise le code unicode des caractères :
 
-**3)** Donnez le résultat de l’instruction suivante :
+3. Donnez le résultat de l’instruction suivante :
 
 ```py
 >>> sorted(['Pomme', 'poire', 'banane', 'kiwi'])
@@ -71,7 +71,7 @@ Pour obtenir l’ordre alphabétique, il faut d’abord activer votre locale :
 
 Puis utiliser sorted() avec l’option key=locale.strxfrm.
 
-**4)** Donnez le résultat de l’instruction suivante :
+4. Donnez le résultat de l’instruction suivante :
 
 ```py
 >>> sorted(['Pomme', 'poire', 'banane', 'kiwi'], key=locale.strxfrm)
@@ -82,7 +82,7 @@ Puis utiliser sorted() avec l’option key=locale.strxfrm.
 Attention une chaîne de caractère contenant un entier reste triée comme une
 chaîne de caractère.
 
-**5)** Donner le résultat de l’instruction suivante :
+5. Donner le résultat de l’instruction suivante :
 
 ```py
 >>> sorted(['12', '2', '0', '102'])
@@ -94,7 +94,7 @@ Ce comportement est normal car il respecte l’ordre lexicographique.
 
 Une option permet d’inverser l’ordre de tri : reverse = True.
 
-**6)** Donnez le résultat de l’instruction suivante :
+6. Donnez le résultat de l’instruction suivante :
 
 ```py
 >>> sorted([7,-6,12,76,0], reverse = True)
@@ -102,9 +102,9 @@ Une option permet d’inverser l’ordre de tri : reverse = True.
 
 ## Questions (sans tester en Python si possible)
 
-**7)** Donnez le résultat de `sorted(['19', 'vacances', 'voyage', '9'])`.
+7. Donnez le résultat de `sorted(['19', 'vacances', 'voyage', '9'])`.
 
-**8)** Donnez le résultat de `sorted(['A', 'b', 'Ba', 'aB', 'aa'])`.
+8. Donnez le résultat de `sorted(['A', 'b', 'Ba', 'aB', 'aa'])`.
 
 ## Pour aller plus loin
 
