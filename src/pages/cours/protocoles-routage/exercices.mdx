@@ -1,0 +1,35 @@
+---
+title: "Exercices sur le protocoles de routage"
+icon: "mdi:paper-remove"
+layout: "/src/layouts/Page.astro"
+---
+
+## Exercice 1
+
+Je vous propose de faire l'exercice 5 du [sujet
+zéro](/files/sujets/2021/ecrit/terminale-2021-sujet-0.pdf).
+
+## Exercice 2
+
+Pour nous rapprocher un peu plus de la réalité, nous allons utiliser le réseau
+ci-dessous :
+
+![Image sans description](/cours/reseau4.png)
+
+Il représente un réseau avec des adresses IP. Nous utiliserons le protocole
+RIP. Les tables de routage fonctionnent sur le même principe que ce que nous
+avons vu en cours. Voici les différences de notation :
+
+  - les destinations sont des réseaux ;
+  - les moyens d'atteindre un réseau sont soit une interface réseau (eth) si le réseau est directement connecté au routeur soit l'adresse du routeur auquel s'adresser.
+
+Voici alors la table de routage du routeur A :
+
+Table de routage du routeur A Destination | Moyen de l'atteindre | Sauts  
+---|---|---  
+172.168.0.0/16 | eth0 | 1  
+172.169.0.0/16 | eth2 | 1  
+192.168.7.0/24 | eth1 | 1  
+10.0.0.0/8 | 192.168.7.2 | 2  
+  
+Donnez la table de routage du routeur G.

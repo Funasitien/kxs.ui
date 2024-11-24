@@ -1,0 +1,176 @@
+---
+title: "C - Files - Niveau MP2I"
+icon: "mdi:paper-remove"
+layout: "/src/layouts/Page.astro"
+---
+
+Enfile Defile
+
+## Spécification
+
+Une file est un ensemble de données ordonnées de même type (entier, chaîne de
+caractère…). Les files ont une structure en FIFO (First In First Out). C'est à
+dire que le premier élément entré est le premier sorti. Voici donc les
+primitives courantes pour une file :
+
+`enfile(x)`: insère un élément à l'entrée de la file ;
+  
+`defile()`: enlève l'élément en bout de file ;
+  
+`sortie()`: renvoie l'élément en sortie de file ;
+  
+`taille()`: renvoie le nombre d'éléments de la file ;
+  
+`estVide()`: renvoie `True` si la file est vide, `False` sinon ;
+  
+
+Comme pour les piles, les primitives `taille()` et `affiche()` ne sont pas
+toujours implémentées.
+
+Pour simplifier l'implémentation, nous implémenterons uniquement des piles
+d'entiers.
+
+## Implémentation
+
+### Présentation
+
+L'implémentation d'une file se fait naturelement avec une liste doublement
+chaînée. C'est à dire que chaque élément fait un lien vers l'élément suivant
+et vers l'élément précédent. Voici donc une implémentation d'une file :
+
+```c++
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+
+typedef struct ElementFile {
+	int valeur;
+	struct ElementFile* precedent;
+	struct ElementFile* suivant;
+} elementFile;
+
+typedef struct FileEntier {
+	int taille;
+	elementFile* tete;
+	elementFile* queue;
+} fileEntier;
+
+
+fileEntier* creationFile() {
+	fileEntier* file = malloc(sizeof(fileEntier));
+	file->taille = 0;
+	file->tete = NULL;
+	file->queue = NULL;
+	return file;
+}
+
+void enfile(fileEntier* file, int val) {
+	// On crée un nouvel élément
+	elementFile* e = malloc(sizeof(elementFile));
+	e->valeur = val;
+	// qui devient la tête de la file
+	e->precedent = NULL;
+	e->suivant = file->tete;
+	// Si la file n'était pas vide
+	if (file->tete != NULL) {
+		file->tete->precedent = e;
+	} else { // Si elle était vide, e devient la queue
+		file->queue = e;
+	}
+	file->tete = e;
+	file->taille = file->taille + 1;
+}
+
+bool estVide(fileEntier* file) {
+	return (file->tete == NULL);
+}
+
+void defile(fileEntier* file) {
+	// Si la file n'est pas vide
+	if (!estVide(file)) {
+		// On mémorise la queue
+		elementFile* e = file->queue;
+		// Si la file ne contenait qu'un seul élément
+		if (file->queue->precedent == NULL) {
+			// La file devient vide
+			file->tete = NULL;
+		} else {
+			// Lavant dernier élément doit pointer vers NULL
+			file->queue->precedent->suivant = NULL;
+		}
+		file->queue = file->queue->precedent;
+		free(e);
+		file->taille = file->taille - 1;
+	}
+}
+
+int sortie(fileEntier* file) {
+	return file->queue->valeur;
+}
+
+int taille(fileEntier* file) {
+	return file->taille;
+}
+```
+
+### Utilisation
+
+1. Pour tester le code, créer une file vide, enfiler `5`, `6` et `17`,
+afficher sa taille, afficher la valeur de la sortie, defiler un élément et
+afficher la valeur de la sortie.
+
+```c++ 
+int main() {
+	fileEntier* maFile = creationFile();
+	enfile(maFile, 5);
+	enfile(maFile, 6);	
+	enfile(maFile, 7);
+	printf("Taille : %d\n", taille(maFile));
+	printf("Sortie %d\n", sortie(maFile));
+	defile(maFile);
+	printf("Sortie %d\n", sortie(maFile));
+}
+```
+
+2. Créer une fonction qui affiche la file horizontalement avec ses valeurs
+séparées par des virgules.
+
+```c++
+void affiche(fileEntier* file) {
+	elementFile* e = file->tete;
+	for (int i = 0; i < file->taille; i++) {
+		printf("%d, ", e->valeur);
+		e = e->suivant;
+	}
+	printf("\n");
+}
+```
+
+3. De la même façon, créer une fonction qui affiche la file
+horizontalement __dans l'ordre inverse avec ses valeurs séparées par des
+virgules.
+
+```c++
+void afficheReverse(fileEntier* file) {
+	elementFile* e = file->queue;
+	for (int i = 0; i < file->taille; i++) {
+		printf("%d, ", e->valeur);
+		e = e->precedent;
+	}
+	printf("\n");
+}
+```
+
+4. Quels sont les avantages et inconvénients de cette implémentation ?
+
+L'accès à la tête et à la queue sont très rapides car elles sont directement
+accessibles. les actions enflie et défile sont aussi très rapides pour les
+memes raisons. La place en mémoire est acceptable car elle dépend directement
+du nombre d'éléments dand la pile.
+
+5. Pourquoi n'était-il pas possible d'utiliser une liste simplement
+chaînée en gardant seulement un pointeur vers la queue ?
+
+Le pointeur permetrait en effet d'accéder rapidement à la dernière valeur de
+la file mais en cas de défilement pour trouver le nouvel élément en queue de
+file il aurait été nécessaire de parcourir toute la file du début.

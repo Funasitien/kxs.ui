@@ -1,0 +1,99 @@
+---
+title: "Arbres - Terminale NSI"
+icon: "mdi:paper-remove"
+layout: "/src/layouts/Page.astro"
+---
+
+## Définition
+
+En informatique nous parlerons d'un type de graphe particulier : les _arbres
+enracinés_ ou _arborescence_. Par abus de language on ommettra souvent le
+terme « enraciné » et nous parlerons simplement d'arbre. En voici une
+définition :
+
+Un arbre (enraciné) ou une arborescence est un graphe **orienté** dont :
+
+  - un seul sommet n'a aucun parent, on l'appellera la _racine_ ;
+  - tous les autres sommets n'ont qu'un seul parent.
+
+Voici donc un arbre enraciné :
+
+![Arbre enraciné avec la racine en bas et des flèches](/cours/arbre1.svg)
+
+A est ici la racine.
+
+## Informatique
+
+En informatique, nous simplifierons la représentation des arbres en ommettant
+les flèches et en mettant la racine en haut. Voici le même arbre simplifié :
+
+![Arbre sans flèche avec la racine en haut](/cours/arbre2.svg)
+
+Un arborescence est donc un arbre :
+
+```bash
+    /
+    ├── home
+    │	├── eleve
+    │	│	└── fichier.txt
+    │	└── administrateur
+    ├── lost+found
+    ├── media
+    └── var
+    	└── www
+    		└── index.html
+```
+
+## Vocabulaire
+
+  - les _feuilles_ sont les nœuds ne possédant pas de fils ;
+  - les _nœuds internes_ sont les nœuds possédant des fils.
+
+Pour l'arbre ci-dessus, A est la racine, A, C et D sont des nœuds internes et
+B, E, F et G sont des feuilles.
+
+## Propriétés
+
+Voici les principales propriétés d'un arbre :
+
+  - la _profondeur_ d'un nœud est la distance (nombre d'arêtes) entre la racine et ce nœud ;
+  - la _hauteur_ d'un arbre est la plus grande profondeur d'une feuille de l'arbre ;
+  - la _taille_ d'un arbre est le nombre de nœuds.
+
+Pour l'arbre ci-dessus, la profondeur de A est 0 et celle de E est 2. Sa
+hauteur est 2 et sa taille est 7.
+
+11. Pour l'arbre ci-dessous, répondre aux questions suivantes :
+
+  - Quelle est la racine ?
+  - Combien a-t-il de feuilles ?
+  - Qui sont les fils de D ?
+  - Quelle est la profondeur de H ?
+  - Quelle est la profondeur de P ?
+  - Quelle est la hauteur de cet arbre ?
+  - Quelle est la taille de cet arbre ?
+
+![Arbre complexe avec 17 nœuds](/cours/arbre3.svg)
+
+12. Pour l'arborescence linux ci-dessous, répondre aux questions suivantes
+:
+
+  - Quelle est la racine ?
+  - Combien a-t-il de feuilles ?
+  - Quelle est la profondeur de `index.html` ?
+  - Quelle est la profondeur de `administrateur` ?
+  - Quelle est la hauteur de cet arbre ?
+  - Quelle est la taille de cet arbre ?
+
+```bash
+    /
+    ├── home
+    │	├── eleve
+    │	│	└── fichier.txt
+    │	└── administrateur
+    ├── lost+found
+    ├── media
+    └── var
+    	└── www
+    		└── index.html
+```

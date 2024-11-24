@@ -1,0 +1,191 @@
+---
+title: "Chiffrement symétrique"
+icon: "mdi:paper-remove"
+layout: "/src/layouts/Page.astro"
+---
+
+## Présentation
+
+Le _chiffrement symétrique_ est la plus ancienne méthode de chiffrement. Elle
+utilise une _clé secrète_ qu'il est nécessaire de connaitre pour déchiffrer le
+message.
+
+La principale contrainte du chiffrement symétrique est que la clé doit être
+connue des deux parties : l'émetteur et le récepteur. Il faut donc s'échanger
+la clé au préalable.
+
+Voyons donc quelques exemples de chiffrement symétriques.
+
+## Codage de César
+
+C'est le plus ancien et le plus connu des chiffrements symétriques. Il est
+très simple et donc, comme nous le verrons, facilement « cassable ».
+
+### Description
+
+Le _codage de César_ est un chiffrement par décallage. C'est à dire qu'à
+chaque lettre de l'alphabet, on va faire correspondre une autre lettre de
+l'alphabet avec un décalage constant. On ne touche pas à la ponctuation et aux
+espaces. Pour simplifier les choses nous n'utiliserons que des lettres
+majuscules dans nos messages.
+
+Par exemple, si on choisit un décalage de 3 nous allons avoir les
+correspondances suivantes :
+
+```c++
+A -> D
+B -> E
+C -> F
+D -> G
+…
+W -> Z
+X -> A
+Y -> B
+Z -> C
+```
+
+Le décalge est alors la clé.
+
+Pour déchiffrer il suffit de faire le décalage dans le sens inverse.
+
+### Expérimentation
+
+1. Donnez le message chiffré obtenu avec un décalage de 3 sur le message :
+`HELLO WORLD!`.
+
+2. Déchiffrez le message suivant avec un décallage de 3 : `PDNH DPHULFD
+JUHDW DJDLQ!`.
+
+3. Écrivez un petit script qui permet de chiffrer et déchiffrer n'importe
+quel message en connaissant la clé. Vous définirez deux fonctions :
+`chiffrer(message, cle)` et `dechiffrer(message, cle)` qui retournent
+respectivement le message chiffré et le message déchiffré..
+
+4. Proposez une fonction `essai(message)` qui déchiffre le message avec
+les 26 clés possibles pour trouver celle qui est la bonne.
+
+5. En utilisant la fonction précédente déchiffrez et trouvez la clé du
+message suivant : `XLIXVX WX ATVDXK!`
+
+Vous venez d'effectuer une attaque par force brute. Cette attaque est simple
+dans le codage de César car il n'y a pas beaucoup de clés possibles. Nous
+verrons dans la suite qu'on utilise de nos jours des clés avec un nombre de
+valeurs possibles beaucoup plus grand pour limiter ce genre d'attaque.
+
+## Chiffre de Vigenère
+
+### Présentation
+
+Ce chiffrement est une amélioration du codage césar qui permet de multiplier
+les clés possibles.
+
+Cette fois-ci, la clé est un mot ou une phrase qui va indiquer plusieurs
+décalages correspondant à la position de la lettre dans l'alphabet (« A »
+correspondant à 0). Ces décalages vont être appliqué périodiquement sur le
+message.
+
+Par exemple si la clé est « NSI », la première lettre sera décalée de 13
+(position de « N » dans l'alphabet), la deuxième lettre de 18 et la troisième
+de 8. Pour les lettres suivantes, on recommence avec 13… Pour plus de
+précision la [page wikipedia du chiffre de
+Vigenère](https://fr.wikipedia.org/wiki/Chiffre_de_Vigen%C3%A8re) est plus
+détaillée.
+
+### Expérimentation
+
+6. En utilisant le tableau de Vigenère situé sur la page wikipédia ci-
+dessus, chiffrez le message suivant avec la clé « NSI » : `HELLO WORLD!`
+
+7. Déchiffrez avec cette même clé le message : `FLIYDUNF`
+
+8. Pour les plus rapides, comme pour le code de César, créez un programme
+qui permet de chiffrer et déchiffrer avec le chiffre de Vigenère.
+
+## AES
+
+Nous venons de voir deux méthodes de chiffrement symétrique simples qui
+peuvent être cassées facilement (depuis plusieurs siècles). Mais tous les
+chiffrements symétriques ne sont pas simples et attaquables facilement. L'un
+d'eux est utilisé actuellement pour le protocole https : [AES (Advanced
+Encryption
+Standard)](https://fr.wikipedia.org/wiki/Advanced_Encryption_Standard).
+
+Nous n'allons pas rentrer dans les détails du fonctionnement de AES, mais il
+est instructif de lire l'explication de wikipedia :
+
+> L'algorithme prend en entrée un bloc de 128 bits (16 octets), la clé fait
+> 128, 192 ou 256 bits. Les 16 octets en entrée sont permutés selon une table
+> définie au préalable. Ces octets sont ensuite placés dans une matrice de 4x4
+> éléments et ses lignes subissent une rotation vers la droite. L'incrément
+> pour la rotation varie selon le numéro de la ligne. Une transformation
+> linéaire est ensuite appliquée sur la matrice, elle consiste en la
+> multiplication binaire de chaque élément de la matrice avec des polynômes
+> issus d'une matrice auxiliaire, cette multiplication est soumise à des
+> règles spéciales selon GF(28) (groupe de Galois ou corps fini). La
+> transformation linéaire garantit une meilleure diffusion (propagation des
+> bits dans la structure) sur plusieurs tours. Finalement, un OU exclusif XOR
+> entre la matrice et une autre matrice permet d'obtenir une matrice
+> intermédiaire. Ces différentes opérations sont répétées plusieurs fois et
+> définissent un « tour ». Pour une clé de 128, 192 ou 256, AES nécessite
+> respectivement 10, 12 ou 14 tours.
+
+## Conclusion
+
+Le chiffrement symétrique est un chiffrement rapide qui a pour inconvénient
+principal de nécessiter un échange de clé au préalable. Nous allons voir dans
+la suite que le codage asymétrique est plus lent mais ne nécessite pas
+d'échange de clé au préalable.
+
+## Défi
+
+Voici un défi pour gagner des points bonus. Je vous propose de tenter de
+décoder le texte ci-dessous :
+
+```c++
+I SP OVCD ECFIFITCZAMCFPOMZ
+P CXZ MCZMOZCDEZOCSZCTZCAIEACXIA
+SCIECOZB C TCMZLZGOIFFZCVZCLCIAELZCFZOZCVZBZVZZ
+ZTMZOOZFZTMCVZFIET
+AZTMEFZTMACVEAMETG ZA
+BZLICTZCYZ MCOEZTCVEOZ
+BCZMIEMCXZ MCZMOZCDEZO
+LCIAELZCVZCYEZELLIOVACZAMCICFIOZTGPCICR IMOZCYETGMACWELPFZMOZACVCILGZO
+SZCXOZTVOIECLCI MPH ACICVZ NCDZ OZACZMCSCIOOEYZOIECVITACLCIXOZACFEVE
+IETAECSZCXP OOIECYZELLZOCZMCSZCOZTMOZOIECVZFIETCAPEO
+SCIECVZFITVZCVZ NCSP OACVZCBPTGZCICFPTCXIMOPTCZMCELCTZCXP YIEMCXIACFZCLZACOZU AZOCIYZBC TZCZNB AZCXIOZELLZ
+FIEACELCTCIYIEMCXIACLCIEOCBPTMZTM
+SZCL ECIECFZFZCVEMCBZCTCZAMCXIACVZCFICUI MZ
+ELCTCICXIACOZXPTV
+SCIECXZTAZCILPOACR ZCSZCTCI OIEACXIACVCL ECVEOZCBZLI
+ZTCAPFFZCSZCTCIYIEACXIACICFCZNB AZO
+BCZMIEMCXL MMCICL ECVZCFZCXOZAZTMZOCAZACBPTVPLZITBZA
+FIEACELCLZCUZOICAITACVP MZCIXOZACVZFIETCR ITVCELCFZCYZOOICZTCVZ EL
+XP OCLZCFPFZTMCBCZAMC TCXZ CBPFFZCAECFIFITCTCZMIEMCXIACFPOMZ
+IXOZACLCZTMZOOZFZTMCI CBPTMOIEOZCBZCAZOIC TZCIUUIEOZCBLIAAZZCZMCMP MCI OICOZYZM C TZCILL OZCXL ACPUUEBEZLLZ
+SCIECXOEACLCI MPH ACICVZ NCDZ OZA
+ELCUIEAIEMCMOZACBDI V
+SCIECFITGZCI COZAMI OITMCBDZJCBZLZAMZCBPFFZCVCDIHEM VZ
+ELACIYIEZTMCMP ACHZI BP XCVZCXZETZCXP OCFPECZMCBZLZAMZCFCICVEMCPTCTCICR C TZCFZOZ
+R ITVCSZCA EACXIOMECELACFCPTMCIBBPFXIGTZCICLICXPOMZ
+SCZMIEAC TCXZ CZMP OVECXIOBZCR CELCICUILL CR ZCSZCFPTMZCBDZJCZFFIT ZLCXP OCL ECZFXO TMZOC TZCBOIYIMZCTPEOZCZMC TCHOIAAIOV
+ELCICXZOV CAPTCPTBLZCELCQCICR ZLR ZACFPEA
+SCIECBP O CXP OCTZCXIACFITR ZOCLZCVZXIOM
+BZMMZCDIMZCBZMMZCBP OAZCBCZAMCICBI AZCVZCMP MCBZLICAITACVP MZCISP MZCI NCBIDPMACICLCPVZ OCVCZAAZTBZCICLICOZYZOHZOIMEPTCVZCLICOP MZCZMCV CBEZLCR ZCSZCFZCA EACIAAP XE
+SCIECVPOFECXZTVITMCXOZAR ZCMP MCLZCMOISZM
+ZMCR ITVCSZCFZCA EACOZYZELLZCSCZMIEACMIAAZCBPTMOZC TCFELEMIEOZCR ECFCICAP OECZMCR ECFCICVZFITVZCAECSZCYZTIEACVZCLPET
+SCIECVEMCP ECXP OCTCIYPEOCXL ACICXIOLZO
+```
+
+J'ai utilisé une permutation aléatoire (César aurait été trop simple et
+Vigenère trop complexe). C'est à dire qu'à chaque caractère est associé un
+autre caractère de façon aléatoire et définitve. Cela revient à un codage
+César mais avec un décalage différent pour chaque caractère. Pour vous aider
+voici quelques remarques :
+
+  - Le texte n'est constitué que des lettres majuscules non accentuées et du caractère d'espacement (il n'y a pas de ponctuation, les points sont remplacés par des retours à la ligne) ;
+  - Il y a ainsi 27 caractères et donc 27! = 10888869450418352160768000000 permutations possibles. Une attaque par force brute semble difficile ;
+  - Vous devriez y arriver en analysant la fréquence des caractères. On trouve facilement sur internet. la fréquence des caractères dans la langue française. (Mais attention au caractère d'espacement !)
+
+9. Donnez une réponse sous la forme d'une liste de caractères
+correspondant à la permutation de la liste `"ABCDEFGHIJKLMNOPQRSTUVWXYZ "`.
+Puis affichez le texte déchiffré.

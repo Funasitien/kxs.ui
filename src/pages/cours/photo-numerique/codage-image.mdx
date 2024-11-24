@@ -1,0 +1,174 @@
+---
+title: "Photo numérique : codage d'une image"
+icon: "mdi:paper-remove"
+layout: "/src/layouts/Page.astro"
+---
+
+## Introduction
+
+En informatique (ordinateurs, appareil photo numérique, téléphone) une image
+est composée de pixels. Chaque pixel correspond à un point de l’image et
+l’ensemble de ces points donne une impression d’image continue :
+
+![Un œuf](/cours/egg.png)
+
+L’image ci-dessus comporte 190152 pixels mais notre œil n’est pas capable de
+les voir. Le nombre de pixels composant une image est appelé définition. Les
+images étant toujours rectangulaires, les pixels forment un tableau (ou une
+matrice) qui a donc un certain nombre de lignes et de colonnes. On donne
+souvent la définition d’une image par un produit du nombre de colonnes par le
+nombre de lignes. Par exemple, l’image ci-dessus a une résolution de 417x459
+pixels ou de 190152 pixels.
+
+## Image noir et blanc
+
+Le format PBM (Portable Bit Map) permet de créer simplement des images à
+partir d’un fichier texte. Prenons l’exemple d’image PBM suivant :
+
+```
+P1
+7 9
+0000000
+0111110
+0100010
+0100010
+0111110
+0100010
+0100010
+0111110
+0000000
+```
+
+Détaillons la composition de ce fichier :
+
+  - ligne 1 : `P1` indique le format PBM ;
+  - ligne 2 : `7 9` indique le nombre de colonnes et de lignes (séparés par un espace) ;
+  - lignes suivantes : décrivent les pixels de l’image, 1 pour un pixel noir et 0 pour un pixel blanc.
+
+1. Ouvrez un éditeur de texte (par exemple Geany ou Éditeur de texte),
+recopiez le code précédant et sauvegardez-le avec le nom « question1.pbm ».
+Ensuite ouvrez le fichier avec Gimp et zoomez à 1600 % (Clic droit →
+affichage). Vous devez voir un huit.
+
+2. Créez une image représentant la lettre I sur 9 lignes et 7 colonnes.
+Appelez le professeur.
+
+3. Complétez les informations manquantes à la ligne 2 du fichier suivant
+et décrire ce que représente l’image correspondante :
+ 
+```
+P1
+9
+110000011
+011000110
+001101100
+000111000
+001101100
+011000110
+110000011
+```
+
+4. Voici la représentation d’une image BPM. Proposez un contenu de fichier
+possible pour obtenir cette image.
+
+![Tête pixélisée](/cours/tete.png)
+
+## Image en niveau de gris
+
+Il existe le format PGM (Portable Grey Map) qui permet de faire prendre
+n’importe quelle teinte de gris aux pixels. Il ressemble beaucoup au format
+PBM. Voici un exemple :
+
+```
+P2
+10 12
+90
+90 80 70 60 50 40 30 20 10  0
+0  10 20 30 40 50 60 70 80 90
+90 80 70 60 50 40 30 20 10  0
+0  10 20 30 40 50 60 70 80 90
+90 80 70 60 50 40 30 20 10  0
+0  10 20 30 40 50 60 70 80 90
+90 80 70 60 50 40 30 20 10  0
+0  10 20 30 40 50 60 70 80 90
+90 80 70 60 50 40 30 20 10  0
+0  10 20 30 40 50 60 70 80 90
+90 80 70 60 50 40 30 20 10  0
+0  10 20 30 40 50 60 70 80 90
+```
+
+Détaillons la composition de ce fichier :
+
+  - ligne 1 : `P2` indique le format PGM ;
+  - ligne 2 : `10 12` indique le nombre de colonnes et de lignes (séparés par un espace) ;
+  - ligne 3 : `90` indique la valeur maximale qui va correspondre au blanc ;
+  - lignes suivantes : décrivent les pixels de l’image, 0 pour un pixel noir et la valeur maximale pour un pixel blanc. Les valeurs intermédiaires vont faire du gris.
+
+5. Ouvrez un éditeur de texte, recopiez le code précédant et sauvegardez-
+le avec le nom « question5.pgm ». Ensuite ouvrez le fichier avec Gimp et
+zoomez à 1600 % (Clic droit → affichage).
+
+Voici une image de 30px par 7px :
+
+![Nuances de gris](/cours/degrade.png)
+
+6. Combien y a-t-il de nuances de gris en plus du noir et du blanc ?
+
+7. Proposez un codage de l’image. Appelez le professeur.
+
+## Image RGB
+
+Nous allons maintenant voir comment coder les couleurs dans une image. En
+informatique on utilise la synthèse additive pour former n’importe quelle
+couleur :
+
+![Synthèse additive](/cours/synthese.svg)
+
+Les trois couleurs primaires sont le rouge (Red), le vert (Green) et le bleu
+(Blue). On parle alors de couleur RGB. Il est possible de créer n’importe
+quelle couleur à partir de différentes quantités des trois couleurs primaires.
+Pour quantifier ces quantités, on utilise un nombre entre 0 et 255 pour chaque
+couleur primaire (0 pour l’absence de couleur et 255 pour un maximum de
+couleur). Ainsi le rouge est codé (255, 0, 0). Vous pouvez essayer différents
+mélanges sur [w3schools](https://www.w3schools.com/colors/colors_rgb.asp).
+
+8. En vous aidant de cette [page de sélection de
+couleur](https://www.w3schools.com/colors/colors_picker.asp) (il suffit de
+saisir le nom de la couleur dans le champ) : déterminez le code RGB des
+couleurs suivantes :
+
+  - red
+  - green
+  - blue
+  - yellow
+  - orange
+  - pink
+  - violet
+  - grey
+  - agenta
+
+Il existe un format d’image, proche des deux précédents qui permet de créer
+simplement des images colorées : le format PPM (Portable PixMap). Voyons
+encore une fois un exemple :
+
+```
+P3
+3 2
+255
+150   0   0    0 255   0    0 255 255
+120 200  75  255   0 255   75   0   0
+```
+
+Détaillons la composition de ce fichier :
+
+  - ligne 1 : `P3` indique le format PPM ;
+  - ligne 2 : `3 2` indique le nombre de colonnes et de lignes (séparés par un espace) ;
+  - ligne 3 : `255` indique la valeur maximale pour une couleur ;
+  - lignes suivantes : décrivent les pixels de l’image par groupe de trois valeurs « R, G, B ». Le nombre d’espaces n’a aucune importance.
+
+9. Ouvrez un éditeur de texte, recopiez le code précédant et sauvegardez-
+le avec le nom « question9.ppm ». Ensuite ouvrez le fichier avec Gimp et
+zoomez à 1600 % (Clic droit → affichage).
+
+10. Proposer un fichier PPM affichant les 9 couleurs de la question 8 dans
+un carré de trois pixels par trois.

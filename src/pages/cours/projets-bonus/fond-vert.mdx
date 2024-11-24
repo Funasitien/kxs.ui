@@ -1,0 +1,75 @@
+---
+title: "Projet 2 : filtres photo"
+icon: "mdi:paper-remove"
+layout: "/src/layouts/Page.astro"
+---
+
+# Projet : fond vert
+
+## Présentation
+
+Nous allons ici tenter de remplacer un fond vert dans une image.
+
+Nous utiliserons à nouveau la bibliothèque Python PIL (Python Image Library)
+aussi appelée Pillow :
+
+```python
+from PIL import Image
+```
+
+Cette bibliothèque permet d’accéder simplement aux pixels d’une image.
+
+La documentation de Pillow est disponible à l’adresse suivante : https://pillow.readthedocs.io/en/stable/reference/Image.html
+
+Pour vous faciliter la prise en main de cette bibliothèque, voici les
+commandes les plus utiles :
+
+Commande | Description  
+---|---  
+`image = Image.open("photo.jpg")` |  Ouvre le fichier "photo.jpg" et le stocke en tant qu’objet dans la variable image.   
+`image = Image.new("RGB", (larg, haut))` |  Crée une nouvelle image de largeur larg et de hauteur haut et la stocke en tant qu’objet dans la variable image.   
+`image.copy()` |  Retourne une copie de l’image. Utile avant de transformer une image.   
+`image.save("photo2.jpg")` |  Sauvegarde l’objet image dans le fichier "photo2.jpg".   
+`image.show()` |  Affiche l’image dans une fenêtre.   
+`image.width` |  Retourne la largeur de l’image en pixels.   
+`image.height` |  Retourne la hauteur de l’image en pixels.   
+`image.getpixel((x, y))` |  Retourne la couleur du pixel (x, y) de image.   
+`image.putpixel((x, y),(r, g, b))` |  Modifie la couleur du pixel (x, y) de image en (r, g, b).   
+  
+## Projet
+
+Le fichier avec le fond vert est extrait d'un clip de Vald : [fond
+vert](/cours/vald.jpg). Et l'image à incruster est une salle de classe :
+[classe](/cours/classe.jpg). Les deux images font la même taille pour faciliter
+votre travail. Vous pouvez éventuellement changer l'image à incruster.
+
+Il pourra être plus facile de détecter le vert avec les couleurs en HLS plutôt
+que RGB (à vous de chercher sont fonctionnement). Voici une structure qui vous
+donne accès pour chaque pixel aux composantes RGB et HLS de chaque pixel :
+
+
+```python
+from PIL import Image
+import colorsys
+
+vald = Image.open("vald.jpg")
+classe = Image.open("classe.jpg")
+vald.show()
+classe.show()
+
+def fond_vert(img_fv,fond):
+    # On fait une copie de l'image pour ne pas modifier l'original
+    nouvelle = img_fv.copy()
+    for y in range(img_fv.height):
+        for x in range(img_fv.width):
+            r, g, b = img_fv.getpixel((x,y))
+            h,l,s = colorsys.rgb_to_hls(r/255,g/255,b/255)
+            …
+    return nouvelle
+
+image = fond_vert(vald,classe)
+image.show()
+```
+
+Le résultat ne sera pas parfait, mais l'objectif est d'avoir le moins de vert
+restant et de modifier le moins possible l'apparence de Vald.

@@ -7,22 +7,6 @@ FILE_EXTENSION = ".mdx"
 REPLACEMENTS = {
     "\n  * [cours](https://kxs.fr/cours/)\n  * [sujets](https://kxs.fr/sujets/)\n  * [fiches](https://kxs.fr/fiches/)\n\n[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour\nle lycée et la prépa](https://kxs.fr/cours/)\n": " ",
     "img/": "/cours/",
-    "**21)** ": "21. ",
-    "**22)** ": "22. ",
-    "**23)** ": "23. ",
-    "**24)** ": "24. ",
-    "**25)** ": "25. ",
-    "**26)** ": "26. ",
-    "**27)** ": "27. ",
-    "**28)** ": "28. ",
-    "**29)** ": "29. ",
-    "**20)** ": "20. ",
-    "/public/": "/cours/",
-    "\n\n[Cours de NSI et MP2I](https://kxs.fr/cours/)s par Thomas Beline sous la\nlicence [CC BY-SA 4.0\n![ccbysa](//cours/ccbysa.svg)](https://creativecommons.org/licenses/by-\nsa/4.0/deed.fr)\n\n\n": " ",
-    "![]": "![Image sans description]",
-    "@root": "/src",
-    "  * ": "  - ",
-    # Add more key-value pairs as needed
 }
 
 def replace_in_file(file_path, replacements):

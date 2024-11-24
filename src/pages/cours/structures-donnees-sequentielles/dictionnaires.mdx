@@ -1,0 +1,278 @@
+---
+title: "C - Dictionnaires - Niveau MP2I"
+icon: "mdi:paper-remove"
+layout: "/src/layouts/Page.astro"
+---
+
+## Spécification
+
+Un dictionnaire ou tableau associatif est un ensemble de couple (clé, valeur).
+Chaque clé est unique et est associée à une valeur. Lorsqu'on ajoute un couple
+(clé, valeur), si la clé est déjà présente, la valeur est mise à jour, sinon
+le couple est simplement ajouté. Voici les primitives courantes pour une
+dictionnaire :
+
+`creationDictionnaire()`: créer unnouveau dictionnaire ;
+  
+`ajouteDico(cle, val)`: ajoute le couple (cle, val) ;
+  
+`retireDico(cle)`: supprime le couple correpondant à cle ;
+  
+`elementDico(cle)`: renvoie la valeur associée à la clé ;
+  
+`estPresentDico(cle)`: renvoie `True` si la cle est dans le dictionnaire, `False` sinon ;
+  
+`clesDico()`: renvoie la liste des clés ;
+  
+`valeursDico()`: renvoie la liste de valeurs ;
+  
+`afficheDico()`:  les clés et les valeurs du dictionnaire ;
+  
+
+Comme toujours, les primitives `taille()` et `affiche()` ne sont pas toujours
+implémentées.
+
+Pour simplifier l'implémentation, nous implémenterons uniquement des couples
+d'entiers.
+
+## Implémentation
+
+### Présentation
+
+L'implémentation d'un dictionnaire peut se faire de nombreuses façons. Nous
+utiliserons une implémentation avec une liste pour les clés et une liste pour
+les valeurs. Un couple (cle, valeur) correspond alors aux éléments des deux
+listes au même indice.
+
+Comme nous utiliserons des listes définies dans un autre fichier C, nous
+allons avoir besoin d'utiliser des fichiers headers.
+
+1. Créer un fichier de headers pour le TAD liste.
+
+```c++
+#ifndef LISTES_H
+#define LISTES_H
+
+#include <stdbool.h>
+
+// Élement de liste
+typedef struct ElementListe {
+	int valeur;
+	struct ElementListe* suivant;
+} elementListe;
+
+// Liste qui pointe juste vers le premier élément
+typedef struct ListEntier {
+	int taille;
+	elementListe* tete; 
+} listEntier;
+
+
+listEntier* creationListe() ;
+
+listEntier* insere(listEntier* list, int pos, int val) ;
+
+bool estVide(listEntier* list) ;
+
+listEntier* retire(listEntier* list, int pos) ;
+
+int taille(listEntier* list) ;
+
+int element(listEntier* list, int pos) ;
+
+void affiche(listEntier* list) ;
+
+listEntier* ajouteFin(listEntier* list, int val) ;
+
+int somme(listEntier* list) ;
+
+listEntier* inverse(listEntier* list) ;
+
+void remplace(listEntier* list, int pos, int val);
+#endif
+```
+
+Et le fichier C doit contenir cela :
+
+```c++
+// Création d'une liste vide
+listEntier* creationListe() {
+	listEntier* liste = malloc(sizeof(listEntier));
+	liste->taille = 0;
+	liste->tete = NULL;
+	return liste;
+}
+
+listEntier* insere(listEntier* list, int pos, int val) {
+	// Si la demande est impossible
+	if ((pos < 0) || (pos > list->taille)) {
+		return list;
+	}
+
+	// On créer le nouvel élément
+	elementListe* nouveau = malloc(sizeof(elementListe));
+	nouveau->valeur = val;
+
+	// Si on ajoute l'élément en 0
+	// nouveau devient la tête et la tête devient son élément suivant
+	if (pos == 0) {
+		nouveau->suivant = list->tete;
+		list->tete = nouveau;
+	} else {
+		elementListe* elt = list->tete;
+		// On décale jusqu'à l'élément précédent
+		for (int i = 0; i < (pos - 1); i++) {
+			elt = elt->suivant;
+		}
+		// On insère nouveau
+		nouveau->suivant = elt->suivant;
+		elt->suivant = nouveau;
+	}
+	list->taille = list->taille + 1;
+	return list;
+}
+
+bool estVide(listEntier* list) {
+	if (list->taille == 0) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+listEntier* retire(listEntier* list, int pos) {
+	// Si la demande n'est pas valide
+	if ((pos < 0) || (pos >= list->taille)) {
+		return list;
+	}
+	elementListe* elt;
+	// si l'indice est 0, on supprime la tête
+	if (pos == 0) {
+		elt = list->tete->suivant;
+		free(list->tete);
+		list->tete = elt;
+	} else {
+		elt = list->tete;
+		// On avance jusqu'à l'élément précédent celui qui doit être supprimé
+		for (int i = 0; i < (pos - 1); i++) {
+			elt = elt->suivant;
+		}
+		elementListe* tmp = elt->suivant;
+		// On 'saute' l'élément à supprimer
+		elt->suivant = elt->suivant->suivant;
+		// On libère l'élément à supprimer
+		free(tmp);
+	}
+	list->taille = list->taille - 1;
+	return list;
+}
+
+int taille(listEntier* list) {
+	return list->taille;
+}
+
+int element(listEntier* list, int pos) {
+	elementListe* elt = list->tete;
+	for (int i = 0; i < pos; i++) {
+		elt = elt->suivant;
+	}
+	return elt->valeur;
+}
+
+void affiche(listEntier* list) {
+	for (int i = 0; i < list->taille; i++) {
+		printf("%d, ", element(list, i));
+	}
+	printf("\n");
+}
+```
+
+Voici alors le début de l'implémentation pour le dictionnaire.
+
+Le fichier `dictionnaire.h` (complet) :
+
+```c++
+#include "listes.h"
+#include <stdbool.h>
+
+#ifndef DICTIONNAIRE_H
+#define DICTIONNAIRE_H
+
+#define TAILLE_MAX 10000
+
+
+typedef struct DicoEntierEntier {
+	listEntier *cles;
+	listEntier *valeurs;
+} dicoEntierEntier;
+
+dicoEntierEntier *creationDictionnaire();
+void ajouteDico(dicoEntierEntier * dico, int cle, int val);
+void retireDico(dicoEntierEntier * dico, int cle);
+int elementDico(dicoEntierEntier * dico, int cle);
+bool estPresentDico(dicoEntierEntier * dico, int cle);
+listEntier *clesDico(dicoEntierEntier * dico);
+listEntier *valeursDico(dicoEntierEntier * dico);
+void afficheDico(dicoEntierEntier * dico);
+
+#endif
+```
+
+Le fichier `dictionnaire.c` (à compléter) :
+
+```c++
+#include <stdio.h>
+#include <stdlib.h>
+#include "dictionnaire.h"
+
+
+
+dicoEntierEntier *creationDictionnaire() {
+	dicoEntierEntier * dico = malloc(sizeof(dicoEntierEntier));
+	dico->cles = creationListe();
+	dico->valeurs = creationListe();
+	return dico;
+}
+
+void ajouteDico(dicoEntierEntier * dico, int cle, int val) {
+	int i = 0;
+	while (i < dico->cles->taille && element(dico->cles, i) != cle) {
+		i++;
+	}
+	
+	if (i == dico->cles->taille) { // On est arrivé à la fin des clés
+		// On insère le couple en i
+		insere(dico->cles, i, cle);
+		insere(dico->valeurs, i, val);
+	} else {
+		// La cle existe déjà, on remplace la valeur
+		remplace(dico->valeurs, i, val);
+	}
+}
+```
+
+Nous allons implémenter les autres primitives du dictionnaire. Nous aurons
+besoin d'ajouter une primitive à notre liste. Cette primitve est
+`remplacer(pos, val)` qui permet de remplacer une valeur à une position
+donnée.
+
+2. Proposer une implémentation de cette nouvelle primitve et l'ajouter aux
+deux fichiers `listes.c` et `listes.h`.
+
+```c++
+void remplace(listEntier* list, int pos, int val) {
+	elementListe* elt = list->tete;
+	for (int i = 0; i < pos; i++) {
+		elt = elt->suivant;
+	}
+	elt->valeur = val;
+}
+```
+
+3. Implémenter la primitive `retireDico`.
+
+4. Implémenter la primitive `elementDico`.
+
+5. Implémenter la primitive `estPresentDico`.
+
+6. Implémenter la primitive `afficheDico`.

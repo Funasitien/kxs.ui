@@ -1,0 +1,233 @@
+---
+title: "Internet : histoire, structure et fonctionnement - SNT"
+icon: "mdi:paper-remove"
+layout: "/src/layouts/Page.astro"
+---
+
+### Histoire
+
+Internet a été créé aux États-Unis, le premier réseau à l’origine d’internet
+est Arpanet.
+
+1. Recherchez la date de création d’Arpanet.
+
+2. Le premier message sur Arpanet fut échangé entre quelles universités ?
+
+L’ancêtre d’internet en France est le réseau Cyclades.
+
+3. Recherchez l’année de création de Cyclades.
+
+On retiendra comme date de naissance d’internet, l’adoption du protocole
+TCP/IP dont nous reparlerons plus tard.
+
+4. Trouvez la date d’adoption de ce protocole.
+
+### Structure
+
+Internet tient son nom de sa structure : une interconnexion de réseaux (net).
+On l’appelle également le réseau des réseaux. Il est composé des réseaux des
+FAI (Fournisseurs d’Accès à Internet), des universités, des datacenters… La
+légende veut qu’internet ait été construit (en pleine guerre froide) pour
+pouvoir continuer de fonctionner malgré la perte de plusieurs nœuds, c’est ce
+qu’on appelle la **résilience**. Nous allons développer maintenant cette
+notion.
+
+Supposons que nous disposons de 8 ordinateurs que nous souhaitons relier en
+réseau.
+
+#### Configuration 1
+
+On décide ici de relier chaque ordinateur à tous les autres.
+
+5. Dessiner cette configuration ci-dessous :
+
+# MISSING GRAPHIC
+
+6. Combien de câbles avez-vous utilisé ?
+
+7. Quels sont les avantages et inconvénients de ce réseau ?
+(résilience/coût)
+
+#### Configuration 2
+
+On souhaite maintenant utiliser le moins de câbles possibles tout en
+permettant à chaque ordinateur de communiquer avec n’importe quel autre
+ordinateur.
+
+8. Dessinez un tel réseau :
+
+# MISSING GRAPHIC
+
+9. Combien de câbles avez-vous utilisé ?
+
+10. Quels sont les avantages et inconvénients de ce réseau ?
+(résilience/coût)
+
+#### Configuration 3
+
+On s’autorise maintenant à utiliser 16 câbles.
+
+11. Proposez un réseau résilient utilisant ces 16 câbles (il n’y a pas
+qu’une seule bonne réponse).
+
+# MISSING GRAPHIC
+
+12. En quoi cette solution est-elle intéressante ?
+
+#### Mini internet simplifié
+
+Voici un schéma page suivante représentant un mini internet simplifié. Nous
+avons 6 réseaux composés d’ordinateurs reliés par des switchs. Un switch est
+une sorte de multiprise réseau intelligente :
+
+![Switch](/cours/switch.jpg)
+
+Ces réseaux modélisent les réseaux des FAI.
+
+![Réseau avec 15 ordinateurs, 8 routeurs et 6 switchs](/cours/DiagRes.png)
+
+Pour des raisons d’efficacité, on doit relier des réseaux entre eux par des
+routeurs. Un routeur est un switch un peu plus évolué :
+
+![Routeur](/cours/routeur.jpg)
+
+Chaque réseau est appelé réseau local.
+
+13. Complétez la liste des ordinateurs de chaque réseau local :
+- réseau local 1 : M1, M2, M3
+- réseau local 2 : M4, M5, M6
+- réseau local 3 :
+- réseau local 4 :
+- réseau local 5 :
+- réseau local 6 :
+
+Sur un réseau les ordinateurs s’envoient des paquets (nous verrons cela dans
+la suite).
+
+Par exemple si M1 envoie un paquet à M3 le chemin du paquet sera M1 → R1 → M3
+
+On appelle routage le fait de trouver un chemin (route) entre deux
+ordinateurs.
+
+Un autre exemple lorsque M1 envoie un message à M6 : M1 → R1 → routeur A →
+routeur B → R2 → M6
+
+Le routage consiste à trouver le « meilleur » chemin entre deux ordinateurs.
+C'est donc le rôle des routeurs.
+
+14. Déterminez 3 chemins entre M1 et M9.
+
+15. (Rappel) Pourquoi est-il important d’avoir plusieurs chemins entre
+deux ordinateurs ?
+
+Nous reviendrons dans un autre TP plus en détail sur le routage.
+
+### Fonctionnement
+
+Nous avons parlé de paquets qui circulent sur le réseau. Mais d’où viennent
+ces paquets ? C’est ce que nous allons voir maintenant.
+
+#### TCP/IP
+
+Quand vous utilisez une application qui « va » sur internet elle utilise
+généralement le protocole TCP/IP. Nous allons expliquer le fonctionnement de
+ce protocole.
+
+Une application de l’ordinateur A veut envoyer des données vers une
+application de l’ordinateur B. L’application fournit donc des données à son
+programme TCP.
+
+# MISSING GRAPHIC
+
+TCP de l’ordinateur A reçoit les données et les encapsule en ajoutant des
+informations (port, application...) c’est le protocole TCP.
+
+# MISSING GRAPHIC
+
+TCP envoie alors le tout à IP.
+
+IP encapsule les informations venant de TCP en ajoutant entre autre les
+adresses IP de l’ordinateur A et de l’ordinateur B
+
+##### Adresse IP
+
+Une adresse IP permet d’identifier un ordinateur sur Internet. Elle est unique
+pour chaque ordinateur et est composée de quatre nombres entre 0 et 255
+séparés par des points. Par exemple 124.23.178.246 est une adresse IP.
+
+16. Trouvez l’adresse IP du lycée en allant sur la page
+[https://kxs.fr/outils/ip](https://kxs.fr/outils/ip)
+
+# MISSING GRAPHIC
+
+Tout ceci est envoyé par le réseau (c’est ce qu’on appelle un paquet) et
+arrive au programme IP de l’ordinateur B.
+
+IP vérifie l’adresse IP de destination, dés-encapsule et envoie le résultat à
+TCP :
+
+# MISSING GRAPHIC
+
+TCP vérifie que tout est correct puis les données sont envoyées à la bonne
+application :
+
+# MISSING GRAPHIC
+
+Un **accusé de réception** est alors envoyé à l’ordinateur A.
+
+L’application B reçoit les données.
+
+#### Fragmentation
+
+IP peut fragmenter les données qu’il reçoit de la couche transport si elles
+sont trop volumineuses pour passer dans un paquet. En effet le réseau accepte
+des paquets de 1500 octets au maximum, il est donc indispensable de découper
+les données pour les envoyer par paquets. Le récepteur enregistre les paquets
+et les assemble pour reconstituer les données initiales.
+
+Les paquets peuvent ne pas arriver dans le bon ordre à cause du routage, ils
+sont donc numérotés. Ceci est illustré ci-dessous.
+
+# MISSING GRAPHIC
+Fragmentation des paquets avec le protocole IP Ordinateur A
+1001100100011100011101011001010010100111 Fragmentation 10011001 Paquet 1
+00011100 Paquet 2 01110101 Paquet 3 10010100 Paquet 4 10100111 Paquet 5 Envoi
+des paquets dans l'ordre Réseau Ordinateur B Réception des paquets dans le
+désordre 00011100 Paquet 2 10011001 Paquet 1 10100111 Paquet 5 01110101 Paquet
+3 10010100 Paquet 4 Remise dans l'ordre des paquets 10011001 Paquet 1 00011100
+Paquet 2 01110101 Paquet 3 10010100 Paquet 4 10100111 Paquet 5 Défragmentation
+1001100100011100011101011001010010100111
+
+17. À votre avis que fait l’émetteur si un paquet n’arrive pas, sachant
+que le récepteur envoie toujours des accusés de réception ?
+
+#### DNS
+
+Lorsque vous utilisez un navigateur, vous ne renseignez jamais une adresse IP,
+comment se fait-il que votre ordinateur connaisse l’IP de celui que vous
+cherchez à joindre ? Ceci est possible grâce au DNS (Domain Name Service).
+
+Le principe du DNS est assez simple, il existe plusieurs serveurs sur la
+planète qui maintiennent des listes de correspondance entre les noms de
+domaine (par exemple twitter.com) et les adresses IP (par exemple
+104.244.42.129). Ces bases de données sont mises à jour en permanence.
+
+Ainsi votre navigateur effectue d’abord une requête DNS puis ensuite envoie sa
+requête HTTP.
+
+Pour connaître l’adresse IP correspondant à un nom de domaine, on peut
+utiliser la commande ping dans un **terminal** (vous pouvez aller sur [cette
+page](https://ping.eu/ping/) si ping ne fonctionne pas au lycée) :
+
+```shell
+ping twitter.com
+```
+
+Vous voyez alors l’adresse IP apparaître sur chaque ligne. Pour l’arrêter il
+faut appuyer sur `Ctrl + c`.
+
+18. Ouvrez un terminal tilix et trouvez les adresses IP des domaines
+suivants :
+- twitter.com
+- reddit.com
+- lemonde.fr

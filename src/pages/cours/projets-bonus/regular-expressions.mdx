@@ -1,0 +1,52 @@
+---
+title: "Mini projet utilisant les expressions rationnelles"
+icon: "mdi:paper-remove"
+layout: "/src/layouts/Page.astro"
+---
+ 
+# Projet facultatif 1
+
+Ce projet à l'énnoncé relativement simple implique la compréhension des
+_expressions rationnelles_ qui est un vaste sujet en informatique. la
+[documentation python](https://docs.python.org/fr/3/library/re.html) et une
+[introduction sur les expressions
+rationnelles](https://docs.python.org/fr/3/howto/regex.html) pourront être
+utiles. Peut-être que le [cours
+d'OpenClassrooms](https://openclassrooms.com/fr/courses/918836-concevez-votre-
+site-web-avec-php-et-mysql/916990-les-expressions-regulieres-partie-1-2) est
+le meilleur point d'entrée même s'ils n'utilisent pas Python.
+
+Le but de ce projet est de transformer ce texte :
+
+```
+Question A.1
+En hexadécimal (base 16), quelle est la valeur de la différence CBD - BAC ?
+
+Réponses
+A   AB
+B   TB
+C   FF
+D   111
+```
+
+En ceci :
+
+```
+\begin{quest}
+\enonce En hexadécimal (base 16), quelle est la valeur de la différence CBD - BAC ?
+
+\begin{enumerate}
+    \item AB
+    \item TB
+    \item FF
+    \item 111
+\end{enumerate}
+\end{quest}
+```
+
+C'est à dire qu'on prend un questionnaire au format texte et on le formate
+pour [LaTeX](https://fr.wikipedia.org/wiki/LaTeX). Les numéros de question
+peuvent être différents et les réponses tiennent sur une seule ligne. Il est
+possible, et surement plus simpple, de ne pas utiliser les _expressions
+rationnelles_ pour la plupart des problèmes de ce projet. Mais il faudra les
+utiliser un peu tout de même.

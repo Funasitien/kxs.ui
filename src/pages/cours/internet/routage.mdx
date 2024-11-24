@@ -1,0 +1,103 @@
+---
+title: "Internet : routage - SNT"
+icon: "mdi:paper-remove"
+layout: "/src/layouts/Page.astro"
+---
+
+![Illustration de réseau](/cours/routage.svg)
+
+Nous allons réfléchir à un protocole de routage pour acheminer de la manière
+la plus efficace des messages entre les élèves de la classe.
+
+Vous allez former des **groupes de deux élèves**.
+
+## Création des tables de routage
+
+Dans un premier temps, chaque groupe représente un routeur.
+
+Le professeur va vous donner un papier avec la lettre identifiant votre
+routeur et les routeurs auxquels vous êtes connecté.
+
+Le but de cette activité est de déterminer comment vous allez pouvoir
+communiquer avec les autres routeurs.
+
+### Réflexions
+
+#### But du routage
+
+Le but du routage est de trouver le meilleur chemin pour amener un paquet à un
+destinataire. Pour cela chaque routeur établit une **table de routage**
+donnant pour chaque destinataire par quel voisin il faut passer. Voilà à quoi
+peut ressembler une table de routage (incomplète) :
+
+Exemple de table de routage d'un routeur A relié à B et C Destination | Moyen de l'atteindre | ???  
+---|---|---  
+B | B | ?  
+C | C | ?  
+D | B | ?  
+E | C | ?  
+F | C | ?  
+G | C | ?  
+H | C | ?  
+  
+1. Selon vous, comment pourrait-on définir le meilleur chemin pour un
+paquet ? En déduire le contenu de la troisième colonne.
+
+#### Protocole
+
+Quand on branche un routeur sur le réseau, il ne connait pas la structure du
+réseau, il n'a pas de plan global du réseau dans sa mémoire. Il connait
+seulement ses voisins directs auxquels il est connecté.
+
+2. Sachant qu'un routeur n'a pas d'autre mémoire que sa table de routage
+et qu'il ne comunique qu'avec ces voisins, de quoi a-t-il besoin pour établir
+sa table de routage ?
+
+3. Combien de fois allez-vous demander/donner des informations à vos
+voisins ? Quand allez-vous vous arrêter ?
+
+### Expérimentation
+
+4. En appliquant ce qu'on vient de voir et en communiquant avec des petits
+papiers (uniquement avec vos voisins), construisez votre table de routage dans
+le tableau ci-dessous :
+
+La table de routage de votre routeur Destination | Moyen de l'atteindre |   
+---|---|---  
+|  |   
+|  |   
+|  |   
+|  |   
+|  |   
+|  |   
+|  |   
+|  |   
+|  |   
+  
+## Communication
+
+Nous allons maintenant utiliser ces tables de routage. L'un des deux élèves de
+chaque groupe va devenir « opérateur » alors que l'autre va jouer le rôle de
+routeur et donc utiliser sa table de routage
+
+### Réflexion
+
+Le professeur va donner un nom de ville secret à chaque groupe. Chaque
+opérateur va devoir trouver les noms de tous les groupes en comuniquant avec
+les autres opérateurs. Cette fois vous pourrez envoyer des paquets à n'importe
+quel opérateur mais vous ne pouvez communiquer directement qu'avec vos
+voisins.
+
+5. Réfléchissez à la façon de procéder pour pouvoir envoyer un paquet et
+recevoir une réponse.
+
+### Expérimentation
+
+Chaque opérateur doit donc déterminer les noms de tous les autres opérateurs.
+L'objectif est que l'ensemble des opérateurs ait tous les noms le plus
+rapidement possible. Nous comparerons les résultats avec les autres groupes de
+SNT.
+
+6. Quand le professeur donne le signal de départ, vous pouvez commencer à
+échanger des messages. Le chronomètre s'arrêtera lorsque tous les opérateurs
+auront trouvé toutes les villes.
