@@ -1,5 +1,5 @@
 ---
-title: "C - Tableaux - Niveau MP2I"
+title: "Tableaux"
 icon: "mdi:paper-remove"
 layout: "/src/layouts/Page.astro"
 ---
@@ -15,26 +15,26 @@ indiquer le type de valeurs stockées dans le tableau. Voici donc plusieurs
 façons de déclarer un tableau :
 
 ```c
-    int t[3]; // On indique la taille du tableau entre crochets
-    t[0] = 1; // Le premier élément possède l'indice 0
-    t[1] = 2;
-    t[2] = 4;
-    printf("%d %d %d\n", t[0], t[1], t[2]);
-    
-    
-    int t[3] = {1, 2, 4}; // On initialise directement le tableau
-    printf("%d %d %d\n", t[0], t[1], t[2]);
-    
-    
-    int t[] = {1, 2, 4}; // Il n'est pas nécessaire de donner explicitement la taille
-    printf("%d %d %d\n", t[0], t[1], t[2]);
+int t[3]; // On indique la taille du tableau entre crochets
+t[0] = 1; // Le premier élément possède l'indice 0
+t[1] = 2;
+t[2] = 4;
+printf("%d %d %d\n", t[0], t[1], t[2]);
+
+
+int t[3] = {1, 2, 4}; // On initialise directement le tableau
+printf("%d %d %d\n", t[0], t[1], t[2]);
+
+
+int t[] = {1, 2, 4}; // Il n'est pas nécessaire de donner explicitement la taille
+printf("%d %d %d\n", t[0], t[1], t[2]);
 ```
 
 On peut également initialiser tous les éléments du tableau a la même valeur :
 
 ```c
-    int t[3] = {0}; // On initialise le tableau avec des 0
-    printf("%d %d %d\n", t[0], t[1], t[2]);
+int t[3] = {0}; // On initialise le tableau avec des 0
+printf("%d %d %d\n", t[0], t[1], t[2]);
 ```
 
 ## Accès aux éléments
@@ -54,49 +54,49 @@ mémoire 0 t[0] 0 t[1] 0 t[2] ? t[3]
 Essayez le code suivant pour voir qu'il n'y a pas d'erreur :
 
 ```c
-    #include <stdio.h>
-    
-    int main() {
-    	int t[3] = {0}; // On initialise le tableau avec des 0
-    	printf("%d %d %d %d\n", t[0], t[1], t[2], t[3]); // On sort du tableau
-    }
+#include <stdio.h>
+
+int main() {
+    int t[3] = {0}; // On initialise le tableau avec des 0
+    printf("%d %d %d %d\n", t[0], t[1], t[2], t[3]); // On sort du tableau
+}
 ```
 
 Par contre si on va trop loin on peut obtenir une erreur de segmentation :
 
 ```c
-    #include <stdio.h>
-    
-    int main() {
-    	int t[3] = {0}; // On initialise le tableau avec des 0
-    	printf("%d %d %d %d\n", t[0], t[1], t[2], t[5321654]); // On sort trop du tableau !
-    }
+#include <stdio.h>
+
+int main() {
+    int t[3] = {0}; // On initialise le tableau avec des 0
+    printf("%d %d %d %d\n", t[0], t[1], t[2], t[5321654]); // On sort trop du tableau !
+}
 ```
 
 **1)** Écrire un programme qui crée un tableau de 10 éléments (sans
 l'initialiser) et affiche le contenu de tous les éléments avec une boucle.
 
 ```c
-    #include <stdio.h>
-    
-    int main() {
-    	int tab[10];
-    	for (int i = 0; i < 10; i++){
-    		printf("%d\n", tab[i]);
-    	}
+#include <stdio.h>
+
+int main() {
+    int tab[10];
+    for (int i = 0; i < 10; i++){
+        printf("%d\n", tab[i]);
     }
-    
-    
-    2
-    0
-    395049983
-    0
-    719465561
-    32764
-    100
-    0
-    4096
-    0
+}
+
+
+2
+0
+395049983
+0
+719465561
+32764
+100
+0
+4096
+0
 ```
 
 Le contenu du tableau est aléatoire.
@@ -106,19 +106,19 @@ avec la position de chaque élément (t[0] = 0 etc.) et affiche le contenu de
 tous les éléments.
 
 ```c
-    #include <stdio.h>
+#include <stdio.h>
+
+int main() {
+    int tab[100];
     
-    int main() {
-    	int tab[100];
-    	
-    	for (int i = 0; i < 100; i++){
-    		tab[i] = i;
-    	}
-    	
-    	for (int i = 0; i < 100; i++){
-    		printf("%d\n", tab[i]);
-    	}
+    for (int i = 0; i < 100; i++){
+        tab[i] = i;
     }
+    
+    for (int i = 0; i < 100; i++){
+        printf("%d\n", tab[i]);
+    }
+}
 ```
 
 ## Passage d'un tableau dans une fonction
@@ -130,21 +130,21 @@ passer le tableau par référence. Il est donc possible de modifier un tableau
 dans une fonction :
 
 ```c
-    #include <stdio.h>
+#include <stdio.h>
+
+void met1(int t[]) {
+    // Fonction qui met à 1 le premier élément du tableau
+    t[0] = 1;
+}
+
+int main() {
+    int t[3] = {0}; // On initialise le tableau avec des 0
+    printf("%d %d %d\n", t[0], t[1], t[2]);
     
-    void met1(int t[]) {
-    	// Fonction qui met à 1 le premier élément du tableau
-    	t[0] = 1;
-    }
+    met1(t);
     
-    int main() {
-    	int t[3] = {0}; // On initialise le tableau avec des 0
-    	printf("%d %d %d\n", t[0], t[1], t[2]);
-    	
-    	met1(t);
-    	
-    	printf("%d %d %d\n", t[0], t[1], t[2]);
-    }
+    printf("%d %d %d\n", t[0], t[1], t[2]);
+}
 ```
 
 La taille d'un tableau n'étant pas connue, il faut en général fournir dans un
@@ -154,24 +154,24 @@ paramètre supplémentaire la taille du tableau à une fonction.
 initialise à `valeur` toutes les valeurs du tableau `t` de taille `taille`.
 
 ```c
-    #include <stdio.h>
-    
-    void intTab(int t[], int taille, int valeur) {
-    	for (int i = 0; i < taille; i++) {
-    		t[i] = valeur;
-    	}
+#include <stdio.h>
+
+void intTab(int t[], int taille, int valeur) {
+    for (int i = 0; i < taille; i++) {
+        t[i] = valeur;
     }
+}
+
+int main() {
+    int t[20];
+    intTab(t, 20, 5);
     
-    int main() {
-    	int t[20];
-    	intTab(t, 20, 5);
-    	
-    	// On affiche le contenu du tableau
-    	for (int i = 0; i < 20; i++) {
-    		printf("%d ",t[i]);
-    	}
-    	printf("\n");
+    // On affiche le contenu du tableau
+    for (int i = 0; i < 20; i++) {
+        printf("%d ",t[i]);
     }
+    printf("\n");
+}
 ```
 
 ## Allocation dynamique
@@ -184,8 +184,8 @@ Il est possible avec certains compilateurs de faire une allocation dynamique
 avec la notation habituelle en utilisant une variable pour la taille :
 
 ```c
-    int a = 10;
-    int t[a];
+int a = 10;
+int t[a];
 ```
 
 Il est déconseillé d'utiliser cette syntaxe car elle n'est pas acceptée par
@@ -194,8 +194,8 @@ de cases mémoire et renverra alors un pointeur vers la première case du
 tableau :
 
 ```c
-    int a = 10;
-    int *t = malloc(a * sizeof(int));
+int a = 10;
+int *t = malloc(a * sizeof(int));
 ```
 
 De la même façon qu'avec l'allocation statique, on peut accéder aux éléments
@@ -206,33 +206,33 @@ lui demande ses notes et les enregistre dans un tableau. Enfin le programme
 lui donne sa moyenne.
 
 ```c
-    #include <stdio.h>
-    #include <stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int nb;
     
-    int main() {
-    	int nb;
-    	
-    	printf("Combien de notes avez-vous ? ");
-    	scanf("%d", &nb);
-    	
-    	// Allocation dynamique
-    	int *notes = malloc(nb*sizeof(int));
-    	
-    	// On demande les notes
-    	for (int i = 0; i < nb; i++) {
-    		int note;
-    		printf("Note %d : ", i+1);
-    		scanf("%d", &note);
-    		notes[i] = note;
-    	}
-    	
-    	// On calcul la moyenne et on l'affiche
-    	int total = 0;
-    	for (int i = 0; i < nb; i++) {
-    		total = total + notes[i];
-    	}
-    	printf("La moyenne est %.2f\n", (float)total / (float)nb);
+    printf("Combien de notes avez-vous ? ");
+    scanf("%d", &nb);
+    
+    // Allocation dynamique
+    int *notes = malloc(nb*sizeof(int));
+    
+    // On demande les notes
+    for (int i = 0; i < nb; i++) {
+        int note;
+        printf("Note %d : ", i+1);
+        scanf("%d", &note);
+        notes[i] = note;
     }
+    
+    // On calcul la moyenne et on l'affiche
+    int total = 0;
+    for (int i = 0; i < nb; i++) {
+        total = total + notes[i];
+    }
+    printf("La moyenne est %.2f\n", (float)total / (float)nb);
+}
 ```
 
 ## Tableau à deux dimensions
@@ -241,7 +241,7 @@ On peut créer des tableaux à deux dimensions (même plus) avec la notation
 suivante pour un tableau de 6 lignes et 7 colonnes :
 
 ```c
-    int t[6][7];
+int t[6][7];
 ```
 
 On accède alors aux éléments avec la notation `t[i][j]`.
@@ -254,10 +254,10 @@ pointeurs vers des entiers puis déclarer chaque élément de ce tableau comme u
 tableau d'entiers :
 
 ```c
-    int **tab = malloc(6 * sizeof(int*));
-    for (int i=0; i<6; i++) {
-    	tab[i] = malloc(7 * sizeof(int));
-    }
+int **tab = malloc(6 * sizeof(int*));
+for (int i=0; i<6; i++) {
+    tab[i] = malloc(7 * sizeof(int));
+}
 ```
 
 **5)** Créer un programme qui permet de saisir une matrice d'entiers de taille
@@ -266,9 +266,9 @@ qu'elle contient seulement des chiffres dans un premier temps. On pourra par
 exemple faire un affichage comme ceci :
 
 ```bash
-    ┌       ┐
-    | 1 2 3 |
-    | 4 5 6 |
-    | 7 8 9 |
-    └       ┘
+┌       ┐
+| 1 2 3 |
+| 4 5 6 |
+| 7 8 9 |
+└       ┘
 ```
