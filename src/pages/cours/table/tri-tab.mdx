@@ -1,5 +1,5 @@
 ---
-title: "Traitement des données en table - Tri de tableaux"
+title: "Tri de tableaux"
 icon: "mdi:paper-remove"
 layout: "/src/layouts/Page.astro"
 ---
@@ -12,14 +12,14 @@ appliquée et modifie ce tableau alors que la fonction `sorted()` renvoie un
 nouveau tableau trié :
 
 ```py
-    >>> tab = [5,65,2,1,63,4,8,420]
-    >>> sorted(tab)
-    [1, 2, 4, 5, 8, 63, 65, 420]
-    >>> tab
-    [5, 65, 2, 1, 63, 4, 8, 420] # Ici tab n’a pas été modifié
-    >>> tab.sort()
-    >>> tab
-    [1, 2, 4, 5, 8, 63, 65, 420] # tab est maintenant trié
+>>> tab = [5,65,2,1,63,4,8,420]
+>>> sorted(tab)
+[1, 2, 4, 5, 8, 63, 65, 420]
+>>> tab
+[5, 65, 2, 1, 63, 4, 8, 420] # Ici tab n’a pas été modifié
+>>> tab.sort()
+>>> tab
+[1, 2, 4, 5, 8, 63, 65, 420] # tab est maintenant trié
 ```
 
 `sort()` et `sorted()` ont à peu près le même fonctionnement. Nous utiliserons
@@ -33,7 +33,7 @@ les entiers sont placés par ordre croissant.
 **1)** Donnez le résultat de l’instruction suivante :
 
 ```py
-    >>> sorted([7,-6,12,76,0])
+>>> sorted([7,-6,12,76,0])
 ```
 
 Remarque : tout cela fonctionne également avec les flottants.
@@ -46,7 +46,7 @@ chaînes en minuscule, tout va bien :
 **2)** Donnez le résultat de l’instruction suivante :
 
 ```py
-    >>> sorted(['pomme', 'poire', 'banane', 'kiwi'])
+>>> sorted(['pomme', 'poire', 'banane', 'kiwi'])
 ```
 
 Pour les chaînes avec des majuscules, ça se complique. L’ordre lexicographique
@@ -55,7 +55,7 @@ utilisé par Python utilise le code unicode des caractères :
 **3)** Donnez le résultat de l’instruction suivante :
 
 ```py
-    >>> sorted(['Pomme', 'poire', 'banane', 'kiwi'])
+>>> sorted(['Pomme', 'poire', 'banane', 'kiwi'])
 ```
 
 « Pomme » se place en premier car le code unicode de 'P' (80) est plus petit
@@ -65,8 +65,8 @@ unicode d’un caractère)
 Pour obtenir l’ordre alphabétique, il faut d’abord activer votre locale :
 
 ```py
-    >>> import locale
-    >>> locale.setlocale(locale.LC_ALL, "")
+>>> import locale
+>>> locale.setlocale(locale.LC_ALL, "")
 ```
 
 Puis utiliser sorted() avec l’option key=locale.strxfrm.
@@ -74,7 +74,7 @@ Puis utiliser sorted() avec l’option key=locale.strxfrm.
 **4)** Donnez le résultat de l’instruction suivante :
 
 ```py
-    >>> sorted(['Pomme', 'poire', 'banane', 'kiwi'], key=locale.strxfrm)
+>>> sorted(['Pomme', 'poire', 'banane', 'kiwi'], key=locale.strxfrm)
 ```
 
 ## Cas particulier des entiers dans les chaînes de caractères
@@ -85,7 +85,7 @@ chaîne de caractère.
 **5)** Donner le résultat de l’instruction suivante :
 
 ```py
-    >>> sorted(['12', '2', '0', '102'])
+>>> sorted(['12', '2', '0', '102'])
 ```
 
 Ce comportement est normal car il respecte l’ordre lexicographique.
@@ -97,7 +97,7 @@ Une option permet d’inverser l’ordre de tri : reverse = True.
 **6)** Donnez le résultat de l’instruction suivante :
 
 ```py
-    >>> sorted([7,-6,12,76,0], reverse = True)
+>>> sorted([7,-6,12,76,0], reverse = True)
 ```
 
 ## Questions (sans tester en Python si possible)
