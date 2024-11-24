@@ -37,14 +37,25 @@ sidebarPaths = sidebarContent
 const currentPostIndex = sidebarPaths.findIndex(
   (element) => element === mdxFilePath
 );
+
 let nextPostUrl;
 let nextButtonValue = "Suivant";
-
 if (currentPostIndex === sidebarPaths.length - 1) {
   nextPostUrl = "/cours/";
   nextButtonValue = "Suivant (Page de cours)";
 } else {
   nextPostUrl = sidebarPaths[currentPostIndex + 1]
+    .replace("/src/pages/", "/")
+    .replace(".mdx", "/");
+}
+
+let prevPostUrl;
+let prevButtonValue = "Précédent";
+if (currentPostIndex === 0) {
+  prevPostUrl = "/cours/";
+  prevButtonValue = "Précédent (Page de cours)";
+} else {
+  prevPostUrl = sidebarPaths[currentPostIndex - 1]
     .replace("/src/pages/", "/")
     .replace(".mdx", "/");
 }
@@ -86,9 +97,7 @@ const posts = sidebarPaths
         </article>
         <div
           class="mt-4 flex justify-between text-lg lg:text-xl text-primary mx-3 lg:mx-6">
-          <button class="text-start link link-hover" onclick="history.back()"
-            >Précédent</button
-          >
+          <a href={prevPostUrl} class="text-end link link-hover"> {prevButtonValue} </a>
           <a href={nextPostUrl} class="text-end link link-hover"> {nextButtonValue} </a>
         </div>
       </div>
