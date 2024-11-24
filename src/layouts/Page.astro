@@ -50,12 +50,12 @@ if (currentPostIndex === sidebarPaths.length - 1) {
 }
 
 let prevPostUrl;
-let prevButtonValue = "pre";
+let prevButtonValue = "Précédent";
 if (currentPostIndex === 0) {
   prevPostUrl = "/cours/";
-  prevButtonValue = "pre (Page de cours)";
+  prevButtonValue = "Précédent (Page de cours)";
 } else {
-  prevPostUrl = sidebarPaths[currentPostIndex - 1]
+  prevPostUrl = sidebarPaths[1]
     .replace("/src/pages/", "/")
     .replace(".mdx", "/");
 }
