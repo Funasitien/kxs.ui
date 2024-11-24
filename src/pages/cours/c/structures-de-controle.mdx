@@ -1,5 +1,5 @@
 ---
-title: "C - Structures de contrôle"
+title: "Structures de contrôle"
 icon: "mdi:paper-remove"
 layout: "/src/layouts/Page.astro"
 ---
@@ -14,31 +14,30 @@ Il permet de choisir une action ou plusieurs actions en fonction d'une
 condition. Voici un exemple pour comprendre :
 
 ```c
-    int z = 4;
-    if (z > 0) {
-    	printf("z est positif");
-    } else {
-    	printf("z est négatif");
-    }
+int z = 4;
+if (z > 0) {
+    printf("z est positif");
+} else {
+    printf("z est négatif");
+}
 ```
 
 Ce programme teste la valeur de z. Si z est positif, il affiche « z est
 positif », sinon, il affiche « z est négatif ».
 
 On peut noter trois points important :
-
-  * la condition (ici `z > 0` doit être entre parenthèses ;
-  * les instructions dans les accolades suivant le `if` sont exécutées si la condition est vraie.
-  * les instructions dans les accolades suivant le `else` sont exécutées si la condition est fausse.
+- la condition (ici `z > 0` doit être entre parenthèses ;
+- les instructions dans les accolades suivant le `if` sont exécutées si la condition est vraie.
+- les instructions dans les accolades suivant le `else` sont exécutées si la condition est fausse.
 
 Le `else` n'est pas indispensable. S'il n'y a pas d'instruction à exécuter si
 la condition n'est pas vraie, on peut ommetre le `else` :
 
 ```c
-    int z = 4;
-    if (z == 4) {
-    	printf("z est égal à 4");
-    }
+int z = 4;
+if (z == 4) {
+    printf("z est égal à 4");
+}
 ```
 
 Il est possible de ne pas mettre les accolades s'il n'y a qu'une instruction
@@ -46,24 +45,24 @@ après le `if` ou après le `else`. Cela est une mauvaise pratique car cela rend
 généralement le code moins lisible :
 
 ```c
-    int z = 4;
-    if (z > 0)
-    	printf("z est positif");
-    else
-    	printf("z est négatif");
+int z = 4;
+if (z > 0)
+    printf("z est positif");
+else
+    printf("z est négatif");
 ```
 
 On peut enchaîner des conditions avec l'opérateur `else if` (sinon si) :
 
 ```c
-    int z = 4;
-    if (z > 0) {
-    	printf("z est positif");
-    } else if (z == 0) {
-    	printf("z vaut zéro");
-    } else {
-    	printf("z est négatif");
-    }
+int z = 4;
+if (z > 0) {
+    printf("z est positif");
+} else if (z == 0) {
+    printf("z vaut zéro");
+} else {
+    printf("z est négatif");
+}
 ```
 
 ### Opérations sur les booléens
@@ -71,96 +70,93 @@ On peut enchaîner des conditions avec l'opérateur `else if` (sinon si) :
 Nous allons avoir besoin dans la suite de faire des opérations logiques comme
 le « et » pour tester si deux conditions sont vraies. Il est possible de faire
 ces opérations en C :
-
-  * `cond1 && cond2` : cond1 et cond2 sont vraies
-  * `cond1 || cond2` : cond1 ou cond2 est vraie
-  * `!cond1` : cond1 n'est pas vraie
+- `cond1 && cond2` : cond1 et cond2 sont vraies
+- `cond1 || cond2` : cond1 ou cond2 est vraie
+- `!cond1` : cond1 n'est pas vraie
 
 ### Opérateurs de compariason
 
 Nous aurons besoin des opérateurs de comparaison suivants :
-
-  * `x == y` : x est égal à y
-  * `x != y` : x est différent de y
-  * `x > y` : x est strictement supérieur à y
-  * `x < y` : x est strictement inférieur à y
-  * `x >= y` : x est supérieur ou égal à y
-  * `x <= y` : x est inférieur ou égal à y
+- `x == y` : x est égal à y
+- `x != y` : x est différent de y
+- `x > y` : x est strictement supérieur à y
+- `x < y` : x est strictement inférieur à y
+- `x >= y` : x est supérieur ou égal à y
+- `x <= y` : x est inférieur ou égal à y
 
 **1)** Écrire un programme qui demande l'âge de l'utilisateur et qui lui dit
 s'il est majeur ou mineur (plus de 18 ans ou moins de 18 ans).
 
 ```c
-    #include <stdio.h>
-    
-    int main() {
-    	int age;
-    	printf("Quel est votre âge ? ");
-    	scanf("%d", &age);
-    	if (age < 18) {
-    		printf("Vous êtes mineur\n");
-    	} else {
-    		printf("Vous êtes majeur\n");
-    	}
+#include <stdio.h>
+
+int main() {
+    int age;
+    printf("Quel est votre âge ? ");
+    scanf("%d", &age);
+    if (age < 18) {
+        printf("Vous êtes mineur\n");
+    } else {
+        printf("Vous êtes majeur\n");
     }
+}
 ```
 
 **2)** Écrire un programme qui demande le sexe de l'utilisateur et qui affiche
 `Bonjour Monsieur.` ou `Bonjour Madame.` en fonction du sexe.
 
 ```c
-    #include <stdio.h>
-    
-    int main() {
-    	int sexe;
-    	printf("Quel est votre sexe ? (homme : 1 | femme : 2) ");
-    	scanf("%d", &sexe);
-    	if (sexe == 1) {
-    		printf("Bonjour Monsieur.\n");
-    	} else {
-    		printf("Bonjour Madame.\n");
-    	}
+#include <stdio.h>
+
+int main() {
+    int sexe;
+    printf("Quel est votre sexe ? (homme : 1 | femme : 2) ");
+    scanf("%d", &sexe);
+    if (sexe == 1) {
+        printf("Bonjour Monsieur.\n");
+    } else {
+        printf("Bonjour Madame.\n");
     }
+}
 ```
 
 **3)** Écrire un programme qui demande l'âge de l'utilisateur et qui détermine
 la catégorie dans laquelle il devrait jouer au handball. Voici la liste des
 catégories en fonction de l'âge :
-
-  * age < 5 : Baby
-  * 5 ≤ age < 7 : U7
-  * 7 ≤ age < 9 : U9
-  * 9 ≤ age < 11 : U11
-  * 11 ≤ age < 13 : U13
-  * 13 ≤ age < 15 : U15
-  * 15 ≤ age < 18 : U18
-  * 18 ≤ age : Senior
+- age < 5 : Baby
+- 5 ≤ age < 7 : U7
+- 7 ≤ age < 9 : U9
+- 9 ≤ age < 11 : U11
+- 11 ≤ age < 13 : U13
+- 13 ≤ age < 15 : U15
+- 15 ≤ age < 18 : U18
+- 18 ≤ age : Senior
 
 ```c
-    #include <stdio.h>
-    
-    int main() {
-    	int age;
-    	printf("Quel est votre âge ? ");
-    	scanf("%d", &age);
-    	if (age < 5) {
-    		printf("Baby\n");
-    	} else if ((5 <= age) && (age < 7)) {
-    		printf("U7\n");
-    	} else if ((7 <= age) && (age < 9)) {
-    		printf("U9\n");
-    	} else if ((9 <= age) && (age < 11)) {
-    		printf("U11\n");
-    	} else if ((11 <= age) && (age < 13)) {
-    		printf("U13\n");
-    	} else if ((13 <= age) && (age < 15)) {
-    		printf("U15\n");
-    	} else if ((15 <= age) && (age < 18)) {
-    		printf("U18\n");
-    	} else {
-    		printf("Senior\n");
-    	}
+#include <stdio.h>
+
+int main() {
+    int age;
+    printf("Quel est votre âge ? ");
+    scanf("%d", &age);
+    if (age < 5) {
+        printf("Baby\n");
+    } else if ((5 <= age) && (age < 7)) {
+        printf("U7\n");
+    } else if ((7 <= age) && (age < 9)) {
+        printf("U9\n");
+    } else if ((9 <= age) && (age < 11)) {
+        printf("U11\n");
+    } else if ((11 <= age) && (age < 13)) {
+        printf("U13\n");
+    } else if ((13 <= age) && (age < 15)) {
+        printf("U15\n");
+    } else if ((15 <= age) && (age < 18)) {
+        printf("U18\n");
+    } else {
+        printf("Senior\n");
     }
+}
 ```
 
 ## Boucle `for`
@@ -169,9 +165,9 @@ Une boucle for permet de répéter des instructions un nombre de fois connu à
 l'avance. Pour comprendre, prenons l'exemple suivant :
 
 ```c
-    for (int i = 0; i < 10; i = i + 1) {
-    	printf("%i\n", i);
-    }
+for (int i = 0; i < 10; i = i + 1) {
+    printf("%i\n", i);
+}
 ```
 
   * `int i = 0` permet d'initialiser la variable `i`, elle est exécuté une seule fois au début de la boucle ;
@@ -181,45 +177,45 @@ l'avance. Pour comprendre, prenons l'exemple suivant :
 **4)** Afficher la table de multiplication de 7 en utilisant une boucle for.
 
 ```c
-    #include <stdio.h>
-    
-    int main() {
-    	for (int i = 0; i <= 10; i++) {
-    		printf("7 x %d = %d\n", i, i*7);
-    	}
+#include <stdio.h>
+
+int main() {
+    for (int i = 0; i <= 10; i++) {
+        printf("7 x %d = %d\n", i, i*7);
     }
+}
 ```
 
 **5)** Calculer 10!.
 
 ```c
-    #include <stdio.h>
-    
-    int main() {
-    	int f = 1;
-    	for (int i = 1; i <= 10; i++) {
-    		f = f*i;
-    	}
-    	printf("%d\n", f);
+#include <stdio.h>
+
+int main() {
+    int f = 1;
+    for (int i = 1; i <= 10; i++) {
+        f = f*i;
     }
-```c
+    printf("%d\n", f);
+}
+```
 
 **6)** Calculer n! en demandant la valeur de n à l'utilisateur.
 
 ```c
-    #include <stdio.h>
-    
-    int main() {
-    	int n;
-    	printf("Quel nombre ? ");
-    	scanf("%d", &n);
-    	// On choisit le type le plus grand
-    	unsigned long f = 1;
-    	for (int i = 1; i <= n; i++) {
-    		f = f*i;
-    	}
-    	printf("%lu\n", f);
+#include <stdio.h>
+
+int main() {
+    int n;
+    printf("Quel nombre ? ");
+    scanf("%d", &n);
+    // On choisit le type le plus grand
+    unsigned long f = 1;
+    for (int i = 1; i <= n; i++) {
+        f = f*i;
     }
+    printf("%lu\n", f);
+}
 ```
 
 ## Boucle `while`
@@ -228,13 +224,13 @@ Si on veut répéter des instructions tant qu’une condition est vraie, sans
 savoir à l’avance lorsque ça s’arrêtera, on utilise la boucle while :
 
 ```c
-    int i = 0;
-    int s = 0;
-    while (s < 100) {
-    	i++;
-    	s = s + i;
-    }
-    printf("%i\n", i - 1);
+int i = 0;
+int s = 0;
+while (s < 100) {
+    i++;
+    s = s + i;
+}
+printf("%i\n", i - 1);
 ```
 
 Le programme ci-dessus trouve le plus grand entier n tel que la somme des
@@ -243,15 +239,15 @@ entiers de 1 à n soit inférieure à 100.
 **7)** Afficher la table de multiplication de 7 en utilisant une boucle while
 
 ```c
-    #include <stdio.h>
-    
-    int main() {
-    	int i = 0;
-    	while (i <= 10) {
-    		printf("7 x %d = %d\n", i, i*7);
-    		i++;
-    	}
+#include <stdio.h>
+
+int main() {
+    int i = 0;
+    while (i <= 10) {
+        printf("7 x %d = %d\n", i, i*7);
+        i++;
     }
+}
 ```
 
 **8)** On place un grain de blé sur la 1ere case d'un échiquier, deux grains
@@ -263,29 +259,29 @@ de blé, combien de cases vais-je pouvoir remplir ?
   2. Exécuter le programme pour trouver le nombre de cases pour Q valant 20, 100, 1000 et 1000000
 
 ```c
-    #include <stdio.h>
-    #include <math.h>
-    
-    int main() {
-    	int q = 7;
-    	int s = 0;
-    	int c = 0;
-    	while (s <= q) {
-    		c++;
-    		s = s + pow(2, c-1);
-    	}
-    	printf("%d\n", c-1);
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+    int q = 7;
+    int s = 0;
+    int c = 0;
+    while (s <= q) {
+        c++;
+        s = s + pow(2, c-1);
     }
-    
-    /*
-    +--------------+---+---+---+---+----+----+----+-----+-----+--
-    | case         | 1 | 2 | 3 | 4 |  5 |  6 |  7 |  8  |  9  |
-    +--------------+---+---+---+---+----+----+----+-----+-----+--
-    | nb de grains | 1 | 2 | 4 | 8 | 16 | 32 | 64 | 128 | 256 | 
-    +--------------+---+---+---+---+----+----+----+-----+-----+--
-    | nb total     | 1 | 3 | 7 | 15| 31 | 63 | 127| 255 | 511 |
-    +--------------+---+---+---+---+----+----+----+-----+-----+--
-    */
+    printf("%d\n", c-1);
+}
+
+/*
++--------------+---+---+---+---+----+----+----+-----+-----+--
+| case         | 1 | 2 | 3 | 4 |  5 |  6 |  7 |  8  |  9  |
++--------------+---+---+---+---+----+----+----+-----+-----+--
+| nb de grains | 1 | 2 | 4 | 8 | 16 | 32 | 64 | 128 | 256 | 
++--------------+---+---+---+---+----+----+----+-----+-----+--
+| nb total     | 1 | 3 | 7 | 15| 31 | 63 | 127| 255 | 511 |
++--------------+---+---+---+---+----+----+----+-----+-----+--
+*/
 ```
 
 ## Sortir d'une boucle avant la fin : `break`
@@ -296,13 +292,13 @@ qu'on veut s'arrêter de chercher dès qu'on a trouvé. Voici un exemple pour
 comprendre :
 
 ```c
-    int n = 15896321;
-    for(int i = 2; i < n; i++) {
-    	if(n % i == 0) {
-    		printf("Pas premier");
-    		break;
-    	}
+int n = 15896321;
+for(int i = 2; i < n; i++) {
+    if(n % i == 0) {
+        printf("Pas premier");
+        break;
     }
+}
 ```
 
 Le programme ci-dessus affiche « Pas premier » si le nombre `n` n'est pas
