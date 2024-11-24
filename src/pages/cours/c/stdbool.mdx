@@ -1,49 +1,48 @@
 ---
-title: "C - Stdbool"
+title: "Stdbool"
 icon: "mdi:paper-remove"
 layout: "/src/layouts/Page.astro"
 ---
-
 
 La bibliothèque `stdbool.h` permet de définir un nouveau type booléen :
 `bool`. Les booléens n'existe pas en C car 0 est considéré comme faux et toute
 autre valeur vraie :
 
 ```c
-    if ("MP2I") {
-    	printf("c'est vrai\n");
-    } else {
-    	printf("c'est faux\n");
-    }
-    // C'est vrai
-    
-    if (1) {
-    	printf("c'est vrai\n");
-    } else {
-    	printf("c'est faux\n");
-    }
-    // C'est vrai
-    
-    if (-1) {
-    	printf("c'est vrai\n");
-    } else {
-    	printf("c'est faux\n");
-    }
-    // C'est vrai
-    
-    if (86511) {
-    	printf("c'est vrai\n");
-    } else {
-    	printf("c'est faux\n");
-    }
-    // C'est vrai
-    
-    if (0) {
-    	printf("c'est vrai\n");
-    } else {
-    	printf("c'est faux\n");
-    }
-    // C'est faux
+if ("MP2I") {
+    printf("c'est vrai\n");
+} else {
+    printf("c'est faux\n");
+}
+// C'est vrai
+
+if (1) {
+    printf("c'est vrai\n");
+} else {
+    printf("c'est faux\n");
+}
+// C'est vrai
+
+if (-1) {
+    printf("c'est vrai\n");
+} else {
+    printf("c'est faux\n");
+}
+// C'est vrai
+
+if (86511) {
+    printf("c'est vrai\n");
+} else {
+    printf("c'est faux\n");
+}
+// C'est vrai
+
+if (0) {
+    printf("c'est vrai\n");
+} else {
+    printf("c'est faux\n");
+}
+// C'est faux
 ```
 
 Cela peut créer de nombreux problèmes. Il est donc courant d'utiliser la
@@ -51,33 +50,33 @@ bibliothèque `stdbool.h` qui crée un type booléen `bool` qui peut prendre deu
 valeurs : `true` ou `false`.
 
 ```c
-    #include <stdio.h>
-    #include <stdbool.h>
+#include <stdio.h>
+#include <stdbool.h>
+
+int main() {
+    if (false) {
+        printf("c'est vrai\n");
+    } else {
+        printf("c'est faux\n");
+    } // c'est faux
     
-    int main() {
-    	if (false) {
-    		printf("c'est vrai\n");
-    	} else {
-    		printf("c'est faux\n");
-    	} // c'est faux
-    	
-    	if (true) {
-    		printf("c'est vrai\n");
-    	} else {
-    		printf("c'est faux\n");
-    	} // c'est vrai
-    }
+    if (true) {
+        printf("c'est vrai\n");
+    } else {
+        printf("c'est faux\n");
+    } // c'est vrai
+}
 ```
 
 Mais pour afficher un booléen il faut toujours les considérer comme des
 entiers valant 0 ou 1 :
 
 ```c
-    #include <stdio.h>
-    #include <stdbool.h>
-    
-    int main() {
-    	printf("%d\n", true); // 1
-    	printf("%d\n", false); // 0
-    }
+#include <stdio.h>
+#include <stdbool.h>
+
+int main() {
+    printf("%d\n", true); // 1
+    printf("%d\n", false); // 0
+}
 ```
