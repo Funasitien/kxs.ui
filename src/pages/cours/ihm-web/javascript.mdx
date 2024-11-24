@@ -31,18 +31,18 @@ d’informations que ce que vous avez créé dans le dernier TP avec jsfiddle.ne
 Voici donc une page HTML simple pour commencer :
 
 ```html
-    <!DOCTYPE html>
-    <html>
-        <head>
-            <title>Une page pour tester Javascript</title>
-            <meta charset="utf-8">
-        </head>
-    
-        <body>
-            <h1>Un titre</h1>
-            <p>Un paragraphe inutile</p>
-        </body>
-    </html>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Une page pour tester Javascript</title>
+        <meta charset="utf-8">
+    </head>
+
+    <body>
+        <h1>Un titre</h1>
+        <p>Un paragraphe inutile</p>
+    </body>
+</html>
 ```
 
 Analysons ce code :
@@ -87,11 +87,11 @@ de la page.
 décrire ce qu’il se passe :
 
 ```css
-    <style>
-        h1 {
-            color: green;
-        }
-    </style>
+<style>
+    h1 {
+        color: green;
+    }
+</style>
 ```
 
 Le CSS en ligne est prioritaire sur le CSS interne il faut donc supprimer
@@ -110,7 +110,7 @@ externe.
 la page :
 
 ```html
-    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
 ```
 
 Ainsi le navigateur ira chercher un fichier `style.css`.
@@ -119,9 +119,9 @@ Ainsi le navigateur ira chercher un fichier `style.css`.
 contenu suivant :
 
 ```css
-    h1 {
-    	color: blue;
-    }
+h1 {
+    color: blue;
+}
 ```
 
 De la même manière que précédemment, le CSS interne est prioritaire sur le CSS
@@ -141,9 +141,9 @@ ce qu’il se passe (la fonction `alert()` affiche un pop-up avec le texte
 saisi) :
 
 ```html
-    <script type="text/javascript">
-        alert("Salut");
-    </script>
+<script type="text/javascript">
+    alert("Salut");
+</script>
 ```
 
 #### Javascript externe
@@ -154,7 +154,7 @@ partie `<head>` de la page.
 10. Ajoutez cett balise à la fin de la partie `<head>` de votre page :
 
 ```html
-    <script src="script.js"></script>
+<script src="script.js"></script>
 ```
 
 Ainsi le navigateur ira chercher un fichier `script.js`.
@@ -163,7 +163,7 @@ Ainsi le navigateur ira chercher un fichier `script.js`.
 contenu suivant :
 
 ```js
-    alert("Coucou");
+alert("Coucou");
 ```
 
 12. Que se passe-t-il alors lorsque vous rechargez la page ?
@@ -178,29 +178,29 @@ la page HTML.
 Nous allons maintenant utiliser la page HTML suivante :
 
 ```html
-    <!DOCTYPE html>
-    <html>
-        <head>
-            <title>Une page pour tester Javascript</title>
-            <meta charset="utf-8">
-            <link rel="stylesheet" href="style.css">
-    		<script src="script.js"></script>
-        </head>
-    
-        <body>
-            <h1>Un titre</h1>
-            <p id="roger">Un paragraphe inutile</p>
-            <button onclick="mafonction()">Bouton</button>
-        </body>
-    </html>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Une page pour tester Javascript</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="style.css">
+        <script src="script.js"></script>
+    </head>
+
+    <body>
+        <h1>Un titre</h1>
+        <p id="roger">Un paragraphe inutile</p>
+        <button onclick="mafonction()">Bouton</button>
+    </body>
+</html>
 ```
 
 et le code CSS suivant :
 
 ```css
-    h1 {
-    	color: blue;
-    }
+h1 {
+    color: blue;
+}
 ```
 
 On videra le contenu du fichier `script.js` pour le moment.
@@ -213,9 +213,9 @@ clique dessus l’attribut `onclick` exécute la fonction javascript
 bouton :
 
 ```js
-    function mafonction() {
-        alert("Ça marche")
-    }
+function mafonction() {
+    alert("Ça marche")
+}
 ```
 
 On définit une fonction en javascript avec le mot-clef « function » et des
@@ -232,13 +232,13 @@ premier. Ainsi si on veut accéder au paragraphe on pourra utiliser l’une des
 méthodes ci-dessous :
 
 ```js
-    document.getElementById("roger")
-    
-    
-    document.querySelector("p")
-    
-    
-    document.querySelector("#roger")
+document.getElementById("roger")
+
+
+document.querySelector("p")
+
+
+document.querySelector("#roger")
 ```
 
 ### Modifier un élément
@@ -248,13 +248,13 @@ Une fois qu’on a accès à un élément, on peut le modifier.
 On peut changer le style d’un élément :
 
 ```js
-    document.getElementById("roger").style = "color:red;"
+document.getElementById("roger").style = "color:red;"
 ```
 
 ou
 
 ```js
-    document.getElementById("roger").style.color = "red"
+document.getElementById("roger").style.color = "red"
 ```
 
 14. Changez le code de `mafonction()` pour qu’un clic sur le bouton rende
@@ -263,7 +263,7 @@ le texte du paragraphe vert.
 On peut changer le contenu d’une balise :
 
 ```js
-    document.getElementById("roger").innerHTML = "Le contenu a changé"
+document.getElementById("roger").innerHTML = "Le contenu a changé"
 ```
 
 15. Changer le code de `mafonction()` pour qu’un clic sur le bouton
@@ -272,8 +272,8 @@ remplace le titre par « Mon nouveau titre ».
 On peut ajouter ou retirer des classes à une balise :
 
 ```js
-    document.getElementById("roger").classList.add("rouge")
-    document.getElementById("roger").classList.remove("rouge")
+document.getElementById("roger").classList.add("rouge")
+document.getElementById("roger").classList.remove("rouge")
 ```
 
 **16)** En utilisant deux classes `.rouge` et `.vert` en CSS et deux fonctions
