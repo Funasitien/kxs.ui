@@ -1,6 +1,58 @@
 ---
-title: "Le Web"
+title: "Récursivité"
 icon: "mdi:find-in-page"
 isIndexFile: true
 layout: "/src/layouts/Page.astro"
 ---
+
+Un algorithme (ou une fonction) récursif est un algorithme qui fait appel à lui-même dans sa définition.
+
+## Parties du programme abordées
+| Contenus | Capacités attendues | Commentaires |
+| - | - | - |
+| Récursivité. | Écrire un programme récursif. Analyser le fonctionnement d’un programme récursif. | Des exemples relevant de domaines variés sont à privilégier. | 
+
+## Exemple de factorielle
+### Définition
+Factorielle est une opération mathématique notée avec un point d'exclamation : n!. On dira « factorielle n » ou « n factoriel ». La factorielle d'un entier naturel n est le produit des nombres entiers strictement positifs inférieurs ou égaux à n. Par convention 0! = 1.
+
+On a donc 1! = 1, 2! = 2 x 1 = 2, 3! = 3 x 2 x 1 = 6,…
+
+1) Écrivez et calculez 4! et 5!.
+
+### Programmation itérative
+On parle de programmation itérative par opposition à la programmation récursive. C'est la méthode que vous avez l'habitude d'utiliser.
+
+2. Proposez une fonction en Python qui permette de calculer n!. Il y aura une boucle for.
+3. Testez cette fonction.
+
+### Programmation récursive
+On peut remarquer que n! = n x (n-1)!. Cela ressemble beaucoup à la définition d'un algorithme récursif. Pour que la récursion ne soit pas infinie il doit y avoir un cas d'arrêt. Ici le cas d'arrêt est 1! = 1.
+
+4. Proposez une fonction récursive en Python qui permette de calculer n!. Il y aura un if … else.
+5. Testez cette fonction.
+
+### Inconvénient de la récursivité
+Pour voir simplement l'inconvénient principal de la récursivité, nous allons calculer ensemble 6! avec les deux méthodes. Voilà comment nous allons procéder :
+- le prof est l'utilisateur ;
+- un élève peut être soit un processus (il éxécute un programme, une fonction) soit une mémoire (il stocke une valeur) ;
+- si un processus a besoin de stocker une valeur il donne un papier avec un nom de variable à un autre élève et lui annonce sa valeur à l'oral. Il peut ensuite changer la valeur à l'oral ;
+- si un processus a besoin de lancer un autre processus il donne un papier à un autre élève avec ce qu'il doit faire dessus.
+
+6. Commencez par la méthode itérative et donnez le nombre de processus utilisés ainsi que le nombre de mémoires.
+7. Refaire le calcul de 6! avec la méthode récursive et donnez le nombre de processus utilisés ainsi que le nombre de mémoires.
+8. Sachant qu'un processus prend également de la place en mémoire, quelle méthode risque de prendre énormément de place en mémoire si on calcule la factorielle d'un grand nombre ?
+
+La méthode récursive risque de prendre beaucoup de place en mémoire car elle utilise n processus.
+
+## Analyse du fonctionnement
+On analyse en général le fonctionnement d'un programme récursif en faisant un empilement et un dépilement des appels à la fonction.
+
+9. Effectuez ce travail pour 4! avec le professeur.
+
+## Bilan sur la récursivité
+La récursivité est en général caractérisée par deux éléments :
+  - __variable de contrôle__ : souvent un entier qui décroit à chaque appel de la fonction et qui entraine la fonction vers un cas de base ;
+  - __cas de base__ : cas pour lequel on connait le résultat.
+
+10. Faites le bilan avec le professeur des avantages et inconvénients de la récursivité.
