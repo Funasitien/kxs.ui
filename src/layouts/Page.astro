@@ -38,9 +38,11 @@ const currentPostIndex = sidebarPaths.findIndex(
   (element) => element === mdxFilePath
 );
 let nextPostUrl;
+let nextButtonValue = "Suivant";
 
 if (currentPostIndex === sidebarPaths.length - 1) {
   nextPostUrl = "/cours/";
+  nextButtonValue = "Suivant (Page de cours)";
 } else {
   nextPostUrl = sidebarPaths[currentPostIndex + 1]
     .replace("/src/pages/", "/")
