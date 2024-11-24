@@ -4,7 +4,6 @@ icon: "mdi:paper-remove"
 layout: "/src/layouts/Page.astro"
 ---
 
-
 ## Introduction
 
 Les formulaires permettent à l’utilisateur de saisir simplement des données et
@@ -21,32 +20,32 @@ fois.
 `var/www/html` et placez-y le code suivant :
 
 ```php
-    <!DOCTYPE html>
-    <html>
-        <head>
-            <title>Un formulaire</title>
-            <meta charset="utf-8">
-        </head>
-    
-        <body>
-            <h1>Un formulaire</h1>
-            <form method="get" action="traitement.php">
-                <label for="nom">Nom</label>
-                <input type="text" name="nom" value="" id="nom">
-                <label for="prenom">Prénom</label>
-                <input type="text" name="prenom" value="" id="prenom">
-                <input type="submit" value="Envoyer">
-            </form>
-        </body>
-    </html>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Un formulaire</title>
+        <meta charset="utf-8">
+    </head>
+
+    <body>
+        <h1>Un formulaire</h1>
+        <form method="get" action="traitement.php">
+            <label for="nom">Nom</label>
+            <input type="text" name="nom" value="" id="nom">
+            <label for="prenom">Prénom</label>
+            <input type="text" name="prenom" value="" id="prenom">
+            <input type="submit" value="Envoyer">
+        </form>
+    </body>
+</html>
 ```
 
 2. Dans le même dossier, créez un fichier `traitement.php` et placez-y le
 code suivant :
 
 ```php
-    <h1>Traitement du formulaire</h1>
-    <p>Bonjour <?php echo $_GET['prenom']; ?> <?php echo $_GET['nom']; ?>, votre formulaire a bien été traité.</p>
+<h1>Traitement du formulaire</h1>
+<p>Bonjour <?php echo $_GET['prenom']; ?> <?php echo $_GET['nom']; ?>, votre formulaire a bien été traité.</p>
 ```
 
 3. Allez maintenant à l’adresse http://localhost/, complétez le
@@ -84,24 +83,24 @@ formulaire. Pour cela il existe une deuxième méthode, la méthode POST.
 Nous allons cette fois utiliser ce fichier `index.html` :
 
 ```php
-    <!DOCTYPE html>
-    <html>
-        <head>
-            <title>Un formulaire</title>
-            <meta charset="utf-8">
-        </head>
-    
-        <body>
-            <h1>Un formulaire</h1>
-            <form method="post" action="traitement.php">
-                <label for="nom">Nom</label>
-                <input type="text" name="nom" value="" id="nom">
-                <label for="prenom">Prénom</label>
-                <input type="text" name="prenom" value="" id="prenom">
-                <input type="submit" value="Envoyer">
-            </form>
-        </body>
-    </html>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Un formulaire</title>
+        <meta charset="utf-8">
+    </head>
+
+    <body>
+        <h1>Un formulaire</h1>
+        <form method="post" action="traitement.php">
+            <label for="nom">Nom</label>
+            <input type="text" name="nom" value="" id="nom">
+            <label for="prenom">Prénom</label>
+            <input type="text" name="prenom" value="" id="prenom">
+            <input type="submit" value="Envoyer">
+        </form>
+    </body>
+</html>
 ```
 
 On a juste changé la méthode en post.
@@ -109,8 +108,8 @@ On a juste changé la méthode en post.
 Et comme ficher `traitement.php` :
 
 ```php
-    <h1>Traitement du formulaire</h1>
-    <p>Bonjour <?php echo $_POST['prenom']; ?> <?php echo $_POST['nom']; ?>, votre formulaire a bien été traité.</p>
+<h1>Traitement du formulaire</h1>
+<p>Bonjour <?php echo $_POST['prenom']; ?> <?php echo $_POST['nom']; ?>, votre formulaire a bien été traité.</p>
 ```
 
 Ici, on a juste changé le nom de la variable `$_GET` en `$_POST`.
