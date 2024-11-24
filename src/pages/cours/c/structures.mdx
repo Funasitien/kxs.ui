@@ -1,5 +1,5 @@
 ---
-title: "C - Structures - Niveau MP2I"
+title: "Structures"
 icon: "mdi:paper-remove"
 layout: "/src/layouts/Page.astro"
 ---
@@ -14,7 +14,7 @@ Pour déclarer une nouvelle structure, il faut utiliser le mot clé `struct` et
 la nommer :
 
 ```c
-    struct point {int x; int y}
+struct point {int x; int y}
 ```
 
 Nous disposons alors d'un nouveau type que l'on notera `struct point` qui
@@ -22,7 +22,7 @@ contient deux entiers `x` et `y`. Il est alors possible de déclarer une
 variable de type `struct point` :
 
 ```c    
-    struct point a  = { .x = 1, .y = 2};
+struct point a  = { .x = 1, .y = 2};
 ```
 
 On a ici initialisé les champs `x` et `y` avec les valeurs `1` et `2` (ne pas
@@ -33,15 +33,15 @@ oublier le point devant les champs).
 L'accès aux champs se fait avec la notation `structure.champ` :
 
 ```c
-    struct point {
-    		int x;
-    		int y;
-    	};
-    	
-    	struct point a = { .x = 1, .y = 2};
-    	
-    	a.x = 3;
-    	printf("(%d, %d)\n", a.x, a.y);
+struct point {
+    int x;
+    int y;
+};
+    
+struct point a = { .x = 1, .y = 2};
+
+a.x = 3;
+printf("(%d, %d)\n", a.x, a.y);
 ```
 
 ## Passage d'une structure à une fonction
@@ -50,30 +50,30 @@ Comme pour les variables, les structures sont passées par valeur aux fonctions
 :
 
 ```c
-    #include <stdio.h>
+#include <stdio.h>
+
+// Définition de la structure
+struct point {
+    int x;
+    int y;
+};
+
+struct point translate(struct point a, int dx, int dy) {
+    // a est une copie du point envoyé à la structure
+    a.x = a.x + dx;
+    a.y = a.y + dy;
+    return a;
+}
+
+int main() {
     
-    // Définition de la structure
-    struct point {
-    	int x;
-    	int y;
-    };
+    struct point a = { .x = 1, .y = 2};
+    printf("(%d, %d)\n", a.x, a.y);
     
-    struct point translate(struct point a, int dx, int dy) {
-    	// a est une copie du point envoyé à la structure
-    	a.x = a.x + dx;
-    	a.y = a.y + dy;
-    	return a;
-    }
+    a = translate(a, 2, 2);
     
-    int main() {
-    	
-    	struct point a = { .x = 1, .y = 2};
-    	printf("(%d, %d)\n", a.x, a.y);
-    	
-    	a = translate(a, 2, 2);
-    	
-    	printf("(%d, %d)\n", a.x, a.y);	
-    }
+    printf("(%d, %d)\n", a.x, a.y);	
+}
 ```
 
 Il est déconseillé de procéder ainsi car la copie de structures prend de la
@@ -81,28 +81,28 @@ place en mémoire. Il donc possible d'utiliser des pointeurs sur les structures
 :
 
 ```c
-    #include <stdio.h>
+#include <stdio.h>
+
+// Définition de la structure
+struct point {
+    int x;
+    int y;
+};
+
+void translate(struct point *pa, int dx, int dy) {
+    (*pa).x = (*pa).x + dx;
+    (*pa).y = (*pa).y + dy;
+}
+
+int main() {
     
-    // Définition de la structure
-    struct point {
-    	int x;
-    	int y;
-    };
+    struct point a = { .x = 1, .y = 2};
+    printf("(%d, %d)\n", a.x, a.y);
     
-    void translate(struct point *pa, int dx, int dy) {
-    	(*pa).x = (*pa).x + dx;
-    	(*pa).y = (*pa).y + dy;
-    }
+    translate(&a, 2, 2);
     
-    int main() {
-    	
-    	struct point a = { .x = 1, .y = 2};
-    	printf("(%d, %d)\n", a.x, a.y);
-    	
-    	translate(&a, 2, 2);
-    	
-    	printf("(%d, %d)\n", a.x, a.y);	
-    }
+    printf("(%d, %d)\n", a.x, a.y);	
+}
 ```
 
 Il existe une notation simplifiée `->` pour accéder directement aux champs
@@ -110,28 +110,28 @@ d'un pointeur sans utiliser la notation `*`. Ainsi, on peut donc remplacer
 `(*pa).x` par `pa->x` :
 
 ```c
-    #include <stdio.h>
+#include <stdio.h>
+
+// Définition de la structure
+struct point {
+    int x;
+    int y;
+};
+
+void translate(struct point *pa, int dx, int dy) {
+    pa->x = pa->x + dx;
+    pa->y = pa->y + dy;
+}
+
+int main() {
     
-    // Définition de la structure
-    struct point {
-    	int x;
-    	int y;
-    };
+    struct point a = { .x = 1, .y = 2};
+    printf("(%d, %d)\n", a.x, a.y);
     
-    void translate(struct point *pa, int dx, int dy) {
-    	pa->x = pa->x + dx;
-    	pa->y = pa->y + dy;
-    }
+    translate(&a, 2, 2);
     
-    int main() {
-    	
-    	struct point a = { .x = 1, .y = 2};
-    	printf("(%d, %d)\n", a.x, a.y);
-    	
-    	translate(&a, 2, 2);
-    	
-    	printf("(%d, %d)\n", a.x, a.y);	
-    }
+    printf("(%d, %d)\n", a.x, a.y);	
+}
 ```
 
 ## Opérations sur les structures
@@ -142,15 +142,15 @@ Il est possible d'affecter une structure à une autre structure. Les champs
 sont alors copiés :
 
 ```c
-    struct point {
-    	int x;
-    	int y;
-    };
-    
-    struct point a = { .x = 1, .y = 2};
-    
-    struct point b = a;
-    printf("(%d, %d)\n", b.x, b.y);
+struct point {
+    int x;
+    int y;
+};
+
+struct point a = { .x = 1, .y = 2};
+
+struct point b = a;
+printf("(%d, %d)\n", b.x, b.y);
 ```
 
 ### Comparaison des structures
@@ -164,25 +164,25 @@ On peut connaitre la taille d'une structure avec `sizeof` et donc d'utiliser
 `malloc` comme pour les autres types :
 
 ```c
-    #include <stdio.h>
-    #include <stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
     
-    int main() {
-    	
-    	struct point {
-    		int x;
-    		int y;
-    	};
-    	
-    	printf("%ld\n", sizeof(struct point));
-    	
-    	struct point * pp = malloc(sizeof(struct point));
-    	
-    	pp->x = 1;
-    	pp->y = 2;
-    	
-    	printf("(%d, %d)\n", pp->x, pp->y);	
-    }
+    struct point {
+        int x;
+        int y;
+    };
+    
+    printf("%ld\n", sizeof(struct point));
+    
+    struct point * pp = malloc(sizeof(struct point));
+    
+    pp->x = 1;
+    pp->y = 2;
+    
+    printf("(%d, %d)\n", pp->x, pp->y);	
+}
 ```
 
 ## Exercices
@@ -191,37 +191,37 @@ On peut connaitre la taille d'une structure avec `sizeof` et donc d'utiliser
 son symétrique par rapport à l'origine.
 
 ```c
-    void sym(struct point *pa) {
-    	pa->x = -pa->x;
-    	pa->y = -pa->y;
-    }
+void sym(struct point *pa) {
+    pa->x = -pa->x;
+    pa->y = -pa->y;
+}
 ```
 
 **2)** Écrire une fonction `bool pointcpr(struct point a, struct point b)` qui
 renvoie `true` si les deux points sont identiques et `false` sinon.
 
 ```c
-    #include <stdio.h>
-    #include <stdbool.h>
+#include <stdio.h>
+#include <stdbool.h>
+
+struct point {
+    int x;
+    int y;
+};
+
+
+bool pointcpr(struct point a, struct point b) {
+    return (a.x == b.x) && (a.y == b.y);
+}
+
+
+int main() {
     
-    struct point {
-    	int x;
-    	int y;
-    };
+    struct point a = { .x = 1, .y = 2};
+    struct point b = { .x = 1, .y = 2};
     
-    
-    bool pointcpr(struct point a, struct point b) {
-    	return (a.x == b.x) && (a.y == b.y);
-    }
-    
-    
-    int main() {
-    	
-    	struct point a = { .x = 1, .y = 2};
-    	struct point b = { .x = 1, .y = 2};
-    	
-    	printf("%d\n", pointcpr(a, b));	
-    }
+    printf("%d\n", pointcpr(a, b));	
+}
 ```
 
 ## typedef
@@ -231,16 +231,16 @@ utilisé pour simplifier l'utilisation des structures et s'affranchir du mot
 réservé `struct`. La syntaxe est la suivante :
 
 ```c
-    typedef une définition quelconque nouveau_nom_de_la_définition
+typedef une définition quelconque nouveau_nom_de_la_définition
 ```
 
 Par exemple pour la structure point précédente on pourra utiliser :
 
 ```c
-    typedef struct Point {
-    	int x;
-    	int y;
-    } point;
+typedef struct Point {
+    int x;
+    int y;
+} point;
 ```
 
 On notera l'utilisation d'une majuscule pour la structure (qui ne sera plus
@@ -249,17 +249,17 @@ utilisée) et d'une minuscule pour le nouveau type.
 Ensuite on utilise le type `point` comme un type `int` ou autre :
 
 ```c
-    typedef struct Point {
-    	int x;
-    	int y;
-    } point;
-    
-    int main() {
-    	// Plus besoin du mot réservé struct
-    	point a = {.x = 1, .y = 2};
-    	/*
-    		Cette déclaration est équivalente à
-    		struct Point a = {.x = 1, .y = 2};
-    	*/
-    }
+typedef struct Point {
+    int x;
+    int y;
+} point;
+
+int main() {
+    // Plus besoin du mot réservé struct
+    point a = {.x = 1, .y = 2};
+    /*
+        Cette déclaration est équivalente à
+        struct Point a = {.x = 1, .y = 2};
+    */
+}
 ```
