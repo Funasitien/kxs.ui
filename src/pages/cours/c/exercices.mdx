@@ -1,5 +1,5 @@
 ---
-title: "C - Exercices - Niveau MP2I"
+title: "Exercices"
 icon: "mdi:paper-remove"
 layout: "/src/layouts/Page.astro"
 ---
@@ -19,23 +19,23 @@ On pourra améliorer le programme en créant une fonction qui affiche
 correctement les informations d'un étudiant.
 
 ```c
-    #include <stdio.h>
-    
-    typedef struct Etudiant {
-    	char nom[20];
-    	char prenom[20];
-    	int numero_etudiant;
-    } etudiant;
-    
-    void affiche_etudiant(etudiant e) {
-    	printf("Nom : %s\nPrenom : %s\nNuméro d'étudiant : %d\n", e.nom, e.prenom, e.numero_etudiant);
-    }
-    
-    int main() {
-    	etudiant a = {.nom = "Turing", .prenom = "Alan", .numero_etudiant = 123456};
-    	printf("Nom : %s\nPrenom : %s\nNuméro d'étudiant : %d\n", a.nom, a.prenom, a.numero_etudiant);
-    	affiche_etudiant(a);
-    }
+#include <stdio.h>
+
+typedef struct Etudiant {
+    char nom[20];
+    char prenom[20];
+    int numero_etudiant;
+} etudiant;
+
+void affiche_etudiant(etudiant e) {
+    printf("Nom : %s\nPrenom : %s\nNuméro d'étudiant : %d\n", e.nom, e.prenom, e.numero_etudiant);
+}
+
+int main() {
+    etudiant a = {.nom = "Turing", .prenom = "Alan", .numero_etudiant = 123456};
+    printf("Nom : %s\nPrenom : %s\nNuméro d'étudiant : %d\n", a.nom, a.prenom, a.numero_etudiant);
+    affiche_etudiant(a);
+}
 ```
 
 ## Exercice 2
