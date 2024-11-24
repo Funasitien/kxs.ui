@@ -38,7 +38,7 @@ const currentPostIndex = sidebarPaths.findIndex(
 let nextPostUrl;
 
 if (currentPostIndex === sidebarPaths.length - 1) {
-  nextPostUrl = "../";
+  nextPostUrl = "/cours/";
 } else {
   nextPostUrl = sidebarPaths[currentPostIndex + 1]
     .replace("/src/pages/", "/")
