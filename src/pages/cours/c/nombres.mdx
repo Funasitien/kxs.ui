@@ -1,5 +1,5 @@
 ---
-title: "C - Nombres - Niveau MP2I"
+title: "Nombres"
 icon: "mdi:paper-remove"
 layout: "/src/layouts/Page.astro"
 ---
@@ -10,8 +10,8 @@ Une variable en C est définie par un nom et un type. Elle peut alors contenir
 une valeur de ce type.
 
 ```c
-    int a;
-    a = 2;
+int a;
+a = 2;
 ```
 
 On a déclaré ici une variable `a` ce type int (entier) puis on lui a affecté
@@ -22,31 +22,31 @@ mémoire.
 On peut affecter une valeur à une variable en la déclarant :
 
 ```c
-    int a = 2;
+int a = 2;
 ```
 
 Il est possible de modifier le contenu d'une variable :
 
 ```c
-    int a = 2;
-    a = 3;
+int a = 2;
+a = 3;
 ```
 
 On peut empêcher la modification d'une variable en la déclarant comme
 constante :
 
 ```c
-    const int a = 2;
-    a = 3;
+const int a = 2;
+a = 3;
 ```
 
 **1)** compiler le programme ci-dessus pour voir l'erreur renvoyée.
 
 ```bash
-    exo.c: In function ‘main’:
-    exo.c:6:11: error: assignment of read-only variable ‘a’
-        6 |         a = 3;
-          |           ^
+exo.c: In function ‘main’:
+exo.c:6:11: error: assignment of read-only variable ‘a’
+    6 |         a = 3;
+      |           ^
 ```
 
 On ne peut pas modifier la variable `a`.
@@ -73,41 +73,41 @@ qu'ils occupent en mémoire. Pour cela on utilisera la fonction `sizeof()` qui
 prend en paramètre une variable et retourne sa taille en mémoire en octets.
 
 ```c
-    #include <stdio.h>
-    
-    int main() {
-    	char a;
-    	printf("char : %lu\n", sizeof(a));
-    	unsigned char b;
-    	printf("unsigned char : %lu\n", sizeof(b));
-    	short c;
-    	printf("short : %lu\n", sizeof(c));
-    	unsigned short d;
-    	printf("unsigned short : %lu\n", sizeof(d));
-    	int e;
-    	printf("int : %lu\n", sizeof(e));
-    	unsigned int f;
-    	printf("unsigned int : %lu\n", sizeof(f));
-    	long g;
-    	printf("long : %lu\n", sizeof(g));
-    	unsigned long h;
-    	printf("unsigned long : %lu\n", sizeof(h));
-    	return 0;
-    }
+#include <stdio.h>
+
+int main() {
+    char a;
+    printf("char : %lu\n", sizeof(a));
+    unsigned char b;
+    printf("unsigned char : %lu\n", sizeof(b));
+    short c;
+    printf("short : %lu\n", sizeof(c));
+    unsigned short d;
+    printf("unsigned short : %lu\n", sizeof(d));
+    int e;
+    printf("int : %lu\n", sizeof(e));
+    unsigned int f;
+    printf("unsigned int : %lu\n", sizeof(f));
+    long g;
+    printf("long : %lu\n", sizeof(g));
+    unsigned long h;
+    printf("unsigned long : %lu\n", sizeof(h));
+    return 0;
+}
 ```
 
 On met `%lu` dans le printf car `sizeof()` renvoie un `unsigned long`. La
 sortie est alors :
 
 ```c    
-    char : 1
-    unsigned char : 1
-    short : 2
-    unsigned short : 2
-    int : 4
-    unsigned int : 4
-    long : 8
-    unsigned long : 8
+char : 1
+unsigned char : 1
+short : 2
+unsigned short : 2
+int : 4
+unsigned int : 4
+long : 8
+unsigned long : 8
 ```
 
 **3)** Grâce aux résultats de la question précédente, calculez la valeur
@@ -129,33 +129,33 @@ liste des valeurs que vous devez utiliser : `CHAR_MIN`, `CHAR_MAX`,
 `UINT_MAX`, `LONG_MIN`, `LONG_MAX`, `ULONG_MAX`,
 
 ```c
-    #include <stdio.h>
-    #include <limits.h>
-    
-    int main() {
-    	printf("CHAR_MIN : %d | CHAR_MAX : %d\n", CHAR_MIN, CHAR_MAX);
-    	printf("UCHAR_MAX : %d\n", UCHAR_MAX);
-    	printf("SHRT_MIN : %d | SHRT_MAX : %d\n", SHRT_MIN, SHRT_MAX);
-    	printf("USHRT_MAX : %d\n", USHRT_MAX);
-    	printf("INT_MIN : %d | INT_MAX : %d\n", INT_MIN, INT_MAX);
-    	printf("UINT_MAX : %u\n", UINT_MAX);
-    	printf("LONG_MIN : %ld | LONG_MAX : %ld\n", LONG_MIN, LONG_MAX);
-    	printf("ULONG_MAX : %lu\n", ULONG_MAX);
-    	return 0;
-    }
+#include <stdio.h>
+#include <limits.h>
+
+int main() {
+    printf("CHAR_MIN : %d | CHAR_MAX : %d\n", CHAR_MIN, CHAR_MAX);
+    printf("UCHAR_MAX : %d\n", UCHAR_MAX);
+    printf("SHRT_MIN : %d | SHRT_MAX : %d\n", SHRT_MIN, SHRT_MAX);
+    printf("USHRT_MAX : %d\n", USHRT_MAX);
+    printf("INT_MIN : %d | INT_MAX : %d\n", INT_MIN, INT_MAX);
+    printf("UINT_MAX : %u\n", UINT_MAX);
+    printf("LONG_MIN : %ld | LONG_MAX : %ld\n", LONG_MIN, LONG_MAX);
+    printf("ULONG_MAX : %lu\n", ULONG_MAX);
+    return 0;
+}
 ```
 
 Attention de bien changer les marqueurs lorsqu'on arrive aux `unsigned int` !
 
 ```c
-    CHAR_MIN : -128 | CHAR_MAX : 127
-    UCHAR_MAX : 255
-    SHRT_MIN : -32768 | SHRT_MAX : 32767
-    USHRT_MAX : 65535
-    INT_MIN : -2147483648 | INT_MAX : 2147483647
-    UINT_MAX : 4294967295
-    LONG_MIN : -9223372036854775808 | LONG_MAX : 9223372036854775807
-    ULONG_MAX : 18446744073709551615
+CHAR_MIN : -128 | CHAR_MAX : 127
+UCHAR_MAX : 255
+SHRT_MIN : -32768 | SHRT_MAX : 32767
+USHRT_MAX : 65535
+INT_MIN : -2147483648 | INT_MAX : 2147483647
+UINT_MAX : 4294967295
+LONG_MIN : -9223372036854775808 | LONG_MAX : 9223372036854775807
+ULONG_MAX : 18446744073709551615
 ```
 
 On retrouve bien les réponses de la question précédente.
@@ -170,21 +170,21 @@ d'entier (le chargement valait 370 millions de dollars !).
 lorsqu'on fait un dépassement d'entier :
 
 ```c
-    #include <stdio.h>
-    
-    int main() {
-    	short h = 32767;
-    	printf("valeur initiale de h : %hd\n", h);
-    	h = h + 1;
-    	printf("valeur de h après incrémentation : %hd\n", h);
-    	return 0;
-    }
-    
-    
-    /* 
-    valeur initiale de h : 32767
-    valeur de h après incrémentation : -32768
-    */
+#include <stdio.h>
+
+int main() {
+    short h = 32767;
+    printf("valeur initiale de h : %hd\n", h);
+    h = h + 1;
+    printf("valeur de h après incrémentation : %hd\n", h);
+    return 0;
+}
+
+
+/* 
+valeur initiale de h : 32767
+valeur de h après incrémentation : -32768
+*/
 ```
 32767 est la valeur maximale pour un `short`. Si on lui ajoute 1 on obtient la
 valeur minimale d'un `short` : -32768.
@@ -202,22 +202,22 @@ Il existe trois types de flottant :
 flottant.
 
 ```c
-    #include <stdio.h>
-    
-    int main() {
-    	float a;
-    	printf("float : %lu\n", sizeof(a));
-    	double b;
-    	printf("double : %lu\n", sizeof(b));
-    	long double c;
-    	printf("long double : %lu\n", sizeof(c));
-    	return 0;
-    }
-    
-    
-    float : 4
-    double : 8
-    long double : 16
+#include <stdio.h>
+
+int main() {
+    float a;
+    printf("float : %lu\n", sizeof(a));
+    double b;
+    printf("double : %lu\n", sizeof(b));
+    long double c;
+    printf("long double : %lu\n", sizeof(c));
+    return 0;
+}
+
+
+float : 4
+double : 8
+long double : 16
 ```
 
 **7)** Attention, comme nous l'avons vu en cours, les flottant sont souvent
@@ -226,14 +226,14 @@ comprendre cela, éxécuter le programme suivant et expliquer ce qu'il se passe
 :
 
 ```c
-    #include <stdio.h>
-    
-    int main() {
-    	printf("%.20f\n", 0.2);
-    }
-    
-    
-    0.20000000000000001110
+#include <stdio.h>
+
+int main() {
+    printf("%.20f\n", 0.2);
+}
+
+
+0.20000000000000001110
 ```
 
 On remarque que 0.2 est bien représenté en mémoire par une approximation.
@@ -253,24 +253,24 @@ La fonction `pow()` de la bibliothèque `math` permet de réaliser l'opération
 puissance avec des doubles :
 
 ```c
-    #include <stdio.h>
-    #include <math.h>
-    
-    int main() {
-    	printf("%lf\n", pow(2,10));
-    }
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+    printf("%lf\n", pow(2,10));
+}
 ```
 
 La fonction `sqrt()` de la bibliothèque `math` permet de calculer la racine
 carrée avec un double :
 
 ```c
-    #include <stdio.h>
-    #include <math.h>
-    
-    int main() {
-    	printf("%lf\n", sqrt(25);
-    }
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+    printf("%lf\n", sqrt(25);
+}
 ```
 
 ## Conversion de type
@@ -279,12 +279,12 @@ Il est assez simple de passer d'un type à un autre en C. Cela s'appelle le
 **casting** et on utilise la syntaxe `(type)` :
 
 ```c
-    int n = 4673;
-    printf("%f\n", (float) n);
-    
-    
-    float n = 4673.0;
-    printf("%d\n", (int) n);
+int n = 4673;
+printf("%f\n", (float) n);
+
+
+float n = 4673.0;
+printf("%d\n", (int) n);
 ```
 
 Attention en cas de conversion d'un type « large » vers un type « restreint ».
@@ -292,8 +292,8 @@ Le comportement peut être innatendu. Normalement le compilateur vous avertira.
 Essayez de compiler ce code pour voir ce qu'il se passse :
 
 ```c
-    int n = 467356932244;
-    printf("%hd\n", (short) n);
+int n = 467356932244;
+printf("%hd\n", (short) n);
 ```
 
 ## Opérations bit à bit
@@ -315,43 +315,43 @@ connaissances un peu plus avancées)
 
     
 ```
-    (ça n'est pas du code C)
-    x = 12
-    y = 21
-    x & y -> 4
-    x | y -> 29
-    x ^ y -> 25
-    ~y -> 234
-    x << 2 -> 48
-    
-    
-    On fait un "et" bit à bit :
-    01100 = 10
-    10101 = 21
-    -----
-    00100 = 4
-    
-    on fait un "ou" bit à bit :
-    01100 = 10
-    10101 = 21
-    -----
-    11101 = 29
-    
-    on fait un "ou exclusif" bit à bit :
-    01100 = 10
-    10101 = 21
-    -----
-    11001 = 25
-    
-    On inverse les bits de y (sur 8 bits) :
-    00010101 = 21
-    --------
-    11101010 = 234
-    
-    On ajoute 2 "0" à droite de x :
-    1100 = 12
-    ----
-    110000 = 48
+(ça n'est pas du code C)
+x = 12
+y = 21
+x & y -> 4
+x | y -> 29
+x ^ y -> 25
+~y -> 234
+x << 2 -> 48
+
+
+On fait un "et" bit à bit :
+01100 = 10
+10101 = 21
+-----
+00100 = 4
+
+on fait un "ou" bit à bit :
+01100 = 10
+10101 = 21
+-----
+11101 = 29
+
+on fait un "ou exclusif" bit à bit :
+01100 = 10
+10101 = 21
+-----
+11001 = 25
+
+On inverse les bits de y (sur 8 bits) :
+00010101 = 21
+--------
+11101010 = 234
+
+On ajoute 2 "0" à droite de x :
+1100 = 12
+----
+110000 = 48
 ```
 
 ## `scanf`
@@ -369,9 +369,9 @@ utilise dans `scanf`. Nous verrons la raison de ce comportement plus tard.
 **9)** Tester le code ci-dessous :
 
 ```c
-    int j;
-    scanf("%d", &j);
-    printf("Le nombre saisi est %d\n", j);
+int j;
+scanf("%d", &j);
+printf("Le nombre saisi est %d\n", j);
 ```
 
 Il faut saisir un nombre puis appuyer sur « entrée ».
@@ -379,9 +379,9 @@ Il faut saisir un nombre puis appuyer sur « entrée ».
 **10)** Essayez de comprendre et de faire fonctionner le code ci-dessous :
 
 ```c
-    int i, j;
-    scanf("%d %d", &i, &j);
-    printf("Les nombres saisis sont %d et %d\n", i, j);
+int i, j;
+scanf("%d %d", &i, &j);
+printf("Les nombres saisis sont %d et %d\n", i, j);
 ```
 
 Il faut saisir deux nombres séparés par un espace puis appuyer sur « entrée ».
@@ -392,14 +392,14 @@ Il faut saisir deux nombres séparés par un espace puis appuyer sur « entrée 
 puis affiche une phrase comme celle-ci : Bonjour, votre age est `age`.
 
 ```c
-    #include <stdio.h>
-    
-    int main() {
-    	int age;
-    	printf("Quel est votre age ? ");
-    	scanf("%d", &age);
-    	printf("Votre age est %d ans.\n", age);
-    }
+#include <stdio.h>
+
+int main() {
+    int age;
+    printf("Quel est votre age ? ");
+    scanf("%d", &age);
+    printf("Votre age est %d ans.\n", age);
+}
 ```
 
 **12)** Écrire un programme qui demande de saisir deux entiers et affiche le
@@ -407,16 +407,16 @@ résultat de leur division, le quotient de leur division euclidienne et le
 reste de leur division euclidienne.
 
 ```c
-    #include <stdio.h>
-    
-    int main() {
-    	int a, b;
-    	printf("Saisir deux entiers séparés par un espace ");
-    	scanf("%d %d", &a, &b);
-    	printf("La division donne %.2f\n", (float)a / (float)b );
-    	printf("Le quotient est %d\n", a / b );
-    	printf("Le reste est %d\n", a % b );
-    }
+#include <stdio.h>
+
+int main() {
+    int a, b;
+    printf("Saisir deux entiers séparés par un espace ");
+    scanf("%d %d", &a, &b);
+    printf("La division donne %.2f\n", (float)a / (float)b );
+    printf("Le quotient est %d\n", a / b );
+    printf("Le reste est %d\n", a % b );
+}
 ```
 
 **13)** Écrire un programme qui demande de saisir les dimensions des deux
@@ -424,30 +424,30 @@ cotés perpendiculaires a et b d'un triangle rectangle et donne la taille de
 l'hypoténuse.
 
 ```c
-    #include <stdio.h>
-    #include <math.h>
-    
-    int main() {
-    	double a, b;
-    	printf("Saisir la taille des deux cotés séparés par un espace ");
-    	scanf("%lf %lf", &a, &b);
-    	printf("L'hypothénuse est %.2f\n", sqrt(pow(a, 2) + pow(b, 2)) );
-    }
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+    double a, b;
+    printf("Saisir la taille des deux cotés séparés par un espace ");
+    scanf("%lf %lf", &a, &b);
+    printf("L'hypothénuse est %.2f\n", sqrt(pow(a, 2) + pow(b, 2)) );
+}
 ```
 
 **14)** Écrire un programme qui demande de saisir les dimensions des deux
 cotés d'un rectangle et affiche son aire et son périmètre.
 
 ```c
-    #include <stdio.h>
-    
-    int main() {
-    	int a, b;
-    	printf("Saisir la taille des deux cotés séparés par un espace ");
-    	scanf("%i %i", &a, &b);
-    	printf("L'aire est %i\n", a*b);
-    	printf("Le périmètre est %i\n", 2*a + 2*b);
-    }
+#include <stdio.h>
+
+int main() {
+    int a, b;
+    printf("Saisir la taille des deux cotés séparés par un espace ");
+    scanf("%i %i", &a, &b);
+    printf("L'aire est %i\n", a*b);
+    printf("Le périmètre est %i\n", 2*a + 2*b);
+}
 ```
 
 **15)** Écrire un programme qui demande de saisir le rayon d'un cercle et
@@ -455,14 +455,14 @@ affiche son aire et son périmètre. On pourra utiliser la constante `M_PI` de
 la bibliothèque `math`.
 
 ```c
-    #include <stdio.h>
-    #include <math.h>
-    
-    int main() {
-    	int r;
-    	printf("Saisir le rayon ");
-    	scanf("%i", &r);
-    	printf("L'aire est %.2f\n", M_PI*pow(r, 2));
-    	printf("Le périmètre est %.2f\n", 2*M_PI*r);
-    }
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+    int r;
+    printf("Saisir le rayon ");
+    scanf("%i", &r);
+    printf("L'aire est %.2f\n", M_PI*pow(r, 2));
+    printf("Le périmètre est %.2f\n", 2*M_PI*r);
+}
 ```
