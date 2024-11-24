@@ -1,5 +1,5 @@
 ---
-title: "C - Commentaires"
+title: "Commentaires"
 icon: "mdi:paper-remove"
 layout: "/src/layouts/Page.astro"
 ---
@@ -20,7 +20,7 @@ On utilise alors deux slashs `//` pour indiquer le début du commentaire. Le
 commentaire s'arrête à la fin de la ligne :
 
 ```c
-    instruction; // explication de l'instruction
+instruction; // explication de l'instruction
 ```
 
 ## Commentaires encadrés
@@ -30,12 +30,12 @@ Ces commentaires commencent avec le symbole `/*` et finissent avec le symbole
 des commentaires.
 
 ```c
-    /* Un commentaire encadré */
-    
-    /*
-    Un autre commentaire
-    sur plusieurs lignes
-    */
+/* Un commentaire encadré */
+
+/*
+Un autre commentaire
+sur plusieurs lignes
+*/
 ```
 
 ## Utilité des commentaires
@@ -46,12 +46,12 @@ information utile.
 Exemple de commentaire utile :
 
 ```c
-    for (int i = 1; i < n; i++) { // On commence à i=1 car le cas i=0 est déjà testé
-    	…
+for (int i = 1; i < n; i++) { // On commence à i=1 car le cas i=0 est déjà testé
+    …
 ```
 
 Exemple de commentaire inutile :
 
 ```c
-    printf(Bonjour"); // On affiche "Bonjour"
+printf(Bonjour"); // On affiche "Bonjour"
 ```
