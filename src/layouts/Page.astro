@@ -49,6 +49,17 @@ if (currentPostIndex === sidebarPaths.length - 1) {
     .replace(".mdx", "/");
 }
 
+let prevPostUrl;
+let prevButtonValue = "Précédent";
+if (currentPostIndex === 0) {
+  prevPostUrl = "/cours/";
+  prevButtonValue = "Précédent (Page de cours)";
+} else {
+  prevPostUrl = sidebarPaths[currentPostIndex - 1]
+    .replace("/src/pages/", "/")
+    .replace(".mdx", "/");
+}
+
 // Generate posts from sidebar paths
 const posts = sidebarPaths
   .map((filePath) => {
