@@ -7,10 +7,9 @@ layout: "/src/layouts/Page.astro"
 ## Exercice 1
 
 Définir (avec `typedef`) une structure `etudiant` définie par trois champs :
-
-  * nom (chaîne de caractère)
-  * prenom (chaîne de caractère)
-  * numero_etudiant (entier)
+- nom (chaîne de caractère)
+- prenom (chaîne de caractère)
+- numero_etudiant (entier)
 
 Ensuite, écrire un programme qui crée une instance de cette structure,
 initialise ses champs, et affiche les informations de l'étudiant.
@@ -18,45 +17,23 @@ initialise ses champs, et affiche les informations de l'étudiant.
 On pourra améliorer le programme en créant une fonction qui affiche
 correctement les informations d'un étudiant.
 
-```c
-#include <stdio.h>
-
-typedef struct Etudiant {
-    char nom[20];
-    char prenom[20];
-    int numero_etudiant;
-} etudiant;
-
-void affiche_etudiant(etudiant e) {
-    printf("Nom : %s\nPrenom : %s\nNuméro d'étudiant : %d\n", e.nom, e.prenom, e.numero_etudiant);
-}
-
-int main() {
-    etudiant a = {.nom = "Turing", .prenom = "Alan", .numero_etudiant = 123456};
-    printf("Nom : %s\nPrenom : %s\nNuméro d'étudiant : %d\n", a.nom, a.prenom, a.numero_etudiant);
-    affiche_etudiant(a);
-}
-```
-
 ## Exercice 2
 
 Créez (avec `typedef`) une structure `produit` qui contient les champs
 suivants :
-
-  * nom (chaîne de caractères)
-  * code (entier)
-  * prix (nombre à virgule flottante)
-  * quantite (entier)
+- nom (chaîne de caractères)
+- code (entier)
+- prix (nombre à virgule flottante)
+- quantite (entier)
 
 Créer une fonction `void affiche_produit(produit p)` qui affiche le produit
 sous une forme claire :
-
-    
-    
-    Nom : …
-    Code : …
-    Prix : …€
-    Quantité ; …
+```
+Nom : …
+Code : …
+Prix : …€
+Quantité ; …
+```
 
 Créer deux fonctions `void modif_prix(produit* p, int prix)` et `void
 modif_quantite(produit* p, int quantite)` qui modifient respectivement le prix
