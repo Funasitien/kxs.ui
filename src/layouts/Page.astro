@@ -46,6 +46,7 @@ if (currentPostIndex === sidebarPaths.length - 1) {
 } else {
   nextPostUrl = sidebarPaths[currentPostIndex + 1]
     .replace("/src/pages/", "/")
+    .replace("index.mdx", "")
     .replace(".mdx", "/");
 }
 
