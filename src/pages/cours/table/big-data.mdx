@@ -1,6 +1,6 @@
 ---
 title: "Big data"
-icon: "mdi:paper-remove"
+icon: "mdi:database-edit-outline"
 layout: "/src/layouts/Page.astro"
 ---
 
@@ -30,13 +30,13 @@ CSV et LibreOffice Calc.
 **1)** Avec un éditeur de texte, créez un fichier data.csv et remplissez-le
 avec le contenu suivant :
 
-    
-    
-    Nom,Prénom,Date de naissance
-    Doe,John,01/01/1970
-    Roe,Richard,26/11/2003
-    Dupond,Martin,31/12/1999
-    Doe,Jane,01/01/1970
+```csv
+Nom,Prénom,Date de naissance
+Doe,John,01/01/1970
+Roe,Richard,26/11/2003
+Dupond,Martin,31/12/1999
+Doe,Jane,01/01/1970
+```
 
 Le format CSV (Comma Separated Values) signifie littéralement que les valeurs
 sont séparées par des virgules. Il existe une variante utilisée en France avec
@@ -59,15 +59,15 @@ fenêtre comme celle-ci doit s’ouvrir :
 Vous avez un aperçu qui permet de voir si l’importation va bien se passer. Les
 options principales sont les suivantes :
 
-  * jeu de caractères : en général l’UTF-8 sera choisi. Si vous voyez des caractères étranges dans l’aperçu il faudra peut-être changer cette option ;
-  * à partir de la ligne : permet d’exclure plusieurs ligne en début de fichier ;
-  * option de séparateur : permet de choisir le séparateur. C’est ici qu’il faudra choisir éventuellement de point virgule ;
-  * détecter les nombres spéciaux : permet de détecter par exemple des nombres écrit avec des puissances de dix.
+- jeu de caractères : en général l’UTF-8 sera choisi. Si vous voyez des caractères étranges dans l’aperçu il faudra peut-être changer cette option ;
+- à partir de la ligne : permet d’exclure plusieurs ligne en début de fichier ;
+- option de séparateur : permet de choisir le séparateur. C’est ici qu’il faudra choisir éventuellement de point virgule ;
+- détecter les nombres spéciaux : permet de détecter par exemple des nombres écrit avec des puissances de dix.
 
 **3)** Importez correctement votre fichier. Vous devez avoir un tableau comme
 celui-ci :
 
-![Exemple de données dans Libreoffice Calc](/public/tab.png)
+![Exemple de données dans Libreoffice Calc](/cours/tab.png)
 
 La plupart des données disponibles sur internet utilisent se format car il est
 simple et universel. Nous allons le voir avec un exemple concret.
@@ -88,10 +88,10 @@ communes-departements-regions.csv et importez-le dans OpenOffice Calc.
 
 **7)** Quelles sont les coordonnées GPS de Marcq-en-Barœul ?
 
-**8)** Téléchargez le [fichier concernant l'impôt sur la fortune immobilière
+**8)** Téléchargez [le fichier](https://www.data.gouv.fr/fr/datasets/r/e5484dce-fd6e-4ea1-a2b7-4f47347fc7fd) 
+concernant l'impôt sur la fortune immobilière
 par collectivité territoriale dans les communes de plus de 20000 habitants
-ayant plus de 50 redevables](https://www.data.gouv.fr/fr/datasets/r/e5484dce-
-fd6e-4ea1-a2b7-4f47347fc7fd). Importez-le dans OpenOffice Calc.
+ayant plus de 50 redevables. Importez-le dans OpenOffice Calc.
 
 Il est possible de faire des calculs simples et des tris avec OpenOffice Calc.
 Les calculs simples se font en cliquant sur « moyenne » en bas de la fenêtre
