@@ -35,9 +35,8 @@ sidebarPaths = sidebarContent
   .filter((line) => line !== ""); // Clean up lines
 
 const currentPostIndex = sidebarPaths.findIndex(
-  (element) => element === currentPath
+  (element) => element === mdxFilePath
 );
-console.log("FONCTION DE MER", currentPostIndex);
 
 let nextPostUrl;
 let nextButtonValue = "Suivant";
@@ -52,7 +51,7 @@ if (currentPostIndex === sidebarPaths.length - 1) {
 
 let prevPostUrl;
 let prevButtonValue = "Précédent";
-if (currentPostIndex === 0 || sidebarPaths.length === 0) {
+if (currentPostIndex === 0 || currentPostIndex === -1) {
   prevPostUrl = "/cours/";
   prevButtonValue = "Précédent (Page de cours)";
 } else {
