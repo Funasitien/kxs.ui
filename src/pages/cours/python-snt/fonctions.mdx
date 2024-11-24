@@ -1,6 +1,6 @@
 ---
 title: "Fonctions"
-icon: "mdi:paper-remove"
+icon: "mdi:function-variant"
 layout: "/src/layouts/Page.astro"
 ---
 
@@ -12,8 +12,8 @@ simplifier un programme et d’éviter de répéter du code.
 Voici la définition d'une fonction simple qui affiche juste « coucou » :
 
 ```python
-    def coucou():
-        print("Coucou")
+def coucou():
+    print("Coucou")
 ```
 
 Il faut donc utiliser le mot clé `def` suivi du nom de la fonction avec deux
@@ -23,11 +23,11 @@ définition de la fonction. Pour exécuter le code d’une fonction, il faut
 appeler cette fonction :
 
 ```python
-    def coucou():
-        print("Coucou")
-    
-    coucou()
-    coucou()
+def coucou():
+    print("Coucou")
+
+coucou()
+coucou()
 ```
 
 Ici, on appelle deux fois la fonction `coucou` (il ne faut pas oublier les
@@ -44,10 +44,10 @@ de la fonction, séparés par des virgules. Voici par exemple une fonction qui
 calcule le périmètre d’un cercle :
 
 ```python
-    import math
-    
-    def perimetreCercle(r):
-        print(2 * math.pi * r)
+import math
+
+def perimetreCercle(r):
+    print(2 * math.pi * r)
 ```
 
 **2)** Créez et testez une fonction qui calcule la surface d’un disque.
@@ -64,15 +64,15 @@ d'utiliser `print()`. Pour cela, il faut dire à notre fonction de « retourner
 Par exemple voici une fonction qui retourne le volume d’une boule :
 
 ```python
-    import math
-    
-    def volumeBoule(r):
-        volume = 4/3 * math.pi * r**3
-        return volume
-    
-    # Utilisation de la fonction
-    v = volumeBoule(3)
-    print("Le volume est", v)
+import math
+
+def volumeBoule(r):
+    volume = 4/3 * math.pi * r**3
+    return volume
+
+# Utilisation de la fonction
+v = volumeBoule(3)
+print("Le volume est", v)
 ```
 
 **4)** Créez et testez une fonction volBoite() qui calcule et renvoie le

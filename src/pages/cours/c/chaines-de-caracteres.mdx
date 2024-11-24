@@ -1,10 +1,8 @@
 ---
-title: "C - Chaînes de caractères"
+title: "Chaînes de caractères"
 icon: "mdi:paper-remove"
 layout: "/src/layouts/Page.astro"
 ---
-
-# Chaînes de caractères
 
 ## `char`
 
@@ -13,8 +11,8 @@ Or `char` signifie « character » qui veut dire « caractère » car un `char` 
 généralement utilisé pour stocker un caractère :
 
 ```c
-    char c = 'A';
-    printf("%c\n", c);
+char c = 'A';
+printf("%c\n", c);
 ```
 
 Un caractère s'écrit toujours entre guillemets simples. La correspondance
@@ -27,7 +25,7 @@ Table ASCII Dec | Hex | Bin | Caractère | Dec | Hex | Bin | Caract | Dec | Hex 
 1| 1| 1| [Start of Heading] | 44| 2C| 101100| , | 87| 57| 1010111| W  
 2| 2| 10| [Start of Text] | 45| 2D| 101101| - | 88| 58| 1011000| X  
 3| 3| 11| [End of Text] | 46| 2E| 101110| . | 89| 59| 1011001| Y  
-4| 4| 100| [Ene of Transmission] | 47| 2F| 101111| / | 90| 5A| 1011010| Z  
+4| 4| 100| [End of Transmission] | 47| 2F| 101111| / | 90| 5A| 1011010| Z  
 5| 5| 101| [Enduiry] | 48| 30| 110000| 0 | 91| 5B| 1011011| [  
 6| 6| 110| [Acknowledge] | 49| 31| 110001| 1 | 92| 5C| 1011100| \  
 7| 7| 111| [Bell] | 50| 32| 110010| 2 | 93| 5D| 1011101| ]  
@@ -75,29 +73,29 @@ peut également l'afficher comme un caractère avec le marqueur `%c` ou comme un
 nombre avec le marqueur `%d` :
 
 ```c
-    char c1 = 64;
-    printf("%d\n", c1);
-    printf("%c\n", c1);
-    char c2 = '@';
-    printf("%d\n", c2);
-    printf("%c\n", c2);
+char c1 = 64;
+printf("%d\n", c1);
+printf("%c\n", c1);
+char c2 = '@';
+printf("%d\n", c2);
+printf("%c\n", c2);
 ```
 
 **1)** Écrire un programme qui affiche la liste des codes ASCII et de leur
 caractère correspondant pour les valeurs allant de 32 à 126. La sortie du
 programme devra commencer par ces lignes :
 
-```c+
-    32 :  
-    33 : !
-    34 : "
-    35 : #
-    …
-    
-    
-    for (char i = 32; i <= 126; i++) {
-    	printf("%d : %c\n", i, i);
-    }
+```c
+32 :  
+33 : !
+34 : "
+35 : #
+…
+
+
+for (char i = 32; i <= 126; i++) {
+    printf("%d : %c\n", i, i);
+}
 ```
 
 ## Chaîne de caratères
@@ -108,14 +106,14 @@ En C, une chaîne de caractères est un tableau de caractères, donc un tableau
 de `char`. On peut définir une chaîne de caractères comme un tableau :
 
 ```c
-    char chaine[] = {'H', 'e', 'l', 'l', 'o', '!'};
+char chaine[] = {'H', 'e', 'l', 'l', 'o', '!'};
 ```
 
 Il est néanmoins possible de définir une chaîne de caractère de manière plus
 conviviale en encadrant simplement la chaîne de guillemets doubles :
 
 ```c
-    char chaine[] = "Hello!";
+char chaine[] = "Hello!";
 ```
 
 ### Propriétés
@@ -132,10 +130,10 @@ affichera le code ASCII de chaque caractère. (On rappelle qu'on accède aux
 éléments d'un tableau avec la notation `chaine[i]`).
 
 ```c
-    char chaine[] = "Hello!";
-    for (int i=0; i<=17; i++) {
-        printf("%c : %d\n", chaine[i], chaine[i]);
-    }
+char chaine[] = "Hello!";
+for (int i=0; i<=17; i++) {
+    printf("%c : %d\n", chaine[i], chaine[i]);
+}
 ```
 
 ### Affichage
@@ -144,8 +142,8 @@ Il est possible d'afficher une chaîne de caractères dans un `printf` avec le
 marqueur `%s` :
 
 ```c
-    char chaine[] = "Hello!";
-    printf("%s\n", chaine);
+char chaine[] = "Hello!";
+printf("%s\n", chaine);
 ```
 
 ### `string.h`
@@ -155,18 +153,18 @@ chaînes de caractères. La plus utile étant la fonction `strlen` qui renvoie l
 taille d'une chaînes de caractères.
 
 ```c
-    char chaine[] = "Hello!";
-    printf("%ld\n", strlen(chaine));
+char chaine[] = "Hello!";
+printf("%ld\n", strlen(chaine));
 ```
 
 On pourra avoir besoin de la fonction `strcpy` qui permet de copier une chaîne
 dans une autre :
 
 ```c
-    char chaine[10];
-    strcpy(chaine, "Hello!");
-    /* 	On ne peut plus faire chaine = "Hello!"
-    	car le compilateur ne le permet qu'a la déclaration */
+char chaine[10];
+strcpy(chaine, "Hello!");
+/* 	On ne peut plus faire chaine = "Hello!"
+    car le compilateur ne le permet qu'a la déclaration */
 ```
 
 La fonction `strcmp` permet de comparer deux chaînes de caractère car il n'est
@@ -178,41 +176,41 @@ caractères et renvoie le nombre de caractères qu'elle contient. Il ne faut pas
 utiliser `string.h` !
 
 ```c
-    int myStrlen(char chaine[]) {
-    	int i = 0;
-    	while (chaine[i] != 0) {
-    		i++;
-    	}
-    	return i;
+int myStrlen(char chaine[]) {
+    int i = 0;
+    while (chaine[i] != 0) {
+        i++;
     }
+    return i;
+}
 ```
 
 **4)** Compléter le programme ci-dessous qui demande à l'utilisateur un mot de
 passe et vérifie s'il est juste :
 
 ```c
-    const char password[] = "azerty";
-    
-    …
-    
-    if ( … ) {
-    	printf("Le mot de passe est bon\n");
-    } else {
-    	printf("Le mot de passe est faux\n");
-    }
-    
-    
-    const char password[] = "azerty";
-    
-    char input[10];
-    
-    printf("Saisissez le mot de passe\n");
-    scanf("%s", input);
-    
-    
-    if (strcmp(password, input) == 0) {
-    	printf("Le mot de passe est bon\n");
-    } else {
-    	printf("Le mot de passe est faux\n");
-    }
+const char password[] = "azerty";
+
+…
+
+if ( … ) {
+    printf("Le mot de passe est bon\n");
+} else {
+    printf("Le mot de passe est faux\n");
+}
+
+
+const char password[] = "azerty";
+
+char input[10];
+
+printf("Saisissez le mot de passe\n");
+scanf("%s", input);
+
+
+if (strcmp(password, input) == 0) {
+    printf("Le mot de passe est bon\n");
+} else {
+    printf("Le mot de passe est faux\n");
+}
 ```
