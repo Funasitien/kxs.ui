@@ -31,7 +31,7 @@ note par ordre décroissant (même s'il n'y a pas de film).
     JOIN notes n ON c.id_citation = n.id_citation
     ORDER BY note DESC;
 
-**16)** Écrire une requête qui affiche les citations et la note des 5 plus
+16. Écrire une requête qui affiche les citations et la note des 5 plus
 mauvaises citations par ordre croissant (même s'il n'y a pas de film).
 
     
@@ -41,7 +41,7 @@ mauvaises citations par ordre croissant (même s'il n'y a pas de film).
     JOIN notes n ON c.id_citation = n.id_citation
     ORDER BY note ASC LIMIT 5;
 
-**17)** Écrire une requête qui affiche les citations et la note des citations
+17. Écrire une requête qui affiche les citations et la note des citations
 dont la note est comprise entre 9 et 9.3 compris (même s'il n'y a pas de
 film).
 
@@ -52,7 +52,7 @@ film).
     JOIN notes n ON c.id_citation = n.id_citation
     WHERE note >= 9 AND note <= 9.3;
 
-**18)** Écrire une requête qui affiche les films avec 2 citations ou plus.
+18. Écrire une requête qui affiche les films avec 2 citations ou plus.
 
     
     
@@ -62,7 +62,7 @@ film).
     GROUP BY titre
     HAVING nb >= 2;
 
-**19)** Écrire une requête qui affiche les films avec le nom de leurs
+19. Écrire une requête qui affiche les films avec le nom de leurs
 réalisateurs (il faudra utiliser la table lien_films_realisateurs)
 
     

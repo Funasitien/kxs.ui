@@ -3,20 +3,6 @@ title: "Algorithmes sur les arbres binaires"
 icon: "mdi:paper-remove"
 layout: "/src/layouts/Page.astro"
 ---
- 
-## Graphes et algorithmes
-
-  - [Introduction](.)
-  - [Graphes](graphes)
-  - [Arbres](arbres)
-  - [Arbres binaires](arbres-binaires)
-  - [Algo arbres binaires (1)](algo-arbres-binaires-1)
-  - [Implémentation arbres](implementation-arbres)
-  - [Algo arbres binaires (2)](algo-arbres-binaires-2)
-  - [Algo graphes](algo-graphes)
-  - [Implémentation graphes](implementation-graphes)
-
-# Algorithmes sur les arbres binaires (Partie 1)
 
 Nous parlerons ici uniquempent des arbres binaires. Voici l'arbre que nous
 utiliserons comme exemple pour commencer.
@@ -34,26 +20,25 @@ arbre.
 
 Une solution sans autoriser l'appel à un arbre vide (utile en POO) :
 
-    
-    
-    taille(arbre):
-        taille = 1
-        si arbre.gauche est non vide:
-            taille = taille + taille(arbre.gauche)
-        si arbre.droit est non vide:
-            taille = taille + taille(arbre.droit)
-        retourner taille
+```python
+taille(arbre):
+    taille = 1
+    si arbre.gauche est non vide:
+        taille = taille + taille(arbre.gauche)
+    si arbre.droit est non vide:
+        taille = taille + taille(arbre.droit)
+    retourner taille
+```
 
 Une solution permettant l'appel sur un arbre vide :
 
-    
-    
-    taille(arbre):
-        Si l'arbre est vide:
-            retourner 0
-        Sinon:
-            retourner 1 + taille(sous-arbre gauche) + taille(sous-arbre droit))
-
+```python
+taille(arbre):
+    Si l'arbre est vide:
+        retourner 0
+    Sinon:
+        retourner 1 + taille(sous-arbre gauche) + taille(sous-arbre droit))
+```
 ## Hauteur d'un arbre
 
 3. Quelle est la hauteur de cet arbre ?
@@ -63,17 +48,17 @@ La hauteur de cet arbre est 3. (La plus grande profonfeur)
 4. Proposez un algorithme récursif permettant de calculer la hauteur d'un
 arbre.
 
-    
-    
-    hauteur(arbre):
-        si arbre.gauche est vide et arbre.droit est vide:
-            retourner 0
-        si arbre.gauche est vide et arbre.droit est non vide:
-            retourner 1 + hauteur(arbre.droit)
-        si arbre.gauche est non vide et arbre.droit est vide:
-            retourner 1 + hauteur(arbre.gauche)
-        si arbre.gauche est non vide et arbre.droit est non vide:
-            retourner 1 + max(hauteur(arbre.droit),hauteur(arbre.gauche))
+```python
+hauteur(arbre):
+    si arbre.gauche est vide et arbre.droit est vide:
+        retourner 0
+    si arbre.gauche est vide et arbre.droit est non vide:
+        retourner 1 + hauteur(arbre.droit)
+    si arbre.gauche est non vide et arbre.droit est vide:
+        retourner 1 + hauteur(arbre.gauche)
+    si arbre.gauche est non vide et arbre.droit est non vide:
+        retourner 1 + max(hauteur(arbre.droit),hauteur(arbre.gauche))
+```
 
 ## Parcours d'un arbre
 
@@ -138,43 +123,43 @@ B-D-K-Z-E-I
 
 9. Donnez le type de parcours d'arbre des algorithmes suivants :
 
-    
-    
-    parcours1(nœud):
-        si nœud non vide:
-            parcours1(nœud.gauche)
-            affiche(nœud.valeur)
-            parcours1(nœud.droit)
-    
-    
-    parcours2(nœud):
-        si nœud non vide:
-            affiche(nœud.valeur)
-            parcours2(nœud.gauche)
-            parcours2(nœud.droit)
-    
-    
-    VARIABLES
-    f : file
-    
-    DEBUT
-    parcours3(nœud):
-        f.enfile(nœud)
-        tant que f est non vide:
-            x = f.defile()
-            affiche x.valeur
-            si x.gauche non vide:
-                f.enfile(x.gauche)
-            si x.droit non vide:
-                f.enfile(x.droit)
-    FIN
-    
-    
-    parcours4(nœud):
-        si arbre non vide:
-            parcours4(nœud.gauche)
-            parcours4(nœud.droit)
-            affiche(nœud.valeur)
+```python
+parcours1(nœud):
+    si nœud non vide:
+        parcours1(nœud.gauche)
+        affiche(nœud.valeur)
+        parcours1(nœud.droit)
+
+
+parcours2(nœud):
+    si nœud non vide:
+        affiche(nœud.valeur)
+        parcours2(nœud.gauche)
+        parcours2(nœud.droit)
+
+
+VARIABLES
+f : file
+
+DEBUT
+parcours3(nœud):
+    f.enfile(nœud)
+    tant que f est non vide:
+        x = f.defile()
+        affiche x.valeur
+        si x.gauche non vide:
+            f.enfile(x.gauche)
+        si x.droit non vide:
+            f.enfile(x.droit)
+FIN
+
+
+parcours4(nœud):
+    si arbre non vide:
+        parcours4(nœud.gauche)
+        parcours4(nœud.droit)
+        affiche(nœud.valeur)
+```
 
   - parcours 1 : infixe ;
   - parcours 2 : prefixe ;
@@ -200,11 +185,3 @@ D-A-G-K-W-T-R-M-X-S-U-N-Y
 13. Donner l'ordre des nœuds pour un parcours en profondeur suffixe.
 
 A-D-W-T-K-G-X-M-U-Y-N-S-R
-
-[Précédent](arbres-binaires)[Suivant](implementation-arbres)
-
-[Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
-licence [CC BY-SA 4.0
-![ccbysa](//cours/ccbysa.svg)](https://creativecommons.org/licenses/by-
-sa/4.0/deed.fr)
-
