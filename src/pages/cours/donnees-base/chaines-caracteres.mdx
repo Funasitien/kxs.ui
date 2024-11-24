@@ -1,5 +1,5 @@
 ---
-title: "Représentation des données - Chaînes de caractères"
+title: "Chaînes de caractères"
 icon: "mdi:paper-remove"
 layout: "/src/layouts/Page.astro"
 ---
@@ -176,16 +176,16 @@ hexadécimal et `chr()` affiche un caractère à partir de son unicode **en
 décimal**) :
 
 ```python
-    for c in range(256):
-        print(c,hex(c),chr(c))
+for c in range(256):
+    print(c,hex(c),chr(c))
 ```
 
 **6)** Tester maintenant le script ci-dessous pour voir les 5000 premiers
 caractères unicode (cela prend du temps) :
 
 ```python
-    for c in range(5000):
-        print(c,hex(c),chr(c))
+for c in range(5000):
+    print(c,hex(c),chr(c))
 ```
 
 ### UTF-8
@@ -196,10 +196,9 @@ compatible avec l’ASCII. Les caractères suivants seront codés sur plusieurs
 octets (jusqu’à 4 octets).
 
 Le principe de l'encodage UTF-8 est le suivant :
-
-  * si le bit de poids fort (celui à gauche) d'un octet est à 0, alors il s'agit d'un caractère ASCII codé sur les 7 bits restant.
-  * sinon, les premiers bits de poids fort de l'octet indiquent le nombre d'octets utilisés pour encoder le caractère à l'aide d'une séquence de bits à 1 et se terminant par un bit à 0. Par exemple, si le premier octet commence par 110xxxxx, cela signifie que le caractère est codé sur 2 octets, puisqu'il commence par une séquence de deux bits de poids fort à 1 suivi d'un 0.
-  * enfin, dans le cas d'un encodage sur k octets, les k-1 octets de poids fort doivent tous être de la forme 10xxxxxx.
+- si le bit de poids fort (celui à gauche) d'un octet est à 0, alors il s'agit d'un caractère ASCII codé sur les 7 bits restant.
+- sinon, les premiers bits de poids fort de l'octet indiquent le nombre d'octets utilisés pour encoder le caractère à l'aide d'une séquence de bits à 1 et se terminant par un bit à 0. Par exemple, si le premier octet commence par 110xxxxx, cela signifie que le caractère est codé sur 2 octets, puisqu'il commence par une séquence de deux bits de poids fort à 1 suivi d'un 0.
+- enfin, dans le cas d'un encodage sur k octets, les k-1 octets de poids fort doivent tous être de la forme 10xxxxxx.
 
 On peut résumer cela dans le tableau ci-dessous :
 
@@ -237,63 +236,59 @@ décimal, binaire et hexadécimal.
 Avant de convertir un nombre il faut pouvoir l'écrire dans différentes bases.
 La base dix étant la base par défaut, il n'y a rien à faire pour écrire un
 nombre en base 10 :
-
-    
-    
-    # 355 en base 10
-    355
+```py
+# 355 en base 10
+355
+```
 
 Pour écrire un nombre en base 2, il faut le faire précéder par '0b'.
-
-    
-    
-    # 01110 en base 2
-    0b01110
+```py
+# 01110 en base 2
+0b01110
+```
 
 Pour écrire un nombre en base 16 (hexadécimal), il faut le faire précéder par
 '0x'.
-
-    
-    
-    # A4F en base 16
-    0xA4F
+```py 
+# A4F en base 16
+0xA4F
+```
 
 ### Conversion vers décimal
 
 La conversion se fait automatiquement, il suffit d'écrire le nombre dans la
 console :
-
     
-    
-    # Hexadécimal vers décimal
-    >>> 0xA4F
-    2639
-    # Binaire vers décimal
-    >>> 0b01110
-    14
+```py
+# Hexadécimal vers décimal
+>>> 0xA4F
+2639
+# Binaire vers décimal
+>>> 0b01110
+14
+```
 
 ### Conversion vers binaire
 
 On utilise ici la fonction `bin()`
 
-    
-    
-    # Décimal vers binaire
-    >>> bin(1234)
-    '0b10011010010'
-    # Hexadécimal vers binaire
-    >>> bin(0xA4F)
-    '0b101001001111'
+```py
+# Décimal vers binaire
+>>> bin(1234)
+'0b10011010010'
+# Hexadécimal vers binaire
+>>> bin(0xA4F)
+'0b101001001111'
+```
 
 ### Conversion vers hexadécimal
 
 On utilise ici la fonction `hex()`
-
-    
-    
-    # Binaire vers hexadécimal
-    >>> hex(0b01110)
-    '0xe'
-    # Décimal vers exadécimal
-    >>> hex(1234)
-    '0x4d2'
+```py
+# Binaire vers hexadécimal
+>>> hex(0b01110)
+'0xe'
+# Décimal vers exadécimal
+>>> hex(1234)
+'0x4d2'
+```
