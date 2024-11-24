@@ -1,5 +1,5 @@
 ---
-title: "C - Headers - Niveau MP2I"
+title: "Headers"
 icon: "mdi:paper-remove"
 layout: "/src/layouts/Page.astro"
 ---
@@ -14,23 +14,23 @@ structures et les signatures des fonctions.
 Voici un fichier `util.c` :
 
 ```c
-    #include <stdio.h>
-    #include "util.h"
-    
-    int fonction(int a) {
-    	// Instructions de la fonction
-    }
+#include <stdio.h>
+#include "util.h"
+
+int fonction(int a) {
+    // Instructions de la fonction
+}
 ```
 
 Et le fichier `util.h` correspondant :
 
 ```c
-    #ifndef UTIL_H
-    #define UTIL_H
-    
-    int fonction(int a) ;
-    
-    #endif
+#ifndef UTIL_H
+#define UTIL_H
+
+int fonction(int a) ;
+
+#endif
 ```
 
 Le fichier `util.h` est inclu avec l'instruction `#include` et des guillemets
@@ -46,22 +46,22 @@ besoin de recopier le code de ce fichier. Il faut d'abord inclure le fichier
 `.h` dans le fichier headers `prog.h` :
 
 ```c
-    #include "util.h"
-    
-    // Reste du fichier headers
+#include "util.h"
+
+// Reste du fichier headers
 ```
 
 Et bien sûr il faut inclure le header du programme dans le fichier `prog.c` :
 
     
 ```c
-    #include "prog.h"
-    
-    // Reste du programme
+#include "prog.h"
+
+// Reste du programme
 ```
 
 Enfin, il faut ajouter le fichier `.c` à la commande de compilation :
 
 ```bash
-    gcc -o prog prog.c util.c
+gcc -o prog prog.c util.c
 ```
