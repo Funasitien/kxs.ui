@@ -59,7 +59,7 @@ if (currentPostIndex === 0 || currentPostIndex === -1) {
     .replace("/src/pages/", "/")
     .replace("index.mdx", "")
     .replace(".mdx", "/");
-    console.log("J'AIME LES HARICOTS", sidebarPaths[currentPostIndex - 1]);
+    console.log("J'AIME LES HARICOTS", sidebarPaths[currentPostIndex - 1], sidebarPaths[currentPostIndex - 1].replace("index.mdx", "");
 }
 
 // Generate posts from sidebar paths
