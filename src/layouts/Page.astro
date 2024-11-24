@@ -32,6 +32,19 @@ sidebarPaths = sidebarContent
   .map((line) => line.trim())
   .filter((line) => line !== ""); // Clean up lines
 
+const currentPostIndex = sidebarPaths.findIndex(
+  (element) => element === `/src/pages${currentPath}.mdx`
+);
+let nextPostUrl;
+
+if (currentPostIndex === sidebarPaths.length - 1) {
+  nextPostUrl = "../";
+} else {
+  nextPostUrl = sidebarPaths[currentPostIndex + 1]
+    .replace("/src/pages/", "/")
+    .replace(".mdx", "/");
+}
+
 // Generate posts from sidebar paths
 const posts = sidebarPaths
   .map((filePath) => {
@@ -63,10 +76,14 @@ const posts = sidebarPaths
           <span class="ml-1">{frontmatter.title}</span>
         </h1>
         <article
-          class="mx-2 lg:mx-4 pt-4 prose lg:prose-xl prose-table:mx-auto prose-table:w-auto prose-table:border-2 prose-td:px-2 prose-th:pt-2.5 prose-th:px-4 prose-thead:bg-base-200"
+          class="mx-2 lg:mx-4 pt-4 prose lg:prose-lg prose-table:mx-auto prose-table:w-auto prose-table:border-2 prose-td:px-2 prose-th:pt-2.5 prose-th:px-4 prose-thead:bg-base-200"
           style="max-width: none;">
           <slot />
         </article>
+        <div class="mt-4 flex justify-between text-lg lg:text-xl text-primary mx-3 lg:mx-6">
+          <button class="text-start link link-hover" onclick="history.back()">Précédent</button>
+          <a href={nextPostUrl} class="text-end link link-hover"> Suivant </a>
+        </div>
       </div>
       <Footer />
     </div>
@@ -86,7 +103,8 @@ const posts = sidebarPaths
           }
         </div>
       </ul>
-      <div class="fixed bg-transparent md:bg-base-300 rounded-xl bottom-4 left-4 p-2 w-72">
+      <div
+        class="fixed bg-transparent md:bg-base-300 rounded-xl bottom-4 left-4 p-2 w-72">
         <a
           class="btn btn-neutral justify-start mx-2 lg:mx-0"
           style="width: -webkit-fill-available;"
