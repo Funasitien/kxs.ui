@@ -1,5 +1,5 @@
 ---
-title: "C - Projet puissance 4"
+title: "Projet puissance 4"
 icon: "mdi:paper-remove"
 layout: "/src/layouts/Page.astro"
 ---
@@ -34,19 +34,19 @@ jetons du joueur 2. On utilisera les deux bibliothèques `stdio` et `stdbool`.
   * `void display(int tab[6][7]);` : fonction qui affiche la grille du jeu dans la console de la façon la plus esthétique possible (voir la suggestion ci-dessous à améliorer) ;
 
 ```
-    +---+---+---+---+---+---+---+
-    | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
-    +---+---+---+---+---+---+---+
-    | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
-    +---+---+---+---+---+---+---+
-    | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
-    +---+---+---+---+---+---+---+
-    | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
-    +---+---+---+---+---+---+---+
-    | 0 | 0 | 2 | 1 | 0 | 0 | 0 |
-    +---+---+---+---+---+---+---+
-    | 0 | 0 | 1 | 2 | 0 | 0 | 0 |
-    +---+---+---+---+---+---+---+
++---+---+---+---+---+---+---+
+| 0 | 0 | 0 | 0 | 0 | 0 | 0 |
++---+---+---+---+---+---+---+
+| 0 | 0 | 0 | 0 | 0 | 0 | 0 |
++---+---+---+---+---+---+---+
+| 0 | 0 | 0 | 0 | 0 | 0 | 0 |
++---+---+---+---+---+---+---+
+| 0 | 0 | 0 | 0 | 0 | 0 | 0 |
++---+---+---+---+---+---+---+
+| 0 | 0 | 2 | 1 | 0 | 0 | 0 |
++---+---+---+---+---+---+---+
+| 0 | 0 | 1 | 2 | 0 | 0 | 0 |
++---+---+---+---+---+---+---+
 ```
 
   * `bool colonne_libre(int tab[6][7], int colonne);` : fonction qui renvoie un booléen indiquant s'il est possible de mettre un jeton dans la colonne (indique si la colonne n'est pas pleine) ;
