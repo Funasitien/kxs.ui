@@ -3,14 +3,7 @@ title: "Photo numérique : codage d'une image"
 icon: "mdi:paper-remove"
 layout: "@root/layouts/Page.astro"
 ---
-
-  * [cours](https://kxs.fr/cours/)
-  * [sujets](https://kxs.fr/sujets/)
-  * [fiches](https://kxs.fr/fiches/)
-
-[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
-le lycée et la prépa](https://kxs.fr/cours/)
-
+ 
 ## Photo Numérique
 
   * [Codage d'une image](codage-image)
@@ -27,7 +20,7 @@ En informatique (ordinateurs, appareil photo numérique, téléphone) une image
 est composée de pixels. Chaque pixel correspond à un point de l’image et
 l’ensemble de ces points donne une impression d’image continue :
 
-![Un œuf](img/egg.png)
+![Un œuf](/cours/egg.png)
 
 L’image ci-dessus comporte 190152 pixels mais notre œil n’est pas capable de
 les voir. Le nombre de pixels composant une image est appelé définition. Les
@@ -62,15 +55,15 @@ Détaillons la composition de ce fichier :
   * ligne 2 : `7 9` indique le nombre de colonnes et de lignes (séparés par un espace) ;
   * lignes suivantes : décrivent les pixels de l’image, 1 pour un pixel noir et 0 pour un pixel blanc.
 
-**1)** Ouvrez un éditeur de texte (par exemple Geany ou Éditeur de texte),
+1. Ouvrez un éditeur de texte (par exemple Geany ou Éditeur de texte),
 recopiez le code précédant et sauvegardez-le avec le nom « question1.pbm ».
 Ensuite ouvrez le fichier avec Gimp et zoomez à 1600 % (Clic droit →
 affichage). Vous devez voir un huit.
 
-**2)** Créez une image représentant la lettre I sur 9 lignes et 7 colonnes.
+2. Créez une image représentant la lettre I sur 9 lignes et 7 colonnes.
 Appelez le professeur.
 
-**3)** Complétez les informations manquantes à la ligne 2 du fichier suivant
+3. Complétez les informations manquantes à la ligne 2 du fichier suivant
 et décrire ce que représente l’image correspondante :
 
     
@@ -85,10 +78,10 @@ et décrire ce que représente l’image correspondante :
     011000110
     110000011
 
-**4)** Voici la représentation d’une image BPM. Proposez un contenu de fichier
+4. Voici la représentation d’une image BPM. Proposez un contenu de fichier
 possible pour obtenir cette image.
 
-![Tête pixélisée](img/tete.png)
+![Tête pixélisée](/cours/tete.png)
 
 ## Image en niveau de gris
 
@@ -121,17 +114,17 @@ Détaillons la composition de ce fichier :
   * ligne 3 : `90` indique la valeur maximale qui va correspondre au blanc ;
   * lignes suivantes : décrivent les pixels de l’image, 0 pour un pixel noir et la valeur maximale pour un pixel blanc. Les valeurs intermédiaires vont faire du gris.
 
-**5)** Ouvrez un éditeur de texte, recopiez le code précédant et sauvegardez-
+5. Ouvrez un éditeur de texte, recopiez le code précédant et sauvegardez-
 le avec le nom « question5.pgm ». Ensuite ouvrez le fichier avec Gimp et
 zoomez à 1600 % (Clic droit → affichage).
 
 Voici une image de 30px par 7px :
 
-![Nuances de gris](img/degrade.png)
+![Nuances de gris](/cours/degrade.png)
 
-**6)** Combien y a-t-il de nuances de gris en plus du noir et du blanc ?
+6. Combien y a-t-il de nuances de gris en plus du noir et du blanc ?
 
-**7)** Proposez un codage de l’image. Appelez le professeur.
+7. Proposez un codage de l’image. Appelez le professeur.
 
 ## Image RGB
 
@@ -139,7 +132,7 @@ Nous allons maintenant voir comment coder les couleurs dans une image. En
 informatique on utilise la synthèse additive pour former n’importe quelle
 couleur :
 
-![Synthèse additive](img/synthese.svg)
+![Synthèse additive](/cours/synthese.svg)
 
 Les trois couleurs primaires sont le rouge (Red), le vert (Green) et le bleu
 (Blue). On parle alors de couleur RGB. Il est possible de créer n’importe
@@ -149,7 +142,7 @@ couleur primaire (0 pour l’absence de couleur et 255 pour un maximum de
 couleur). Ainsi le rouge est codé (255, 0, 0). Vous pouvez essayer différents
 mélanges sur [w3schools](https://www.w3schools.com/colors/colors_rgb.asp).
 
-**8)** En vous aidant de cette [page de sélection de
+8. En vous aidant de cette [page de sélection de
 couleur](https://www.w3schools.com/colors/colors_picker.asp) (il suffit de
 saisir le nom de la couleur dans le champ) : déterminez le code RGB des
 couleurs suivantes :
@@ -183,17 +176,17 @@ Détaillons la composition de ce fichier :
   * ligne 3 : `255` indique la valeur maximale pour une couleur ;
   * lignes suivantes : décrivent les pixels de l’image par groupe de trois valeurs « R, G, B ». Le nombre d’espaces n’a aucune importance.
 
-**9)** Ouvrez un éditeur de texte, recopiez le code précédant et sauvegardez-
+9. Ouvrez un éditeur de texte, recopiez le code précédant et sauvegardez-
 le avec le nom « question9.ppm ». Ensuite ouvrez le fichier avec Gimp et
 zoomez à 1600 % (Clic droit → affichage).
 
-**10)** Proposer un fichier PPM affichant les 9 couleurs de la question 8 dans
+10. Proposer un fichier PPM affichant les 9 couleurs de la question 8 dans
 un carré de trois pixels par trois.
 
 [Précédent](.)[Suivant](modification-image)
 
 [Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
 licence [CC BY-SA 4.0
-![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+![ccbysa](//cours/ccbysa.svg)](https://creativecommons.org/licenses/by-
 sa/4.0/deed.fr)
 

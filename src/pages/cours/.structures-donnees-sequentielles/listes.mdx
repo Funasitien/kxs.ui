@@ -3,14 +3,7 @@ title: "C - Listes - Niveau MP2I"
 icon: "mdi:paper-remove"
 layout: "@root/layouts/Page.astro"
 ---
-
-  * [cours](https://kxs.fr/cours/)
-  * [sujets](https://kxs.fr/sujets/)
-  * [fiches](https://kxs.fr/fiches/)
-
-[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
-le lycée et la prépa](https://kxs.fr/cours/)
-
+ 
 ## Structures de données séquentielles
 
   * [Introduction](.)
@@ -160,7 +153,7 @@ primitives :
 
 #### Utilisation
 
-**1)** Proposer un code qui permmette de créer une liste, d'y placer les trois
+1. Proposer un code qui permmette de créer une liste, d'y placer les trois
 entiers « 3, 6 et 9 », d'afficher la liste, de supprimer « 3 » et d'afficher à
 nouveau la liste.
 
@@ -176,7 +169,7 @@ nouveau la liste.
     	affiche(maListe);
     }
 
-**2)** Modifier la fonction `affiche` pour qu'elle n'affiche pas la dernière
+2. Modifier la fonction `affiche` pour qu'elle n'affiche pas la dernière
 virgule à la fin de la liste.
 
     
@@ -189,7 +182,7 @@ virgule à la fin de la liste.
     	printf("\n");
     }
 
-**3)** Proposer une nouvelle fonction `somme` qui renvoie la somme des
+3. Proposer une nouvelle fonction `somme` qui renvoie la somme des
 éléments de la liste.
 
     
@@ -202,7 +195,7 @@ virgule à la fin de la liste.
     	return s;
     }
 
-**4)** Quels sont les avantages et inconvenients de cette implémentation ?
+4. Quels sont les avantages et inconvenients de cette implémentation ?
 
 L'accès aux éléments est rapide car c'est un tableau mais la suppression et
 l'insertion sont lents car il faut déplacer tous les éléments à droite. La
@@ -328,7 +321,7 @@ liste) et une structure pour chaque élément :
 
 #### Utilisation
 
-**5)** Tester le même code qu'à la question 1) et vérifier que cela
+5. Tester le même code qu'à la question 1) et vérifier que cela
 fonctionne.
 
     
@@ -343,7 +336,7 @@ fonctionne.
     	affiche(maListe);
     }
 
-**6)** Proposer une fonction `ajouteFin` qui ajoute un élément en fin de
+6. Proposer une fonction `ajouteFin` qui ajoute un élément en fin de
 liste.
 
     
@@ -363,17 +356,17 @@ liste.
     	list->taille = list->taille + 1;
     }
 
-**7)** Proposer une nouvelle fonction `somme` qui renvoie la somme des
+7. Proposer une nouvelle fonction `somme` qui renvoie la somme des
 éléments de la liste.
 
-**8)** Quels sont les avantages et inconvenients de cette implémentation ?
+8. Quels sont les avantages et inconvenients de cette implémentation ?
 
-**9)** Créer une fonction qui inverse l'ordre des éléments de la liste.
+9. Créer une fonction qui inverse l'ordre des éléments de la liste.
 
 [Précédent](.)[Suivant](piles)
 
 [Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
 licence [CC BY-SA 4.0
-![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+![ccbysa](//cours/ccbysa.svg)](https://creativecommons.org/licenses/by-
 sa/4.0/deed.fr)
 

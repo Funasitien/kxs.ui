@@ -42,7 +42,7 @@ Détaillons cette requête :
 
 Il existe beaucoup d’autres entêtes.
 
-**1)** Allez sur la page ci-dessus avec Chrome et notez cinq autres entêtes
+1. Allez sur la page ci-dessus avec Chrome et notez cinq autres entêtes
 (seulement les noms) de la requête avec le moniteur réseau (ctrl + shift + J,
 puis onglet réseau, rechargez la page et cliquez sur une requête).
 
@@ -73,7 +73,7 @@ et une autre sur Google :
 Les serveurs dans les datacenters peuvent être loués à des particuliers ou des
 entreprises.
 
-**2)** Allez sur le site d’OVH (leader européen situé à Roubaix) et relevez
+2. Allez sur le site d’OVH (leader européen situé à Roubaix) et relevez
 les caractéristiques (nombre de cœurs, RAM et disques) du plus cher serveur :
 https://www.ovh.com/fr/serveurs_dedies/tarifs/
 
@@ -110,13 +110,13 @@ Et beaucoup d’autres entêtes.
 
 Enfin après une ligne vierge, il y a la ressource demandée : ici la page HTML.
 
-**3)** Allez sur les sites de Debian et de l’ENT et notez les serveurs
+3. Allez sur les sites de Debian et de l’ENT et notez les serveurs
 utilisés en regardant les entêtes dans Firefox.
 
-**4)** De même, trouvez le serveur utilisé par Google et chercher son nom
+4. De même, trouvez le serveur utilisé par Google et chercher son nom
 complet.
 
-**5)** Cherchez la signification des codes de réponse suivants :
+5. Cherchez la signification des codes de réponse suivants :
 
   * 200
   * 404
@@ -133,7 +133,7 @@ simple d’utilisation.
 
 ### Test du serveur
 
-**6)** Votre serveur local (sur votre machine) est accessible à l’adresse
+6. Votre serveur local (sur votre machine) est accessible à l’adresse
 http://localhost/. Allez à cette adresse et vérifiez que cela fonctionne.
 
 ### Premier script PHP
@@ -141,7 +141,7 @@ http://localhost/. Allez à cette adresse et vérifiez que cela fonctionne.
 Par défaut le serveur affiche le fichier `index.html` situé dans le dossier
 `/var/www/html/`.
 
-**7)** Créez un fichier nommé `test.php` dans ce dossier et mettez-y le code
+7. Créez un fichier nommé `test.php` dans ce dossier et mettez-y le code
 suivant :
 
 ```php
@@ -149,7 +149,7 @@ suivant :
     <p>Il est <?php echo date("H:i:s"); ?></p>
 ```
 
-**8)** Allez ensuite à l’adresse http://localhost/test.php et regardez ce
+8. Allez ensuite à l’adresse http://localhost/test.php et regardez ce
 qu’il s’affiche. Rechargez éventuellement la page.
 
 L’interpréteur php est assez souple, il n’exécute que ce qui est entre les
@@ -176,5 +176,5 @@ récupérer les variables sur le serveur. Testez le script suivant dans
     <p>Voici var2 : <?php echo $_GET['var2']; ?></p>
 ```
 
-**9)** Écrire un script qui, à partir d’un prénom passé dans l’URL, affiche «
+9. Écrire un script qui, à partir d’un prénom passé dans l’URL, affiche «
 Bonjour, `prénom`, il est `heure` ».

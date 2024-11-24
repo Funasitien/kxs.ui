@@ -75,12 +75,12 @@ position trouvée : 6
 
 ### Implémentation
 
-**1)** Donnez la complexité de cet alogrithme.
+1. Donnez la complexité de cet alogrithme.
 
-**2)** Programmez une fonction `cherche(texte, motif)` qui applique cet
+2. Programmez une fonction `cherche(texte, motif)` qui applique cet
 algorithme. Vérifiez son bon fonctionnement sur l'exemple.
 
-**3)** Mofifiez légèrement la fonction précédente pour créer une fonction
+3. Mofifiez légèrement la fonction précédente pour créer une fonction
 `cherche_verb(texte, motif)` qui renvoie un tuple contenant la position
 trouvée et le nombre de comparaisons effectuées. Vérifiez son bon
 fonctionnement sur l'exemple.
@@ -157,14 +157,14 @@ le motif. Par exemple pour le motif `NSI` le doctionnaire serait :
     aDroite = {"N": 0, "S": 1, "I": 2}
 ```
 
-**4)** Écrivez une fonction `calculADroite(motif)` qui crée le dictionnaire
+4. Écrivez une fonction `calculADroite(motif)` qui crée le dictionnaire
 `aDroite` pour un motif.
 
 Ensuite, nous avons besoin d'une fonction `droite(c)` qui renvoie la valeur
 contenue dans le dictionnaire `aDroite` pour le caractère `c` et qui renvoie
 `-1` si le caractère n'est pas dans le dictionnaire.
 
-**5)** Écrivez la fonction `droite(c)` décrite précédemment.
+5. Écrivez la fonction `droite(c)` décrite précédemment.
 
 Enfin le décalge à appliquer pourra se calculer avec les règles ci-dessous. on
 appelle c le caratère du texte qui ne correspond pas à la lettre du motif en
@@ -174,13 +174,13 @@ position j.
   * Si c apparait dans le motif à la position la plus à droite r, il faut effectuer un décalage `d = j - r` si d est positif ;
   * Si `d ≤ 0` on effectue simplement un décalage `d = 1`.
 
-**6)** Implémentez une fonction `decalage(j, c)` qui applique les règles
+6. Implémentez une fonction `decalage(j, c)` qui applique les règles
 précédentes.
 
-**7)** Implémentez l'algorithme de Boyer-Moore-Horspool dans une fonction
+7. Implémentez l'algorithme de Boyer-Moore-Horspool dans une fonction
 `cherche_BoyerMoore(texte, motif)` en utilisant les fonctions précédentes.
 
-**8)** Écrivez une fonction `cherche_BoyerMoore_verb(texte, motif)` qui
+8. Écrivez une fonction `cherche_BoyerMoore_verb(texte, motif)` qui
 renvoie un tuple contenant la position trouvée et le nombre de comparaisons
 effectuées. Vérifiez son bon fonctionnement sur l'exemple.
 
@@ -206,9 +206,9 @@ tester l'algorithme de python avec `find` :
     fichier.close()
 ```
 
-**9)** Complétez le code ci-dessus pour calculer le temps de recherche de nos
+9. Complétez le code ci-dessus pour calculer le temps de recherche de nos
 deux algorithmes. Lequel est le plus efficace ?
 
-**10)** En utilisant les implémentations verbeuses comparez le nombre de
+10. En utilisant les implémentations verbeuses comparez le nombre de
 comparaisons de l'algorithme naïf et celui de Boyer-Moore-Horspool pour cette
 recherche.

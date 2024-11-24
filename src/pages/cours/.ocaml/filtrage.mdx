@@ -3,14 +3,7 @@ title: "Filtrage en OCaml - Niveau MP2I"
 icon: "mdi:paper-remove"
 layout: "@root/layouts/Page.astro"
 ---
-
-  * [cours](https://kxs.fr/cours/)
-  * [sujets](https://kxs.fr/sujets/)
-  * [fiches](https://kxs.fr/fiches/)
-
-[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
-le lycée et la prépa](https://kxs.fr/cours/)
-
+ 
 ## OCaml
 
   * [Présentation](.)
@@ -79,7 +72,7 @@ un warning sera renvoyé.
 Il est possible d'utiliser le motif universel `_` qui filtre toutes les
 valeurs possibles.
 
-**1)** Dire si les filtrages suivants sont valides ou non :
+1. Dire si les filtrages suivants sont valides ou non :
 
     
     
@@ -122,7 +115,7 @@ sortie. On ne peut alors pas faire de déclaration de variables dans le motif :
     | …
     | _ -> exprn
 
-**2)** Réécrire la fonction choixpeau du chapitre sur les
+2. Réécrire la fonction choixpeau du chapitre sur les
 [énumérations](enumerations) avec la combinaison de motifs.
 
     
@@ -156,7 +149,7 @@ d'une liste sont égaux :
     | x :: y :: l when x = y -> true
     | x :: l -> consegaux l;;
 
-**3)** Écrire une fonction récursive permettant de calculer ab utilisant la
+3. Écrire une fonction récursive permettant de calculer ab utilisant la
 propriété : ab = ab/2 x ab/2 si b est pair et a x a(b-1)/2 x a(b-1)/2 si b est
 impair. Il faudra faire attention aux cas limites et on prendra 00 = 1.
 
@@ -169,7 +162,7 @@ impair. Il faudra faire attention aux cas limites et on prendra 00 = 1.
     | b when b mod 2 = 1 -> let p = puissance a ((b-1)/2) in a * p * p
     | _ -> let p = puissance a (b/2) in p * p;;
 
-**4)** Modifier la fonction précédente pour que 00 = 0.
+4. Modifier la fonction précédente pour que 00 = 0.
 
     
     
@@ -202,7 +195,7 @@ fonctions mais également dans une définition :
     val x : float = 5.3
     val y : string = "test"
 
-**5)** Trouver le bon filtrage pour récupérer dans deux variables x et y les
+5. Trouver le bon filtrage pour récupérer dans deux variables x et y les
 valeurs du premier et cinquième élément du type ci-dessous :
 
     
@@ -237,7 +230,7 @@ exception dans le cas où les deux couples ne sont pas comparables) :
 
 ## Exercices
 
-**6)** Étant donnée la définition de type ci-dessous, le filtrage de la
+6. Étant donnée la définition de type ci-dessous, le filtrage de la
 fonction g est-il exhaustif ? Si non, donner un exemple de valeur non filtrée.
 
     
@@ -269,7 +262,7 @@ peut le capture avec le motif `B (y, _)`
     | B (y, _) -> 6
     | C -> 5;;
 
-**7)** Étant donnée la définition d'énumération `type t = B | N | R`, écrire les fonctions suivante : 
+7. Étant donnée la définition d'énumération `type t = B | N | R`, écrire les fonctions suivante : 
 
   * Étant donnée une liste `l`, la fonction `permute : t list -> t list` renvoie une nouvelle liste dans laquelle les valeurs B de l sont remplacées par des N, les N par des R et les R par des B.
   * La fonction récursive terminale `compte_B : t list -> int`qui compte le nombre de B dans la liste passée en paramètre.
@@ -310,6 +303,6 @@ peut le capture avec le motif `B (y, _)`
 
 [Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
 licence [CC BY-SA 4.0
-![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+![ccbysa](//cours/ccbysa.svg)](https://creativecommons.org/licenses/by-
 sa/4.0/deed.fr)
 

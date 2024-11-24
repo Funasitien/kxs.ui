@@ -3,14 +3,7 @@ title: "TD Unix"
 icon: "mdi:paper-remove"
 layout: "@root/layouts/Page.astro"
 ---
-
-  * [cours](https://kxs.fr/cours/)
-  * [sujets](https://kxs.fr/sujets/)
-  * [fiches](https://kxs.fr/fiches/)
-
-[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
-le lycée et la prépa](https://kxs.fr/cours/)
-
+ 
 ## TD MP2I
 
   * [intro](.)
@@ -47,7 +40,7 @@ vous voulez. `~` est un alias (raccourci) pour votre répertoire personnel.
 Un chemin relatif est un chemin qui part du répertoire courant. On utilise
 `..` pour remonter au dossier parent. Le `.` correspond au dossier courant.
 
-**1)** On considère l’arborescence suivante :
+1. On considère l’arborescence suivante :
 
     
     
@@ -72,17 +65,17 @@ Un chemin relatif est un chemin qui part du répertoire courant. On utilise
   * `../romain/fichier.txt`
   * `../../var/www/index.html`
 
-**2)** Utilisez la commande `pwd` pour vérifier que vous êtes bien dans votre
+2. Utilisez la commande `pwd` pour vérifier que vous êtes bien dans votre
 dossier personnel.
 
-**3)** Utilisez la commande `cd` et un chemin relatif pour aller dans le
+3. Utilisez la commande `cd` et un chemin relatif pour aller dans le
 dossier personnel d'un de vos camarades.
 
     
     
     cd ../autre_prenom
 
-**4)** Utilisez la commande `cd` et un chemin absolu pour revenir dans votre
+4. Utilisez la commande `cd` et un chemin absolu pour revenir dans votre
 dossier personnel.
 
     
@@ -97,7 +90,7 @@ Nous venons d'utiliser la commande `cd` pais il existe des centaines de
 commandes Unix. Pour lancer une commande, il suffit donc de mettre son nom
 dans le shell et d’appuyer sur entrée.
 
-**5)** Essayez par exemple les commandes `who` (pour savoir qui est connecté
+5. Essayez par exemple les commandes `who` (pour savoir qui est connecté
 au serveur) et `date` (pour connaitre la date).
 
 Il existe deux petites astuces pour gagner du temps dans le shell :
@@ -108,7 +101,7 @@ Il existe deux petites astuces pour gagner du temps dans le shell :
 Une commande peut avoir un ou plusieurs paramètres. Ils sont en général
 séparés par des espaces.
 
-**6)** Essayez la commande suivante et dire ce qu’il se passe :
+6. Essayez la commande suivante et dire ce qu’il se passe :
 
     
     
@@ -120,7 +113,7 @@ Une commande peut avoir des options. Bien souvent les options sont des lettres
 précédées un tiret ou des mots précédé de deux tirets. On peut éventuellement
 mettre plusieurs options derrière le même tiret.
 
-**7)** Essayer la commande suivante et expliquez ce qu’elle produit :
+7. Essayer la commande suivante et expliquez ce qu’elle produit :
 
     
     
@@ -230,31 +223,31 @@ Permet de voir la charge cpu et les processus actifs
 
 ### Application
 
-**8)** Dans votre répertoire personnel (~), créer un dossier `MP2I`. Dans ce
+8. Dans votre répertoire personnel (~), créer un dossier `MP2I`. Dans ce
 dossier créer un fichier `test1` et un fichier `test2`. Dans le fichier
 `test1` écrivez la phrase « Ceci est un fichier de test ». Afficher le contenu
 du ficher dans le shell.
 
 ## Liens et inode
 
-**8)** Aller dans le dossier MP2I. Créer alors un lien physique `test3` vers
+8. Aller dans le dossier MP2I. Créer alors un lien physique `test3` vers
 `test1`. Constater alors que les deux fichiers ont le même inode et que le
 nombre de liens physiques vers `test1` a augmenté.
 
-**9)** Supprimer le fichier `test1`. Constater que le nombre de liens
+9. Supprimer le fichier `test1`. Constater que le nombre de liens
 physiques vers `test3` est repassé à 1.
 
-**10)** Créer un lien symbolique de `test4` vers `test3`. Constater que le
+10. Créer un lien symbolique de `test4` vers `test3`. Constater que le
 nombre de liens physiques vers `test3` ne change pas.
 
-**11)** Supprimer le fichier `test3` et essayer d'ouvrir `test4`.
+11. Supprimer le fichier `test3` et essayer d'ouvrir `test4`.
 
 ## Droits
 
-**12)** En utilisant la commande `ls -l` donner le propriétaire et le groupe
+12. En utilisant la commande `ls -l` donner le propriétaire et le groupe
 propriétaire du fichier test2.
 
-**13)** Donner le propriétaire et le groupe propriétaires de `/var/mail` (on
+13. Donner le propriétaire et le groupe propriétaires de `/var/mail` (on
 pourra utiliser l'option `-d` qui demande à `ls` de s'intéresser au dossier
 plutôt qu'à son contenu).
 
@@ -265,7 +258,7 @@ plutôt qu'à son contenu).
 
 L'utilisateur propriétaire est `root` et le groupe prorpiétaire est `mail`.
 
-**14)** Que fait la commande suivante ?
+14. Que fait la commande suivante ?
 
     
     
@@ -278,7 +271,7 @@ Elle donne les droits d'exécution au groupe propriétaire sur le fichier
 Elle enlève les droits de lecture, d'écriture et d'exécution aux autres sur le
 fichier `fichier`.
 
-**15)** Quelle commande doit-on utiliser pour passer les droits de ce fichier
+15. Quelle commande doit-on utiliser pour passer les droits de ce fichier
 à `rwxr-xr--` sans utiliser l'octal ?
 
     
@@ -306,6 +299,6 @@ Elle attribue les droits `r-xr--r--` au fichier `fichier.txt`.
 
 [Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
 licence [CC BY-SA 4.0
-![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+![ccbysa](//cours/ccbysa.svg)](https://creativecommons.org/licenses/by-
 sa/4.0/deed.fr)
 

@@ -3,14 +3,7 @@ title: "Exercices 1 en OCaml - Niveau MP2I"
 icon: "mdi:paper-remove"
 layout: "@root/layouts/Page.astro"
 ---
-
-  * [cours](https://kxs.fr/cours/)
-  * [sujets](https://kxs.fr/sujets/)
-  * [fiches](https://kxs.fr/fiches/)
-
-[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
-le lycée et la prépa](https://kxs.fr/cours/)
-
+ 
 ## OCaml
 
   * [Présentation](.)
@@ -33,7 +26,7 @@ le lycée et la prépa](https://kxs.fr/cours/)
 
 # Exercices
 
-**1)** Écrire une fonction récursive `bin` qui convertit un entier positif
+1. Écrire une fonction récursive `bin` qui convertit un entier positif
 sous forme de chaine de caractère en binaire.
 
     
@@ -42,7 +35,7 @@ sous forme de chaine de caractère en binaire.
     if n / 2 = 0 then string_of_int (n mod 2)
     else bin (n / 2) ^ string_of_int (n mod 2);;
 
-**2)** Écrire une fonction recursive `dec` qui convertit un nombre binaire
+2. Écrire une fonction recursive `dec` qui convertit un nombre binaire
 sous forme de chaine de caractère en entier.
 
     
@@ -56,7 +49,7 @@ sous forme de chaine de caractère en entier.
     if String.length s = 0 then 0
     else int_of_string (String.make 1 s.[String.length s - 1]) + 2 * frombin (String.sub s 0 (String.length s - 1));;
 
-**3)** Écrire une fonction récursive `roman` qui convertit un nombre entier en
+3. Écrire une fonction récursive `roman` qui convertit un nombre entier en
 une chaîne représentant le nombre en chiffres romains. (on rapellera que 1000
 -> M, 500 -> D, 100 -> C, 50 -> L, 10 -> X, 5 -> V et 1 -> I)
 
@@ -78,7 +71,7 @@ une chaîne représentant le nombre en chiffres romains. (on rapellera que 1000
     else if x >= 4 then "IV" ^ roman (x - 4)
     else "I" ^ roman (x - 1);;
 
-**4)** Écrire une fonction récursive `from_roman` qui convertit une chaîne
+4. Écrire une fonction récursive `from_roman` qui convertit une chaîne
 représentant un nombre en chiffres romains en un nombre entier.
 
     
@@ -101,6 +94,6 @@ représentant un nombre en chiffres romains en un nombre entier.
 
 [Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
 licence [CC BY-SA 4.0
-![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+![ccbysa](//cours/ccbysa.svg)](https://creativecommons.org/licenses/by-
 sa/4.0/deed.fr)
 

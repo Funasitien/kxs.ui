@@ -30,7 +30,7 @@ Le réseau le plus simple est constitué de deux ordinateurs reliés par un câb
 
 ![Réseau avec deux ordinateurs](/public/reseau1.png)
 
-**1)** Créez ce réseau dans Filius avec les propriétés suivantes :
+1. Créez ce réseau dans Filius avec les propriétés suivantes :
 
   * Nom : Portable 1 ; Adresse IP : 192.168.1.1
   * Nom : Portable 2 ; Adresse IP : 192.168.1.2
@@ -41,19 +41,19 @@ Une adresse IPv4 est un nombre sur 4 octet écrit sous la forme a.b.c.d qui
 identifie un ordinateur sur le réseau. Elle doit donc être unique. Un octet
 peut prendre des valeurs entre 0 et 255.
 
-**2)** Quel est le nombre total d’adresses IPv4 existantes ?
+2. Quel est le nombre total d’adresses IPv4 existantes ?
 
 Ce nombre n’étant pas très grand par rapport au nombre d’appareils connectés à
 internet, les adresses IP sont épuisées depuis 2011. Il a donc fallu utiliser
 des adresses plus longues : l’IPv6 sur 16 octets.
 
-**3)** Calculez le nombre d’adresses IPv6 existantes.
+3. Calculez le nombre d’adresses IPv6 existantes.
 
 Ce nombre est suffisamment grand pour que l’IPv6 dure jusqu’à la fin du monde.
 Pour des raisons de simplicité et car l’IPv4 est toujours largement utilisé,
 nous utiliserons l’IPv4 dans ce TP.
 
-**4)** Une fois votre réseau terminé, passez en mode simulation. En cliquant
+4. Une fois votre réseau terminé, passez en mode simulation. En cliquant
 sur le portable 1, installez « ligne de commande » et lancez-le. Saisissez
 alors la commande suivante :
 
@@ -70,11 +70,11 @@ Elle envoie plusieurs requêtes et donne les statistiques sur les réponses
 reçues. Le temps de réponse est la donnée la plus connue car il permet
 d’estimer la « rapidité » de votre connexion.
 
-**5)** Testez une commande ping dans un terminal (tilix) sur votre ordinateur
+5. Testez une commande ping dans un terminal (tilix) sur votre ordinateur
 vers l’ordinateur de votre voisin (pour connaître votre ip tapez ifconfig dans
 un terminal).  Notez le temps de réponse moyen (avg).
 
-**6)** Faites un ping vers `google.fr` et notez le temps de réponse moyen.
+6. Faites un ping vers `google.fr` et notez le temps de réponse moyen.
 
 ## 2e réseau
 
@@ -86,7 +86,7 @@ supplémentaire : un switch.
 Un switch est en quelque sorte une « multiprise réseau ». On peut en utiliser
 beaucoup dans un réseau.
 
-**7)** Créez le réseau ci-dessous avec Filius :
+7. Créez le réseau ci-dessous avec Filius :
 
 ![Réseau avec un switch et trois ordinateurs](/public/reseau2.png)
 
@@ -94,7 +94,7 @@ beaucoup dans un réseau.
   * Nom :Portable 2 ; Adresse IP : 192.168.1.2
   * Nom :Portable 3 ; Adresse IP : 192.168.1.3
 
-**8)** Testez la connexion entre deux ordinateurs avec la commande ping.
+8. Testez la connexion entre deux ordinateurs avec la commande ping.
 
 ### Sous-réseau
 
@@ -113,31 +113,31 @@ Dans la simulation nous utiliserons 255.255.255.0 comme masque de sous réseau.
 Il nous faudra donc avoir les 3 premiers octets identiques pour des adresses
 du même sous-réseau.
 
-**9)** Déterminer les adresses des sous-réseaux des IP suivantes :
+9. Déterminer les adresses des sous-réseaux des IP suivantes :
 
   * 14.213.3.45/8
   * 25.65.245.23/16
   * 128.226.1.24/24
 
-**10)** Déterminez si les adresses suivantes appartiennent au même sous-réseau
+10. Déterminez si les adresses suivantes appartiennent au même sous-réseau
 :
 
   * 172.23.4.7/16 et 172.23.5.8/16
   * 24.2.8.127/8 et 24.23.5.52/8
   * 193.28.7.2/24 et 193.28.8.3/24
 
-**11)** Combien de machines peut-on trouver au maximum dans les sous-réseaux
+11. Combien de machines peut-on trouver au maximum dans les sous-réseaux
 suivants ?
 
   * 192.168.2.0/24
   * 176.24.0.0/16
   * 10.0.0.0/8
 
-**12)** Quelle est l’adresse du sous réseau de votre exemple dans Filius ?
+12. Quelle est l’adresse du sous réseau de votre exemple dans Filius ?
 
 ## 3e réseau
 
-**13)** Ajoutez un switch et trois ordinateurs à votre réseau existant pour
+13. Ajoutez un switch et trois ordinateurs à votre réseau existant pour
 obtenir le schéma suivant :
 
 ![Réseau avec 2 switchs et 6 ordinateurs](/public/reseau3.png)
@@ -146,11 +146,11 @@ obtenir le schéma suivant :
   * Nom :Portable 5 ; Adresse IP : 192.168.1.5
   * Nom :Portable 6 ; Adresse IP : 192.168.1.6 
 
-**14)** Vérifiez que la connexion est bonne entre les portables 1 et 6.
+14. Vérifiez que la connexion est bonne entre les portables 1 et 6.
 
 ## 4e réseau
 
-**15)** Nous allons garder la même structure que le réseau précédent en
+15. Nous allons garder la même structure que le réseau précédent en
 changeant de sous réseau les trois nouveaux ordinateurs :
 
   * Nom :Portable 4 ; Adresse IP : 192.168.2.4

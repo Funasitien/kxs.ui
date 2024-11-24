@@ -3,14 +3,7 @@ title: "If … then … else … en OCaml - Niveau MP2I"
 icon: "mdi:paper-remove"
 layout: "@root/layouts/Page.astro"
 ---
-
-  * [cours](https://kxs.fr/cours/)
-  * [sujets](https://kxs.fr/sujets/)
-  * [fiches](https://kxs.fr/fiches/)
-
-[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
-le lycée et la prépa](https://kxs.fr/cours/)
-
+ 
 ## OCaml
 
   * [Présentation](.)
@@ -95,7 +88,7 @@ Il n'existe que trois opérateurs pour les booléens en Ocaml :
 
 ## Exercices
 
-**1)** Écrire une fonction `pairimpaire` qui renvoie le mot « pair » si le
+1. Écrire une fonction `pairimpaire` qui renvoie le mot « pair » si le
 nombre en entrée est pair et « impaire » sinon. Les chaîne de caractères se
 notent avec des guillemets doubles « " » en OCaml.
 
@@ -104,7 +97,7 @@ notent avec des guillemets doubles « " » en OCaml.
     # let pairimpaire n = if n mod 2 = 0 then "pair" else "impaire";;
     val pairimpaire : int -> string = <fun>
 
-**2)** Écrire une fonction `inverse` qui renvoie le booléen `true` si elle
+2. Écrire une fonction `inverse` qui renvoie le booléen `true` si elle
 reçoie `false` et `false` sinon (c'est la fonction not).
 
     
@@ -112,7 +105,7 @@ reçoie `false` et `false` sinon (c'est la fonction not).
     # let inverse b = if b then false else true;;
     val inverse : bool -> bool = <fun>
 
-**3)** Écrire une fonction `xor` qui renvoie le ou-exclusif de ses deux
+3. Écrire une fonction `xor` qui renvoie le ou-exclusif de ses deux
 paramètres. Le ou exclusif est vrai si seulement l'une des deux entrées est
 vraie.
 
@@ -120,6 +113,6 @@ vraie.
 
 [Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
 licence [CC BY-SA 4.0
-![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+![ccbysa](//cours/ccbysa.svg)](https://creativecommons.org/licenses/by-
 sa/4.0/deed.fr)
 

@@ -3,14 +3,7 @@ title: "Chiffrement symétrique"
 icon: "mdi:paper-remove"
 layout: "@root/layouts/Page.astro"
 ---
-
-  * [cours](https://kxs.fr/cours/)
-  * [sujets](https://kxs.fr/sujets/)
-  * [fiches](https://kxs.fr/fiches/)
-
-[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
-le lycée et la prépa](https://kxs.fr/cours/)
-
+ 
 ## Sécurité des communications
 
   * [Introduction](.)
@@ -66,21 +59,21 @@ Pour déchiffrer il suffit de faire le décalage dans le sens inverse.
 
 ### Expérimentation
 
-**1)** Donnez le message chiffré obtenu avec un décalage de 3 sur le message :
+1. Donnez le message chiffré obtenu avec un décalage de 3 sur le message :
 `HELLO WORLD!`.
 
-**2)** Déchiffrez le message suivant avec un décallage de 3 : `PDNH DPHULFD
+2. Déchiffrez le message suivant avec un décallage de 3 : `PDNH DPHULFD
 JUHDW DJDLQ!`.
 
-**3)** Écrivez un petit script qui permet de chiffrer et déchiffrer n'importe
+3. Écrivez un petit script qui permet de chiffrer et déchiffrer n'importe
 quel message en connaissant la clé. Vous définirez deux fonctions :
 `chiffrer(message, cle)` et `dechiffrer(message, cle)` qui retournent
 respectivement le message chiffré et le message déchiffré..
 
-**4)** Proposez une fonction `essai(message)` qui déchiffre le message avec
+4. Proposez une fonction `essai(message)` qui déchiffre le message avec
 les 26 clés possibles pour trouver celle qui est la bonne.
 
-**5)** En utilisant la fonction précédente déchiffrez et trouvez la clé du
+5. En utilisant la fonction précédente déchiffrez et trouvez la clé du
 message suivant : `XLIXVX WX ATVDXK!`
 
 Vous venez d'effectuer une attaque par force brute. Cette attaque est simple
@@ -109,12 +102,12 @@ détaillée.
 
 ### Expérimentation
 
-**6)** En utilisant le tableau de Vigenère situé sur la page wikipédia ci-
+6. En utilisant le tableau de Vigenère situé sur la page wikipédia ci-
 dessus, chiffrez le message suivant avec la clé « NSI » : `HELLO WORLD!`
 
-**7)** Déchiffrez avec cette même clé le message : `FLIYDUNF`
+7. Déchiffrez avec cette même clé le message : `FLIYDUNF`
 
-**8)** Pour les plus rapides, comme pour le code de César, créez un programme
+8. Pour les plus rapides, comme pour le code de César, créez un programme
 qui permet de chiffrer et déchiffrer avec le chiffre de Vigenère.
 
 ## AES
@@ -202,7 +195,7 @@ voici quelques remarques :
   * Il y a ainsi 27 caractères et donc 27! = 10888869450418352160768000000 permutations possibles. Une attaque par force brute semble difficile ;
   * Vous devriez y arriver en analysant la fréquence des caractères. On trouve facilement sur internet. la fréquence des caractères dans la langue française. (Mais attention au caractère d'espacement !)
 
-**9)** Donnez une réponse sous la forme d'une liste de caractères
+9. Donnez une réponse sous la forme d'une liste de caractères
 correspondant à la permutation de la liste `"ABCDEFGHIJKLMNOPQRSTUVWXYZ "`.
 Puis affichez le texte déchiffré.
 
@@ -210,6 +203,6 @@ Puis affichez le texte déchiffré.
 
 [Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
 licence [CC BY-SA 4.0
-![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+![ccbysa](//cours/ccbysa.svg)](https://creativecommons.org/licenses/by-
 sa/4.0/deed.fr)
 

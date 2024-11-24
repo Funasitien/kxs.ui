@@ -3,14 +3,7 @@ title: "Fonctions récursives en OCaml - Niveau MP2I"
 icon: "mdi:paper-remove"
 layout: "@root/layouts/Page.astro"
 ---
-
-  * [cours](https://kxs.fr/cours/)
-  * [sujets](https://kxs.fr/sujets/)
-  * [fiches](https://kxs.fr/fiches/)
-
-[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
-le lycée et la prépa](https://kxs.fr/cours/)
-
+ 
 ## OCaml
 
   * [Présentation](.)
@@ -114,7 +107,7 @@ l'netier vaut `0` :
 
 ## Exercices
 
-**1)** Écrire une fonction récursive `somme` donnant la somme des entiers de 1
+1. Écrire une fonction récursive `somme` donnant la somme des entiers de 1
 à n.
 
     
@@ -124,7 +117,7 @@ l'netier vaut `0` :
        | n -> n + somme (n - 1);;
     val somme : int -> int = <fun>
 
-**2)** Écrire une fonction récursive `puissance` pour calculer la puissance
+2. Écrire une fonction récursive `puissance` pour calculer la puissance
 d'un nombre. On aura besoin d'utiliser une fonction à deux arguments.
 
     
@@ -134,7 +127,7 @@ d'un nombre. On aura besoin d'utiliser une fonction à deux arguments.
        else x * puissance x (n - 1);;
     val puissance : int -> int -> int = <fun>
 
-**3)** Écrire une fonction récursive `fibo` pour calculer la valeur de
+3. Écrire une fonction récursive `fibo` pour calculer la valeur de
 l'élément n de la suite de Fibonacci. La suite de Fibonacci est définie par
 `F(n) =` :
 
@@ -152,7 +145,7 @@ On pourra vérifier le bon fonctionnement en vérifiant que fibo(15) = 610.
        | n -> fibo (n - 1) + fibo (n - 2);;
     val fibo : int -> int = <fun>
 
-**4)** Nous considérons ici le quotient et le reste de la division euclidienne
+4. Nous considérons ici le quotient et le reste de la division euclidienne
 de n par d.
 
   * **a)** Écrivez une fonction récursive `quo` donnant le quotient de la division euclidienne de n par d sachant que ce quotient est le même que celui de (n -d) par d, plus 1. Faites attention au cas de base.
@@ -172,7 +165,7 @@ de n par d.
        else reste (n - d) d;;
     val reste : int -> int -> int = <fun>
 
-**5)** Coder à nouveau les fonctions précédentes en C.
+5. Coder à nouveau les fonctions précédentes en C.
 
     
     
@@ -234,6 +227,6 @@ de n par d.
 
 [Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
 licence [CC BY-SA 4.0
-![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+![ccbysa](//cours/ccbysa.svg)](https://creativecommons.org/licenses/by-
 sa/4.0/deed.fr)
 

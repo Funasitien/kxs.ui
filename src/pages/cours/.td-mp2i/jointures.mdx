@@ -3,14 +3,7 @@ title: "jointures"
 icon: "mdi:paper-remove"
 layout: "@root/layouts/Page.astro"
 ---
-
-  * [cours](https://kxs.fr/cours/)
-  * [sujets](https://kxs.fr/sujets/)
-  * [fiches](https://kxs.fr/fiches/)
-
-[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
-le lycée et la prépa](https://kxs.fr/cours/)
-
+ 
 ## TD MP2I
 
   * [intro](.)
@@ -40,12 +33,12 @@ table `fims` on peut également créer un champ uniquement pour avoir ce rôle
 (`id_film` ici). Il faut noter que la clé primaire est indiquée dans la
 description d'une table dans la colonne `key`, il y aura le mot `PRI`.
 
-**5)** Pourquoi le champ `annee` ne peut pas être une clé primaire de la table
+5. Pourquoi le champ `annee` ne peut pas être une clé primaire de la table
 `films` ?
 
 Parce qu'il peut y avoir deux films avec la mêmé année.
 
-**6)** En regardant la descripton de la table `citations` donner la clé
+6. En regardant la descripton de la table `citations` donner la clé
 primaire de cette table.
 
     
@@ -114,7 +107,7 @@ Il peut y avoir des associations 1-1. Par exemple la table `notes` avec la
 table `citations`. La table `notes` contient des notes attribuées aux
 citations.
 
-**7)** En regardant la descripton de la table `notes` dessiner le shéma
+7. En regardant la descripton de la table `notes` dessiner le shéma
 relationnel entre la table `notes` et la table `citations`.
 
 Il y a également des associations *-* qui ne sont pas directement modélisables
@@ -124,7 +117,7 @@ entre les deux tables. C'est la fonction de la table `lien_films_realisateurs`
 car un film peut avoir plusieurs réalisateurs et un réalisateur peut être sur
 plusieurs films.
 
-**8)** En regardant les descriptions des tables, proposer un shéma relationnel
+8. En regardant les descriptions des tables, proposer un shéma relationnel
 entre les trois tables `films`, `lien_films_realisateurs` et `realisateurs`.
 
 ## Jointures internes
@@ -176,7 +169,7 @@ La jointure fait alors correspondre les éléments des deux tables qui ont le
 même `id_film` et renvoie seulement les lignes ayant une correspondance. C'est
 pour cela que la citation 16 n'apparait pas car elle n'a pas d'`id_film`
 
-**9)** Proposez et testez une requête affichant les citations, films et années
+9. Proposez et testez une requête affichant les citations, films et années
 pour les films avant les années 2000.
 
     
@@ -283,7 +276,7 @@ Il est possible d'effectuer plusieurs jointures en rajoutant des clauses `JOIN
     | Cours Forrest, cours !                                                                        | Forrest Gump                              | 9.34 |
     +-----------------------------------------------------------------------------------------------+-------------------------------------------+------+
 
-**10)** Proposez et testez une requête affichant les citations, films et notes
+10. Proposez et testez une requête affichant les citations, films et notes
 pour le film « Avengers : Endgame », classées par note décroissante.
 
     
@@ -308,6 +301,6 @@ utilise un alias pour chaque table :
 
 [Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
 licence [CC BY-SA 4.0
-![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+![ccbysa](//cours/ccbysa.svg)](https://creativecommons.org/licenses/by-
 sa/4.0/deed.fr)
 

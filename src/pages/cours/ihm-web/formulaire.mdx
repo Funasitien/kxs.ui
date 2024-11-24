@@ -17,7 +17,7 @@ formulaire et un autre qui va traiter les données envoyées. Ce deuxième
 fichier ne peut donc pas être statique, nous utiliserons donc PHP encore une
 fois.
 
-**1)** Créez ou remplacez le fichier `index.html` dans votre dossier
+1. Créez ou remplacez le fichier `index.html` dans votre dossier
 `var/www/html` et placez-y le code suivant :
 
 ```php
@@ -41,7 +41,7 @@ fois.
     </html>
 ```
 
-**2)** Dans le même dossier, créez un fichier `traitement.php` et placez-y le
+2. Dans le même dossier, créez un fichier `traitement.php` et placez-y le
 code suivant :
 
 ```php
@@ -49,7 +49,7 @@ code suivant :
     <p>Bonjour <?php echo $_GET['prenom']; ?> <?php echo $_GET['nom']; ?>, votre formulaire a bien été traité.</p>
 ```
 
-**3)** Allez maintenant à l’adresse http://localhost/, complétez le
+3. Allez maintenant à l’adresse http://localhost/, complétez le
 formulaire et cliquez sur « Envoyer ». Si tout a bien fonctionné vous devriez
 voir vos nom et prénom sur la page.
 
@@ -66,14 +66,14 @@ de type `text`. On associe à ses champs un nom (`name`) qui correspond à la
 variable qui contiendra le contenu du champ. Enfin on associe un label à un
 champ input en utilisant l’attribut `for` pour pointer vers l’id du champ.
 
-**4)** Notez l’adresse complète de la page de traitement du formulaire.
+4. Notez l’adresse complète de la page de traitement du formulaire.
 
 Lorsque vous cliquez sur le bouton « envoyer » vous êtes envoyé sur la page
 `traitement.php` avec les variables ajoutées au bout de l’URL. Nous avions
 déjà utilisé cette méthode de manière plus « artisanale » dans le TP
 précédent. C’est la méthode GET.
 
-**5)** Modifiez le nom et le prénom dans l’URL. Que constatez-vous ?
+5. Modifiez le nom et le prénom dans l’URL. Que constatez-vous ?
 
 ## Formulaire plus discret
 
@@ -115,14 +115,14 @@ Et comme ficher `traitement.php` :
 
 Ici, on a juste changé le nom de la variable `$_GET` en `$_POST`.
 
-**6)** Allez à nouveau à l’adresse http://localhost/, complétez le
+6. Allez à nouveau à l’adresse http://localhost/, complétez le
 formulaire et cliquez sur « Envoyer ». Que remarquez-vous dans la barre
 d’adresse ?
 
 Attention la méthode POST ne fait que cacher les variables à l’utilisateur
 lambda, mais elles restent visibles très facilement.
 
-**7)** Ouvrez le moniteur réseau (ctrl + shift + J…) et rechargez la page de
+7. Ouvrez le moniteur réseau (ctrl + shift + J…) et rechargez la page de
 traitement du formulaire. Cliquez sur la requête POST et allez dans l’onglet «
 Requête ». Que voyez-vous ?
 
@@ -134,7 +134,7 @@ URLs plus « propres ». Mais la méthode POST n’est pas « sécurisé » pour
 autant, il ne faut pas faire confiance aux données qui arrivent d’un
 formulaire, quelque soit la méthode.
 
-**8)** Après avoir cherché le champ qui permet de saisir du texte et le champ
+8. Après avoir cherché le champ qui permet de saisir du texte et le champ
 qui n’est pas affiché, modifiez le formulaire pour pouvoir saisir votre
 citation favorite et passer le code « turing » à la page `traitement.php` sans
 que l’utilisateur le voit. La page `traitement.php` devra alors afficher vos

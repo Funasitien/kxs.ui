@@ -3,14 +3,7 @@ title: "Photo numérique : Modification d'une image"
 icon: "mdi:paper-remove"
 layout: "@root/layouts/Page.astro"
 ---
-
-  * [cours](https://kxs.fr/cours/)
-  * [sujets](https://kxs.fr/sujets/)
-  * [fiches](https://kxs.fr/fiches/)
-
-[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
-le lycée et la prépa](https://kxs.fr/cours/)
-
+ 
 ## Photo Numérique
 
   * [Codage d'une image](codage-image)
@@ -70,7 +63,7 @@ de l’image et renvoie une nouvelle image. Exemple :
 
 Nous allons créer notre premier filtre avec Python.
 
-Commencez par télécharger [cette image](img/paysage.jpg) que vous placerez
+Commencez par télécharger [cette image](/cours/paysage.jpg) que vous placerez
 dans le dossier ou vous avez téléchargé le module `pillowSNT.py`. Créez un
 nouveau ficher Python et enregistrez-le avec le nom `filtrespython.py`. Dans
 ce fichier recopiez le code ci-dessous :
@@ -113,17 +106,17 @@ doivent apparaître.
 
 ### Filtres vert et bleu
 
-**1)** Créez deux nouveaux filtres vert et bleu sur le même modèle que le
+1. Créez deux nouveaux filtres vert et bleu sur le même modèle que le
 rouge.
 
 ### Filtre gris
 
-**2)** Ouvrez votre image dans Gimp et transformez-la en niveaux de gris
+2. Ouvrez votre image dans Gimp et transformez-la en niveaux de gris
 (images → mode → niveaux de gris). Ensuite, ouvrez le sélecteur de couleurs et
 avec la pipette sélectionnez différents pixels à l’écran. Observez les valeurs
 de r, g et b. Que constatez-vous ?
 
-**3)** Créez un filtre gris qui remplace chaque composante r, g et b par la
+3. Créez un filtre gris qui remplace chaque composante r, g et b par la
 moyenne des trois composantes. On pourra utiliser la division entière pour
 avoir un entier en faisant la moyenne.
 
@@ -135,14 +128,14 @@ formule ci-dessous :
     
     m = (21*r + 71*g + 8*b) // 100
 
-**4)** Créez un nouveau filtre grisbest qui applique cette formule.
+4. Créez un nouveau filtre grisbest qui applique cette formule.
 
 ### Filtre négatif
 
-**5)** Ouvrez à nouveau votre image dans Gimp et inversez les couleurs
+5. Ouvrez à nouveau votre image dans Gimp et inversez les couleurs
 (couleurs → inverser).
 
-**6)** Créez un filtre negatif qui remplace chaque composante de couleur par
+6. Créez un filtre negatif qui remplace chaque composante de couleur par
 son complément à 255 (255 - r,…). Comparez votre résultat à celui de Gimp.
 
 ### Filtre noir et blanc
@@ -151,16 +144,16 @@ Pour mettre l’image en noir en blanc on part du filtre gris. Si la valeur du
 gris est supérieure à 50 on remplace les trois composantes rgb par 255. Sinon
 on remplace les trois composantes rgb par 0.
 
-**7)** Créez un filtre NB qui transforme une image en noir et blanc.
+7. Créez un filtre NB qui transforme une image en noir et blanc.
 
 ### Filtre libre
 
-**8)** Créez un filtre de votre choix et montrez-le au professeur.
+8. Créez un filtre de votre choix et montrez-le au professeur.
 
 [Précédent](codage-image)[Suivant](donnees-format-image)
 
 [Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
 licence [CC BY-SA 4.0
-![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+![ccbysa](//cours/ccbysa.svg)](https://creativecommons.org/licenses/by-
 sa/4.0/deed.fr)
 

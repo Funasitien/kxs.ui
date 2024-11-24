@@ -45,14 +45,14 @@ On peut également créer un tuple avec un seul élément (cela pourra être uti
 On utilise la notation entre crochets pour accéder à un élément d’un tuple. Le
 premier élément possède l’indice 0, le deuxième l’indice 1…
 
-**1)** Tester et noter le résultat des instructions suivantes dans le shell :
+1. Tester et noter le résultat des instructions suivantes dans le shell :
 
 ```py
 >>> un_tuple = ("a", "g", "toto", "tu")
 >>> un_tuple[2]
 ```
 
-**2)** Que faut-il mettre dans les pointillés pour obtenir ‘a’ ?
+2. Que faut-il mettre dans les pointillés pour obtenir ‘a’ ?
 
 ```py
 >>> un_tuple = ("a", "g", "toto", "tu")
@@ -61,7 +61,7 @@ premier élément possède l’indice 0, le deuxième l’indice 1…
 
 Attention ! On ne peut pas modifier un tuple !
 
-**3)** Que renvoient les instructions ci-dessous ?
+3. Que renvoient les instructions ci-dessous ?
     
 ```py
 >>> un_tuple = ("a", "g", "toto", "tu")
@@ -72,7 +72,7 @@ Il pourra être intéressant d’accéder aux éléments d’un tuple à partir 
 fin. Pour cela, on utilisera des indices négatifs : -1 pour le dernier
 élément, -2 pour l’avant dernier…
 
-**4)** Que renvoient les instructions suivantes ?
+4. Que renvoient les instructions suivantes ?
  
 ```py
 >>> un_tuple = ("a", "g", "toto", "tu")
@@ -83,19 +83,19 @@ Il est possible de créer des tuples de tuples. Pour accéder aux éléments, on
 utilise alors deux crochets. Le premier crochet pour choisir le tuple puis le
 second pour choisir l'élément dans ce tuple.
 
-**5)** Essayer les instructions suivantes :
+5. Essayer les instructions suivantes :
 
 ```py
 >>> tuple_de_tuple = ((3, 6, 7), ("mimi", "momo", "mumu", "mama"), "tata", 95)
 >>> tuple_de_tuple[0][1]
 ```
 
-**6)** Que faut-il écrire pour obtenir l’élément "mumu" à partir du
+6. Que faut-il écrire pour obtenir l’élément "mumu" à partir du
 tuple_de_tuple précédent ?
 
 Si on essaie d'accéder à un élément qui n'existe pas, cela générera une erreur:
 
-**7)** Essayer les instructions suivantes :
+7. Essayer les instructions suivantes :
 
 ```py
 >>> un_tuple = ("a", "g", "toto", "tu")
@@ -108,7 +108,7 @@ Si on essaie d'accéder à un élément qui n'existe pas, cela générera une er
 Pour avoir le nombre d’éléments d’un tuple, on utilise toujours la fonction
 `len()`.
 
-**8)** Que renvoient les instructions suivantes ?
+8. Que renvoient les instructions suivantes ?
 
 ```py
 >>> un_tuple = ("a", "g", "toto", "tu")
@@ -121,7 +121,7 @@ Pour extraire une partie d’un tuple, on met entre crochets l’indice du débu
 et l’indice de fin de la tranche que l’on souhaite extraire. On les sépare par
 « : ». Attention le dernier indice est exclu de l’extraction !
 
-**9)** Que renvoient les instructions suivantes ?
+9. Que renvoient les instructions suivantes ?
 
 ```py
 >>> un_tuple = ("a", "g", "toto", "tu")
@@ -133,7 +133,7 @@ et l’indice de fin de la tranche que l’on souhaite extraire. On les sépare 
 Il est possible de concaténer des tuples avec l’opérateur « + ». Concaténer
 signifie mettre bout à bout.
 
-**10)** Quel est le résultat des instructions ci-dessous ?
+10. Quel est le résultat des instructions ci-dessous ?
 
 ```py
 >>> tuple1 = ("a", "b", "c")
@@ -143,7 +143,7 @@ signifie mettre bout à bout.
 
 On peut répéter un tuple en le multipliant par un entier.
 
-**11)** Noter le résultat des opérations suivantes :
+11. Noter le résultat des opérations suivantes :
 
 ```py
 >>> tuple1 = ("a", "b", "c")
@@ -154,7 +154,7 @@ On peut répéter un tuple en le multipliant par un entier.
 
 On teste l’appartenance à un tuple avec l’instruction `in`.
 
-**12)** Noter les résultats des instructions ci-dessous :
+12. Noter les résultats des instructions ci-dessous :
 
 ```py
 >>> un_tuple = ("a", "g", "toto", "tu")
@@ -169,11 +169,11 @@ On teste l’appartenance à un tuple avec l’instruction `in`.
 
 Pour parcourir un tuple, on peut utiliser l’instruction `for … in … : …`.
 
-**13)** Tester et donner la sortie du script suivant :
+13. Tester et donner la sortie du script suivant :
 ```py
 mon_tuple = ("souris", "chat", "chien", "tortue")
 for animal in mon_tuple:
     print(animal)
 ```
 
-**14)** Reprenez le tuple précédent et parcourez-le avec une boucle while.
+14. Reprenez le tuple précédent et parcourez-le avec une boucle while.

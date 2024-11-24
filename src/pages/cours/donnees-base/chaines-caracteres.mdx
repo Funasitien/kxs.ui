@@ -69,15 +69,15 @@ Table ASCII Dec | Hex | Bin | Caractère | Dec | Hex | Bin | Caract | Dec | Hex 
 Lorsqu'on donne donne un code ASCII, on utilise généralement son codage
 **hexadécimal**.
 
-**1)** Quel est la signification du code ASCII ci-dessous ?  
+1. Quel est la signification du code ASCII ci-dessous ?  
 
 41 53 43 49 49 20 69 73 20 73 77 61 67
 
-**2)** Donner le code ASCII (en hexadécimal) de la chaîne ci-dessous :
+2. Donner le code ASCII (en hexadécimal) de la chaîne ci-dessous :
 
 « Vive le LOSC ! »
 
-**3)** En Python la fonction `ord()` donne (entre autres) le code ASCII d’un
+3. En Python la fonction `ord()` donne (entre autres) le code ASCII d’un
 caractère. Ce code est en décimal mais on peut le convertir en hexadécimal
 avec la fonction `hex()` et en binaire avec la fonction `bin()`. Créer un
 script qui parcourt une chaine de caractère et affiche chaque caractère avec
@@ -139,7 +139,7 @@ Table ISO-8859-1 (ajout à la table ASCII) Dec | Hex | Bin | Caractère | Dec | 
 169| A9| 10101001| © | 212| D4| 11010100| Ô | 255| FF| 11111111| ÿ  
 170| AA| 10101010| ª | 213| D5| 11010101| Õ | 256| 100| 100000000| Ā  
   
-**4)** En Python la fonction `ord()` donne également le code ISO-8859-1 d’un
+4. En Python la fonction `ord()` donne également le code ISO-8859-1 d’un
 caractère. À l’aide du script de la question 3, donner le codage de la phrase
 suivante :
 
@@ -170,7 +170,7 @@ U+0052 le code du « R » (voir les parties précédentes).
 Il existe une vidéo sur Youtube faisant défiler les milliers de caractères
 unicode. Elle dure plus de deux heures :
 
-**5)** Testez le script suivant pour vérifier que les premiers caractères
+5. Testez le script suivant pour vérifier que les premiers caractères
 d’unicode sont les mêmes que pour l’ISO-8859-1 (`hex()` convertit en
 hexadécimal et `chr()` affiche un caractère à partir de son unicode **en
 décimal**) :
@@ -180,7 +180,7 @@ for c in range(256):
     print(c,hex(c),chr(c))
 ```
 
-**6)** Tester maintenant le script ci-dessous pour voir les 5000 premiers
+6. Tester maintenant le script ci-dessous pour voir les 5000 premiers
 caractères unicode (cela prend du temps) :
 
 ```python
@@ -213,16 +213,16 @@ bits
 Ainsi, les bits en vert doivent être mis bout à bout pour obtenir le code
 unicode d’un caractère.
 
-**7)** Pourquoi utilise-t-on un nombre d’octets variable au lieu d’utiliser
+7. Pourquoi utilise-t-on un nombre d’octets variable au lieu d’utiliser
 toujours 4 octets par caractère ?
 
-**8)** Quel est le code UTF-8 du caractère « j » ?
+8. Quel est le code UTF-8 du caractère « j » ?
 
-**9)** Quel caractère correspond au code UTF-8 « C5 93 » (vous aurez besoin de
+9. Quel caractère correspond au code UTF-8 « C5 93 » (vous aurez besoin de
 la fonction `chr()` en Python qui donne le caractère correspondant à un code
 unicode en décimal)
 
-**10)** Quel est le code UTF-8 du signe euro « € » ? (son code unicode est
+10. Quel est le code UTF-8 du signe euro « € » ? (son code unicode est
 U+20AC, mais vous pouvez utiliser la fonction `ord()` qui donne aussi le code
 unicode décimal d’un caractère)
 

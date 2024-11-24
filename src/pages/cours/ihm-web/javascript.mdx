@@ -54,10 +54,10 @@ Analysons ce code :
   * la balise `<meta charset>` indique l’encodage des caractères ;
   * la balise `<body>` va englober le contenu de la page.
 
-**1)** Copiez le code ci-dessus et enregistrez-le dans un fichier index.html
+1. Copiez le code ci-dessus et enregistrez-le dans un fichier index.html
 que vous mettrez dans un dossier html.
 
-**2)** Ouvrez ce fichier avec un navigateur, votre page doit apparaître.
+2. Ouvrez ce fichier avec un navigateur, votre page doit apparaître.
 Appelez le professeur.
 
 ### Le fichier CSS
@@ -72,7 +72,7 @@ Il y a trois façons d’ajouter du CSS à une page :
 On met une règle CSS directement dans la balise à laquelle on veut appliquer
 la règle.
 
-**3)** Remplacez la balise `<h1>` par `<h1 style="color: red;">`. Que ce
+3. Remplacez la balise `<h1>` par `<h1 style="color: red;">`. Que ce
 passe-t-il ?
 
 Le CSS en ligne n’est pas recommandé car il alourdi la page et n’est pas très
@@ -83,7 +83,7 @@ lisible.
 On place le code CSS dans une balise `</style>` située dans la partie `<head>`
 de la page.
 
-**4)** Placez le code ci-dessous juste avant la balise fermante `</head>` et
+4. Placez le code ci-dessous juste avant la balise fermante `</head>` et
 décrire ce qu’il se passe :
 
 ```css
@@ -97,7 +97,7 @@ décrire ce qu’il se passe :
 Le CSS en ligne est prioritaire sur le CSS interne il faut donc supprimer
 l’ajout de la question 3 si on veut que le code précédent fonctionne.
 
-**5)** Supprimez l’ajout de la question 3. Que se passe-t-il ?
+5. Supprimez l’ajout de la question 3. Que se passe-t-il ?
 
 On déconseille le CSS en interne car il alourdi la page.
 
@@ -106,7 +106,7 @@ On déconseille le CSS en interne car il alourdi la page.
 La dernière façon d’ajouter du style à une page est d’utiliser un fichier CSS
 externe.
 
-**6)** Pour cela on rajoute l’instruction suivante dans la partie `<head>` de
+6. Pour cela on rajoute l’instruction suivante dans la partie `<head>` de
 la page :
 
 ```html
@@ -115,7 +115,7 @@ la page :
 
 Ainsi le navigateur ira chercher un fichier `style.css`.
 
-**7)** Créez un fichier `style.css` dans le dossier html et mettez-y le
+7. Créez un fichier `style.css` dans le dossier html et mettez-y le
 contenu suivant :
 
 ```css
@@ -128,7 +128,7 @@ De la même manière que précédemment, le CSS interne est prioritaire sur le C
 externe. Il faut donc supprimer l’ajout de la question 4 pour que le titre
 apparaisse en bleu.
 
-**8)** Supprimer l’ajout de la question 4 et appelez le professeur.
+8. Supprimer l’ajout de la question 4 et appelez le professeur.
 
 ### Le fichier Javascript
 
@@ -136,7 +136,7 @@ Il existe deux façons d’introduire du code javascript dans une page HTML :
 
 #### Javascript en ligne
 
-**9)** Ajoutez le code suivant dans la partie `<head>` de la page et expliquer
+9. Ajoutez le code suivant dans la partie `<head>` de la page et expliquer
 ce qu’il se passe (la fonction `alert()` affiche un pop-up avec le texte
 saisi) :
 
@@ -151,7 +151,7 @@ saisi) :
 Pour utiliser un fichier javascript externe on doit ajouter une balise dans la
 partie `<head>` de la page.
 
-**10)** Ajoutez cett balise à la fin de la partie `<head>` de votre page :
+10. Ajoutez cett balise à la fin de la partie `<head>` de votre page :
 
 ```html
     <script src="script.js"></script>
@@ -159,14 +159,14 @@ partie `<head>` de la page.
 
 Ainsi le navigateur ira chercher un fichier `script.js`.
 
-**11)** Créez un fichier `script.js` dans le dossier html et mettez-y le
+11. Créez un fichier `script.js` dans le dossier html et mettez-y le
 contenu suivant :
 
 ```js
     alert("Coucou");
 ```
 
-**12)** Que se passe-t-il alors lorsque vous rechargez la page ?
+12. Que se passe-t-il alors lorsque vous rechargez la page ?
 
 Le navigateur lit le code javascript dans l’ordre dans lequel il apparaît dans
 la page HTML.
@@ -209,7 +209,7 @@ La page possède maintenant un bouton sur lequel on peut cliquer. Lorsqu’on
 clique dessus l’attribut `onclick` exécute la fonction javascript
 `mafonction()`. Il faut donc la définir :
 
-**13)** Ajoutez le code suivant dans le fichier `script.js` et cliquez sur le
+13. Ajoutez le code suivant dans le fichier `script.js` et cliquez sur le
 bouton :
 
 ```js
@@ -257,7 +257,7 @@ ou
     document.getElementById("roger").style.color = "red"
 ```
 
-**14)** Changez le code de `mafonction()` pour qu’un clic sur le bouton rende
+14. Changez le code de `mafonction()` pour qu’un clic sur le bouton rende
 le texte du paragraphe vert.
 
 On peut changer le contenu d’une balise :
@@ -266,7 +266,7 @@ On peut changer le contenu d’une balise :
     document.getElementById("roger").innerHTML = "Le contenu a changé"
 ```
 
-**15)** Changer le code de `mafonction()` pour qu’un clic sur le bouton
+15. Changer le code de `mafonction()` pour qu’un clic sur le bouton
 remplace le titre par « Mon nouveau titre ».
 
 On peut ajouter ou retirer des classes à une balise :

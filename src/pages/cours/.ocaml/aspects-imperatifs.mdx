@@ -3,14 +3,7 @@ title: "Aspects impératifs en OCaml - Niveau MP2I"
 icon: "mdi:paper-remove"
 layout: "@root/layouts/Page.astro"
 ---
-
-  * [cours](https://kxs.fr/cours/)
-  * [sujets](https://kxs.fr/sujets/)
-  * [fiches](https://kxs.fr/fiches/)
-
-[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
-le lycée et la prépa](https://kxs.fr/cours/)
-
+ 
 ## OCaml
 
   * [Présentation](.)
@@ -80,7 +73,7 @@ Et pour modifier sa valeur, on utilise le symbole `:=` :
     # !a;;
     - : int = 6
 
-**1)** Écrire une fonction `incr` qui prend comme argument la référence d'un
+1. Écrire une fonction `incr` qui prend comme argument la référence d'un
 entier et incrémente cet entier.
 
     
@@ -117,7 +110,7 @@ On peut également utiliser une boucle `for` en faisant décroitre l'indice :
     print_int i
     done;;
 
-**2)** Écrire une fonction `fact` qui n'est **pas** récursive et qui calcule
+2. Écrire une fonction `fact` qui n'est **pas** récursive et qui calcule
 la factorielle d'un entier en utilisant une boucle `for`.
 
     
@@ -143,7 +136,7 @@ Voici un exemple de syntaxe pour la boucle `while` :
     done;;
     12345678910- : unit = ()
 
-**3)** Écrire une fonction `fact` qui n'est **pas** récursive et qui calcule
+3. Écrire une fonction `fact` qui n'est **pas** récursive et qui calcule
 la factorielle d'un entier en utilisant une boucle `while`.
 
     
@@ -175,7 +168,7 @@ déclarer un tableau, comment accéder à un élément et comment modifier un
     # t;;
     - : int array = [|1; 2; 8; 4|]
 
-**4)** Écrire une fonction `add` qui n'est **pas** récursive et qui ajoute 1 à
+4. Écrire une fonction `add` qui n'est **pas** récursive et qui ajoute 1 à
 tous les éléments d'un tableau.
 
     
@@ -186,7 +179,7 @@ tous les éléments d'un tableau.
     done;;
     val ajoute : int array -> unit = <fun>
 
-**5)** Écrire une fonction `cherche` qui n'est **pas** récursive et qui
+5. Écrire une fonction `cherche` qui n'est **pas** récursive et qui
 cherche un élément dans un tableau.
 
     
@@ -244,6 +237,6 @@ mot clé `mutable` :
 
 [Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
 licence [CC BY-SA 4.0
-![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+![ccbysa](//cours/ccbysa.svg)](https://creativecommons.org/licenses/by-
 sa/4.0/deed.fr)
 

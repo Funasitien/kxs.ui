@@ -3,14 +3,7 @@ title: "Algorithmes sur les arbres binaires"
 icon: "mdi:paper-remove"
 layout: "@root/layouts/Page.astro"
 ---
-
-  * [cours](https://kxs.fr/cours/)
-  * [sujets](https://kxs.fr/sujets/)
-  * [fiches](https://kxs.fr/fiches/)
-
-[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
-le lycée et la prépa](https://kxs.fr/cours/)
-
+ 
 ## Graphes et algorithmes
 
   * [Introduction](.)
@@ -40,7 +33,7 @@ arbre droit possède une clé supérieure ou égale à celle-ci
 
 Voici un exemple de ABR :
 
-![](img/arbre-recherche.svg)
+![](/cours/arbre-recherche.svg)
 
 ainsi que sa représentation en tableau (liste) :
 
@@ -50,9 +43,9 @@ ainsi que sa représentation en tableau (liste) :
 
 Nous utilisons un tableau plutôt qu'un tuple car nous allons modifier l'arbre.
 
-**1)** Est-ce bien un abre binaire de recherche ?
+1. Est-ce bien un abre binaire de recherche ?
 
-**2)** Appliquez le parcours infixe à cet abre, que remarquez-vous ?
+2. Appliquez le parcours infixe à cet abre, que remarquez-vous ?
 
 ## Recherche d'un élément
 
@@ -75,7 +68,7 @@ un algorithme faisant ce travail :
 Cet algorithme est proche d'un algorithme de recherche par dichotomie utilisé
 dans un tableau. Ça complexité est donc la même : O(log(n)).
 
-**3)** Proposez une implémentation en Python de cet algorithme et testez son
+3. Proposez une implémentation en Python de cet algorithme et testez son
 résultat sur la recherche de des clés « 7 » et « 9 ».
 
 ## Insertion
@@ -99,21 +92,21 @@ Voici une implémentation en Python d'un algorithme d'insertion d'un nouvel
                 arbre[2] = [element, None, None]
                 print(element, 'ajouté à droite de', arbre[0])
 
-**4)** Cet algorithme est-il récursif ?
+4. Cet algorithme est-il récursif ?
 
-**5)** Que va-t-il afficher si on exécute la commande `insertionABR(arbre,12)`
+5. Que va-t-il afficher si on exécute la commande `insertionABR(arbre,12)`
 ?
 
-**6)** Que va-t-il afficher si on exécute la commande `insertionABR(arbre,9)`
+6. Que va-t-il afficher si on exécute la commande `insertionABR(arbre,9)`
 ?
 
-**7)** Proposez un algorithme non récursif (en Python ou en langage naturel)
+7. Proposez un algorithme non récursif (en Python ou en langage naturel)
 pour insérer un élément.
 
 [Précédent](implementation-arbres)[Suivant](algo-graphes)
 
 [Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
 licence [CC BY-SA 4.0
-![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+![ccbysa](//cours/ccbysa.svg)](https://creativecommons.org/licenses/by-
 sa/4.0/deed.fr)
 

@@ -3,14 +3,7 @@ title: "Bases de données"
 icon: "mdi:paper-remove"
 layout: "@root/layouts/Page.astro"
 ---
-
-  * [cours](https://kxs.fr/cours/)
-  * [sujets](https://kxs.fr/sujets/)
-  * [fiches](https://kxs.fr/fiches/)
-
-[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
-le lycée et la prépa](https://kxs.fr/cours/)
-
+ 
 ## TD MP2I
 
   * [intro](.)
@@ -119,7 +112,7 @@ Une table est composée de _champs_ (ou attributs ou colonnes ou field en
 anglais) qui peuvent contenir certains types de données : on parle alors du
 _domaine_ du champ. La commande `DESCRIBE` liste tous les champs d'une table.
 
-**1)** Quels sont les attributs (Field) de la table `films` (il y en a trois)
+1. Quels sont les attributs (Field) de la table `films` (il y en a trois)
 ?
 
 id_film, titre et annee
@@ -146,7 +139,7 @@ decimal(n,p)
 
     nombre à virgule fixe (n chiffres dont p après la virgule).
 
-**2)** Quels sont les types des attributs de la table `films` ?
+2. Quels sont les types des attributs de la table `films` ?
 
   * id_film : int
   * titre : varchar(100)
@@ -196,7 +189,7 @@ Il faut indiquer après le `SELECT` les champs que l'on veut afficher. On les
 sépare par des virgules. `*` signifie tous les champs de la table. On indique
 après le `FROM` la table sur laquelle on fait la sélection.
 
-**3)** Proposez et testez une requête qui permet d'afficher uniquement le
+3. Proposez et testez une requête qui permet d'afficher uniquement le
 titre et l'année des films.
 
     
@@ -233,7 +226,7 @@ AND, OR, NOT, IS NULL, IS NOT NULL.
 
 Le mot-clé `NULL` dans un champs signifie qu'il n'y a pas de donnée.
 
-**4)** Proposez et testez des requêtes pour afficher les résultats suivants
+4. Proposez et testez des requêtes pour afficher les résultats suivants
 (on affichera le titre et l'année) :
 
   * a) Les films entre 2000 et 2010
@@ -324,7 +317,7 @@ partir d'une certaine ligne en utilisant `OFFSET`. Par exemple, pour afficher
 
 Cela est très utile pour les paginations de résultats.
 
-**4)** Proposez et testez une requête qui permet d'afficher les titres des
+4. Proposez et testez une requête qui permet d'afficher les titres des
 films par année croissante en ignorant les films sans année et en gardant les
 résultats de 6 à 10.
 
@@ -367,6 +360,6 @@ doublons :
 
 [Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
 licence [CC BY-SA 4.0
-![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+![ccbysa](//cours/ccbysa.svg)](https://creativecommons.org/licenses/by-
 sa/4.0/deed.fr)
 

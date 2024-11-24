@@ -3,14 +3,7 @@ title: "String en OCaml - Niveau MP2I"
 icon: "mdi:paper-remove"
 layout: "@root/layouts/Page.astro"
 ---
-
-  * [cours](https://kxs.fr/cours/)
-  * [sujets](https://kxs.fr/sujets/)
-  * [fiches](https://kxs.fr/fiches/)
-
-[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
-le lycée et la prépa](https://kxs.fr/cours/)
-
+ 
 ## OCaml
 
   * [Présentation](.)
@@ -100,7 +93,7 @@ On récupère alors un élément de type `char`.
 
 ## Exercices
 
-**1)** Écrire un fonction `dernier` qui renvoie le dernier élément d'une
+1. Écrire un fonction `dernier` qui renvoie le dernier élément d'une
 chaîne de caractères.
 
     
@@ -108,7 +101,7 @@ chaîne de caractères.
     # let dernier s = s.[String.length s - 1];;
     val dernier : string -> char = <fun>
 
-**2)** Déterminer les résultats des expressions suivantes sans utiliser
+2. Déterminer les résultats des expressions suivantes sans utiliser
 l'interpréteur OCaml (il peut y avoir des erreurs) :
 
   1. `"Le resultat est : " ^ string_of_int(2*7);;`
@@ -139,7 +132,7 @@ l'interpréteur OCaml (il peut y avoir des erreurs) :
     # String.make 3 'a';;
     - : string = "aaa"
 
-**3)** Écrire une fonction récursive qui affiche les code ASCII de 32 à 127 et
+3. Écrire une fonction récursive qui affiche les code ASCII de 32 à 127 et
 les caractères correspondants. On aura besoin des fonctions `print_char`,
 `print_int` et `print_newline ()`. On peut séparer des instructions par `;` et
 les regrouper entre parenthèses.
@@ -155,6 +148,6 @@ les regrouper entre parenthèses.
 
 [Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
 licence [CC BY-SA 4.0
-![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+![ccbysa](//cours/ccbysa.svg)](https://creativecommons.org/licenses/by-
 sa/4.0/deed.fr)
 

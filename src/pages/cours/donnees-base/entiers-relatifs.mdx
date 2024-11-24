@@ -12,11 +12,11 @@ informatiques.
 
 Une addition en binaire se fait de la même façon qu’en décimal.
 
-**1)** Additionnons les deux nombres binaires suivants : 11001011 et 01011100
+1. Additionnons les deux nombres binaires suivants : 11001011 et 01011100
 
 100100111
 
-**2)** Convertissez puis additionnez 12 et 43 en binaire.
+2. Convertissez puis additionnez 12 et 43 en binaire.
 
 1210 = 11002  
 4310 = 1010112  
@@ -30,18 +30,18 @@ Pour représenter un entier relatif, la solution qui peut paraître la plus
 simple serait de garder le premier bit pour le signe (1 pour négatif et 0 pour
 positif) et les suivants pour la valeur absolue.
 
-**3)** Essayons d’écrire -11 sur 8 bits de cette façon.
+3. Essayons d’écrire -11 sur 8 bits de cette façon.
 
 -1110 = 100010112  
 
-**4)** Quel est alors l’intervalle qu’il est possible d’écrire sur 8 bits ?
+4. Quel est alors l’intervalle qu’il est possible d’écrire sur 8 bits ?
 Comparer à l’intervalle du binaire non-signé sur 8 bits également.
 
 -127 à 127 
 
 ### Problèmes
 
-**5)** Pour se rendre compte des problèmes de cette représentation, ajoutons
+5. Pour se rendre compte des problèmes de cette représentation, ajoutons
 11 et -11 en binaire signé sur 8 bits. Que remarquez-vous ?
 
 -1110 = 100010112  
@@ -50,7 +50,7 @@ Comparer à l’intervalle du binaire non-signé sur 8 bits également.
 
 La somme ne fait pas zéro !
 
-**6)** Donner les deux façons d’écrire le zéro :
+6. Donner les deux façons d’écrire le zéro :
 
 010 = 000000002 = 100000002
 
@@ -74,7 +74,7 @@ trois étapes :
   * on ajoute 1.
   * on obtient alors l’entier positif opposé en binaire ;
 
-**7)** Prenons l’exemple de -11 sur 8 bits :
+7. Prenons l’exemple de -11 sur 8 bits :
 
     
     
@@ -84,7 +84,7 @@ trois étapes :
 
 1110 \- 1110 = 0
 
-**8)** Ajoutons 11 à -11 :
+8. Ajoutons 11 à -11 :
 
     
     
@@ -97,11 +97,11 @@ trois étapes :
 1110 \- 1110 = 0  
 Tout va bien !
 
-**9)** Quel est le plus grand entier positif que l’on peut écrire sur 8 bits ?
+9. Quel est le plus grand entier positif que l’on peut écrire sur 8 bits ?
 
 011111112 = 12710  
 
-**10)** Que vaut 10000000 ?
+10. Que vaut 10000000 ?
 
     
     
@@ -111,7 +111,7 @@ Tout va bien !
 
 Donc 100000002 = -12810
 
-**11)** On complète alors le tableau récapitulatif ci-dessous :
+11. On complète alors le tableau récapitulatif ci-dessous :
 
 Base 10 | Complément à 2 sur 8 bits  
 ---|---  
@@ -141,7 +141,7 @@ Base 10 | Complément à 2 sur 8 bits
 -127 | 10000001  
 -128 | 10000000  
   
-**12)** Donner l’écriture en complément à 2 sur 8 bits de -38.
+12. Donner l’écriture en complément à 2 sur 8 bits de -38.
 
     
     
@@ -151,7 +151,7 @@ Base 10 | Complément à 2 sur 8 bits
 
 -3810 = 110110102
 
-**13)** Ajouter 89 à -38 en complément à 2 et vérifier le résultat.
+13. Ajouter 89 à -38 en complément à 2 et vérifier le résultat.
 
     
     
@@ -164,9 +164,9 @@ Base 10 | Complément à 2 sur 8 bits
 8910 \- 3810 = 5110  
 Tout va bien !
 
-**14)** Quels sont le plus grand entier positif et le plus petit entier
+14. Quels sont le plus grand entier positif et le plus petit entier
 négatif que l’on peut écrire en complément à 2 sur 16 bits ?
 
-**15)** Convertir le complément à deux 100100002 en décimal.
+15. Convertir le complément à deux 100100002 en décimal.
 
 **16)** Convertir le complément à deux 000100002 en décimal.

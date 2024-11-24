@@ -3,14 +3,7 @@ title: "TD Arbres"
 icon: "mdi:paper-remove"
 layout: "@root/layouts/Page.astro"
 ---
-
-  * [cours](https://kxs.fr/cours/)
-  * [sujets](https://kxs.fr/sujets/)
-  * [fiches](https://kxs.fr/fiches/)
-
-[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
-le lycée et la prépa](https://kxs.fr/cours/)
-
+ 
 ## TD MP2I
 
   * [intro](.)
@@ -56,7 +49,7 @@ auquel il faudra ajouter des fonctions :
     	return 0;
     }
 
-**1)** Implémenter la primitive `est_vide`
+1. Implémenter la primitive `est_vide`
 
     
     
@@ -64,7 +57,7 @@ auquel il faudra ajouter des fonctions :
     	return a == NULL;
     }
 
-**2)** Implémenter la primitive `enraciner`
+2. Implémenter la primitive `enraciner`
 
     
     
@@ -76,7 +69,7 @@ auquel il faudra ajouter des fonctions :
     	return racine;
     }
 
-**3)** Implémenter la primitive `taille`
+3. Implémenter la primitive `taille`
 
     
     
@@ -88,7 +81,7 @@ auquel il faudra ajouter des fonctions :
     	}
     }
 
-**4)** Implémenter la primitive `hauteur`
+4. Implémenter la primitive `hauteur`
 
     
     
@@ -108,9 +101,9 @@ auquel il faudra ajouter des fonctions :
     	}
     }
 
-**5)** Implémenter l'arbre ci-dessous et calculer sa taille et sa hauteur.
+5. Implémenter l'arbre ci-dessous et calculer sa taille et sa hauteur.
 
-![Arbre binaire](img/arbre-binaire.svg)
+![Arbre binaire](/cours/arbre-binaire.svg)
 
     
     
@@ -136,25 +129,25 @@ un arbre binaire à l'aide d'une somme :
     
     type arbre = Vide | Noeud of int * arbre * arbre;;
 
-**6)** Implémenter la primitive `arbre_vide` qui renvoie un arbre vide.
+6. Implémenter la primitive `arbre_vide` qui renvoie un arbre vide.
 
     
     
     let arbre_vide () = Vide;;
 
-**7)** Implémenter la primitive `est_vide`
+7. Implémenter la primitive `est_vide`
 
     
     
     let est_vide a = a = Vide;;
 
-**8)** Implémenter la primitive `enraciner`
+8. Implémenter la primitive `enraciner`
 
     
     
     let enraciner n g d = Noeud (n, g, d);;
 
-**9)** Implémenter la primitive `racine` qui renvoie la racine d'un arbre. On
+9. Implémenter la primitive `racine` qui renvoie la racine d'un arbre. On
 pourra retourner `failwith "Arbre_vide"` en cas d'arbre vide.
 
     
@@ -164,7 +157,7 @@ pourra retourner `failwith "Arbre_vide"` en cas d'arbre vide.
     | Vide -> failwith "Arbre_vide"
     | Noeud(e,_,_) -> e;;
 
-**10)** Implémenter les primitives `sous_arbre_gauche` et `sous_arbre_droit`
+10. Implémenter les primitives `sous_arbre_gauche` et `sous_arbre_droit`
 qui renvoient le sous-arbe gauche et le sous-arbre droit d'un arbre. On pourra
 retourner `failwith "Arbre_vide"` en cas d'arbre vide.
 
@@ -180,7 +173,7 @@ retourner `failwith "Arbre_vide"` en cas d'arbre vide.
     | Vide -> failwith "Arbre_vide"
     | Noeud(_,_,d) -> d;;
 
-**11)** Implémenter la primitive `taille`
+11. Implémenter la primitive `taille`
 
     
     
@@ -189,7 +182,7 @@ retourner `failwith "Arbre_vide"` en cas d'arbre vide.
     | Vide -> 0
     | Noeud(e,g,d) -> 1 + taille(g) + taille(d);;
 
-**12)** Implémenter la primitive `hauteur`
+12. Implémenter la primitive `hauteur`
 
     
     
@@ -198,9 +191,9 @@ retourner `failwith "Arbre_vide"` en cas d'arbre vide.
     | Vide -> -1
     | Noeud(e,g,d) -> 1 + max (hauteur g) (hauteur d);;
 
-**13)** Implémenter l'arbre ci-dessous et calculer sa taille et sa hauteur.
+13. Implémenter l'arbre ci-dessous et calculer sa taille et sa hauteur.
 
-![Arbre binaire](img/arbre-binaire.svg)
+![Arbre binaire](/cours/arbre-binaire.svg)
 
     
     
@@ -220,7 +213,7 @@ retourner `failwith "Arbre_vide"` en cas d'arbre vide.
 
 ### C
 
-**14)** Implémenter le parcours préfixe d'un arbre binaire en C. Le parcours
+14. Implémenter le parcours préfixe d'un arbre binaire en C. Le parcours
 affichera juste les étiquettes. On vérifiera le bon fonctionnement sur
 l'exemple de la question 14.
 
@@ -234,7 +227,7 @@ l'exemple de la question 14.
     	}
     }
 
-**15)** Implémenter le parcours infixe d'un arbre binaire en C. Le parcours
+15. Implémenter le parcours infixe d'un arbre binaire en C. Le parcours
 affichera juste les étiquettes. On vérifiera le bon fonctionnement sur
 l'exemple de la question 14.
 
@@ -386,6 +379,6 @@ sur l'exemple de la question 14.
 
 [Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
 licence [CC BY-SA 4.0
-![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+![ccbysa](//cours/ccbysa.svg)](https://creativecommons.org/licenses/by-
 sa/4.0/deed.fr)
 

@@ -3,14 +3,7 @@ title: "Produits en OCaml - Niveau MP2I"
 icon: "mdi:paper-remove"
 layout: "@root/layouts/Page.astro"
 ---
-
-  * [cours](https://kxs.fr/cours/)
-  * [sujets](https://kxs.fr/sujets/)
-  * [fiches](https://kxs.fr/fiches/)
-
-[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
-le lycée et la prépa](https://kxs.fr/cours/)
-
+ 
 ## OCaml
 
   * [Présentation](.)
@@ -93,7 +86,7 @@ de concision) :
 
 ## Exercices
 
-**1)** Écrire une fonction qui transforme les coordonnées polaire d'un vecteur
+1. Écrire une fonction qui transforme les coordonnées polaire d'un vecteur
 en coordonnées cartésiennes.
 
     
@@ -101,7 +94,7 @@ en coordonnées cartésiennes.
     # let proj (theta, r) = (r *. cos theta, r *. sin theta);;
     val proj : float * float -> float * float = <fun>
 
-**2)** Écrire une fonction qui calcule le produit scalaire de deux vecteurs en
+2. Écrire une fonction qui calcule le produit scalaire de deux vecteurs en
 dimension 3 :
 
     
@@ -115,7 +108,7 @@ dimension 3 :
     let (v2x, v2y, v2z) = v2 in
     v1x * v2x + v1y * v2y + v1z * v2z;;
 
-**3)** On considère un nombre complexe a + ib représenté par le couple (a, b).
+3. On considère un nombre complexe a + ib représenté par le couple (a, b).
 Implémenter les fonctions suivantes :
 
   * `preelle` : renvoie la partie réelle d'un nombre complexe ;
@@ -147,6 +140,6 @@ primitives `acos`, `asin` et `atan`.
 
 [Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
 licence [CC BY-SA 4.0
-![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+![ccbysa](//cours/ccbysa.svg)](https://creativecommons.org/licenses/by-
 sa/4.0/deed.fr)
 

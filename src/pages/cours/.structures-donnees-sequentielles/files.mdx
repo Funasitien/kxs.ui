@@ -3,14 +3,7 @@ title: "C - Files - Niveau MP2I"
 icon: "mdi:paper-remove"
 layout: "@root/layouts/Page.astro"
 ---
-
-  * [cours](https://kxs.fr/cours/)
-  * [sujets](https://kxs.fr/sujets/)
-  * [fiches](https://kxs.fr/fiches/)
-
-[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
-le lycée et la prépa](https://kxs.fr/cours/)
-
+ 
 ## Structures de données séquentielles
 
   * [Introduction](.)
@@ -142,7 +135,7 @@ et vers l'élément précédent. Voici donc une implémentation d'une file :
 
 ### Utilisation
 
-**1)** Pour tester le code, créer une file vide, enfiler `5`, `6` et `17`,
+1. Pour tester le code, créer une file vide, enfiler `5`, `6` et `17`,
 afficher sa taille, afficher la valeur de la sortie, defiler un élément et
 afficher la valeur de la sortie.
 
@@ -159,7 +152,7 @@ afficher la valeur de la sortie.
     	printf("Sortie %d\n", sortie(maFile));
     }
 
-**2)** Créer une fonction qui affiche la file horizontalement avec ses valeurs
+2. Créer une fonction qui affiche la file horizontalement avec ses valeurs
 séparées par des virgules.
 
     
@@ -173,7 +166,7 @@ séparées par des virgules.
     	printf("\n");
     }
 
-**3)** De la même façon, créer une fonction qui affiche la file
+3. De la même façon, créer une fonction qui affiche la file
 horizontalement __dans l'ordre inverse avec ses valeurs séparées par des
 virgules.
 
@@ -188,14 +181,14 @@ virgules.
     	printf("\n");
     }
 
-**4)** Quels sont les avantages et inconvénients de cette implémentation ?
+4. Quels sont les avantages et inconvénients de cette implémentation ?
 
 L'accès à la tête et à la queue sont très rapides car elles sont directement
 accessibles. les actions enflie et défile sont aussi très rapides pour les
 memes raisons. La place en mémoire est acceptable car elle dépend directement
 du nombre d'éléments dand la pile.
 
-**5)** Pourquoi n'était-il pas possible d'utiliser une liste simplement
+5. Pourquoi n'était-il pas possible d'utiliser une liste simplement
 chaînée en gardant seulement un pointeur vers la queue ?
 
 Le pointeur permetrait en effet d'accéder rapidement à la dernière valeur de
@@ -206,6 +199,6 @@ file il aurait été nécessaire de parcourir toute la file du début.
 
 [Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
 licence [CC BY-SA 4.0
-![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+![ccbysa](//cours/ccbysa.svg)](https://creativecommons.org/licenses/by-
 sa/4.0/deed.fr)
 

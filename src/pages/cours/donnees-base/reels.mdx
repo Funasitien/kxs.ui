@@ -6,7 +6,7 @@ layout: "/src/layouts/Page.astro"
 
 ## Introduction
 
-**1)** Calculer 0.1 + 0.2 dans la console de Python. Que constatez-vous ?
+1. Calculer 0.1 + 0.2 dans la console de Python. Que constatez-vous ?
 
 Nous allons expliquer cela dans ce TP.
 
@@ -32,7 +32,7 @@ En base 2 le fonctionnement est le même. Prenons l’exemple de 101.10012 :
 On verra par la suite qu’il est également impossible d’écrire sur un nombre
 fini de bits certains réels. Et il y en a plus qu’en base 10.
 
-**2)** Convertissez 11010.1011102 en base 10.
+2. Convertissez 11010.1011102 en base 10.
 
 ## Conversion base 10 → base 2
 
@@ -47,18 +47,18 @@ suivante :
       * noter la partie entière ;
       * multiplier la partie fractionnaire par 2.
 
-**3)** Prenons l’exemple de 6.3437510.
+3. Prenons l’exemple de 6.3437510.
 
-**4)** Écrivez 12.695312510 en binaire.
+4. Écrivez 12.695312510 en binaire.
 
-**5)** Écrivez 0.210 en binaire. Que constatez-vous ?
+5. Écrivez 0.210 en binaire. Que constatez-vous ?
 
 Certains nombres réels comme 0.210 ou 0.110 ne peuvent pas être écrit
 exactement en base 2. Ce sont donc des valeurs arrondies qui sont stockées
 dans la machine. Ce n’est pas un bug, mais pour ces raisons il est très
 important de ne jamais tester l’égalité de deux flottants :
 
-**6)** Testez 0.2 + 0.1 == 0.3 dans la console Python. Que constatez-vous ?
+6. Testez 0.2 + 0.1 == 0.3 dans la console Python. Que constatez-vous ?
 
 ## Norme IEE-754
 
@@ -81,18 +81,18 @@ Un nombre binaire peut s’écrire sous la forme suivante (un peu comme en
 Dans une représentation sur 32 bits, voici la répartition :
 
 [Répartition des bits dans une représentation 32 bits d'un
-réel](img/float.svg)
+réel](/cours/float.svg)
 
   * le premier bit est le signe ;
   * les 8 suivants sont l’exposant. Le décalage sera alors de 127 pour pouvoir avoir des exposants négatifs ;
   * les 23 suivants sont la mantisse. Comme la mantisse commence nécessairement par un 1 : 1.xxxxx2, on ne représente pas ce 1 mais juste les nombres après la virgule.
 
-**7)** Prenons l’exemple suivant pour comprendre : 1 10000110
+7. Prenons l’exemple suivant pour comprendre : 1 10000110
 10101101100000000000000
 
-**8)** Soit le nombre flottant suivant : 0 01111011 10011001100110011001100.
+8. Soit le nombre flottant suivant : 0 01111011 10011001100110011001100.
 Trouver la représentation en base 10 de ce nombre.
 
-**9)** Donner la représentation sur 32 bits du nombre -10.12510.
+9. Donner la représentation sur 32 bits du nombre -10.12510.
 
-**10)** Donner la représentation sur 32 bits du nombre 0.2510.
+10. Donner la représentation sur 32 bits du nombre 0.2510.

@@ -3,14 +3,7 @@ title: "TD Arbres"
 icon: "mdi:paper-remove"
 layout: "@root/layouts/Page.astro"
 ---
-
-  * [cours](https://kxs.fr/cours/)
-  * [sujets](https://kxs.fr/sujets/)
-  * [fiches](https://kxs.fr/fiches/)
-
-[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
-le lycée et la prépa](https://kxs.fr/cours/)
-
+ 
 ## TD MP2I
 
   * [intro](.)
@@ -51,10 +44,10 @@ C. Voici le programme initial auquel il faudra ajouter des fonctions :
     	return 0;
     }
 
-**1)** Dessiner le graphe implémenté ci-dessus. Est-il orienté ou non-orienté
+1. Dessiner le graphe implémenté ci-dessus. Est-il orienté ou non-orienté
 ?
 
-**2)** Implémenter la primitive `existe_arc`
+2. Implémenter la primitive `existe_arc`
 
     
     
@@ -62,7 +55,7 @@ C. Voici le programme initial auquel il faudra ajouter des fonctions :
     	return (g[i][j] == 1);
     }
 
-**3)** Implémenter la primitive `ajouter_arc`
+3. Implémenter la primitive `ajouter_arc`
 
     
     
@@ -70,7 +63,7 @@ C. Voici le programme initial auquel il faudra ajouter des fonctions :
     	g[i][j] = 1;
     }
 
-**4)** Implémenter la primitive `ajouter_arete`
+4. Implémenter la primitive `ajouter_arete`
 
     
     
@@ -79,7 +72,7 @@ C. Voici le programme initial auquel il faudra ajouter des fonctions :
     	g[j][i] = 1;
     }
 
-**5)** Implémenter la primitive `supprimer_arc`
+5. Implémenter la primitive `supprimer_arc`
 
     
     
@@ -87,7 +80,7 @@ C. Voici le programme initial auquel il faudra ajouter des fonctions :
     	g[i][j] = 0;
     }
 
-**6)** Implémenter la primitive `supprimer_arete`
+6. Implémenter la primitive `supprimer_arete`
 
     
     
@@ -96,7 +89,7 @@ C. Voici le programme initial auquel il faudra ajouter des fonctions :
     	g[j][i] = 0;
     }
 
-**7)** Implémenter la primitive `deg_entrant`
+7. Implémenter la primitive `deg_entrant`
 
     
     
@@ -108,7 +101,7 @@ C. Voici le programme initial auquel il faudra ajouter des fonctions :
     	return d;
     }
 
-**8)** Implémenter la primitive `deg_sortant`
+8. Implémenter la primitive `deg_sortant`
 
     
     
@@ -120,7 +113,7 @@ C. Voici le programme initial auquel il faudra ajouter des fonctions :
     	return d;
     }
 
-**9)** Implémenter une procédure `affiche_graphe` qui affiche la matrice
+9. Implémenter une procédure `affiche_graphe` qui affiche la matrice
 d'adjacence du graphe.
 
     
@@ -148,33 +141,33 @@ Nous avons besoin donc d'un tableau de listes d'entiers :
     
     let (g:graphe) = [|[1;4];[2];[3];[3;4];[1;2]|];;
 
-**10)** Implémenter la primitive `existe_arc`
+10. Implémenter la primitive `existe_arc`
 
     
     
     let existe_arc (g:graphe) i j = List.mem j g.(i);;
 
-**11)** Implémenter la primitive `ajouter_arc`
+11. Implémenter la primitive `ajouter_arc`
 
     
     
     let ajouter_arc (g:graphe) i j =
     	if not (existe_arc g i j) then g.(i) <- j::g.(i);;
 
-**12)** Implémenter la primitive `supprimer_arc`
+12. Implémenter la primitive `supprimer_arc`
 
     
     
     let supprimer_arc (g:graphe) i j =
     g.(i) <- List.filter ((<>) j) g.(i);;
 
-**13)** Implémenter la primitive `deg_sortant`
+13. Implémenter la primitive `deg_sortant`
 
     
     
     let deg_s (g:graphe) i = List.length g.(i);;
 
-**14)** Implémenter la primitive `deg_entrant`
+14. Implémenter la primitive `deg_entrant`
 
     
     
@@ -189,7 +182,7 @@ Nous avons besoin donc d'un tableau de listes d'entiers :
     done;
     !s;;
 
-**15)** Implémenter la primitive `deg_sortant2` en utilisant une fonction
+15. Implémenter la primitive `deg_sortant2` en utilisant une fonction
 `somme` qui fait la somme des éléments d'un tableau et la fonction `Array.map`
 qui applique une fonction à tous les éléments d'un tableau.
 
@@ -212,6 +205,6 @@ d'adjacence du graphe.
 
 [Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
 licence [CC BY-SA 4.0
-![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+![ccbysa](//cours/ccbysa.svg)](https://creativecommons.org/licenses/by-
 sa/4.0/deed.fr)
 

@@ -32,7 +32,7 @@ a des méthodes qui sont inévitables (même si leurs noms peuvent changer) :
 
 #### Exemple
 
-**1)** Considérant la suite d'instructions suivante, donnez la valeur renvoyée
+1. Considérant la suite d'instructions suivante, donnez la valeur renvoyée
 ou le contenu de la liste à chaque ligne repérée par un numéro en commentaire.
 `ma_liste` est initialement une liste vide. On représentera une liste par des
 éléments entre crochets comme en Python.
@@ -89,11 +89,11 @@ class ListePerso:
 ma_liste = ListePerso()
 ```
 
-**2)** Implémentez les méthodes faisant partie de l'interface définie
+2. Implémentez les méthodes faisant partie de l'interface définie
 précédemment (insere(x), estVide(), retire(i), taille()). Vous utiliserez la
 [documentation sur les listes](https://docs.python.org/fr/3/tutorial/datastructures.html) de Python.
 
-**3)** Ajoutez les tests suivants et vérifiez que votre classe les passe.
+3. Ajoutez les tests suivants et vérifiez que votre classe les passe.
 
 ```py
 class ListePerso:
@@ -131,7 +131,7 @@ class ListePerso:
     """
 ```
 
-**4)** Implémentez les méthodes suivantes à votre classe listePerso
+4. Implémentez les méthodes suivantes à votre classe listePerso
 - fusionne(L) : concatène la liste L avec notre liste ;
 - efface() : retire tous les éléments de la liste ;
 - inverse() : mets les éléments de la liste en ordre inverse ;
@@ -139,7 +139,7 @@ class ListePerso:
 - dernier() : renvoie le dernier élément de la liste ;
 - suivant() : renvoie l'élément suivant celui qui a été précédement renvoyé. Pour le premier appel à cette méthode il faut renvoyer le premier élément ;
 
-**5)** La méthode `suivant()` pose un problème si on l'appelle un trop grand
+5. La méthode `suivant()` pose un problème si on l'appelle un trop grand
 nombre de fois. Proposez une solution pour éviter d'avoir une erreur dans ce
 cas.
 
@@ -176,7 +176,7 @@ Ainsi pour ajouter un élément il suffit de changer deux « pointeurs » :
 
 # MISSING GRAPHIC
 
-**6)** Complétez le code de la classe `liste_chainee` ci-dessous pour
+6. Complétez le code de la classe `liste_chainee` ci-dessous pour
 implémenter la méthode `insere()` qui ajoute un élément en fin de liste.
 Chaque nouvel élement est un nœud dont la classe est fournie. La classe
 `liste_chainee` connait uniquement son premier et son dernier élément.
@@ -193,14 +193,14 @@ class Liste_chainee:
         self.dernier = None
 ```
 
-**7)** Complétez le code de la classe `liste_chainee` ci-dessus pour
+7. Complétez le code de la classe `liste_chainee` ci-dessus pour
 implémenter la méthode `affiche()` qui affiche tous les éléments de la listes
 séparés par ` -> `.
 
-**8)** Complétez le code de la classe `liste_chainee` ci-dessus pour
+8. Complétez le code de la classe `liste_chainee` ci-dessus pour
 implémenter la méthode `estVide()` qui indique si la liste est vide ou non.
 
-**9)** Complétez le code de la classe `liste_chainee` ci-dessus pour
+9. Complétez le code de la classe `liste_chainee` ci-dessus pour
 implémenter la méthode `taille()`. On pourra ajouter un attribut représentant
 la taille de la liste pour ne pas avoir à « calculer » la taille à chaque
 appel de la méthode.

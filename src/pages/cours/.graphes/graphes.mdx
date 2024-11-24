@@ -3,14 +3,7 @@ title: "Graphes - Terminale NSI"
 icon: "mdi:paper-remove"
 layout: "@root/layouts/Page.astro"
 ---
-
-  * [cours](https://kxs.fr/cours/)
-  * [sujets](https://kxs.fr/sujets/)
-  * [fiches](https://kxs.fr/fiches/)
-
-[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
-le lycée et la prépa](https://kxs.fr/cours/)
-
+ 
 ## Graphes et algorithmes
 
   * [Introduction](.)
@@ -37,17 +30,17 @@ appelle _fils_ d'un nœud, les nœuds vers lesquels il pointe.
 Un graphe peut représenter un réseau social, des liens d'amitié, un réseau
 routier.
 
-**1)** Pour le graphe ci-dessous, dire s'il est orienté ou non, donner le
+1. Pour le graphe ci-dessous, dire s'il est orienté ou non, donner le
 nombre de sommets et le nombre d'arêtes.
 
-![Graphe avec six sommets et des flèches](img/graphe_oriente.svg)
+![Graphe avec six sommets et des flèches](/cours/graphe_oriente.svg)
 
 C'est un graphe orienté (il y a des flèches). Il a 6 sommets et 8 arêtes.
 
-**2)** Pour le graphe ci-dessous, dire s'il est orienté ou non, donner le
+2. Pour le graphe ci-dessous, dire s'il est orienté ou non, donner le
 nombre de sommets et le nombre d'arêtes.
 
-![Graphe avec cinq sommets sans flèches](img/graphe_non_oriente.svg)
+![Graphe avec cinq sommets sans flèches](/cours/graphe_non_oriente.svg)
 
 C'est un graphe non-orienté (il n'y a pas de flèches). Il a 5 sommets et 6
 arêtes.
@@ -57,7 +50,7 @@ distances sur une carte. Dans un tel graphe, les arêtes sont associées à un
 poids :
 
 ![Graphe avec cinq sommets, sans flèches et avec des valeurs sur les
-arêtes](img/graphe_pondere.svg)
+arêtes](/cours/graphe_pondere.svg)
 
 ## Propriétés
 
@@ -68,10 +61,10 @@ Les propriété les plus communes pour parler d'un graphe sont les suivantes :
   * la _distance_ entre deux sommets est la longueur de la chaîne la plus courte entre ces deux sommets ;
   * un _cycle_ est une chaîne fermée composée d'arêtes distinctes. C'est à dire qui commence et termine par le même sommet et qui n'empreinte pas deux fois la même arête.
 
-**3)** Pour le graphe ci-dessous, trouvez deux cycles. Donnez également la
+3. Pour le graphe ci-dessous, trouvez deux cycles. Donnez également la
 distance entre A et D.
 
-![Graphe avec cinq sommets sans flèches](img/graphe_non_oriente.svg)
+![Graphe avec cinq sommets sans flèches](/cours/graphe_non_oriente.svg)
 
 Voici les trois cycles possibles : DCBD, DCEBD et CEBC. La distance entre A et
 B est 2.
@@ -88,7 +81,7 @@ pour celui de la question 2 :
   * D est relié à C et B ;
   * E est relié à A, B et C.
 
-**4)** Dessinez le graphe correspondant à la description ci-dessous :
+4. Dessinez le graphe correspondant à la description ci-dessous :
 
 Kevin Mattéo Tom Emma Claire David
 
@@ -99,7 +92,7 @@ Kevin Mattéo Tom Emma Claire David
   * David est ami avec Claire ;
   * Kevin est ami avec Mattéo.
 
-**5)** Dessinez le graphe correspondant à la description ci-dessous :
+5. Dessinez le graphe correspondant à la description ci-dessous :
 
   * A est à 12 km de B ;
   * B est à 12 km de A, 9 km de C et 25 km de D ;
@@ -118,7 +111,7 @@ implémentations d'un graphe.
 
 Une matrice n'est qu'un tableau à double entrée :
 
-![Matrice 3x4](img/matrice.svg)
+![Matrice 3x4](/cours/matrice.svg)
 
 Nous avons ci-dessus une matrice à 3 lignes et 4 colonnes. En mathématiques on
 utilise les matrices pour effectuer des calculs, nous les utiliserons ici
@@ -132,25 +125,25 @@ mettra un « 1 » sur la case [i][j] s'il y a une arête du sommet i vers le
 sommet j, et un « 0 » sinon. Pour un graphe pondéré on mettra sur la case
 [i][j] le poids du lien entre le sommet i et le sommet j.
 
-**6)** Donnez la matrice d'adjacence du graphe ci-dessous.
+6. Donnez la matrice d'adjacence du graphe ci-dessous.
 
-![Graphe avec cinq sommets sans flèches](img/graphe_non_oriente.svg)
+![Graphe avec cinq sommets sans flèches](/cours/graphe_non_oriente.svg)
 
-**7)** Donnez la matrice d'adjacence du graphe ci-dessous.
+7. Donnez la matrice d'adjacence du graphe ci-dessous.
 
-![Graphe avec six sommets et des flèches](img/graphe_oriente.svg)
+![Graphe avec six sommets et des flèches](/cours/graphe_oriente.svg)
 
-**8)** Donnez la matrice d'adjacence du graphe ci-dessous.
+8. Donnez la matrice d'adjacence du graphe ci-dessous.
 
 ![Graphe avec cinq sommets, sans flèches et avec des valeurs sur les
-arêtes](img/graphe_pondere.svg)
+arêtes](/cours/graphe_pondere.svg)
 
 ### Listes d'adjacence
 
 Pour un graphe non orienté, une liste d'adjacence associe à chaque sommet la
 liste de ses voisins. Par exemple, pour le graphe ci-dessous
 
-![Graphe avec cinq sommets sans flèches](img/graphe_liste.svg)
+![Graphe avec cinq sommets sans flèches](/cours/graphe_liste.svg)
 
 La liste d'adjacence serait :
 
@@ -165,13 +158,13 @@ de ses successeurs. C'est à dire les sommets vers lesquels il pointe. Il est
 également possible de faire une liste d'adjacence des prédécesseurs, ou même
 les deux pour des raisons de symétrie.
 
-**9)** Donnez la liste d'adjacence du graphe ci-dessous.
+9. Donnez la liste d'adjacence du graphe ci-dessous.
 
-![Graphe avec cinq sommets sans flèches](img/graphe_non_oriente.svg)
+![Graphe avec cinq sommets sans flèches](/cours/graphe_non_oriente.svg)
 
-**10)** Donnez la liste d'adjacence des successeurs du graphe ci-dessous.
+10. Donnez la liste d'adjacence des successeurs du graphe ci-dessous.
 
-![Graphe avec six sommets et des flèches](img/graphe_oriente.svg)
+![Graphe avec six sommets et des flèches](/cours/graphe_oriente.svg)
 
 ### Choix d'implémentation
 
@@ -185,6 +178,6 @@ pourra préférer une implémentation à l'autre.
 
 [Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
 licence [CC BY-SA 4.0
-![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+![ccbysa](//cours/ccbysa.svg)](https://creativecommons.org/licenses/by-
 sa/4.0/deed.fr)
 

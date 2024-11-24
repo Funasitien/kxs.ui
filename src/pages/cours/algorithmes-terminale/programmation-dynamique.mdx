@@ -33,20 +33,20 @@ Il est possible de la programmer par récurrence assez simplement :
             return fibo(n-1) + fibo(n-2)
 ```
 
-**1)** Lancez ce programme pour n = 10, n = 20 et n = 30. Que constatez-vous ?
+1. Lancez ce programme pour n = 10, n = 20 et n = 30. Que constatez-vous ?
 
-**2)** Pour se rendre compte de la « lourdeur » de se programme, dessinez un
+2. Pour se rendre compte de la « lourdeur » de se programme, dessinez un
 graphe représentant les appels récursifs à la fonction `fibo` pour `fibo(5)`.
 
-**3)** Sans tout dessiner, compléter le graphe pour `fibo(6)`.
+3. Sans tout dessiner, compléter le graphe pour `fibo(6)`.
 
-**4)** Pour voir tous les appels à `fibo`, ajoutez un `print(n)` au début de
+4. Pour voir tous les appels à `fibo`, ajoutez un `print(n)` au début de
 la fonction et lancer `fibo(10)`.
 
 Nous allons maintenant utiliser la programmation dynamique et stocker les
 résultats dans une mémoire `mem` pour pouvoir les réutiliser.
 
-**5)** Complétez le programme suivant qui permet de faire cela :
+5. Complétez le programme suivant qui permet de faire cela :
 
 ```py
     def fibodyn(n):
@@ -63,15 +63,15 @@ résultats dans une mémoire `mem` pour pouvoir les réutiliser.
             …
 ```
 
-**6)** Lancez ce programme pour n = 10, n = 20, n = 30, n = 100 et n = 1000.
+6. Lancez ce programme pour n = 10, n = 20, n = 30, n = 100 et n = 1000.
 Que constatez-vous ?
 
-**7)** Pour le comparer au programme précédent, dessinez un graphe
+7. Pour le comparer au programme précédent, dessinez un graphe
 représentant les appels récursifs à la fonction `fibomem` pour `fibo(5)`.
 
-**8)** Compléter le graphe pour `fibo(6)`.
+8. Compléter le graphe pour `fibo(6)`.
 
-**9)** Pour voir tous les appels à `fibomem`, ajoutez un `print(n)` au début
+9. Pour voir tous les appels à `fibomem`, ajoutez un `print(n)` au début
 de la fonction et lancer `fibo(10)`.
 
 La programmation dynamique nous a ici permis de rendre le programme
@@ -106,19 +106,19 @@ Python est donnée ci-dessous :
     pieces = (1,2,5,10,20,50,100,200,500)
 ```
 
-**10)** Essayez cette fonction avec la somme 11 puis 55. Que se passe-t-il ?
+10. Essayez cette fonction avec la somme 11 puis 55. Que se passe-t-il ?
 
-**11)** De la même façon qu'avec Fibonacci, proposez une version de
+11. De la même façon qu'avec Fibonacci, proposez une version de
 programmation dynamique `monnaiedyn` de cette fonction.
 
-**12)** Testez cette nouvelle fonction avec 11 puis 55. Que remarquez-vous ?
+12. Testez cette nouvelle fonction avec 11 puis 55. Que remarquez-vous ?
 
-**13)** Essayez alors avec 1325 et 12525. Que remarquez-vous ?
+13. Essayez alors avec 1325 et 12525. Que remarquez-vous ?
 
 Le problème vient du fait qu'avec le grand nombre de pièces la programmation
 dynamique ne permet pas de suffisement limiter les appels récursifs.
 
-**14)** Proposez alors une ammélioration permettant de simplifier le rendu de
+14. Proposez alors une ammélioration permettant de simplifier le rendu de
 monnaie pour les grands nombres.
 
-**15)** Testez alors avec 12525 et 59665412256854.
+15. Testez alors avec 12525 et 59665412256854.

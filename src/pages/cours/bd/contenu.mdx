@@ -51,17 +51,17 @@ Il faut indiquer après le `SELECT` les champs que l'on veut afficher. On les
 sépare par des virgules. `*` signifie tous les champs de la table. On indique
 après le `FROM` la table sur laquelle on fait la sélection.
 
-**1)** Proposez et testez une requête qui permet d'afficher uniquement le
+1. Proposez et testez une requête qui permet d'afficher uniquement le
 texte des citations.
 
-**2)** Proposez et testez une requête qui permet d'afficher le champ
+2. Proposez et testez une requête qui permet d'afficher le champ
 `id_citation` et le texte des citations.
 
 Intéressons-nous à la table films.
 
-**3)** Donnez la structure de la table _films_.
+3. Donnez la structure de la table _films_.
 
-**4)** Proposez et testez une requête pour afficher le contenu complet de la
+4. Proposez et testez une requête pour afficher le contenu complet de la
 table _films_.
 
 ## SELECT … FROM … WHERE …
@@ -93,7 +93,7 @@ Vous avez dû remarquer que MySQL vous donne le nombre de lignes et le temps
 mis pour effectuer la requête. Celà peut être utile lorsqu'on effectue des
 requêtes complexes sur des tables plus grandes.
 
-**5)** Proposez et testez une requête pour afficher les 5 premières lignes de
+5. Proposez et testez une requête pour afficher les 5 premières lignes de
 la table _citations_.
 
 Il est possible de chercher dans un texte avec l'opérateur `LIKE`. `LIKE`
@@ -130,16 +130,16 @@ Le résultat :
 7 rows in set (0.00 sec)
 ```
 
-**6)** Proposez et testez une requête pour afficher les lignes de la table
+6. Proposez et testez une requête pour afficher les lignes de la table
 _citations_ contenant « je ».
 
 Il est possible de combiner plusieurs conditions dans la clause `WHERE` avec
 les opérateurs logiques `AND` et `OR`
 
-**7)** Proposez et testez une requête pour afficher les lignes de la table
+7. Proposez et testez une requête pour afficher les lignes de la table
 _citations_ contenant « je » et finissant par un point d'exclamation.
 
-**8)** Proposez et testez une requête pour afficher parmi les dix premières
+8. Proposez et testez une requête pour afficher parmi les dix premières
 lignes de la table _citations_ celles qui contiennent « est ».
 
 ## UPDATE
@@ -176,7 +176,7 @@ UPDATE citations SET texte = "Vers l'infini et au-delà !" WHERE id_citation = 1
 Nous utilisons ici la clé _id_citation_ pour identifier de manière certaine la
 ligne à modifier.
 
-**9)** Saisissez cette commande et vérifiez que cela a bien fonctionné.
+9. Saisissez cette commande et vérifiez que cela a bien fonctionné.
 
 Vous avez peut-être remarqué que nous avons utilisé ici les doubles quotes `"`
 au lieu des simples quotes `'` pour délimiter le nouveau texte. Nous avons dû
@@ -189,11 +189,11 @@ La commande serait alors :
 UPDATE citations SET texte = 'Vers l\'infini et au-delà !' WHERE id_citation = 1;
 ```
 
-**10)** Une autre erreur s'est glissée dans la citation 5. « fût » est écrit
+10. Une autre erreur s'est glissée dans la citation 5. « fût » est écrit
 avec un accent alors qu'il ne devrait pas y en avoir. Proposez et testez une
 requête pour corrigez cette coquille.
 
-**11)** Proposez et testez des requêtes pour ajouter les dates manquantes dans
+11. Proposez et testez des requêtes pour ajouter les dates manquantes dans
 la table _films_. (Vous devrez les chercher sur internet)
 
 ## INSERT
@@ -216,7 +216,7 @@ Elle se décompose comme ceci :
 Il faut obligatoirement mettre les champs text ou varchar entre guillemets
 simples, ce n'est pas nécessaire pour les champs numériques.
 
-**12)** Ajoutez votre citation de film préférée à la table _citations_ (une
+12. Ajoutez votre citation de film préférée à la table _citations_ (une
 vraie citation d'un vrai film, c'est important pour la suite). Faites
 attention à bien choisir son _id_citation_ et on mettra 0 pour l'_id_film_.
 Choisissez une citation d'un film qui n'est pas déjà dans la base.
@@ -257,7 +257,7 @@ Nous allons maintenant ajouter une ligne pour la supprimer ensuite :
 INSERT INTO citations VALUES (20, 'Citation à supprimer', 20);
 ```
 
-**13)** Supprimez la ligne que nous venons d'ajouter et donnez la requête
+13. Supprimez la ligne que nous venons d'ajouter et donnez la requête
 utilisée.
 
 Il est temps maintenant de faire le point sur la structure de notre base de

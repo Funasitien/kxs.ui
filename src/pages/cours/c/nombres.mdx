@@ -40,7 +40,7 @@ const int a = 2;
 a = 3;
 ```
 
-**1)** compiler le programme ci-dessus pour voir l'erreur renvoyée.
+1. compiler le programme ci-dessus pour voir l'erreur renvoyée.
 
 ```bash
 exo.c: In function ‘main’:
@@ -68,7 +68,7 @@ programme optimisé. Voici une liste des différents types d'entiers :
 
 `unsigned` signifie que se sont des entiers naturels.
 
-**2)** Écrire un programme qui liste, pour tous les types d'entiers, la taille
+2. Écrire un programme qui liste, pour tous les types d'entiers, la taille
 qu'ils occupent en mémoire. Pour cela on utilisera la fonction `sizeof()` qui
 prend en paramètre une variable et retourne sa taille en mémoire en octets.
 
@@ -110,7 +110,7 @@ long : 8
 unsigned long : 8
 ```
 
-**3)** Grâce aux résultats de la question précédente, calculez la valeur
+3. Grâce aux résultats de la question précédente, calculez la valeur
 minimale et maximale que l'on peut stocker dans chaque type d'entier.
 
   * char : 1 octet -> 8 bits -> -27 à 27-1 = -128 à 127
@@ -122,7 +122,7 @@ minimale et maximale que l'on peut stocker dans chaque type d'entier.
   * long : 8 octets -> 64 bits -> -263 à 263-1 = -9223372036854775808 à 9223372036854775807
   * unsigned long : 8 octets -> 64 bits -> 0 à 264-1 = 0 à 18446744073709551615
 
-**4)** Vérifier alors vos calculs en affichant les valeurs minimales et
+4. Vérifier alors vos calculs en affichant les valeurs minimales et
 maximales de chaque type contenues dans la bibliothèque `limits`. Voici la
 liste des valeurs que vous devez utiliser : `CHAR_MIN`, `CHAR_MAX`,
 `UCHAR_MAX`, `SHRT_MIN`, `SHRT_MAX`, `USHRT_MAX`, `INT_MIN`, `INT_MAX`,
@@ -166,7 +166,7 @@ la valeur sera complêtement différente. L'[accident du vol 501 d'Ariane
 5](https://fr.wikipedia.org/wiki/Vol_501_d%27Ariane_5) est dû à un dépassement
 d'entier (le chargement valait 370 millions de dollars !).
 
-**5)** Tester le code ci-dessous et expliquer ce qu'il se passe dans ce cas
+5. Tester le code ci-dessous et expliquer ce qu'il se passe dans ce cas
 lorsqu'on fait un dépassement d'entier :
 
 ```c
@@ -197,7 +197,7 @@ Il existe trois types de flottant :
   * double
   * long double
 
-**6)** De la même manière que pour les entiers, en utilisant la fonction
+6. De la même manière que pour les entiers, en utilisant la fonction
 `sizeof()` écrire un programme qui liste la taille en mémoire des types de
 flottant.
 
@@ -220,7 +220,7 @@ double : 8
 long double : 16
 ```
 
-**7)** Attention, comme nous l'avons vu en cours, les flottant sont souvent
+7. Attention, comme nous l'avons vu en cours, les flottant sont souvent
 des approximations car ils sont stockés en binaire dans la mémoire. Pour
 comprendre cela, éxécuter le programme suivant et expliquer ce qu'il se passe
 :
@@ -308,7 +308,7 @@ ils sont donc extrèmement rapides :
   * ~ : négation (inverse les bits) ;
   * 
 
-**8)** Sachant que 1210 = 11002 et 2110 = 101012, expliquez les résultats
+8. Sachant que 1210 = 11002 et 2110 = 101012, expliquez les résultats
 suivants sachant que x et y sont des entiers non signés sur un octet (unsigned
 char) : (nous ne le faisons pas en C car la manipulation des char demande des
 connaissances un peu plus avancées)
@@ -366,7 +366,7 @@ de caractère de formattage puis assigner les valeurs trouvées aux variables.
 Il faut faire attention à faire précéder les variables par `&` lorsqu'on les
 utilise dans `scanf`. Nous verrons la raison de ce comportement plus tard.
 
-**9)** Tester le code ci-dessous :
+9. Tester le code ci-dessous :
 
 ```c
 int j;
@@ -376,7 +376,7 @@ printf("Le nombre saisi est %d\n", j);
 
 Il faut saisir un nombre puis appuyer sur « entrée ».
 
-**10)** Essayez de comprendre et de faire fonctionner le code ci-dessous :
+10. Essayez de comprendre et de faire fonctionner le code ci-dessous :
 
 ```c
 int i, j;
@@ -388,7 +388,7 @@ Il faut saisir deux nombres séparés par un espace puis appuyer sur « entrée 
 
 ## Exercices
 
-**11)** Écrire un programme qui demande à l'utilisateur de saisir son `age`,
+11. Écrire un programme qui demande à l'utilisateur de saisir son `age`,
 puis affiche une phrase comme celle-ci : Bonjour, votre age est `age`.
 
 ```c
@@ -402,7 +402,7 @@ int main() {
 }
 ```
 
-**12)** Écrire un programme qui demande de saisir deux entiers et affiche le
+12. Écrire un programme qui demande de saisir deux entiers et affiche le
 résultat de leur division, le quotient de leur division euclidienne et le
 reste de leur division euclidienne.
 
@@ -419,7 +419,7 @@ int main() {
 }
 ```
 
-**13)** Écrire un programme qui demande de saisir les dimensions des deux
+13. Écrire un programme qui demande de saisir les dimensions des deux
 cotés perpendiculaires a et b d'un triangle rectangle et donne la taille de
 l'hypoténuse.
 
@@ -435,7 +435,7 @@ int main() {
 }
 ```
 
-**14)** Écrire un programme qui demande de saisir les dimensions des deux
+14. Écrire un programme qui demande de saisir les dimensions des deux
 cotés d'un rectangle et affiche son aire et son périmètre.
 
 ```c
@@ -450,7 +450,7 @@ int main() {
 }
 ```
 
-**15)** Écrire un programme qui demande de saisir le rayon d'un cercle et
+15. Écrire un programme qui demande de saisir le rayon d'un cercle et
 affiche son aire et son périmètre. On pourra utiliser la constante `M_PI` de
 la bibliothèque `math`.
 

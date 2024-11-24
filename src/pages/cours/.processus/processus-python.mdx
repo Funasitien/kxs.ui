@@ -3,14 +3,7 @@ title: "Processus avec Python"
 icon: "mdi:paper-remove"
 layout: "@root/layouts/Page.astro"
 ---
-
-  * [cours](https://kxs.fr/cours/)
-  * [sujets](https://kxs.fr/sujets/)
-  * [fiches](https://kxs.fr/fiches/)
-
-[![Logo de kxs.fr](/img/logo.svg)](https://kxs.fr/)[Cours d'informatique pour
-le lycée et la prépa](https://kxs.fr/cours/)
-
+ 
 ## Processus
 
   * [Introduction](.)
@@ -49,10 +42,10 @@ scripts à partir de la console avec une commande comme celle-ci pour
     
     python3 prog1.py
 
-**1)** En utilisant une double fenêtre dans Tilix, lancer ce script et
+1. En utilisant une double fenêtre dans Tilix, lancer ce script et
 vérifiez les informations données avec `ps`.
 
-**2)** Qui est le père de ce script ?
+2. Qui est le père de ce script ?
 
 ## Fork
 
@@ -63,7 +56,7 @@ père. Elle crée donc un script identique au premier qui va s'éxécuter en
 parallèle. Le seul moyen de les différencier est la valeur de retour qui vaut
 0 pour le fils et le PID du fils pour le père.
 
-**3)** Exécutez dans la console l'exemple `prog2.py` ci-dessous pour tenter de
+3. Exécutez dans la console l'exemple `prog2.py` ci-dessous pour tenter de
 comprendre. Il faudra appuyer sur « Ctrl + c » pour interrompre le processus à
 la fin.
 
@@ -93,21 +86,21 @@ la fin.
     
     pereFils()
 
-**4)** Faite un `pstree` pendant l'exécution du script pour visualiser les
+4. Faite un `pstree` pendant l'exécution du script pour visualiser les
 processus.
 
-**5)** Modifiez le script pour qu'il affiche « fin du processus père » quand
+5. Modifiez le script pour qu'il affiche « fin du processus père » quand
 le père se termine et « fin du processus fils » quand le fils se termine.
 
-**6)** Quel processus devient le parent du fils lorsque son père se termine ?
+6. Quel processus devient le parent du fils lorsque son père se termine ?
 
 Ce phénomène est normal, lorsque le père d'un processus se termine, le
 processus est « adopté » par `systemd`.
 
-**7)** Faite un `pstree` pendant l'exécution du script pour visualiser ce
+7. Faite un `pstree` pendant l'exécution du script pour visualiser ce
 phénomène. (Allongez éventuellement les boucles pour avoir plus de temps)
 
-**8)** Modifiez ce script pour avoir un arbre de processus comme celui ci-
+8. Modifiez ce script pour avoir un arbre de processus comme celui ci-
 dessous. Chaque processus devra afficher cinq fois « dans le … » et attendre
 deux secondes entre chaque affichage.
 
@@ -159,7 +152,7 @@ On veut qu'il affiche ceci :
     Le processus fils a terminé
     Le père se termine après que le fils ait terminé
 
-**9)** Compléter le programme `prog3.py` ci-dessus avec les instructions
+9. Compléter le programme `prog3.py` ci-dessus avec les instructions
 suivantes pour qu'il affiche ce qui est demandé.
 
     
@@ -176,6 +169,6 @@ suivantes pour qu'il affiche ce qui est demandé.
 
 [Cours de NSI et MP2I](https://kxs.fr/cours/) par Thomas Beline sous la
 licence [CC BY-SA 4.0
-![ccbysa](/img/ccbysa.svg)](https://creativecommons.org/licenses/by-
+![ccbysa](//cours/ccbysa.svg)](https://creativecommons.org/licenses/by-
 sa/4.0/deed.fr)
 

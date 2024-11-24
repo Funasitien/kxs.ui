@@ -24,7 +24,7 @@ lycée a pris une dizaine d'heures.
 
 Voici le schéma relationnel de la base de données :
 
-![Schéma relationnel de la base de donnée de l'IMDb](img/schema-
+![Schéma relationnel de la base de donnée de l'IMDb](/cours/schema-
 relationnel.svg)
 
 ## Avertissement !
@@ -72,35 +72,35 @@ Pour jauger cette base de données nous allons avoir besoin de nouvelles
 instructions SQL. La première est `count(*)` qui permet d'avoir le nombre de
 lignes d'une requête sans que toutes les lignes s'affichent.
 
-**1)** Exécutez la requête suivante pour connaitre le nombre d'œuvres dans la
+1. Exécutez la requête suivante pour connaitre le nombre d'œuvres dans la
 base :
 
 ```sql
 SELECT count(*) FROM work_basics;
 ```
 
-**2)** Avec la commande `DESCRIBE` donnez les champs composant de la table
+2. Avec la commande `DESCRIBE` donnez les champs composant de la table
 `work_basics`.
 
-**3)** D'après son domaine, expliquez ce qu'est le champ `worktype`.
+3. D'après son domaine, expliquez ce qu'est le champ `worktype`.
 
 Nous utiliserons également la clause `LIMIT` déjà évoquée plus haut pour
 limiter le nombre de lignes à afficher.
 
-**4)** Donnez une requête affichant le nom et la durée des 10 films (movie)
+4. Donnez une requête affichant le nom et la durée des 10 films (movie)
 les plus longs. En déduire la durée en heures du plus long film.
 
-**5)** Donnez une requête affichant le nom et l'année de « sortie »
+5. Donnez une requête affichant le nom et l'année de « sortie »
 (startYear) des 10 premiers films (movie) de l'histoire. Donner le nom et la
 date du premier film de l'histoire. (aide : pour éviter d'avoir des champs
 nuls on peut utiliser la condition `IS NOT NULL`)
 
-**6)** Donnez une requête affichant le nombre de films pour adultes dans la
+6. Donnez une requête affichant le nombre de films pour adultes dans la
 base et donnez ce nombre.
 
 Le champ `genre` contient la liste des genres attribués à l'œuvre.
 
-**7)** Donnez une requête affichant le nombre de comédies (comedy) et donnez
+7. Donnez une requête affichant le nombre de comédies (comedy) et donnez
 ce nombre.
 
 ## Requêtes avancées
@@ -108,19 +108,19 @@ ce nombre.
 La table `work_ratings` regroupe les notes attribuées à chaque œuvre par les
 utilisateur de l'Imdb.
 
-**8)** Donnez les champs de cette table.
+8. Donnez les champs de cette table.
 
-**9)** Sur quel champ allez-vous faire une jointure pour faire le lien avec la
+9. Sur quel champ allez-vous faire une jointure pour faire le lien avec la
 table `work_basics`?
 
-**10)** Donnez une requête renvoyant les 10 films (movie) avec le plus de
+10. Donnez une requête renvoyant les 10 films (movie) avec le plus de
 votes. Quel est le film avec le plus de votes ?
 
-**11)** Donnez une requête renvoyant les 100 films (movie) avec la meilleure
+11. Donnez une requête renvoyant les 100 films (movie) avec la meilleure
 note. On ne gardera que les films avec plus de 100000 votes. Quel est le film
 avec le mieux noté ?
 
-**12)** Donnez une requête renvoyant les 100 œuvres avec la meilleure note. On
+12. Donnez une requête renvoyant les 100 œuvres avec la meilleure note. On
 ne gardera que les œuvres avec plus de 100000 votes. Quel est le type de
 l'œuvre la mieux notée ?
 
@@ -138,14 +138,14 @@ Ici `a` et `b` sont des alias.
 
 Sacahant tout cela, répondez à la question très difficile suivante :
 
-**13)** Donnez une requête renvoyant les 100 épisodes de série avec la
+13. Donnez une requête renvoyant les 100 épisodes de série avec la
 meilleure note. On ne gardera que les épisodes avec plus de 10000 votes.
 Quelle est la seule série avec un épisode ayant une note de 10 ?
 
 La table `work_director` fait le lien entre les œuvres et les réalisateurs de
 la table `name_basics`
 
-**14)** Donner une requête permettant de lister tous les films de Christopher
+14. Donner une requête permettant de lister tous les films de Christopher
 Nolan par ordre chronologique avec leur année de sortie.
 
-**15)** Inventez une requête pour impressionner le prof.
+15. Inventez une requête pour impressionner le prof.
