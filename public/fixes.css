@@ -13,10 +13,11 @@ html {
 
 [data-theme=kxs] .prose pre {
   background-color: #f5f2f0;
+  font-family: inherit;
 }
 
 [data-theme=kxs] .menu {
-  color: #CCCCCC;
+  color: #fafafa;
 }
 
 .jetbrains {
