@@ -11,6 +11,14 @@ html {
   font-family: "JetBrains Mono", serif;
 }
 
+[data-theme=kxs] .prose pre {
+  background-color: #f5f2f0;
+}
+
+[data-theme=kxs] .menu {
+  color: #CCCCCC;
+}
+
 .jetbrains {
   font-family: "JetBrains Mono", serif;
   font-optical-sizing: auto;
