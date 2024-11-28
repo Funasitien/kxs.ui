@@ -14,6 +14,7 @@ html {
 [data-theme=kxs] .prose pre {
   background-color: #f5f2f0;
   font-family: inherit;
+  color: #000000;
 }
 
 [data-theme=kxs] .menu {
