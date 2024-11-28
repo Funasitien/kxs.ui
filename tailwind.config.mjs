@@ -12,7 +12,7 @@ export default {
   daisyui: {
     themes: ["light", "sunset", {
       kxs: {
-        "primary": " 	#6b5b95",
+        "primary": "#6b5b95",
         "secondary": "#6b5b95",
         "accent": "#6b5b95",
         "neutral": "#fafafa",
@@ -21,7 +21,7 @@ export default {
         "success": "#00b690",
         "warning": "#e30f00",
         "error": "#ff0033",
-        "font-family": "'Roboto Slab', 'Georgia', Arial, sans-serif",
+        "font-family": "'Roboto Slab','Georgia',Arial,sans-serif",
       },
     },], // false: only light + dark | true: all themes | array: specific themes like this ["light", "dark", "cupcake"]
     darkTheme: "dark", // name of one of the included themes for dark mode
