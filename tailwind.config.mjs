@@ -12,11 +12,11 @@ export default {
   daisyui: {
     themes: ["light", "sunset", {
       kxs: {
-        "primary": "#00b1ff",
-        "secondary": "#bb5600",
-        "accent": "#fa0000",
-        "neutral": "#23232e",
-        "base-100": "#322526",
+        "primary": " 	#6b5b95",
+        "secondary": "#6b5b95",
+        "accent": "#6b5b95",
+        "neutral": "#fafafa",
+        "base-100": "#fafafa",
         "info": "#0056ff",
         "success": "#00b690",
         "warning": "#e30f00",
