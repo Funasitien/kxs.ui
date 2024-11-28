@@ -16,7 +16,6 @@ export default {
         "secondary": "#6b5b95",
         "accent": "#6b5b95",
         "neutral": "#fafafa",
-        "base-content": "#fafafa",
         "base-100": "#fafafa",
         "base-200": "#6b5b95",
         "base-300": "#ffffff",
