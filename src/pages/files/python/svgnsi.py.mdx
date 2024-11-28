@@ -20,7 +20,7 @@ class Draw:
         
     def generate(self):
         """
-            CrÃ©e le svg.
+            Crée le svg.
         """
         if self.police != "":
             self.body = self.template_police.format(self.police.strip()) + self.body
@@ -42,9 +42,9 @@ class Draw:
     
     def addPolice(self, url):
         """
-            Ajoute une police grÃ¢ce Ã  son url dans Google font.
-            Il faut aller sur cette url https://fonts.google.com sÃ©lectionner
-            une police et rÃ©cupÃ©rer l'url dans le @import.
+            Ajoute une police grâce à son url dans Google font.
+            Il faut aller sur cette url https://fonts.google.com sélectionner
+            une police et récupérer l'url dans le @import.
         """
         t = '@import url("{}");'
         self.police += t.format(url.replace("&","&amp;")) + "\n\t\t\t"
@@ -54,12 +54,12 @@ class Draw:
             Trace un rectangle.
             
             x : abscisse du point haut gauche
-            y : ordonnÃ©e du point haut gauche
+            y : ordonnée du point haut gauche
             width : largeur du rectangle
             height : hauteur de rectangle
-            stroke : couleur du trait (dÃ©faut : none)
-            strokewidth : Ã©paisseur de trait (dÃ©faut : 1px)
-            fill : couleur de remplissage (dÃ©faut : none)
+            stroke : couleur du trait (défaut : none)
+            strokewidth : épaisseur de trait (défaut : 1px)
+            fill : couleur de remplissage (défaut : none)
         """
         
         t = '<rect x="{}" y="{}" width="{}" height="{}"{}/>'
@@ -85,11 +85,11 @@ class Draw:
             Trace une ligne.
             
             x1 : abscisse du premier point
-            y1 : ordonnÃ©e du premier point
-            x2 : abscisse du deuxiÃ¨me point
-            y2 : ordonnÃ©e du deuxiÃ¨me point
-            stroke : couleur du trait (dÃ©faut : none)
-            strokewidth : Ã©paisseur de trait (dÃ©faut : 1px)
+            y1 : ordonnée du premier point
+            x2 : abscisse du deuxième point
+            y2 : ordonnée du deuxième point
+            stroke : couleur du trait (défaut : none)
+            strokewidth : épaisseur de trait (défaut : 1px)
         """
             
         t = '<line x1="{}" y1="{}" x2="{}" y2="{}"{}/>'
@@ -113,10 +113,10 @@ class Draw:
             Trace un cercle.
             
             cx : abscisse du centre
-            cy : ordonnÃ©e du centre
-            stroke : couleur du trait (dÃ©faut : none)
-            strokewidth : Ã©paisseur de trait (dÃ©faut : 1px)
-            fill : couleur de remplissage (dÃ©faut : none)
+            cy : ordonnée du centre
+            stroke : couleur du trait (défaut : none)
+            strokewidth : épaisseur de trait (défaut : 1px)
+            fill : couleur de remplissage (défaut : none)
         """
         
         t = '<circle cx="{}" cy="{}" r="{}"{}/>'
@@ -143,18 +143,18 @@ class Draw:
     
     def text(self, x, y, s, stroke = "", strokewidth = "", fill = "", fontsize = "", fontfamily = "", textanchor = "", rotate = ""):
         """
-            Ã‰crit un texte.
+            Écrit un texte.
             
-            x : abscisse du point en bas Ã  gauche du texte
-            y : ordonnÃ©e du point en bas Ã  gauche du texte
-            s : le texte Ã  afficher
-            stroke : couleur du trait (dÃ©faut : #000000)
-            strokewidth : Ã©paisseur de trait (dÃ©faut : 1px)
-            fill : couleur de remplissage (dÃ©faut : none)
-            fontsize : taille de police (dÃ©faut : 16px)
+            x : abscisse du point en bas à gauche du texte
+            y : ordonnée du point en bas à gauche du texte
+            s : le texte à afficher
+            stroke : couleur du trait (défaut : #000000)
+            strokewidth : épaisseur de trait (défaut : 1px)
+            fill : couleur de remplissage (défaut : none)
+            fontsize : taille de police (défaut : 16px)
             fontfamily : police
-            textanchor : position d'attache du texte en abscisse (start | middle | end; dÃ©faut : start)
-            rotate : angle de rotation du texte par rapport au point d'attache. Sens trigonomÃ©trique.
+            textanchor : position d'attache du texte en abscisse (start | middle | end; défaut : start)
+            rotate : angle de rotation du texte par rapport au point d'attache. Sens trigonométrique.
         """
         
         
