@@ -25,6 +25,17 @@ export default {
         "error": "#ff0033",
         "font-family": "'Roboto Slab','Georgia',Arial,sans-serif",
       },
+      cactus: {
+        "primary": "#3f6212",          
+        "secondary": "#3f6212", 
+        "accent": "#3f6212",       
+        "neutral": "#1f2937",    
+        "base-100": "#1f2937",    
+        "info": "#4f46e5",   
+        "success": "#00b690",   
+        "warning": "#f97316",    
+        "error": "#ff0033",
+      },
     },], // false: only light + dark | true: all themes | array: specific themes like this ["light", "dark", "cupcake"]
     darkTheme: "dark", // name of one of the included themes for dark mode
     base: true, // applies background color and foreground color for root element by default
