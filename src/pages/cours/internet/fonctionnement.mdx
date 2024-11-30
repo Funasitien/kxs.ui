@@ -4,13 +4,12 @@ icon: "mdi:paper-remove"
 layout: "/src/layouts/Page.astro"
 ---
 
-### Histoire
+## Histoire
 
 Internet a été créé aux États-Unis, le premier réseau à l’origine d’internet
 est Arpanet.
 
 1. Recherchez la date de création d’Arpanet.
-
 2. Le premier message sur Arpanet fut échangé entre quelles universités ?
 
 L’ancêtre d’internet en France est le réseau Cyclades.
@@ -22,7 +21,7 @@ TCP/IP dont nous reparlerons plus tard.
 
 4. Trouvez la date d’adoption de ce protocole.
 
-### Structure
+## Structure
 
 Internet tient son nom de sa structure : une interconnexion de réseaux (net).
 On l’appelle également le réseau des réseaux. Il est composé des réseaux des
@@ -35,20 +34,20 @@ notion.
 Supposons que nous disposons de 8 ordinateurs que nous souhaitons relier en
 réseau.
 
-#### Configuration 1
+### Configuration 1
 
 On décide ici de relier chaque ordinateur à tous les autres.
 
 5. Dessiner cette configuration ci-dessous :
 
-# MISSING GRAPHIC
+ MISSING GRAPHIC
 
 6. Combien de câbles avez-vous utilisé ?
 
 7. Quels sont les avantages et inconvénients de ce réseau ?
 (résilience/coût)
 
-#### Configuration 2
+### Configuration 2
 
 On souhaite maintenant utiliser le moins de câbles possibles tout en
 permettant à chaque ordinateur de communiquer avec n’importe quel autre
@@ -56,25 +55,25 @@ ordinateur.
 
 8. Dessinez un tel réseau :
 
-# MISSING GRAPHIC
+ MISSING GRAPHIC
 
 9. Combien de câbles avez-vous utilisé ?
 
 10. Quels sont les avantages et inconvénients de ce réseau ?
 (résilience/coût)
 
-#### Configuration 3
+### Configuration 3
 
 On s’autorise maintenant à utiliser 16 câbles.
 
 11. Proposez un réseau résilient utilisant ces 16 câbles (il n’y a pas
 qu’une seule bonne réponse).
 
-# MISSING GRAPHIC
+ MISSING GRAPHIC
 
 12. En quoi cette solution est-elle intéressante ?
 
-#### Mini internet simplifié
+### Mini internet simplifié
 
 Voici un schéma page suivante représentant un mini internet simplifié. Nous
 avons 6 réseaux composés d’ordinateurs reliés par des switchs. Un switch est
@@ -122,12 +121,12 @@ deux ordinateurs ?
 
 Nous reviendrons dans un autre TP plus en détail sur le routage.
 
-### Fonctionnement
+## Fonctionnement
 
 Nous avons parlé de paquets qui circulent sur le réseau. Mais d’où viennent
 ces paquets ? C’est ce que nous allons voir maintenant.
 
-#### TCP/IP
+### TCP/IP
 
 Quand vous utilisez une application qui « va » sur internet elle utilise
 généralement le protocole TCP/IP. Nous allons expliquer le fonctionnement de
@@ -137,19 +136,19 @@ Une application de l’ordinateur A veut envoyer des données vers une
 application de l’ordinateur B. L’application fournit donc des données à son
 programme TCP.
 
-# MISSING GRAPHIC
+ MISSING GRAPHIC
 
 TCP de l’ordinateur A reçoit les données et les encapsule en ajoutant des
 informations (port, application...) c’est le protocole TCP.
 
-# MISSING GRAPHIC
+ MISSING GRAPHIC
 
 TCP envoie alors le tout à IP.
 
 IP encapsule les informations venant de TCP en ajoutant entre autre les
 adresses IP de l’ordinateur A et de l’ordinateur B
 
-##### Adresse IP
+#### Adresse IP
 
 Une adresse IP permet d’identifier un ordinateur sur Internet. Elle est unique
 pour chaque ordinateur et est composée de quatre nombres entre 0 et 255
@@ -158,7 +157,7 @@ séparés par des points. Par exemple 124.23.178.246 est une adresse IP.
 16. Trouvez l’adresse IP du lycée en allant sur la page
 [https://kxs.fr/outils/ip](https://kxs.fr/outils/ip)
 
-# MISSING GRAPHIC
+ MISSING GRAPHIC
 
 Tout ceci est envoyé par le réseau (c’est ce qu’on appelle un paquet) et
 arrive au programme IP de l’ordinateur B.
@@ -166,18 +165,18 @@ arrive au programme IP de l’ordinateur B.
 IP vérifie l’adresse IP de destination, dés-encapsule et envoie le résultat à
 TCP :
 
-# MISSING GRAPHIC
+ MISSING GRAPHIC
 
 TCP vérifie que tout est correct puis les données sont envoyées à la bonne
 application :
 
-# MISSING GRAPHIC
+ MISSING GRAPHIC
 
 Un **accusé de réception** est alors envoyé à l’ordinateur A.
 
 L’application B reçoit les données.
 
-#### Fragmentation
+### Fragmentation
 
 IP peut fragmenter les données qu’il reçoit de la couche transport si elles
 sont trop volumineuses pour passer dans un paquet. En effet le réseau accepte
@@ -188,7 +187,7 @@ et les assemble pour reconstituer les données initiales.
 Les paquets peuvent ne pas arriver dans le bon ordre à cause du routage, ils
 sont donc numérotés. Ceci est illustré ci-dessous.
 
-# MISSING GRAPHIC
+ MISSING GRAPHIC
 Fragmentation des paquets avec le protocole IP Ordinateur A
 1001100100011100011101011001010010100111 Fragmentation 10011001 Paquet 1
 00011100 Paquet 2 01110101 Paquet 3 10010100 Paquet 4 10100111 Paquet 5 Envoi
@@ -201,7 +200,7 @@ Paquet 2 01110101 Paquet 3 10010100 Paquet 4 10100111 Paquet 5 Défragmentation
 17. À votre avis que fait l’émetteur si un paquet n’arrive pas, sachant
 que le récepteur envoie toujours des accusés de réception ?
 
-#### DNS
+### DNS
 
 Lorsque vous utilisez un navigateur, vous ne renseignez jamais une adresse IP,
 comment se fait-il que votre ordinateur connaisse l’IP de celui que vous
