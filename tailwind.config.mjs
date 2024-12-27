@@ -10,7 +10,7 @@ export default {
   },
   plugins: [require("@tailwindcss/typography"), require("daisyui")],
   daisyui: {
-    themes: ["light", "sunset", {
+    themes: ["light", "sunset", "nord", {
       kxs: {
         "primary": "#6b5b95",
         "secondary": "#6b5b95",
