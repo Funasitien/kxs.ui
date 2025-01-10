@@ -1,6 +1,42 @@
 ---
-title: "Le Web"
+title: "Protocoles de routage"
 icon: "mdi:find-in-page"
 isIndexFile: true
 layout: "/src/layouts/Page.astro"
 ---
+
+## Présentation
+
+Nous avons déjà parlé du routage de manière informelle en classe de première. 
+Cette année, nous allons découvrir deux protocoles de routage : RIP et OSPF. 
+
+## Situation
+
+ Nous allons d'abord utiliser des notations simplifiées pour comprendre les mécanismes. 
+Nous verrons ensuite des situations plus proches de la réalité utilisant des adresses IP.
+
+Nous considérons donc la situation suivante avec huit routeurs repésentés par des lettres : 
+
+![](/cours/reseau1.svg)
+
+## But
+
+Le but d'un protocole de routage est de déterminer pour chaque routeur la « meilleure » route pour atteindre chaque autre routeur. 
+Par exemple, pour notre exemple, la meilleure route pour aller de A à F est-elle A-C-F ou A-B-D-F ? 
+Nous verrons que la meilleure route va dépendre de la métrique choisie. La métrique est la façon de calculer la distance entre deux routeurs. 
+La principale différence entre les deux protocoles que nous allons étudier sera cette métrique.
+
+La meilleure route ne sera pas calculée avec une vision globale de tout le réseau. 
+Chaque routeur déterminera ses routes à partir de ses propres informations et de celles fournies par ses voisins directs. 
+Chaque routeur va donc établir une table de routage qui contiendra une ligne par destination lui indiquant le voisin à contacter et la métrique. 
+Voici un exemple de table routage pour le routeur A : 
+
+Destination | Moyen de l'atteindre | Métrique
+---|---|---
+B | B | 1
+C | C | 1
+D | B | 2
+E |	C | 2
+F |	C | 2
+G |	C | 3
+H | C | 3
