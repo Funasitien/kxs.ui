@@ -190,19 +190,7 @@ class GrapheProjet4:
         Partie récursive de l'algorithme de recherche de chemin
         """
 
-        chaine.append(start)
-        self.apercuChemin(chaine)
-
-        if start == end:
-            return chaine
-        for y in self.listeAdjacence[start]:
-            if y not in chaine:
-                chemin = self.trouveRecursif(y, end, chaine.copy())
-                if chemin:
-                    return chemin
-
-        return None
-		# À compléter pour retourner un chemin qui ne passe pas à travers les murs
+	# À compléter pour retourner un chemin qui ne passe pas à travers les murs
         return [(0,0), (self.largeur - 1, self.hauteur - 1)]
 
 
