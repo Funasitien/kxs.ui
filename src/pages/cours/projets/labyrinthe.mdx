@@ -76,8 +76,7 @@ Totals | 10
 
 import copy
 import time
-import pygame
-from pygame.locals import *
+import pyxel
 
 class GrapheProjet4:
     """
@@ -119,11 +118,8 @@ class GrapheProjet4:
         """
         Méthode principale qui gère tous les affichages.
         """
-        pygame.init()
-        # Taille d'un carré de base
-        self.tailleCarre = 50
-        # On crée une fenêtre à la taille du labyrinthe
-        self.fenetre = pygame.display.set_mode((self.tailleCarre*self.largeur, self.tailleCarre*self.hauteur))
+        pyxel.init(self.largeur, self.hauteur)
+
         # On dessine le labyrinthe
         self.traceLabirynthe(labyrinthe)
 
@@ -133,33 +129,21 @@ class GrapheProjet4:
         # On trace le chemin
         self.traceChemin(chemin)
 
-        # On attend l'appui sur le bouton fermer de la fenêtre
-        continuer = 1
-        while continuer:
-            for event in pygame.event.get():
-                # Si appui sur le bouton fermer
-                if event.type == QUIT:
-                    continuer = 0
-
-        pygame.quit()
-
     def traceLabirynthe(self,labyrinthe):
         """
         Trace le labyrinthe.
 
         Les cases noires représentent les murs.
         """
-        carre = pygame.Surface((self.tailleCarre,self.tailleCarre), pygame.SRCALPHA)
         for y in range(self.hauteur):
             for x in range(self.largeur):
                 if labyrinthe[y][x] == "#":
-                    color = (0, 0, 0, 255)
+                    color = 0
                 elif labyrinthe[y][x] == ".":
-                    color = (255, 255, 255, 255)
-                carre.fill(color)
-                self.fenetre.blit(carre, (x*self.tailleCarre, y*self.tailleCarre))
+                    color = 7
+                pyxel.pset(x, y, color)
         #modifie la fenêtre
-        pygame.display.flip()
+        pyxel.flip()
 
 
 
@@ -169,11 +153,10 @@ class GrapheProjet4:
 
         chemin : liste de tuples contenant les coordonnées (x, y) des cases constituant le chemin
         """
-        color = (255, 0, 0, 255)
-        for i in range(len(chemin)-1):
-            pygame.draw.line(self.fenetre, color, (chemin[i][0]*self.tailleCarre+int(self.tailleCarre/2), chemin[i][1]*self.tailleCarre+int(self.tailleCarre/2)), (chemin[i+1][0]*self.tailleCarre+int(self.tailleCarre/2), chemin[i+1][1]*self.tailleCarre+int(self.tailleCarre/2)), 5)
+        for sommet in chemin:
+            pyxel.pset(sommet[0], sommet[1], 8)
 
-        pygame.display.flip()
+        pyxel.flip()
 
     def effaceChemin(self, chemin):
         """
@@ -181,12 +164,9 @@ class GrapheProjet4:
 
         chemin : liste de tuples contenant les coordonnées (x, y) des cases constituant le chemin
         """
-        carre = pygame.Surface((self.tailleCarre,self.tailleCarre), pygame.SRCALPHA)
-        color = (255, 255, 255, 255)
-        carre.fill(color)
-        for coord in chemin:
-            self.fenetre.blit(carre, (coord[0]*self.tailleCarre, coord[1]*self.tailleCarre))
-        pygame.display.flip()
+
+        for sommet in chemin:
+            pyxel.pset(sommet[0], sommet[1], 7)
 
     def apercuChemin(self, chemin):
         """
@@ -209,55 +189,66 @@ class GrapheProjet4:
         """
         Partie récursive de l'algorithme de recherche de chemin
         """
-        # À compléter pour retourner un chemin qui ne passe pas à travers les murs
+
+        chaine.append(start)
+        self.apercuChemin(chaine)
+
+        if start == end:
+            return chaine
+        for y in self.listeAdjacence[start]:
+            if y not in chaine:
+                chemin = self.trouveRecursif(y, end, chaine.copy())
+                if chemin:
+                    return chemin
+
+        return None
+		# À compléter pour retourner un chemin qui ne passe pas à travers les murs
         return [(0,0), (self.largeur - 1, self.hauteur - 1)]
 
 
-
-
 lab_1 = ["..#.###...",
-            "#.#...#.#.",
-            "....#...#.",
-            ".#####.###",
-            ".#...#...#",
-            "...#.#.###",
-            "####.#....",
-            "#....##.##",
-            "..####...#",
-            "#......#.."]
+         "#.#...#.#.",
+         "....#...#.",
+         ".#####.###",
+         ".#...#...#",
+         "...#.#.###",
+         "####.#....",
+         "#....##.##",
+         "..####...#",
+         "#......#.."]
 
 lab_2 = ["..#.###...",
-            "#.#...#.#.",
-            "....#...#.",
-            ".#####.###",
-            ".#...#...#",
-            "...#.#.###",
-            "####.#....",
-            "#....##.##",
-            "..####...#",
-            "#....#.#.."]
+         "#.#...#.#.",
+         "....#...#.",
+         ".#####.###",
+         ".#...#...#",
+         "...#.#.###",
+         "####.#....",
+         "#....##.##",
+         "..####...#",
+         "#....#.#.."]
 
 
 lab_3 = [".#....#......#....#...#.....#.",
-            ".#.##.#.####.#.##.#.#.#.###.#.",
-            "....#.#....#....#...#.#.#.#...",
-            "###.#.##.#.#.##.#######...#.##",
-            "....#....#......#....#..#.....",
-            ".#######.#.###.##.##.#.######.",
-            ".....#.......#....#..#........",
-            "#.##.#.#####.######.##.#.#.###",
-            "..#..#.#.....#......#..#.#..#.",
-            ".##.##.#.#####.###.##.##.##...",
-            "..###..#.........#.#..#...##.#",
-            "#.#...##.#.#####.....####.#...",
-            "#...###..#...#.#.###....#.###.",
-            "#.###...####.#.#...##.#...#...",
-            "..#...####...#.#........#.#.##",
-            ".##.###....#.#.###.#.##.#.....",
-            ".#....#.##.#.......#..#.#.##.#",
-            ".#.##.#..#.####.#.###...#..#..",
-            "...#..##.#.#....#.#.#.####.##.",
-            "####.....#...####...#....#.#.."]
+         ".#.##.#.####.#.##.#.#.#.###.#.",
+         "....#.#....#....#...#.#.#.#...",
+         "###.#.##.#.#.##.#######...#.##",
+         "....#....#......#....#..#.....",
+         ".#######.#.###.##.##.#.######.",
+         ".....#.......#....#..#........",
+         "#.##.#.#####.######.##.#.#.###",
+         "..#..#.#.....#......#..#.#..#.",
+         ".##.##.#.#####.###.##.##.##...",
+         "..###..#.........#.#..#...##.#",
+         "#.#...##.#.#####.....####.#...",
+         "#...###..#...#.#.###....#.###.",
+         "#.###...####.#.#...##.#...#...",
+         "..#...####...#.#........#.#.##",
+         ".##.###....#.#.###.#.##.#.....",
+         ".#....#.##.#.......#..#.#.##.#",
+         ".#.##.#..#.####.#.###...#..#..",
+         "...#..##.#.#....#.#.#.####.##.",
+         "####.....#...####...#....#.#.."]
 
-graphe = GrapheProjet4(lab_1)
+graphe = GrapheProjet4(lab_3)
 ```
